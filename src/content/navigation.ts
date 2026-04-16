@@ -26,6 +26,8 @@ export const navLinks: readonly NavLink[] = [
     label: "Services",
     href: "/services",
     children: [
+      // Strategy
+      { label: "Project Strategy",            href: "/services/project-strategy"            },
       // Drawings
       { label: "Architectural Drafting",      href: "/services/architectural-drafting"      },
       { label: "As-Built Documentation",      href: "/services/as-built-documentation"      },
@@ -54,6 +56,7 @@ export const footerColumns: readonly FooterColumn[] = [
   {
     heading: "Services",
     links: [
+      { label: "Project Strategy",           href: "/services/project-strategy"           },
       { label: "Architectural Drafting",     href: "/services/architectural-drafting"     },
       { label: "Permit Set Preparation",     href: "/services/permit-set-preparation"     },
       { label: "ADU Permit Packages",        href: "/services/adu-permit-packages"        },

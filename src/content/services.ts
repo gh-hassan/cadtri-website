@@ -27,7 +27,8 @@ export type ServiceLayout =
   | "process"
   | "visual"
   | "package"
-  | "technical";
+  | "technical"
+  | "strategy";
 
 export interface Service {
   readonly slug: string;
@@ -565,6 +566,84 @@ export const services: readonly Service[] = [
     whyItMatters:
       "Empty spaces are hard to sell. Professionally staged 3D imagery lets buyers, tenants, and investors see the property as a finished, lived-in space rather than as a construction site or vacant shell. The quality of the imagery directly affects the speed and price of the transaction.",
     relatedSlugs: ["renderings-visualization", "digital-walkthroughs", "architectural-drafting"],
+  },
+
+  // ── 16. Project Strategy ────────────────────────────────────────────────────
+  {
+    slug:     "project-strategy",
+    title:    "Project Strategy",
+    category: "Strategy",
+    layout:   "strategy",
+    tagline:  "A complete project roadmap from raw idea to build-ready documentation.",
+    overview:
+      "Project Strategy is a structured advisory engagement that takes your project from concept to a fully defined, actionable roadmap. We analyze your site, goals, and constraints, map the full permit and approval pathway, identify every consultant you will need and when, and deliver a written roadmap that drives all downstream work. The output is clarity: you know exactly what the project requires, in what order, and what each phase will demand before you commit a dollar to production.",
+    steps: [
+      {
+        title: "Concept and Goals Review",
+        description: "We start with your idea — what you want to build, on what site, and why. We document the project program, establish your constraints (budget, timeline, use), and identify the critical unknowns that need to be resolved before design can begin.",
+      },
+      {
+        title: "Site and Zoning Analysis",
+        description: "A full review of your site against the applicable zoning ordinance: permitted use, setbacks, lot coverage, FAR, height limits, overlay districts, and any deed restrictions or easements that affect buildability. We produce a written site analysis document.",
+      },
+      {
+        title: "Permit Pathway Mapping",
+        description: "We map every approval your project will require: building department, planning, fire, utilities, and any discretionary reviews such as design review, variance, or conditional use. Each checkpoint is documented with its typical timeline, required submissions, and risk factors.",
+      },
+      {
+        title: "Consultant Identification",
+        description: "We identify every consultant your project will require — structural, MEP, civil, soils, energy, accessibility — and build a coordination matrix that sequences their involvement correctly, preventing the expensive mistake of bringing in consultants out of order.",
+      },
+      {
+        title: "Phased Scope Definition",
+        description: "We break the project into clearly defined phases: pre-design, schematic, permit set, plan check, and construction. Each phase is assigned a scope, deliverable list, responsible party, and decision point. Nothing is vague or left to assumption.",
+      },
+      {
+        title: "Roadmap Delivery and Briefing",
+        description: "The complete Project Strategy document is delivered as a written report. We walk you through every section in a dedicated briefing call, answer questions, and confirm next steps. The roadmap becomes the governing document for your entire project.",
+      },
+    ],
+    processHighlights: [
+      { label: "Phases Covered", value: "6" },
+      { label: "Delivery Format", value: "Written Report" },
+      { label: "Briefing Call", value: "Included" },
+      { label: "Jurisdiction Research", value: "Included" },
+    ],
+    includes: [
+      { title: "Site and Zoning Analysis Report",    description: "Written analysis of your site against current zoning, including permitted uses, setbacks, FAR, height limits, overlay districts, and any known restrictions." },
+      { title: "Permit Pathway Map",                 description: "A complete map of every approval required for your project, with estimated timelines, submission requirements, and flagged risk factors for each checkpoint." },
+      { title: "Consultant Coordination Matrix",     description: "A structured matrix identifying all required consultants, their scope of work, sequencing, and handoff points." },
+      { title: "Phased Project Roadmap",             description: "A phase-by-phase breakdown of your project from pre-design through permit-ready, with scope, deliverables, and decision points defined for each phase." },
+      { title: "Strategy Briefing Call",             description: "A dedicated video call to walk through the complete roadmap, answer questions, and confirm next steps and priorities." },
+      { title: "30-Day Follow-Up Support",           description: "Email support for 30 days following delivery to answer questions as your project moves from strategy into active design and permitting." },
+    ],
+    audience: [
+      { title: "First-Time Developers",        description: "Who have a site and an idea but no clear picture of what the project will actually require to permit and build." },
+      { title: "Property Owners",              description: "Planning an addition, ADU, or new construction and want a clear action plan before engaging architects or contractors." },
+      { title: "Investors Evaluating a Site",  description: "Who need to understand a site's development potential, permit complexity, and timeline before committing to acquisition." },
+      { title: "Small Developers",             description: "Managing multiple consultants across several projects who need a structured coordination framework for each project from day one." },
+    ],
+    faqs: [
+      {
+        question: "Is this the same as a feasibility study?",
+        answer: "A feasibility study typically answers one question: can this project be built? Project Strategy goes further. It defines the full roadmap for how to build it — consultants, sequencing, permit pathway, phased scope, and decision points from start to permit-ready.",
+      },
+      {
+        question: "Do I need this before starting design?",
+        answer: "Yes, in most cases. Design that begins without a defined permit pathway and consultant plan frequently has to backtrack when previously unknown requirements surface. The cost of a strategy engagement is small compared to rework.",
+      },
+      {
+        question: "What if my project changes after the strategy is delivered?",
+        answer: "The roadmap is a living document. If your scope changes materially, we can update the strategy document. Minor changes — adjustments to program or phasing — are usually covered under 30-day follow-up support.",
+      },
+      {
+        question: "Can CADTRI execute the work defined in the strategy?",
+        answer: "Yes. Most clients who engage us for Project Strategy continue with CADTRI for permit set preparation, drafting, coordination, and response services. The strategy gives us a shared understanding of your project from the start.",
+      },
+    ],
+    whyItMatters:
+      "Most project delays and cost overruns do not come from bad design. They come from a project that was never properly planned. Missing consultant coordination, a permit pathway that was never mapped, approvals that were discovered too late — these are strategic failures, not technical ones. A defined project strategy removes ambiguity before it becomes expensive.",
+    relatedSlugs: ["permit-set-preparation", "pre-application-meeting-prep", "entitlement-support"],
   },
 
 ] as const;

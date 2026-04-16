@@ -9,6 +9,7 @@ import { ProcessLayout } from "@/components/service-layouts/process-layout";
 import { VisualLayout } from "@/components/service-layouts/visual-layout";
 import { PackageLayout } from "@/components/service-layouts/package-layout";
 import { TechnicalLayout } from "@/components/service-layouts/technical-layout";
+import { StrategyLayout } from "@/components/service-layouts/strategy-layout";
 import { getServiceBySlug, getRelatedServices, services } from "@/content/services";
 
 interface Props {
@@ -47,6 +48,7 @@ export default async function ServiceDetailPage({ params }: Props) {
       {service.layout === "visual" && <VisualLayout service={service} />}
       {service.layout === "package" && <PackageLayout service={service} />}
       {service.layout === "technical" && <TechnicalLayout service={service} />}
+      {service.layout === "strategy" && <StrategyLayout service={service} />}
       {service.layout === "standard" && <StandardLayout service={service} />}
     </>
   );

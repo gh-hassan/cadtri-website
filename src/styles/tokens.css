@@ -1,0 +1,35 @@
+/*
+  Design tokens reference file for CADTRI.
+  These tokens are declared in src/app/globals.css (the single CSS entry point).
+  This file exists as an editable reference — copy changes into globals.css to apply them.
+
+  When the brand palette is finalized:
+    1. Update the values in globals.css :root
+    2. Mirror changes here for reference
+    3. Wire brand colors into tailwind.config.ts theme.extend.colors
+*/
+
+:root {
+  /* Brand colors — placeholder */
+  --color-primary:             #1a1a2e;
+  --color-primary-hover:       #16162a;
+  --color-primary-foreground:  #ffffff;
+  --color-secondary:           #c9a84c;
+  --color-secondary-hover:     #b8973e;
+  --color-secondary-foreground:#1a1a2e;
+  --color-accent:              #e8e0d0;
+
+  /* Neutrals */
+  --color-background:          #ffffff;
+  --color-surface:             #f8f7f5;
+  --color-foreground:          #111111;
+  --color-muted:               #6b7280;
+  --color-border:              #e5e7eb;
+
+  /* Radius */
+  --radius-sm:   0.25rem;
+  --radius-md:   0.5rem;
+  --radius-lg:   0.75rem;
+  --radius-xl:   1rem;
+  --radius-full: 9999px;
+}

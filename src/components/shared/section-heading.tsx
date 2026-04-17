@@ -53,7 +53,6 @@ export function SectionHeading({
           )}
         >
           {/* Thin orange rule — brand-specific eyebrow detail */}
-          <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
           {eyebrow}
         </p>
       )}

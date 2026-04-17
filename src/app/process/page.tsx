@@ -69,7 +69,6 @@ export default function ProcessPage() {
         <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-              <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
               The Workflow
             </p>
             <h2
@@ -151,7 +150,6 @@ export default function ProcessPage() {
         <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-              <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
               Before You Reach Out
             </p>
             <h2
@@ -177,7 +175,6 @@ export default function ProcessPage() {
               key={item}
               className="flex items-start gap-4 bg-surface px-8 py-6"
             >
-              <span className="mt-2 h-px w-4 shrink-0 bg-secondary/60" aria-hidden />
               <p className="text-sm font-light leading-relaxed text-muted">
                 {item}
               </p>

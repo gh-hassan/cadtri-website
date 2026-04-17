@@ -28,7 +28,6 @@ export function VisualLayout({ service }: Props) {
       <Section variant="default">
         <div className="border-b border-border pb-16">
           <p className="mb-6 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-            <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
             Overview
           </p>
           <p
@@ -73,7 +72,6 @@ export function VisualLayout({ service }: Props) {
           <div className="mb-12 grid items-end gap-8 border-b border-white/10 pb-12 lg:grid-cols-2 lg:gap-20">
             <div>
               <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-                <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
                 Common Applications
               </p>
               <h2
@@ -118,7 +116,6 @@ export function VisualLayout({ service }: Props) {
         <div className="mb-12 grid items-end gap-8 border-b border-border pb-12 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-              <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
               Deliverables
             </p>
             <h2
@@ -152,7 +149,6 @@ export function VisualLayout({ service }: Props) {
         <div className="grid gap-16 lg:grid-cols-[1fr_1fr] lg:gap-20">
           <div>
             <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-              <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
               Designed For
             </p>
             <h2
@@ -198,7 +194,6 @@ export function VisualLayout({ service }: Props) {
           <div className="mb-12 flex items-end justify-between gap-8">
             <div>
               <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-                <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
                 Continue Exploring
               </p>
               <h2

@@ -48,7 +48,6 @@ export function CtaBand({
       <div className="container mx-auto max-w-container px-6">
 
         {/* Thin orange rule — left-anchored brand accent */}
-        <div className="mb-10 h-px w-10 bg-secondary" />
 
         {/* Asymmetric composition: heading/description left, CTAs right */}
         <div className="grid items-end gap-12 lg:grid-cols-[1fr_auto] lg:gap-24">

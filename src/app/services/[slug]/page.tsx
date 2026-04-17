@@ -10,7 +10,36 @@ import { VisualLayout } from "@/components/service-layouts/visual-layout";
 import { PackageLayout } from "@/components/service-layouts/package-layout";
 import { TechnicalLayout } from "@/components/service-layouts/technical-layout";
 import { StrategyLayout } from "@/components/service-layouts/strategy-layout";
+import { FeasibilityLayout } from "@/components/service-layouts/feasibility-layout";
+import { AdditionLayout } from "@/components/service-layouts/addition-layout";
+import { ConversionLayout } from "@/components/service-layouts/conversion-layout";
+import { AdminLayout } from "@/components/service-layouts/admin-layout";
+import { BidLayout } from "@/components/service-layouts/bid-layout";
+import { OutdoorLayout } from "@/components/service-layouts/outdoor-layout";
+import { RemodelLayout } from "@/components/service-layouts/remodel-layout";
+import { ComplianceLayout } from "@/components/service-layouts/compliance-layout";
+import { AccessoryLayout } from "@/components/service-layouts/accessory-layout";
+import { EnergyLayout } from "@/components/service-layouts/energy-layout";
+import { HistoricLayout } from "@/components/service-layouts/historic-layout";
+import { BimLayout } from "@/components/service-layouts/bim-layout";
+import { ZoningLayout } from "@/components/service-layouts/zoning-layout";
+import { PathwayLayout } from "@/components/service-layouts/pathway-layout";
+import { AssessmentLayout } from "@/components/service-layouts/assessment-layout";
+import { ScopeLayout } from "@/components/service-layouts/scope-layout";
+import { OptionsLayout } from "@/components/service-layouts/options-layout";
+import { GapLayout } from "@/components/service-layouts/gap-layout";
+import { DemolitionLayout } from "@/components/service-layouts/demolition-layout";
+import { RedlineLayout } from "@/components/service-layouts/redline-layout";
+import { TenantLayout } from "@/components/service-layouts/tenant-layout";
+import { DeferredLayout } from "@/components/service-layouts/deferred-layout";
+import { FireSafetyLayout } from "@/components/service-layouts/firesafety-layout";
+import { SignageLayout } from "@/components/service-layouts/signage-layout";
+import { InteriorLayout } from "@/components/service-layouts/interior-layout";
+import { SiteplanLayout } from "@/components/service-layouts/siteplan-layout";
+import { RecordLayout } from "@/components/service-layouts/record-layout";
 import { getServiceBySlug, getRelatedServices, services } from "@/content/services";
+import { ServiceJsonLd, BreadcrumbJsonLd } from "@/lib/json-ld";
+import { company } from "@/content/company";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -36,8 +65,23 @@ export default async function ServiceDetailPage({ params }: Props) {
   const service = getServiceBySlug(slug);
   if (!service) notFound();
 
+  const firstSentence = service.overview.split(".")[0] + ".";
+
   return (
     <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", href: "/" },
+          { name: "Services", href: "/services" },
+          { name: service.title, href: `/services/${slug}` },
+        ]}
+      />
+      <ServiceJsonLd
+        title={service.title}
+        description={`${service.tagline} ${firstSentence}`}
+        url={`${company.website}/services/${slug}`}
+        category={service.category}
+      />
       <PageHeader
         eyebrow={service.category}
         heading={service.title}
@@ -49,6 +93,33 @@ export default async function ServiceDetailPage({ params }: Props) {
       {service.layout === "package" && <PackageLayout service={service} />}
       {service.layout === "technical" && <TechnicalLayout service={service} />}
       {service.layout === "strategy" && <StrategyLayout service={service} />}
+      {service.layout === "feasibility" && <FeasibilityLayout service={service} />}
+      {service.layout === "addition" && <AdditionLayout service={service} />}
+      {service.layout === "conversion" && <ConversionLayout service={service} />}
+      {service.layout === "admin" && <AdminLayout service={service} />}
+      {service.layout === "bid" && <BidLayout service={service} />}
+      {service.layout === "outdoor" && <OutdoorLayout service={service} />}
+      {service.layout === "remodel" && <RemodelLayout service={service} />}
+      {service.layout === "compliance" && <ComplianceLayout service={service} />}
+      {service.layout === "accessory" && <AccessoryLayout service={service} />}
+      {service.layout === "energy" && <EnergyLayout service={service} />}
+      {service.layout === "historic" && <HistoricLayout service={service} />}
+      {service.layout === "bim" && <BimLayout service={service} />}
+      {service.layout === "zoning" && <ZoningLayout service={service} />}
+      {service.layout === "pathway" && <PathwayLayout service={service} />}
+      {service.layout === "assessment" && <AssessmentLayout service={service} />}
+      {service.layout === "scope" && <ScopeLayout service={service} />}
+      {service.layout === "options" && <OptionsLayout service={service} />}
+      {service.layout === "gap" && <GapLayout service={service} />}
+      {service.layout === "demolition" && <DemolitionLayout service={service} />}
+      {service.layout === "redline" && <RedlineLayout service={service} />}
+      {service.layout === "tenant" && <TenantLayout service={service} />}
+      {service.layout === "deferred" && <DeferredLayout service={service} />}
+      {service.layout === "firesafety" && <FireSafetyLayout service={service} />}
+      {service.layout === "signage" && <SignageLayout service={service} />}
+      {service.layout === "interior" && <InteriorLayout service={service} />}
+      {service.layout === "siteplan" && <SiteplanLayout service={service} />}
+      {service.layout === "record" && <RecordLayout service={service} />}
       {service.layout === "standard" && <StandardLayout service={service} />}
     </>
   );
@@ -66,7 +137,6 @@ function StandardLayout({ service }: { service: NonNullable<ReturnType<typeof ge
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-              <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
               Overview
             </p>
             <p className="font-light leading-relaxed text-foreground sm:text-lg">
@@ -75,7 +145,6 @@ function StandardLayout({ service }: { service: NonNullable<ReturnType<typeof ge
           </div>
           <div>
             <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-              <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
               Why It Matters
             </p>
             <p className="font-light leading-relaxed text-muted sm:text-lg">
@@ -95,7 +164,6 @@ function StandardLayout({ service }: { service: NonNullable<ReturnType<typeof ge
         <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-              <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
               Deliverables
             </p>
             <h2 className="font-bold text-3xl text-foreground sm:text-4xl" style={{ letterSpacing: "-0.025em" }}>
@@ -125,7 +193,6 @@ function StandardLayout({ service }: { service: NonNullable<ReturnType<typeof ge
         <div className="grid gap-16 lg:grid-cols-[1fr_1fr] lg:gap-20">
           <div>
             <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-              <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
               Designed For
             </p>
             <h2 className="font-bold text-3xl text-foreground sm:text-4xl" style={{ letterSpacing: "-0.025em" }}>
@@ -161,7 +228,6 @@ function StandardLayout({ service }: { service: NonNullable<ReturnType<typeof ge
           <div className="mb-12 flex items-end justify-between gap-8">
             <div>
               <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-                <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
                 Continue Exploring
               </p>
               <h2 className="font-bold text-2xl text-foreground sm:text-3xl" style={{ letterSpacing: "-0.025em" }}>

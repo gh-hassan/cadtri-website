@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { PageHeader } from "@/components/shared/page-header";
 import { Section } from "@/components/shared/section";
 import { CtaBand } from "@/components/shared/cta-band";
 import { Button } from "@/components/shared/button";
+import { team } from "@/content/team";
 
 export const metadata: Metadata = {
   title: "About",
@@ -90,7 +92,6 @@ export default function AboutPage() {
           {/* Left: who CADTRI is */}
           <div>
             <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-              <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
               The Practice
             </p>
             <p className="font-light leading-relaxed text-foreground sm:text-lg">
@@ -104,7 +105,6 @@ export default function AboutPage() {
           {/* Right: service deliverables list */}
           <div>
             <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-              <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
               What We Deliver
             </p>
             <ul
@@ -116,7 +116,6 @@ export default function AboutPage() {
                   key={item}
                   className="flex items-center gap-4 py-4 text-sm font-light text-muted"
                 >
-                  <span className="h-px w-5 shrink-0 bg-secondary/60" aria-hidden />
                   {item}
                 </li>
               ))}
@@ -138,7 +137,6 @@ export default function AboutPage() {
         <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-              <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
               Standards
             </p>
             <h2
@@ -179,6 +177,68 @@ export default function AboutPage() {
 
       </Section>
 
+      {/* ── Team ─────────────────────────────────────────────────────────────── */}
+      {team.length > 0 && (
+        <Section variant="default" className="border-t border-border">
+          <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
+            <div>
+              <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
+                The Team
+              </p>
+              <h2
+                className="font-bold text-3xl text-foreground sm:text-4xl"
+                style={{ letterSpacing: "-0.025em" }}
+              >
+                The people behind the work.
+              </h2>
+            </div>
+            <div className="flex items-end">
+              <p className="font-light leading-relaxed text-muted">
+                Every project has a dedicated contact from intake through
+                delivery. No handoffs, no miscommunication.
+              </p>
+            </div>
+          </div>
+
+          <ul
+            role="list"
+            className="divide-y divide-border border-y border-border"
+          >
+            {team.map((member) => (
+              <li
+                key={member.name}
+                className="grid gap-6 py-10 lg:grid-cols-[280px_1fr] lg:gap-16"
+              >
+                <div>
+                  <p
+                    className="font-bold text-xl text-foreground"
+                    style={{ letterSpacing: "-0.02em" }}
+                  >
+                    {member.name}
+                  </p>
+                  <p className="mt-1 text-[11px] font-medium uppercase tracking-widest text-secondary">
+                    {member.role}
+                  </p>
+                  {member.linkedin && (
+                    <Link
+                      href={member.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-3 inline-block text-[10px] font-medium uppercase tracking-widest text-muted hover:text-secondary"
+                    >
+                      LinkedIn →
+                    </Link>
+                  )}
+                </div>
+                <p className="font-light leading-relaxed text-muted sm:text-[17px]">
+                  {member.bio}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </Section>
+      )}
+
       {/* ── Who we work with ─────────────────────────────────────────────────── */}
       <Section variant="default" className="border-t border-border">
         <div className="grid gap-16 lg:grid-cols-[1fr_1fr] lg:gap-20">
@@ -186,7 +246,6 @@ export default function AboutPage() {
           {/* Left: section label + intro */}
           <div>
             <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-              <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
               Clients
             </p>
             <h2

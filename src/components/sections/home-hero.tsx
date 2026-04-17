@@ -24,7 +24,6 @@ export function HomeHero() {
 
           {/* Eyebrow */}
           <p className="mb-8 flex items-center gap-3 text-xs font-medium uppercase tracking-widest text-secondary">
-            <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
             {heroContent.eyebrow}
           </p>
 

@@ -38,7 +38,6 @@ export default function ContactPage() {
 
             <div>
               <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-                <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
                 Proposal Inquiry
               </p>
               <h2
@@ -66,7 +65,6 @@ export default function ContactPage() {
                     key={item}
                     className="flex items-center gap-4 py-3.5 text-sm font-light text-muted"
                   >
-                    <span className="h-px w-4 shrink-0 bg-secondary/60" aria-hidden />
                     {item}
                   </li>
                 ))}

@@ -1,48 +1,69 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { navLinks } from "@/content/navigation";
+import { navLinks, servicesMegaMenu } from "@/content/navigation";
 import { company } from "@/content/company";
 import { Button } from "@/components/shared/button";
 
 // ─── Constants ──────────────────────────────────────────────────────────────
 
-/** Must match the header's h-[72px] + 1px border-b */
-const HEADER_OFFSET = 73;
+const HEADER_H = 73; // h-[72px] + 1px border-b
 
 // ─── Component ──────────────────────────────────────────────────────────────
 
 export function SiteHeader() {
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileOpen, setMobileOpen]         = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
-  const pathname = usePathname();
+  // Tracks which nav label has its dropdown open ("Services", "Industries", etc.)
+  const [openDropdown, setOpenDropdown]     = useState<string | null>(null);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const pathname   = usePathname();
 
-  // Close mobile menu on navigation
+  // ── Side-effects ────────────────────────────────────────────────────────
+
+  // Close everything on route change
   useEffect(() => {
     setMobileOpen(false);
     setMobileExpanded(null);
+    setOpenDropdown(null);
   }, [pathname]);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
+    return () => { document.body.style.overflow = ""; };
   }, [mobileOpen]);
 
-  // Auto-close at desktop breakpoint
+  // Close mobile menu at desktop breakpoint
   useEffect(() => {
-    const onResize = () => {
-      if (window.innerWidth >= 1024) setMobileOpen(false);
-    };
+    const onResize = () => { if (window.innerWidth >= 1024) setMobileOpen(false); };
     window.addEventListener("resize", onResize, { passive: true });
     return () => window.removeEventListener("resize", onResize);
   }, []);
+
+  // Close dropdowns on Escape
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setOpenDropdown(null); };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, []);
+
+  // ── Dropdown hover helpers (small delay prevents flicker) ───────────────
+
+  const openFor = useCallback((label: string) => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setOpenDropdown(label);
+  }, []);
+
+  const scheduleClose = useCallback(() => {
+    closeTimer.current = setTimeout(() => setOpenDropdown(null), 120);
+  }, []);
+
+  // ── Helpers ─────────────────────────────────────────────────────────────
 
   const isActive = (link: { href: string; activePath?: string }) => {
     const path = link.activePath ?? link.href;
@@ -50,59 +71,59 @@ export function SiteHeader() {
   };
 
   const toggleMobileGroup = (href: string) =>
-    setMobileExpanded((current) => (current === href ? null : href));
+    setMobileExpanded((cur) => (cur === href ? null : href));
+
+  // ── Render ──────────────────────────────────────────────────────────────
 
   return (
     <>
-      {/* ── Header bar ───────────────────────────────────────────────────── */}
+      {/* ── Sticky header bar ──────────────────────────────────────────── */}
       <header className="sticky top-0 z-50 border-b border-border bg-background">
         <div className="mx-auto flex h-[72px] max-w-container items-center justify-between px-6">
 
           {/* Wordmark */}
           <Link
             href="/"
-            className={cn(
-              "shrink-0 text-sm font-bold uppercase tracking-[0.22em] text-foreground",
-              "transition-opacity duration-base hover:opacity-50",
-            )}
+            className="shrink-0 text-sm font-bold uppercase tracking-[0.22em] text-foreground transition-opacity duration-200 hover:opacity-50"
             aria-label={`${company.name} homepage`}
           >
             {company.name}
           </Link>
 
-          {/* ── Desktop navigation ───────────────────────────────────────── */}
-          <nav
-            className="hidden items-center gap-8 lg:flex"
-            aria-label="Primary navigation"
-          >
+          {/* ── Desktop nav ────────────────────────────────────────────── */}
+          <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary navigation">
             {navLinks.map((link) => (
               <div
                 key={link.label}
-                className="group relative flex h-[72px] items-center"
+                className="relative flex h-[72px] items-center"
+                onMouseEnter={link.children ? () => openFor(link.label) : undefined}
+                onMouseLeave={link.children ? scheduleClose : undefined}
               >
-                {/* Nav link — also acts as dropdown trigger on hover */}
                 <Link
                   href={link.href}
                   className={cn(
                     "flex items-center gap-1 text-[11px] font-medium uppercase tracking-[0.12em]",
-                    "transition-colors duration-base",
-                    isActive(link)
-                      ? "text-foreground"
-                      : "text-muted hover:text-foreground",
+                    "transition-colors duration-200",
+                    isActive(link) ? "text-foreground" : "text-muted hover:text-foreground",
                   )}
+                  aria-haspopup={link.children ? "true" : undefined}
+                  aria-expanded={link.children ? openDropdown === link.label : undefined}
                 >
                   {link.label}
                   {link.children && (
                     <ChevronDown
                       size={10}
                       strokeWidth={2.5}
-                      className="mt-px transition-transform duration-base group-hover:rotate-180"
+                      className={cn(
+                        "mt-px transition-transform duration-200",
+                        openDropdown === link.label && "rotate-180",
+                      )}
                       aria-hidden
                     />
                   )}
                 </Link>
 
-                {/* Active indicator — burnt orange underline on active links */}
+                {/* Active underline */}
                 {isActive(link) && (
                   <span
                     className="pointer-events-none absolute bottom-0 left-0 right-0 h-0.5 bg-secondary"
@@ -110,122 +131,180 @@ export function SiteHeader() {
                   />
                 )}
 
-                {/* Dropdown panel */}
-                {link.children && (
+                {/* ── Compact dropdown (non-Services) ──────────────────── */}
+                {link.children && link.label !== "Services" && openDropdown === link.label && (
                   <div
-                    className={cn(
-                      "absolute left-0 top-full z-50 pt-3",
-                      // Hidden by default; revealed on hover or keyboard focus-within
-                      "invisible translate-y-2 opacity-0",
-                      "group-hover:visible group-hover:translate-y-0 group-hover:opacity-100",
-                      "group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100",
-                      "transition-all duration-base",
-                    )}
-                    role="menu"
-                    aria-label={`${link.label} submenu`}
+                    className="absolute left-0 top-full z-50 min-w-[180px] border border-border bg-background shadow-[0_8px_24px_-4px_rgb(34_34_34/0.10)]"
+                    onMouseEnter={() => openFor(link.label)}
+                    onMouseLeave={scheduleClose}
                   >
-                    <div className="min-w-[240px] border border-border bg-background shadow-md">
-                      {link.children.map((child, index) => (
-                        <Link
-                          key={child.href}
-                          href={child.href}
-                          role="menuitem"
-                          className={cn(
-                            "block px-6 py-3.5",
-                            "text-[11px] font-medium uppercase tracking-[0.1em] text-muted",
-                            "transition-colors duration-fast hover:bg-surface hover:text-foreground",
-                            index < link.children!.length - 1 &&
-                              "border-b border-border/60",
-                          )}
-                        >
-                          {child.label}
-                        </Link>
+                    <ul role="list" className="py-1.5">
+                      {link.children.map((child) => (
+                        <li key={child.href}>
+                          <Link
+                            href={child.href}
+                            className={cn(
+                              "block px-4 py-2.5 text-[11px] font-medium uppercase tracking-[0.1em]",
+                              "transition-colors duration-150",
+                              pathname.startsWith(child.href)
+                                ? "text-secondary"
+                                : "text-muted hover:text-foreground hover:bg-surface",
+                            )}
+                          >
+                            {child.label}
+                          </Link>
+                        </li>
                       ))}
-                    </div>
+                    </ul>
                   </div>
                 )}
               </div>
             ))}
           </nav>
 
-          {/* ── Desktop CTAs ─────────────────────────────────────────────── */}
+          {/* ── Desktop CTAs ───────────────────────────────────────────── */}
           <div className="hidden items-center gap-5 lg:flex">
-            {/* Structural separator */}
             <div className="h-4 w-px bg-border" aria-hidden />
-
             <Link
               href="/contact"
               className={cn(
-                "text-[11px] font-medium uppercase tracking-[0.12em]",
-                "transition-colors duration-base",
-                isActive({ href: "/contact" })
-                  ? "text-foreground"
-                  : "text-muted hover:text-foreground",
+                "text-[11px] font-medium uppercase tracking-[0.12em] transition-colors duration-200",
+                isActive({ href: "/contact" }) ? "text-foreground" : "text-muted hover:text-foreground",
               )}
             >
               Contact
             </Link>
-
             <Button href="/contact" variant="secondary" size="sm">
               Request Proposal
             </Button>
           </div>
 
-          {/* ── Mobile toggle ─────────────────────────────────────────────── */}
+          {/* ── Mobile hamburger ───────────────────────────────────────── */}
           <button
             type="button"
             onClick={() => setMobileOpen((v) => !v)}
-            className={cn(
-              "flex items-center justify-center p-1 text-foreground",
-              "transition-opacity duration-base hover:opacity-50",
-              "lg:hidden",
-            )}
+            className="flex items-center justify-center p-1 text-foreground transition-opacity duration-200 hover:opacity-50 lg:hidden"
             aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={mobileOpen}
             aria-controls="mobile-menu"
           >
-            {mobileOpen ? (
-              <X size={20} strokeWidth={1.5} />
-            ) : (
-              <Menu size={20} strokeWidth={1.5} />
-            )}
+            {mobileOpen ? <X size={20} strokeWidth={1.5} /> : <Menu size={20} strokeWidth={1.5} />}
           </button>
         </div>
       </header>
 
-      {/* ── Mobile navigation panel ──────────────────────────────────────────
-          Fixed below the sticky header; body scroll is locked while open.
-      ─────────────────────────────────────────────────────────────────────── */}
+      {/* ── Mega menu panel (Services only) ─────────────────────────────────
+          Fixed below the sticky header. Expo-out easing for silky entrance,
+          faster exit. Columns stagger in with individual delays.
+          No dark box — clean cream surface with a bottom action strip.
+      ───────────────────────────────────────────────────────────────────── */}
+      {openDropdown === "Services" && (
+        <div
+          style={{ top: HEADER_H }}
+          className="mega-panel-enter fixed inset-x-0 z-40 hidden border-b border-border bg-background lg:block"
+          onMouseEnter={() => openFor("Services")}
+          onMouseLeave={scheduleClose}
+          role="region"
+          aria-label="Services mega menu"
+        >
+          {/* Warm shadow — layered, warm-toned, not a hard black drop */}
+          <div className="absolute inset-0 shadow-[0_16px_40px_-8px_rgb(34_34_34/0.12)]" aria-hidden />
+
+          <div className="relative mx-auto max-w-container px-6 pt-7 pb-0">
+
+            {/* ── 5 category columns ───────────────────────────────────── */}
+            <div className="grid grid-cols-5 divide-x divide-border">
+              {servicesMegaMenu.map((cat, i) => (
+                <div
+                  key={cat.heading}
+                  className="mega-col-enter px-6 pb-7 first:pl-0"
+                  style={{ animationDelay: `${i * 35}ms` }}
+                >
+                  {/* Category label */}
+                  <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.18em] text-secondary">
+                    {cat.heading}
+                  </p>
+
+                  {/* Service links */}
+                  <ul className="space-y-0.5" role="list">
+                    {cat.services.map((svc) => {
+                      const active = pathname.startsWith(svc.href);
+                      return (
+                        <li key={svc.href}>
+                          <Link
+                            href={svc.href}
+                            className={cn(
+                              "group flex flex-col gap-0.5 py-2.5 pl-3 pr-2",
+                              "border-l-2 transition-colors duration-150",
+                              active
+                                ? "border-secondary bg-surface"
+                                : "border-transparent hover:border-secondary hover:bg-surface",
+                            )}
+                          >
+                            <span className={cn(
+                              "text-[12px] font-semibold leading-tight transition-colors duration-150",
+                              active ? "text-secondary" : "text-foreground group-hover:text-secondary",
+                            )}>
+                              {svc.label}
+                            </span>
+                            <span className="text-[11px] font-light leading-snug text-muted">
+                              {svc.description}
+                            </span>
+                          </Link>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              ))}
+            </div>
+
+            {/* ── Footer action strip ──────────────────────────────────── */}
+            <div className="flex items-center justify-between border-t border-border py-4">
+              <Link
+                href="/services"
+                className="flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-wider text-muted transition-colors duration-150 hover:text-foreground"
+              >
+                View all 42 services
+                <ArrowRight size={11} strokeWidth={2} aria-hidden />
+              </Link>
+              <Link
+                href="/contact"
+                className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-secondary transition-colors duration-150 hover:text-foreground"
+              >
+                Request a Proposal
+                <ArrowRight size={11} strokeWidth={2.5} aria-hidden />
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── Mobile navigation panel ──────────────────────────────────────── */}
       <div
         id="mobile-menu"
         role="dialog"
         aria-label="Mobile navigation"
         aria-modal="true"
         aria-hidden={!mobileOpen}
-        style={{ top: HEADER_OFFSET }}
+        style={{ top: HEADER_H }}
         className={cn(
-          "fixed inset-x-0 bottom-0 z-40 flex flex-col bg-background",
-          "transition-[opacity,visibility] duration-slow lg:hidden",
-          mobileOpen
-            ? "visible opacity-100"
-            : "invisible pointer-events-none opacity-0",
+          "fixed inset-x-0 bottom-0 z-40 flex flex-col bg-background lg:hidden",
+          "transition-[opacity,visibility] duration-300",
+          mobileOpen ? "visible opacity-100" : "invisible pointer-events-none opacity-0",
         )}
       >
-        {/* Scrollable link list */}
         <nav className="flex-1 overflow-y-auto" aria-label="Mobile navigation">
           <ul role="list">
             {navLinks.map((link) => (
               <li key={link.label} className="border-b border-border">
-                {/* Row: link + optional expand toggle */}
                 <div className="flex items-stretch">
                   <Link
                     href={link.href}
                     className={cn(
                       "flex-1 px-6 py-5 text-sm font-semibold uppercase tracking-[0.1em]",
-                      "transition-colors duration-fast",
-                      isActive(link)
-                        ? "text-foreground"
-                        : "text-muted hover:text-foreground",
+                      "transition-colors duration-150",
+                      isActive(link) ? "text-foreground" : "text-muted hover:text-foreground",
                     )}
                   >
                     {link.label}
@@ -235,10 +314,7 @@ export function SiteHeader() {
                     <button
                       type="button"
                       onClick={() => toggleMobileGroup(link.href)}
-                      className={cn(
-                        "flex items-center px-6 text-muted",
-                        "transition-colors duration-fast hover:text-foreground",
-                      )}
+                      className="flex items-center px-6 text-muted transition-colors duration-150 hover:text-foreground"
                       aria-label={`${mobileExpanded === link.href ? "Collapse" : "Expand"} ${link.label}`}
                       aria-expanded={mobileExpanded === link.href}
                     >
@@ -246,7 +322,7 @@ export function SiteHeader() {
                         size={14}
                         strokeWidth={2}
                         className={cn(
-                          "transition-transform duration-base",
+                          "transition-transform duration-200",
                           mobileExpanded === link.href && "rotate-180",
                         )}
                       />
@@ -254,33 +330,65 @@ export function SiteHeader() {
                   )}
                 </div>
 
-                {/* Accordion sub-links */}
+                {/* Mobile accordion */}
                 {link.children && mobileExpanded === link.href && (
-                  <ul role="list" className="bg-surface pb-3 pt-1">
-                    {link.children.map((child) => (
-                      <li key={child.href}>
-                        <Link
-                          href={child.href}
-                          className={cn(
-                            "block px-8 py-3 text-xs font-medium uppercase tracking-[0.1em]",
-                            "transition-colors duration-fast",
-                            isActive(child)
-                              ? "text-foreground"
-                              : "text-muted hover:text-foreground",
-                          )}
-                        >
-                          {child.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="bg-surface pb-4 pt-2">
+                    {link.label === "Services" ? (
+                      // Services: full categorized mega menu
+                      servicesMegaMenu.map((cat) => (
+                        <div key={cat.heading} className="px-6 pt-4">
+                          <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.14em] text-secondary">
+                            {cat.heading}
+                          </p>
+                          <ul role="list">
+                            {cat.services.map((svc) => (
+                              <li key={svc.href}>
+                                <Link
+                                  href={svc.href}
+                                  className={cn(
+                                    "block py-2 text-xs font-medium uppercase tracking-[0.08em]",
+                                    "transition-colors duration-150",
+                                    pathname.startsWith(svc.href)
+                                      ? "text-secondary"
+                                      : "text-muted hover:text-foreground",
+                                  )}
+                                >
+                                  {svc.label}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))
+                    ) : (
+                      // Other nav items with children: render directly
+                      <ul role="list" className="px-6 pt-2">
+                        {link.children.map((child) => (
+                          <li key={child.href}>
+                            <Link
+                              href={child.href}
+                              className={cn(
+                                "block py-2.5 text-xs font-medium uppercase tracking-[0.08em]",
+                                "transition-colors duration-150",
+                                pathname.startsWith(child.href)
+                                  ? "text-secondary"
+                                  : "text-muted hover:text-foreground",
+                              )}
+                            >
+                              {child.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
                 )}
               </li>
             ))}
           </ul>
         </nav>
 
-        {/* CTA area — anchored to the bottom of the panel */}
+        {/* Mobile CTA strip */}
         <div className="border-t border-border bg-surface px-6 py-8">
           <p className="mb-5 text-[10px] font-semibold uppercase tracking-widest text-muted">
             Ready to start your project?
@@ -290,11 +398,7 @@ export function SiteHeader() {
           </Button>
           <Link
             href="/contact"
-            className={cn(
-              "mt-5 block text-center text-xs font-medium uppercase tracking-[0.12em]",
-              "transition-colors duration-base",
-              "text-muted hover:text-foreground",
-            )}
+            className="mt-5 block text-center text-xs font-medium uppercase tracking-[0.12em] text-muted transition-colors duration-200 hover:text-foreground"
           >
             Contact us directly
           </Link>

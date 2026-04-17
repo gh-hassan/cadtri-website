@@ -20,7 +20,6 @@ export function TechnicalLayout({ service }: Props) {
         {/* Full-width overview */}
         <div className="border-b border-border pb-14">
           <p className="mb-5 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-            <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
             Overview
           </p>
           <div className="grid gap-10 lg:grid-cols-[3fr_2fr] lg:gap-20">
@@ -65,7 +64,6 @@ export function TechnicalLayout({ service }: Props) {
         <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-              <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
               Deliverables
             </p>
             <h2
@@ -118,7 +116,6 @@ export function TechnicalLayout({ service }: Props) {
           {/* Audience list */}
           <div>
             <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-              <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
               Designed For
             </p>
             <h2
@@ -191,7 +188,6 @@ export function TechnicalLayout({ service }: Props) {
           <div className="mb-12 flex items-end justify-between gap-8">
             <div>
               <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-                <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
                 Continue Exploring
               </p>
               <h2

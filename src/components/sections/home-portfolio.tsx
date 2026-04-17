@@ -21,7 +21,6 @@ export function HomePortfolio() {
       <div className="mb-12 flex flex-wrap items-end justify-between gap-8 lg:mb-14">
         <div>
           <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-            <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
             Our Work
           </p>
           <h2

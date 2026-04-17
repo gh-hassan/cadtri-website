@@ -60,7 +60,6 @@ export function StrategyLayout({ service }: Props) {
         <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-              <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
               The Engagement
             </p>
             <h2
@@ -122,7 +121,6 @@ export function StrategyLayout({ service }: Props) {
         <div className="grid gap-12 lg:grid-cols-[3fr_2fr] lg:gap-20">
           <div>
             <p className="mb-6 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-              <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
               Why This Matters
             </p>
             <p
@@ -159,7 +157,6 @@ export function StrategyLayout({ service }: Props) {
         <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-              <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
               Deliverables
             </p>
             <h2
@@ -223,7 +220,6 @@ export function StrategyLayout({ service }: Props) {
       <Section variant="surface" className="border-t border-border">
         <div className="mb-14">
           <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-            <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
             Who This Is For
           </p>
           <h2
@@ -255,7 +251,6 @@ export function StrategyLayout({ service }: Props) {
         <Section variant="default" className="border-t border-border">
           <div className="mb-14">
             <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-              <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
               Common Questions
             </p>
             <h2
@@ -284,7 +279,6 @@ export function StrategyLayout({ service }: Props) {
           <div className="mb-12 flex items-end justify-between gap-8">
             <div>
               <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-                <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
                 Continue Exploring
               </p>
               <h2

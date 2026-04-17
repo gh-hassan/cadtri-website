@@ -1,22 +1,33 @@
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
 import { PageHeader } from "@/components/shared/page-header";
 import { Section } from "@/components/shared/section";
 import { CtaBand } from "@/components/shared/cta-band";
+import { PortfolioGate } from "./portfolio-gate";
 
 export const metadata: Metadata = {
   title: "Portfolio",
   description:
     "A cross-section of the residential, commercial, and mixed-use project types CADTRI delivers. Architectural drawing packages, permit sets, and documentation across California jurisdictions.",
+  robots: { index: false },
 };
 
+// ─── Access check ─────────────────────────────────────────────────────────────
+
+async function isAuthenticated(): Promise<boolean> {
+  const validCode = (process.env.PORTFOLIO_ACCESS_CODE ?? "").trim();
+  if (!validCode) return false;
+  const cookieStore = await cookies();
+  const session = cookieStore.get("portfolio_session")?.value ?? "";
+  return session.toLowerCase() === validCode.toLowerCase();
+}
+
 // ─── Project data ─────────────────────────────────────────────────────────────
-// PLACEHOLDER — replace with real project details, images, and case studies
-// as completed projects are cleared for publication.
 
 const projects = [
   {
     category: "Residential",
-    title: "Single-Family Addition & ADU",
+    title: "Single-Family Addition and ADU",
     services: "Architectural Drafting · Permit Set Preparation",
   },
   {
@@ -31,7 +42,7 @@ const projects = [
   },
   {
     category: "Multi-Family",
-    title: "Duplex Conversion & ADU",
+    title: "Duplex Conversion and ADU",
     services: "Architectural Drafting · City Comments Response",
   },
   {
@@ -48,7 +59,13 @@ const projects = [
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
-export default function PortfolioPage() {
+export default async function PortfolioPage() {
+  const authed = await isAuthenticated();
+
+  if (!authed) {
+    return <PortfolioGate />;
+  }
+
   return (
     <>
       <PageHeader
@@ -64,7 +81,6 @@ export default function PortfolioPage() {
         <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-              <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
               Project Types
             </p>
             <h2
@@ -91,7 +107,7 @@ export default function PortfolioPage() {
               key={project.title}
               className="group flex flex-col bg-background"
             >
-              {/* Image placeholder — replace with <Image /> when real assets are available */}
+              {/* Image placeholder */}
               <div className="relative aspect-[4/3] bg-surface">
                 <span
                   className="absolute bottom-4 left-5 text-[10px] font-medium tabular-nums text-foreground/20"
@@ -128,7 +144,6 @@ export default function PortfolioPage() {
 
           <div>
             <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-              <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
               Project Range
             </p>
             <h2

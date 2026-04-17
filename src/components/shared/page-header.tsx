@@ -29,7 +29,6 @@ export function PageHeader({
         <div className="max-w-3xl">
           {eyebrow && (
             <p className="mb-5 flex items-center gap-3 text-xs font-medium uppercase tracking-widest text-secondary">
-              <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
               {eyebrow}
             </p>
           )}

@@ -19,7 +19,6 @@ export function HomeTrustStrip() {
           {trustItems.map((item) => (
             <div key={item.label} className="flex flex-col gap-3 px-8 py-9">
               <p className="flex items-center gap-2.5 text-[10px] font-medium uppercase tracking-widest text-secondary">
-                <span className="inline-block h-px w-4 shrink-0 bg-secondary" aria-hidden />
                 {item.label}
               </p>
               <p className="text-sm leading-relaxed text-muted">

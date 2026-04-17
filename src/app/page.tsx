@@ -7,7 +7,8 @@ import { HomeServices } from "@/components/sections/home-services";
 import { HomeWhyUs } from "@/components/sections/home-why-us";
 import { HomeProcess } from "@/components/sections/home-process";
 import { HomeIndustries } from "@/components/sections/home-industries";
-import { HomePortfolio } from "@/components/sections/home-portfolio";
+import { HomeTestimonials } from "@/components/sections/home-testimonials";
+import { HomeResources } from "@/components/sections/home-resources";
 import { CtaBand } from "@/components/shared/cta-band";
 
 export const metadata: Metadata = {
@@ -26,7 +27,8 @@ export default function HomePage() {
       <HomeWhyUs />
       <HomeProcess />
       <HomeIndustries />
-      <HomePortfolio />
+      <HomeTestimonials />
+      <HomeResources />
       <CtaBand
         heading={closingCta.heading}
         subheading={closingCta.subheading}

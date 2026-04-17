@@ -45,11 +45,11 @@
   --color-error:               #dc2626;
 
   /* ── Typography ─────────────────────────────────────────────────────────── */
-  /* --font-outfit is injected on <html> by next/font, making it available   */
-  /* at :root. Both roles reference the same family; hierarchy is expressed  */
-  /* through weight, size, and tracking — not by mixing typefaces.           */
-  --font-sans:    var(--font-outfit), "Outfit", system-ui, sans-serif;
-  --font-heading: var(--font-outfit), "Outfit", system-ui, sans-serif;
+  /* Two-font system. --font-outfit and --font-unbounded are injected on       */
+  /* <html> by next/font. --font-sans (Outfit) handles all body and UI text.  */
+  /* --font-heading (Unbounded) handles h1–h6 only.                           */
+  --font-sans:    var(--font-jakarta),   "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-heading: var(--font-unbounded), "Unbounded",         system-ui, sans-serif;
 
   --font-size-xs:   0.75rem;
   --font-size-sm:   0.875rem;
@@ -95,6 +95,43 @@
   --transition-fast: 150ms ease;
   --transition-base: 200ms ease;
   --transition-slow: 300ms ease;
+
+  /* ── Easing curves ───────────────────────────────────────────────────────── */
+  --ease-out-expo:  cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-expo:   cubic-bezier(0.7, 0, 0.84, 0);
+}
+
+/* ─── Mega menu animations ───────────────────────────────────────────────────
+   Panel slides down with expo-out easing — fast start, silky deceleration.
+   Columns stagger in individually for a layered entrance feel.
+   Exit is always faster than entrance (~60% of enter duration).
+─────────────────────────────────────────────────────────────────────────────── */
+
+@keyframes mega-panel-in {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0);     }
+}
+
+@keyframes mega-col-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+.mega-panel-enter {
+  animation: mega-panel-in 320ms var(--ease-out-expo) both;
+}
+
+.mega-col-enter {
+  animation: mega-col-in 380ms var(--ease-out-expo) both;
+}
+
+/* Reduced-motion: strip all animation, keep visibility logic */
+@media (prefers-reduced-motion: reduce) {
+  .mega-panel-enter,
+  .mega-col-enter {
+    animation: none !important;
+  }
 }
 
 /* ─── Base reset ───────────────────────────────────────────────────────────── */
@@ -125,12 +162,14 @@
     overflow-x: hidden;
   }
 
-  /* Outfit for all headings — weight carries hierarchy, not typeface variety */
+  /* Unbounded for all headings. Wide letterforms read best tight — tracking   */
+  /* at -0.03em keeps large display headings dense and authoritative.         */
+  /* Line-height 1.05 for hero sizes; component overrides can relax it.       */
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
     font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
     color: var(--color-foreground);
   }
 

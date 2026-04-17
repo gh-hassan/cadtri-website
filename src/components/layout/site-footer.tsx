@@ -1,24 +1,24 @@
 import Link from "next/link";
 import { company } from "@/content/company";
-import { footerColumns } from "@/content/navigation";
 import { Button } from "@/components/shared/button";
 
 // ─── Constants ──────────────────────────────────────────────────────────────
 
+const navLinks = [
+  { label: "About",     href: "/about"     },
+  { label: "Services",  href: "/services"  },
+  { label: "Process",   href: "/process"   },
+  { label: "Portfolio", href: "/portfolio" },
+  { label: "Contact",   href: "/contact"   },
+] as const;
+
 const legalLinks = [
-  { label: "Privacy Policy", href: "/privacy-policy" },
-  { label: "Terms of Service", href: "/terms" },
+  { label: "Privacy Policy",   href: "/privacy-policy" },
+  { label: "Terms of Service", href: "/terms"          },
 ] as const;
 
 // ─── Component ──────────────────────────────────────────────────────────────
 
-/**
- * Site-wide footer.
- * Dark navy background (bg-primary) — intentional contrast to body content.
- * Four-column layout: Brand | Services | Company | Start a Project
- * Text opacity on dark backgrounds uses Tailwind's built-in `white` color
- * with the `/N` opacity modifier (CSS variables don't support this pattern).
- */
 export function SiteFooter() {
   const currentYear = new Date().getFullYear();
 
@@ -26,96 +26,67 @@ export function SiteFooter() {
     <footer className="bg-primary" aria-label="Site footer">
       <div className="mx-auto max-w-container px-6">
 
-        {/* ── Main content grid ──────────────────────────────────────────── */}
-        <div
-          className={[
-            "grid grid-cols-1 gap-12 py-16",
-            "sm:grid-cols-2",
-            "lg:grid-cols-[2fr_1fr_1fr_1.5fr] lg:gap-10",
-          ].join(" ")}
-        >
+        {/* ── Main row ────────────────────────────────────────────────────── */}
+        <div className="flex flex-col gap-10 border-b border-white/10 py-14 lg:flex-row lg:items-center lg:justify-between">
 
-          {/* Brand column */}
-          <div className="sm:col-span-2 lg:col-span-1">
+          {/* Brand */}
+          <div className="shrink-0">
             <Link
               href="/"
-              className="text-sm font-bold uppercase tracking-[0.22em] text-white transition-opacity duration-base hover:opacity-60"
+              className="text-sm font-bold uppercase tracking-[0.22em] text-white transition-opacity duration-200 hover:opacity-60"
               aria-label={`${company.name} homepage`}
             >
               {company.name}
             </Link>
-
-            <p className="mt-3 text-[10px] font-semibold uppercase tracking-widest text-secondary">
+            <p className="mt-2 text-[10px] font-semibold uppercase tracking-widest text-secondary">
               {company.tagline}
-            </p>
-
-            <p className="mt-5 max-w-[280px] text-sm leading-relaxed text-white/50">
-              {company.description}
             </p>
           </div>
 
-          {/* Link columns — driven by footerColumns content data */}
-          {footerColumns.map((column) => (
-            <div key={column.heading}>
-              <p className="mb-6 text-[10px] font-semibold uppercase tracking-widest text-white/30">
-                {column.heading}
-              </p>
-              <ul role="list" className="flex flex-col gap-3.5">
-                {column.links.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-white/55 transition-colors duration-base hover:text-white"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {/* Nav links */}
+          <nav aria-label="Footer navigation">
+            <ul role="list" className="flex flex-wrap items-center gap-x-8 gap-y-3">
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-[11px] font-medium uppercase tracking-[0.12em] text-white/50 transition-colors duration-200 hover:text-white"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
 
-          {/* Start a Project column */}
-          <div className="lg:border-l lg:border-white/10 lg:pl-8">
-            <p className="mb-6 text-[10px] font-semibold uppercase tracking-widest text-white/30">
-              Start a Project
-            </p>
-
-            <p className="mb-7 text-sm leading-relaxed text-white/50">
-              We handle the complete drawing and permit scope so your project
-              team can stay focused on building.
-            </p>
-
-            <Button href="/contact" variant="secondary" size="sm">
-              Request Proposal
-            </Button>
-
+          {/* CTA */}
+          <div className="flex shrink-0 items-center gap-5">
             {company.email && (
               <a
                 href={`mailto:${company.email}`}
-                className="mt-5 block text-sm text-white/45 transition-colors duration-base hover:text-white"
+                className="hidden text-sm text-white/40 transition-colors duration-200 hover:text-white xl:block"
               >
                 {company.email}
               </a>
             )}
+            <div className="hidden h-4 w-px bg-white/15 xl:block" aria-hidden />
+            <Button href="/contact" variant="secondary" size="sm">
+              Request Proposal
+            </Button>
           </div>
         </div>
 
-        {/* ── Horizontal rule ────────────────────────────────────────────── */}
-        <div className="h-px bg-white/10" aria-hidden />
-
         {/* ── Bottom bar ──────────────────────────────────────────────────── */}
-        <div className="flex flex-col gap-4 py-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs text-white/30">
+        <div className="flex flex-col gap-3 py-5 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-xs text-white/25">
             &copy; {currentYear} {company.legalName}. All rights reserved.
           </p>
-
           <ul role="list" className="flex items-center gap-6">
             {legalLinks.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="text-xs text-white/30 transition-colors duration-base hover:text-white/70"
+                  className="text-xs text-white/25 transition-colors duration-200 hover:text-white/60"
                 >
                   {link.label}
                 </Link>

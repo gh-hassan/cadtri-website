@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { PageHeader } from "@/components/shared/page-header";
 import { Section } from "@/components/shared/section";
 import { CtaBand } from "@/components/shared/cta-band";
 import { Button } from "@/components/shared/button";
@@ -13,6 +12,13 @@ export const metadata: Metadata = {
 };
 
 // ─── Page data ────────────────────────────────────────────────────────────────
+
+const stats = [
+  { value: "42",   label: "Services offered" },
+  { value: "All US", label: "Jurisdictions covered" },
+  { value: "1st",  label: "Submission approval focus" },
+  { value: "1",    label: "Dedicated point of contact" },
+] as const;
 
 const deliverables = [
   "Permit-ready architectural drawing packages",
@@ -79,32 +85,107 @@ const clientTypes = [
 export default function AboutPage() {
   return (
     <>
-      <PageHeader
-        eyebrow="About"
-        heading="Architectural drafting and permit support built for project teams."
-        description="CADTRI handles the complete documentation scope so contractors, developers, architects, and property owners can keep their projects moving on schedule."
-      />
+      {/* ── Hero ─────────────────────────────────────────────────────────────── */}
+      <section className="bg-primary pb-32 pt-20 sm:pb-40 sm:pt-28">
+        <div className="container mx-auto max-w-container px-6">
+          <p className="mb-8 text-[11px] font-medium uppercase tracking-widest text-secondary">
+            About CADTRI
+          </p>
+          <h1
+            className="font-extrabold text-primary-foreground"
+            style={{
+              fontSize: "clamp(2.5rem, 6vw, 5rem)",
+              lineHeight: 1.05,
+              letterSpacing: "-0.03em",
+              maxWidth: "18ch",
+            }}
+          >
+            The most complete documentation your project will see.
+          </h1>
+          <p
+            className="mt-8 font-light leading-relaxed text-white/55"
+            style={{ maxWidth: "52ch", fontSize: "clamp(1rem, 1.5vw, 1.125rem)" }}
+          >
+            CADTRI handles the full documentation scope so contractors, developers,
+            architects, and property owners can keep their projects moving on schedule.
+          </p>
+          <div className="mt-10 flex flex-wrap gap-4">
+            <Button href="/services" variant="secondary" size="md">
+              View Services
+            </Button>
+            <Button
+              href="/contact"
+              variant="ghost"
+              size="md"
+              className="text-white/50 hover:text-white"
+            >
+              Request a Proposal →
+            </Button>
+          </div>
+        </div>
+      </section>
 
-      {/* ── The practice + Deliverables ──────────────────────────────────────── */}
-      <Section variant="default">
+      {/* ── Stats strip ──────────────────────────────────────────────────────── */}
+      <section className="border-b border-border bg-surface">
+        <div className="container mx-auto max-w-container px-6">
+          <div className="grid grid-cols-2 divide-x divide-y divide-border border-x border-border sm:grid-cols-4 sm:divide-y-0">
+            {stats.map((stat) => (
+              <div key={stat.label} className="px-8 py-8">
+                <p
+                  className="font-bold text-foreground"
+                  style={{
+                    fontSize: "clamp(2rem, 3.5vw, 3rem)",
+                    letterSpacing: "-0.04em",
+                    lineHeight: 1,
+                  }}
+                >
+                  {stat.value}
+                </p>
+                <p className="mt-2 text-[10px] font-medium uppercase tracking-widest text-muted">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── The Practice + Deliverables ──────────────────────────────────────── */}
+      <Section variant="default" className="border-t border-border">
         <div className="grid gap-16 lg:grid-cols-2 lg:gap-24">
 
           {/* Left: who CADTRI is */}
           <div>
-            <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
+            <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
               The Practice
             </p>
+            <h2
+              className="mb-6 font-bold text-foreground"
+              style={{
+                fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
+                letterSpacing: "-0.03em",
+                lineHeight: 1.1,
+              }}
+            >
+              Drafting and permit support built for project teams.
+            </h2>
             <p className="font-light leading-relaxed text-foreground sm:text-lg">
-              CADTRI is a professional architectural drafting and permit support practice. We produce complete, permit-ready drawing packages for residential and commercial projects and handle the full coordination scope that moves a project from design intent to approved permit.
+              CADTRI is a professional architectural drafting and permit support
+              practice. We produce complete, permit-ready drawing packages for
+              residential and commercial projects and handle the full coordination
+              scope that moves a project from design intent to approved permit.
             </p>
             <p className="mt-5 font-light leading-relaxed text-muted sm:text-lg">
-              Project teams engage CADTRI as a single resource for every documentation deliverable, from first scope review through final jurisdiction submission. The goal is straightforward: drawings that clear plan check and a permit process that runs on schedule.
+              Project teams engage CADTRI as a single resource for every
+              documentation deliverable, from first scope review through final
+              jurisdiction submission. The goal is straightforward: drawings that
+              clear plan check and a permit process that runs on schedule.
             </p>
           </div>
 
-          {/* Right: service deliverables list */}
+          {/* Right: deliverables list */}
           <div>
-            <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
+            <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
               What We Deliver
             </p>
             <ul
@@ -130,51 +211,42 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      {/* ── Standards and approach ───────────────────────────────────────────── */}
-      <Section variant="surface" className="border-t border-border">
+      {/* ── Dark editorial ───────────────────────────────────────────────────── */}
+      <Section variant="dark" className="border-t border-white/10">
+        <div className="grid gap-16 lg:grid-cols-2 lg:gap-24">
 
-        {/* Horizontal split intro */}
-        <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
+          {/* Left: large bold statement */}
           <div>
-            <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-              Standards
-            </p>
             <h2
-              className="font-bold text-3xl text-foreground sm:text-4xl"
-              style={{ letterSpacing: "-0.025em" }}
+              className="font-bold text-primary-foreground"
+              style={{
+                fontSize: "clamp(1.75rem, 3vw, 2.75rem)",
+                letterSpacing: "-0.03em",
+                lineHeight: 1.1,
+              }}
             >
-              How we approach every project.
+              Every permit set we produce is built to clear plan check. Not to be
+              revised after it comes back.
             </h2>
           </div>
-          <div className="flex items-end">
-            <p className="font-light leading-relaxed text-muted">
-              Every engagement runs through the same production system: jurisdiction
-              research before drafting, coordinated deliverables, clear communication,
-              and sets built to withstand plan check the first time through.
-            </p>
+
+          {/* Right: standards list */}
+          <div className="flex flex-col divide-y divide-white/10 border-y border-white/10">
+            {standards.map((item) => (
+              <div key={item.title} className="py-7">
+                <p
+                  className="mb-2 text-[11px] font-semibold uppercase tracking-widest text-secondary"
+                >
+                  {item.title}
+                </p>
+                <p className="text-sm font-light leading-relaxed text-white/55">
+                  {item.description}
+                </p>
+              </div>
+            ))}
           </div>
-        </div>
 
-        {/* Standards grid — gap-as-border */}
-        <div className="grid gap-px border-x border-b border-border bg-border sm:grid-cols-2">
-          {standards.map((item) => (
-            <div
-              key={item.title}
-              className="flex flex-col gap-3 bg-surface px-8 py-8"
-            >
-              <h3
-                className="text-[11px] font-semibold uppercase text-foreground"
-                style={{ letterSpacing: "0.08em" }}
-              >
-                {item.title}
-              </h3>
-              <p className="text-sm font-light leading-relaxed text-muted">
-                {item.description}
-              </p>
-            </div>
-          ))}
         </div>
-
       </Section>
 
       {/* ── Team ─────────────────────────────────────────────────────────────── */}
@@ -182,20 +254,24 @@ export default function AboutPage() {
         <Section variant="default" className="border-t border-border">
           <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
             <div>
-              <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
+              <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
                 The Team
               </p>
               <h2
-                className="font-bold text-3xl text-foreground sm:text-4xl"
-                style={{ letterSpacing: "-0.025em" }}
+                className="font-bold text-foreground"
+                style={{
+                  fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
+                  letterSpacing: "-0.03em",
+                  lineHeight: 1.1,
+                }}
               >
                 The people behind the work.
               </h2>
             </div>
             <div className="flex items-end">
               <p className="font-light leading-relaxed text-muted">
-                Every project has a dedicated contact from intake through
-                delivery. No handoffs, no miscommunication.
+                Every project has a dedicated contact from intake through delivery.
+                No handoffs, no miscommunication.
               </p>
             </div>
           </div>
@@ -240,54 +316,58 @@ export default function AboutPage() {
       )}
 
       {/* ── Who we work with ─────────────────────────────────────────────────── */}
-      <Section variant="default" className="border-t border-border">
-        <div className="grid gap-16 lg:grid-cols-[1fr_1fr] lg:gap-20">
+      <Section variant="surface" className="border-t border-border">
 
-          {/* Left: section label + intro */}
+        {/* Horizontal split intro */}
+        <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
           <div>
-            <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
+            <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
               Clients
             </p>
             <h2
-              className="font-bold text-3xl text-foreground sm:text-4xl"
-              style={{ letterSpacing: "-0.025em" }}
+              className="font-bold text-foreground"
+              style={{
+                fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
+                letterSpacing: "-0.03em",
+                lineHeight: 1.1,
+              }}
             >
               Who we work with.
             </h2>
-            <p className="mt-5 font-light leading-relaxed text-muted">
+          </div>
+          <div className="flex items-end">
+            <p className="font-light leading-relaxed text-muted">
               CADTRI works directly with the professionals and owners who need
               permit-ready documentation on a professional timeline. If your
               situation is not listed, contact us to discuss whether it fits.
             </p>
           </div>
-
-          {/* Right: numbered client list */}
-          <ul role="list">
-            {clientTypes.map((item, i) => (
-              <li
-                key={item.title}
-                className="flex gap-5 border-b border-border py-6 first:border-t"
-              >
-                <span
-                  className="shrink-0 text-[11px] font-medium tabular-nums text-secondary"
-                  style={{ letterSpacing: "0.05em", paddingTop: "2px" }}
-                  aria-hidden
-                >
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div className="flex flex-col gap-1.5">
-                  <p className="text-sm font-medium uppercase tracking-wider text-foreground">
-                    {item.title}
-                  </p>
-                  <p className="text-sm font-light leading-relaxed text-muted">
-                    {item.description}
-                  </p>
-                </div>
-              </li>
-            ))}
-          </ul>
-
         </div>
+
+        {/* Numbered client list — full-width border layout */}
+        <ul role="list" className="flex flex-col">
+          {clientTypes.map((item, i) => (
+            <li
+              key={item.title}
+              className="grid gap-5 border-b border-border py-7 first:border-t sm:grid-cols-[48px_1fr_2fr] sm:gap-10"
+            >
+              <span
+                className="shrink-0 text-[11px] font-medium tabular-nums text-secondary"
+                style={{ letterSpacing: "0.05em", paddingTop: "3px" }}
+                aria-hidden
+              >
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <p className="text-sm font-semibold uppercase tracking-wider text-foreground">
+                {item.title}
+              </p>
+              <p className="text-sm font-light leading-relaxed text-muted">
+                {item.description}
+              </p>
+            </li>
+          ))}
+        </ul>
+
       </Section>
 
       <CtaBand

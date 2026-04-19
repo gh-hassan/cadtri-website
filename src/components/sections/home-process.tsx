@@ -45,19 +45,19 @@ export function HomeProcess() {
         {processSteps.map((step) => (
           <div
             key={step.step}
-            className="flex flex-col gap-7 bg-primary px-7 py-10"
+            className="group flex flex-col gap-7 bg-primary px-7 py-10 transition-colors duration-200 hover:bg-white/[0.04]"
           >
-            {/* Outfit ExtraBold number — orange, semi-opaque */}
+            {/* Outfit ExtraBold number — brightens on hover */}
             <span
-              className="select-none font-extrabold leading-none text-secondary/55"
+              className="select-none font-extrabold leading-none text-secondary/55 transition-all duration-200 group-hover:text-secondary/90"
               style={{ fontSize: "clamp(2.5rem, 5vw, 3.75rem)" }}
               aria-hidden
             >
               {step.step}
             </span>
 
-            {/* Structural rule */}
-            <div className="h-px w-8 bg-white/15" />
+            {/* Structural rule — expands on hover */}
+            <div className="h-px w-8 bg-white/15 transition-all duration-300 group-hover:w-14 group-hover:bg-secondary/40" />
 
             <div className="flex flex-col gap-2.5">
               <h3

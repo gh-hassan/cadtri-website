@@ -45,9 +45,6 @@ export function HomeHero() {
           </h1>
         </div>
 
-        {/* ── Thin rule ───────────────────────────────────────────────────── */}
-        <div className="border-t border-white/10" />
-
         {/* ── Description + CTAs ──────────────────────────────────────────── */}
         <div className="grid gap-10 py-14 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-24 lg:py-16">
           <p className="max-w-lg text-lg font-light leading-relaxed text-white/55 lg:text-xl">
@@ -55,9 +52,6 @@ export function HomeHero() {
           </p>
 
           <div className="flex flex-wrap items-center gap-4">
-            <Button href={heroContent.primaryCta.href} variant="secondary" size="lg">
-              {heroContent.primaryCta.label}
-            </Button>
             <Button
               href={heroContent.secondaryCta.href}
               variant="ghost"
@@ -78,11 +72,11 @@ export function HomeHero() {
           {/* Two-column checklist */}
           <ul className="grid gap-y-3 sm:grid-cols-2 sm:gap-x-10">
             {heroContent.credentials.map((item) => (
-              <li key={item} className="flex items-center gap-3 text-sm font-light text-white/40">
+              <li key={item} className="group flex cursor-default items-center gap-3 text-sm font-light text-white/40 transition-colors duration-200 hover:text-white/65">
                 <Check
                   size={11}
                   strokeWidth={2.5}
-                  className="shrink-0 text-secondary"
+                  className="shrink-0 text-secondary transition-transform duration-200 group-hover:scale-125"
                   aria-hidden
                 />
                 {item}
@@ -93,14 +87,14 @@ export function HomeHero() {
           {/* Indicator stats — 2×2, gap-as-border */}
           <div className="grid grid-cols-2 gap-px border border-white/10 bg-white/10 lg:w-[300px]">
             {heroContent.indicators.map((item) => (
-              <div key={item.label} className="flex flex-col gap-2 bg-primary px-5 py-6">
+              <div key={item.label} className="group flex flex-col gap-2 bg-primary px-5 py-6 transition-colors duration-200 hover:bg-white/[0.05]">
                 <span
-                  className="text-sm font-bold text-primary-foreground"
+                  className="text-sm font-bold text-primary-foreground transition-colors duration-200 group-hover:text-secondary"
                   style={{ letterSpacing: "-0.01em" }}
                 >
                   {item.value}
                 </span>
-                <span className="text-[10px] font-medium uppercase tracking-widest text-white/30">
+                <span className="text-[10px] font-medium uppercase tracking-widest text-white/30 transition-colors duration-200 group-hover:text-white/50">
                   {item.label}
                 </span>
               </div>

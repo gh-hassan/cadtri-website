@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 // Cal.com username — set this to your Cal.com username and event slug.
 // Example: if your booking link is cal.com/cadtri/consultation, set:
 //   CAL_LINK = "cadtri/consultation"
-const CAL_LINK = "cadtri/consultation";
+const CAL_LINK = "cadtri/15min";
 const BRAND_COLOR = "#FF6D1F";
 
 declare global {

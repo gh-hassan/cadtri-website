@@ -4,6 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
+import { NewsletterSignup } from "@/components/sections/newsletter-signup";
 import { siteMetadata } from "@/lib/metadata";
 import { LocalBusinessJsonLd } from "@/lib/json-ld";
 
@@ -61,6 +62,7 @@ export default function RootLayout({
         <LocalBusinessJsonLd />
         <SiteHeader />
         <main id="main-content">{children}</main>
+        <NewsletterSignup />
         <SiteFooter />
       </body>
     </html>

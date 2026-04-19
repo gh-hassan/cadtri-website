@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { company } from "@/content/company";
 import { Button } from "@/components/shared/button";
+import { CadtriLogo } from "@/components/shared/logo";
 
 // ─── Constants ──────────────────────────────────────────────────────────────
 
@@ -15,6 +16,7 @@ const navLinks = [
 const legalLinks = [
   { label: "Privacy Policy",   href: "/privacy-policy" },
   { label: "Terms of Service", href: "/terms"          },
+  { label: "Cookie Policy",    href: "/cookie-policy"  },
 ] as const;
 
 // ─── Component ──────────────────────────────────────────────────────────────
@@ -31,13 +33,7 @@ export function SiteFooter() {
 
           {/* Brand */}
           <div className="shrink-0">
-            <Link
-              href="/"
-              className="text-sm font-bold uppercase tracking-[0.22em] text-white transition-opacity duration-200 hover:opacity-60"
-              aria-label={`${company.name} homepage`}
-            >
-              {company.name}
-            </Link>
+            <CadtriLogo variant="dark" />
             <p className="mt-2 text-[10px] font-semibold uppercase tracking-widest text-secondary">
               {company.tagline}
             </p>

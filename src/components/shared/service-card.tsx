@@ -32,12 +32,12 @@ export function ServiceCard({
         className,
       )}
     >
-      {/* Icon — burnt orange, no surrounding box */}
+      {/* Icon — lifts on hover */}
       {Icon && (
         <Icon
           size={22}
           strokeWidth={1.5}
-          className="text-secondary"
+          className="text-secondary transition-transform duration-200 group-hover:-translate-y-0.5"
           aria-hidden
         />
       )}

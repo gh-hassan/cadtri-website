@@ -39,6 +39,10 @@
   --color-border:              #E2D4B8;
   --color-border-strong:       #C8B090;
 
+  /* ── Easing curves ──────────────────────────────────────────────────────── */
+  --ease-expo-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-quart-out: cubic-bezier(0.25, 1, 0.5, 1);
+
   /* ── Status ─────────────────────────────────────────────────────────────── */
   --color-success:             #16a34a;
   --color-warning:             #d97706;
@@ -126,11 +130,14 @@
   animation: mega-col-in 380ms var(--ease-out-expo) both;
 }
 
-/* Reduced-motion: strip all animation, keep visibility logic */
+/* Reduced-motion: strip all animations and transitions */
 @media (prefers-reduced-motion: reduce) {
-  .mega-panel-enter,
-  .mega-col-enter {
-    animation: none !important;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 

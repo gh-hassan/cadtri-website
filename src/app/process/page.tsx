@@ -42,13 +42,80 @@ const steps = [
   },
 ] as const;
 
+const preSubmissionChecks = [
+  {
+    title: "Jurisdiction Checklist Gaps",
+    description:
+      "Submission requirements vary by city and county. Missing a required sheet, note, or form is the most common cause of immediate rejection before plan review even begins.",
+  },
+  {
+    title: "Sheet Coordination Conflicts",
+    description:
+      "Dimensions that appear on the floor plan but contradict the elevation or section. Every sheet is cross-referenced before the package is assembled.",
+  },
+  {
+    title: "Wrong Code Edition Referenced",
+    description:
+      "California adopts code cycles on different schedules than federal adoptions. Sets referencing a superseded code edition are returned for correction at plan check.",
+  },
+  {
+    title: "Missing Structural Callouts",
+    description:
+      "Headers at new openings, post and beam connections, hold-down locations: elements required by the structural drawings that are not called out on the architectural sheets.",
+  },
+  {
+    title: "Accessibility Path-of-Travel",
+    description:
+      "Commercial tenant improvements trigger path-of-travel upgrade requirements. Sets without the required accessibility analysis are incomplete at submission.",
+  },
+  {
+    title: "Egress Travel Distance Errors",
+    description:
+      "Exit widths, travel distances, and occupant loads calculated against the wrong occupancy classification. Caught in our review, not in the building department's.",
+  },
+  {
+    title: "Energy Compliance Documentation",
+    description:
+      "Title 24 compliance forms must match the design parameters on the drawing sheets. Mismatches between the CF1R and the drawings generate plan check comments on every submission.",
+  },
+  {
+    title: "Setback and Coverage Violations",
+    description:
+      "Site plans that show proposed construction within required setbacks or exceeding lot coverage limits. Verified against the current zoning designation before submission.",
+  },
+] as const;
+
 const prepItems = [
-  "Site address and parcel number",
-  "Project description and scope of work",
-  "Existing drawings, if available (CAD, PDF, or hand sketches)",
-  "Prior permit history or building department correspondence",
-  "Engineering reports or structural calculations, if obtained",
-  "Preferred timeline and target permit submission date",
+  {
+    number: "01",
+    label: "Site address and parcel number",
+    detail: "Required for jurisdiction research and zoning verification.",
+  },
+  {
+    number: "02",
+    label: "Project description and scope of work",
+    detail: "A plain-language summary is sufficient to begin scope review.",
+  },
+  {
+    number: "03",
+    label: "Existing drawings, if available",
+    detail: "CAD files, PDFs, or hand sketches are all accepted.",
+  },
+  {
+    number: "04",
+    label: "Prior permit history or building department correspondence",
+    detail: "Previous comment letters and approval conditions affect the new submission.",
+  },
+  {
+    number: "05",
+    label: "Engineering reports or structural calculations, if obtained",
+    detail: "Soils reports, structural analyses, and third-party studies are incorporated during coordination.",
+  },
+  {
+    number: "06",
+    label: "Preferred timeline and target permit submission date",
+    detail: "Helps us confirm production scheduling and set realistic delivery expectations.",
+  },
 ] as const;
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
@@ -68,12 +135,16 @@ export default function ProcessPage() {
         {/* Horizontal split intro */}
         <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
           <div>
-            <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
+            <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
               The Workflow
             </p>
             <h2
-              className="font-bold text-3xl text-foreground sm:text-4xl"
-              style={{ letterSpacing: "-0.025em" }}
+              className="font-bold text-foreground"
+              style={{
+                fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
+                letterSpacing: "-0.03em",
+                lineHeight: 1.1,
+              }}
             >
               Four stages. One production system.
             </h2>
@@ -88,23 +159,20 @@ export default function ProcessPage() {
           </div>
         </div>
 
-        {/* Step rows */}
-        <ul
-          role="list"
-          className="divide-y divide-border border border-border"
-        >
+        {/* Step rows — large editorial layout */}
+        <ul role="list" className="divide-y divide-border">
           {steps.map((step) => (
             <li
               key={step.number}
-              className="grid gap-x-8 gap-y-6 px-8 py-10 lg:grid-cols-[3rem_1fr_14rem] lg:gap-x-12 lg:px-10"
+              className="grid gap-x-12 gap-y-6 py-12 lg:grid-cols-[8rem_1fr_18rem]"
             >
-              {/* Step number */}
-              <div className="flex items-start pt-0.5">
+              {/* Large orange step number */}
+              <div className="flex items-start">
                 <span
-                  className="font-medium tabular-nums text-secondary"
+                  className="font-bold tabular-nums text-secondary"
                   style={{
-                    fontSize: "clamp(1.5rem, 3vw, 2rem)",
-                    letterSpacing: "-0.02em",
+                    fontSize: "clamp(4rem, 8vw, 6rem)",
+                    letterSpacing: "-0.04em",
                     lineHeight: 1,
                   }}
                   aria-hidden
@@ -113,11 +181,15 @@ export default function ProcessPage() {
                 </span>
               </div>
 
-              {/* Content */}
-              <div>
+              {/* Title + description */}
+              <div className="flex flex-col justify-center">
                 <h3
-                  className="mb-3 font-bold text-lg text-foreground sm:text-xl"
-                  style={{ letterSpacing: "-0.015em" }}
+                  className="mb-4 font-bold text-foreground"
+                  style={{
+                    fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)",
+                    letterSpacing: "-0.03em",
+                    lineHeight: 1.2,
+                  }}
                 >
                   {step.title}
                 </h3>
@@ -126,11 +198,9 @@ export default function ProcessPage() {
                 </p>
               </div>
 
-              {/* Outcome — right column, desktop only layout */}
-              <div className="border-border pt-1 lg:border-l lg:pl-8">
-                <p
-                  className="mb-2 text-[10px] font-medium uppercase tracking-widest text-secondary"
-                >
+              {/* Outcome — right column */}
+              <div className="flex flex-col justify-center border-border lg:border-l lg:pl-10">
+                <p className="mb-2 text-[11px] font-medium uppercase tracking-widest text-secondary">
                   Outcome
                 </p>
                 <p className="text-sm font-light leading-relaxed text-muted">
@@ -143,18 +213,88 @@ export default function ProcessPage() {
 
       </Section>
 
+      {/* ── Pre-submission review authority section ───────────────────────────── */}
+      <Section variant="dark" className="border-t border-border">
+
+        {/* Section header */}
+        <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
+          <div>
+            <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
+              Quality Control
+            </p>
+            <h2
+              className="font-bold text-primary-foreground"
+              style={{
+                fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
+                letterSpacing: "-0.03em",
+                lineHeight: 1.1,
+              }}
+            >
+              What we catch before the building department does.
+            </h2>
+          </div>
+          <div className="flex items-end">
+            <p className="font-light leading-relaxed text-white/60">
+              Before any drawing leaves our production queue, every set goes
+              through a structured internal review. The items below represent the
+              most common rejection and comment triggers across California
+              jurisdictions. We address each one before the package reaches the
+              counter.
+            </p>
+          </div>
+        </div>
+
+        {/* Two-column checklist */}
+        <div className="grid gap-px bg-white/10 sm:grid-cols-2">
+          {preSubmissionChecks.map((check, index) => (
+            <div
+              key={check.title}
+              className="flex gap-5 bg-primary px-8 py-7"
+            >
+              <span
+                className="mt-0.5 shrink-0 font-medium tabular-nums text-secondary"
+                style={{
+                  fontSize: "clamp(0.75rem, 1.5vw, 0.875rem)",
+                  letterSpacing: "-0.02em",
+                  lineHeight: 1.4,
+                }}
+                aria-hidden
+              >
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <div>
+                <p
+                  className="mb-2 font-bold text-primary-foreground"
+                  style={{ letterSpacing: "-0.02em" }}
+                >
+                  {check.title}
+                </p>
+                <p className="text-sm font-light leading-relaxed text-white/60">
+                  {check.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+      </Section>
+
       {/* ── What to prepare ──────────────────────────────────────────────────── */}
       <Section variant="surface" className="border-t border-border">
 
         {/* Horizontal split intro */}
         <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
           <div>
-            <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
+            <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
               Before You Reach Out
             </p>
             <h2
-              className="font-bold text-3xl text-foreground sm:text-4xl"
-              style={{ letterSpacing: "-0.025em" }}
+              className="font-bold text-foreground"
+              style={{
+                fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
+                letterSpacing: "-0.03em",
+                lineHeight: 1.1,
+              }}
             >
               What to have ready.
             </h2>
@@ -168,19 +308,41 @@ export default function ProcessPage() {
           </div>
         </div>
 
-        {/* Prep items — gap-as-border grid */}
-        <div className="grid gap-px border-x border-b border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+        {/* Prep items — full-width bordered rows */}
+        <ul role="list" className="divide-y divide-border border-t border-border">
           {prepItems.map((item) => (
-            <div
-              key={item}
-              className="flex items-start gap-4 bg-surface px-8 py-6"
+            <li
+              key={item.number}
+              className="grid gap-x-10 gap-y-2 py-7 sm:grid-cols-[3rem_1fr_1fr]"
             >
-              <p className="text-sm font-light leading-relaxed text-muted">
-                {item}
+              {/* Orange index number */}
+              <span
+                className="font-medium tabular-nums text-secondary"
+                style={{
+                  fontSize: "clamp(0.75rem, 1.5vw, 0.875rem)",
+                  letterSpacing: "-0.02em",
+                  lineHeight: 1.6,
+                }}
+                aria-hidden
+              >
+                {item.number}
+              </span>
+
+              {/* Label */}
+              <p
+                className="font-bold text-foreground"
+                style={{ letterSpacing: "-0.02em" }}
+              >
+                {item.label}
               </p>
-            </div>
+
+              {/* Detail */}
+              <p className="text-sm font-light leading-relaxed text-muted sm:border-l sm:border-border sm:pl-10">
+                {item.detail}
+              </p>
+            </li>
           ))}
-        </div>
+        </ul>
 
       </Section>
 

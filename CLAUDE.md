@@ -23,7 +23,7 @@ If the dev server shows "Module not found" errors after new files are added, sto
 
 - **Framework**: Next.js 15.5.15 App Router, React 19, TypeScript
 - **Styling**: Tailwind CSS v3 with CSS custom properties design system
-- **Font**: Outfit (Google Fonts via next/font) — single typeface, hierarchy via weight/size/tracking
+- **Fonts**: Unbounded (headings, `--font-unbounded`) + Plus Jakarta Sans (body/UI, `--font-jakarta`) via `next/font/google`
 - **Icons**: lucide-react
 - **Utilities**: clsx, tailwind-merge, class-variance-authority
 - **Email**: Resend (contact form server action in `app/contact/actions.ts`)
@@ -43,12 +43,21 @@ If the dev server shows "Module not found" errors after new files are added, sto
 ```
 
 ### Typography Rules
-- Outfit 800 ExtraBold: hero h1 (`font-extrabold`)
-- Outfit 700 Bold: section h2/h3 (`font-bold`)
-- Outfit 300 Light: body paragraphs (`font-light`)
-- Eyebrow labels: `text-[11px] font-medium uppercase tracking-widest text-secondary`
+- **Unbounded 800 ExtraBold**: hero h1 (`font-extrabold`) — `--font-heading`
+- **Unbounded 700 Bold**: section h2/h3 (`font-bold`) — `--font-heading`
+- **Plus Jakarta Sans 300 Light**: body paragraphs (`font-light`) — `--font-sans`
+- Heading base: `letter-spacing: -0.03em`, `line-height: 1.08` (set in globals.css)
+- Always use `clamp()` for fluid heading sizes, e.g. `fontSize: "clamp(2rem, 5vw, 4rem)"`
 - **`text-primary/50` does not work** — CSS variable colors don't support Tailwind opacity modifiers. Use `text-white/50` on dark backgrounds instead.
 - `globals.css @layer base` sets `h1,h2...{ color: var(--color-foreground) }` directly on elements — always add explicit `text-primary-foreground` utility on headings inside dark sections to prevent them going invisible.
+
+### Eyebrow Pattern
+```tsx
+<p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
+  Label
+</p>
+```
+**No decorative orange dash span before the text.** The `<span className="inline-block h-px w-6 shrink-0 bg-secondary" />` pattern was removed site-wide. Do NOT add it back.
 
 ### Layout Patterns
 - **Gap-as-border grid**: `grid gap-px border-x border-b border-border bg-border sm:grid-cols-N` — cells use `bg-surface` or `bg-background`. Parent bg bleeds through gaps as 1px warm dividers.
@@ -56,7 +65,6 @@ If the dev server shows "Module not found" errors after new files are added, sto
 - **Numeric indexing**: Orange `01`–`0N` tabular-nums (`text-[11px] font-medium tabular-nums text-secondary`) as visual thread through lists.
 - **Section wrapper**: `<Section variant="default|surface|dark" compact?>` — handles bg, py-24 (or py-14 compact), container.
 - **Container**: `container mx-auto max-w-container px-6` (max-width 1280px).
-- **Eyebrow pattern**: `<p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary"><span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />Label</p>`
 
 ### Global Copy Rules
 - **No em dashes** anywhere in visible copy — use periods, colons, or rewrite. En dashes in ranges (e.g. "3–5 Days") are fine.
@@ -68,39 +76,51 @@ If the dev server shows "Module not found" errors after new files are added, sto
 ```
 src/
 ├── app/
-│   ├── layout.tsx              root layout — Outfit font, SiteHeader, skip link, SiteFooter
-│   ├── globals.css             design tokens + Tailwind base reset + mega menu animations
-│   ├── page.tsx                homepage (imports section components)
-│   ├── about/page.tsx
+│   ├── layout.tsx                root layout — Unbounded + Plus Jakarta Sans fonts, SiteHeader, SiteFooter, JSON-LD
+│   ├── globals.css               design tokens + Tailwind base reset + mega menu animations
+│   ├── page.tsx                  homepage
+│   ├── not-found.tsx             custom 404
+│   ├── opengraph-image.tsx       generated OG image for homepage
+│   ├── sitemap.ts                all indexable routes
+│   ├── robots.ts                 allow all, disallow /api/
+│   ├── about/page.tsx            custom dark hero + stats strip + standards + team + clients
+│   ├── process/page.tsx          4-step workflow + pre-submission checks + prep list
+│   ├── book/page.tsx             Cal.com scheduling embed (needs real Cal.com link)
 │   ├── services/
-│   │   ├── page.tsx            services index (editorial row directory)
-│   │   └── [slug]/page.tsx     dynamic service detail (generateStaticParams from services array)
-│   ├── process/page.tsx
-│   ├── portfolio/page.tsx      placeholder project cards — real images pending
+│   │   ├── page.tsx              services index — editorial row directory
+│   │   └── [slug]/page.tsx       dynamic service detail (generateStaticParams from services array)
+│   │   └── [slug]/opengraph-image.tsx  per-service generated OG images
+│   ├── resources/
+│   │   ├── page.tsx              blog/resources listing
+│   │   └── [slug]/page.tsx       MDX post renderer
+│   ├── portfolio/
+│   │   ├── page.tsx              gated portfolio — code + request-access form
+│   │   ├── portfolio-gate.tsx    client component — unlock/request UI
+│   │   └── actions.ts            server actions — verify code, send access request
 │   ├── contact/
-│   │   ├── page.tsx            inquiry form with Cloudflare Turnstile CAPTCHA
-│   │   ├── contact-form.tsx    client component — form UI
-│   │   └── actions.ts          server action — Resend email delivery
-│   ├── industries/page.tsx     redirect("/about")
-│   ├── industries/[slug]/page.tsx  redirect("/about")
-│   ├── privacy-policy/page.tsx robots: index:false
-│   ├── terms/page.tsx          robots: index:false
-│   ├── sitemap.ts              all indexable routes
-│   └── robots.ts               allow all, disallow /api/
+│   │   ├── page.tsx              inquiry form with Cloudflare Turnstile CAPTCHA
+│   │   ├── contact-form.tsx      client component — form UI
+│   │   └── actions.ts            server action — Resend email delivery
+│   ├── industries/page.tsx       redirect("/about")
+│   ├── industries/[slug]/page.tsx redirect("/about")
+│   ├── privacy-policy/page.tsx   robots: index:false
+│   └── terms/page.tsx            robots: index:false
 │
 ├── components/
 │   ├── layout/
-│   │   ├── site-header.tsx     sticky header — mega menu (desktop), accordion (mobile)
-│   │   └── site-footer.tsx     dark charcoal 2-col footer
-│   ├── sections/               homepage section components
+│   │   ├── site-header.tsx       sticky header — mega menu (desktop), accordion (mobile)
+│   │   └── site-footer.tsx       dark charcoal 2-col footer
+│   ├── sections/                 homepage section components
 │   │   ├── home-hero.tsx
 │   │   ├── home-trust-strip.tsx
 │   │   ├── home-services.tsx
 │   │   ├── home-why-us.tsx
 │   │   ├── home-process.tsx
 │   │   ├── home-industries.tsx
-│   │   └── home-portfolio.tsx
-│   ├── service-layouts/        one component per service layout type
+│   │   ├── home-portfolio.tsx
+│   │   ├── home-testimonials.tsx
+│   │   └── home-resources.tsx
+│   ├── service-layouts/          one component per service layout type (33 total)
 │   │   ├── process-layout.tsx
 │   │   ├── visual-layout.tsx
 │   │   ├── package-layout.tsx
@@ -115,31 +135,58 @@ src/
 │   │   ├── remodel-layout.tsx
 │   │   ├── compliance-layout.tsx
 │   │   ├── accessory-layout.tsx
-│   │   ├── consultation-layout.tsx
 │   │   ├── energy-layout.tsx
 │   │   ├── historic-layout.tsx
-│   │   └── bim-layout.tsx
+│   │   ├── bim-layout.tsx
+│   │   ├── zoning-layout.tsx
+│   │   ├── pathway-layout.tsx
+│   │   ├── assessment-layout.tsx
+│   │   ├── scope-layout.tsx
+│   │   ├── options-layout.tsx
+│   │   ├── gap-layout.tsx
+│   │   ├── demolition-layout.tsx
+│   │   ├── redline-layout.tsx
+│   │   ├── tenant-layout.tsx
+│   │   ├── interior-layout.tsx
+│   │   ├── siteplan-layout.tsx
+│   │   ├── record-layout.tsx
+│   │   ├── deferred-layout.tsx
+│   │   ├── firesafety-layout.tsx
+│   │   └── signage-layout.tsx
 │   └── shared/
-│       ├── button.tsx          CVA-based — variants: primary/secondary/outline/ghost, sizes: sm/md/lg
-│       ├── section.tsx         Section wrapper with variant and compact props
-│       ├── page-header.tsx     dark charcoal header used on all interior pages
-│       └── cta-band.tsx        full-width CTA — dark/light variants, asymmetric layout
+│       ├── button.tsx            CVA-based — variants: primary/secondary/outline/ghost, sizes: sm/md/lg
+│       ├── section.tsx           Section wrapper with variant and compact props
+│       ├── page-header.tsx       dark charcoal header used on interior pages
+│       ├── cta-band.tsx          full-width CTA — dark/light variants, asymmetric layout
+│       └── mdx-components.tsx    MDX renderer components for resources/blog posts
 │
 ├── content/
-│   ├── company.ts              single source of truth for name, email, website, tagline
-│   ├── homepage.ts             all homepage copy and data
-│   ├── services.ts             29-service content model — ServiceLayout union type drives layout routing
-│   └── navigation.ts           navLinks + servicesMegaMenu (5 categories) + footerColumns
+│   ├── company.ts                single source of truth for name, email, phone, website, tagline
+│   ├── homepage.ts               all homepage copy and data
+│   ├── services.ts               42-service content model — ServiceLayout union type drives layout routing
+│   ├── navigation.ts             navLinks + servicesMegaMenu (5 categories) + footerColumns
+│   ├── team.ts                   team members array (conditionally rendered on About page)
+│   ├── testimonials.ts           client testimonials
+│   ├── industries.ts             industry data (used for redirects)
+│   └── posts/                   MDX blog/resource articles
+│       ├── what-is-a-permit-set.mdx
+│       ├── adu-permit-california.mdx
+│       ├── plan-check-corrections-guide.mdx
+│       ├── title-24-energy-compliance-guide.mdx
+│       ├── pre-application-meeting-guide.mdx
+│       └── garage-conversion-adu-guide.mdx
 │
 └── lib/
-    ├── metadata.ts             siteMetadata with metadataBase, OG, Twitter, robots defaults
-    └── utils.ts                cn() helper (clsx + tailwind-merge)
+    ├── metadata.ts               siteMetadata with metadataBase, OG, Twitter, robots defaults
+    ├── json-ld.tsx               JSON-LD structured data (LocalBusiness + Service schemas)
+    ├── posts.ts                  MDX post loader — reads /content/posts/*.mdx
+    └── utils.ts                  cn() helper (clsx + tailwind-merge)
 ```
 
-## Services (29 total)
+## Services (42 total)
 
 ### ServiceLayout union type
-`standard | process | visual | package | technical | strategy | feasibility | addition | conversion | admin | bid | outdoor | remodel | compliance | accessory | consultation | energy | historic | bim`
+`standard | process | visual | package | technical | strategy | feasibility | addition | conversion | admin | bid | outdoor | remodel | compliance | accessory | energy | historic | bim | zoning | pathway | assessment | scope | options | gap | demolition | redline | tenant | interior | siteplan | record | deferred | firesafety | signage`
 
 ### Full service catalog
 
@@ -157,27 +204,43 @@ src/
 | 10 | `entitlement-support` | Entitlement Support | Coordination | process |
 | 11 | `pre-application-meeting-prep` | Pre-Application Meeting Prep | Coordination | process |
 | 12 | `as-built-documentation` | As-Built Documentation | Drawings | standard |
-| 13 | `digital-walkthroughs` | Digital Walkthroughs | Visualization | visual |
-| 14 | `3d-staging` | 3D Staging | Visualization | visual |
-| 15 | `project-strategy` | Project Strategy | Strategy | strategy |
-| 16 | `feasibility-study` | Feasibility Study | Strategy | feasibility |
-| 17 | `home-addition-packages` | Home Addition Packages | Permitting | addition |
-| 18 | `garage-conversion-packages` | Garage Conversion Packages | Permitting | conversion |
-| 19 | `construction-administration` | Construction Administration Support | Coordination | admin |
-| 20 | `contractor-bid-package` | Contractor Bid Package | Drawings | bid |
-| 21 | `pool-spa-permits` | Pool and Spa Permit Packages | Permitting | outdoor |
-| 22 | `interior-remodel-packages` | Interior Remodel Packages | Permitting | remodel |
-| 23 | `short-term-rental-permits` | Short-Term Rental Conversion Permits | Permitting | compliance |
-| 24 | `accessory-structure-permits` | Accessory Structure Permits | Permitting | accessory |
-| 25 | `virtual-design-consultation` | Virtual Design Consultation | Strategy | consultation |
+| 13 | `tenant-improvement-packages` | Tenant Improvement Packages | Permitting | package |
+| 14 | `digital-walkthroughs` | Digital Walkthroughs | Visualization | visual |
+| 15 | `3d-staging` | 3D Staging | Visualization | visual |
+| 16 | `project-strategy` | Project Strategy | Strategy | strategy |
+| 17 | `feasibility-study` | Feasibility Study | Strategy | feasibility |
+| 18 | `home-addition-packages` | Home Addition Packages | Permitting | addition |
+| 19 | `garage-conversion-packages` | Garage Conversion Packages | Permitting | conversion |
+| 20 | `construction-administration` | Construction Administration Support | Coordination | admin |
+| 21 | `contractor-bid-package` | Contractor Bid Package | Drawings | bid |
+| 22 | `pool-spa-permits` | Pool and Spa Permit Packages | Permitting | outdoor |
+| 23 | `interior-remodel-packages` | Interior Remodel Packages | Permitting | remodel |
+| 24 | `short-term-rental-permits` | Short-Term Rental Conversion Permits | Permitting | compliance |
+| 25 | `accessory-structure-permits` | Accessory Structure Permits | Permitting | accessory |
 | 26 | `title-24-energy-compliance` | Title 24 Energy Compliance | Permitting | energy |
 | 27 | `historic-district-submissions` | Historic District Submissions | Coordination | historic |
 | 28 | `bim-coordination` | BIM Coordination | Coordination | bim |
+| 29 | `zoning-code-research` | Zoning Code Research | Strategy | zoning |
+| 30 | `permit-pathway-analysis` | Permit Pathway Analysis | Strategy | pathway |
+| 31 | `pre-purchase-assessment` | Pre-Purchase Assessment | Strategy | assessment |
+| 32 | `scope-definition` | Scope Definition | Strategy | scope |
+| 33 | `design-options-study` | Design Options Study | Strategy | options |
+| 34 | `compliance-gap-analysis` | Compliance Gap Analysis | Strategy | gap |
+| 35 | `deferred-submittal-packages` | Deferred Submittal Packages | Drawings | deferred |
+| 36 | `fire-life-safety-drawings` | Fire and Life Safety Drawings | Drawings | firesafety |
+| 37 | `signage-permit-drawings` | Signage Permit Drawings | Drawings | signage |
+| 38 | `interior-detail-package` | Interior Detail Package | Drawings | interior |
+| 39 | `site-plan-package` | Site Plan Package | Drawings | siteplan |
+| 40 | `record-drawing-updates` | Record Drawing Updates | Drawings | record |
+| 41 | `demolition-permit-drawings` | Demolition Permit Drawings | Drawings | demolition |
+| 42 | `redline-to-cad` | Redline to CAD Conversion | Drawings | redline |
+
+**Removed:** `virtual-design-consultation` (Strategy / consultation) — deleted from services, navigation, and slug page.
 
 ## Mega Menu
 
 5 categories in `servicesMegaMenu` (navigation.ts): Strategy, Drawings, Permitting, Coordination, Visualization.
-Footer strip shows "View all 29 services →" and "Request a Proposal →".
+Header shows "View all 42 services →".
 Mobile accordion uses the same `servicesMegaMenu` data.
 Animations: `mega-panel-enter` (320ms expo-out) + `mega-col-enter` (380ms expo-out, staggered 35ms per column) defined in globals.css.
 
@@ -186,22 +249,26 @@ Animations: `mega-panel-enter` (320ms expo-out) + `mega-col-enter` (380ms expo-o
 - `navLinks` keys use `link.label` not `link.href` — two items share href `/about` (About + Industries)
 - Industries has `activePath: "/industries"` so it never falsely highlights as active when on `/about`
 - `isActive(link)` function in site-header reads `link.activePath ?? link.href`
+- Mega menu dropdown state uses `openDropdown: string | null` keyed by nav label — not a shared boolean. Each nav item's dropdown is independent.
 
 ## Key Decisions Made
 
-- **Outfit only** — single typeface throughout; hierarchy via weight, size, and tracking
+- **Two-font system** — Unbounded (headings) + Plus Jakarta Sans (body). Outfit removed entirely.
+- **No orange dash decorators** — `<span className="inline-block h-px w-6 shrink-0 bg-secondary" />` removed site-wide. Do not add back.
 - **Industries pages removed** — `/industries` and `/industries/[slug]` both redirect to `/about`
-- **Portfolio is placeholder** — 6 representative project type cards, no real photos
+- **Portfolio is gated** — access code system + request-access form. No real photography yet.
 - **Contact form wired** — Resend server action + Cloudflare Turnstile CAPTCHA (credentials in `.env.local`)
 - **Legal pages not indexed** — privacy-policy and terms have `robots: { index: false }`
+- **OG images generated** — `app/opengraph-image.tsx` (homepage) and `app/services/[slug]/opengraph-image.tsx` (per service)
+- **JSON-LD** — LocalBusiness + Service structured data in `lib/json-ld.tsx`, rendered in root layout
 - **No git push until user says so** — work stays local only
 
 ## Still Needed Before Launch
 
-1. Add `/public/brand/favicon.ico` and `/public/brand/apple-touch-icon.png` (referenced in metadata.ts)
-2. Add OG/social share image (`app/opengraph-image.png` or generated `.tsx`)
-3. Replace portfolio placeholder divs with real `<Image />` when photography is available
-4. Fill empty fields in `company.ts` — phone, address, social links
-5. Attorney review of privacy-policy and terms pages
-6. Add analytics (Plausible, Fathom, or GA4)
-7. Verify Resend + Turnstile credentials are production-ready before launch
+1. **Favicon** — `/public/brand/favicon.ico` and `/public/brand/apple-touch-icon.png` missing (referenced in metadata.ts, brand dir exists but files are absent)
+2. **Social links** — `company.ts` has empty LinkedIn and Instagram strings — renders dead links in footer
+3. **Address** — `company.ts` street and zip are blank — affects LocalBusiness JSON-LD schema
+4. **Book page** — `app/book/page.tsx` has a Cal.com embed that needs the real Cal.com username/link
+5. **Portfolio photography** — real project images to replace placeholder cards
+6. **Legal pages** — privacy policy and terms are stubs flagged for attorney review
+7. **Verify Resend + Turnstile credentials** — confirm production keys in `.env.local` before go-live

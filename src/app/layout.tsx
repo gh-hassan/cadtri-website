@@ -2,22 +2,9 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Unbounded } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
-import { MarketingShell } from "@/components/layout/marketing-shell";
 import { siteMetadata } from "@/lib/metadata";
 import { LocalBusinessJsonLd } from "@/lib/json-ld";
 
-// ─── Typography ──────────────────────────────────────────────────────────────
-// Two-font system: Unbounded for display headings, Outfit for all other text.
-//
-// Unbounded: wide, geometric, commanding — signals expertise and authority at
-// large display sizes. Loaded at weights 600/700/800 for heading hierarchy.
-//
-// Plus Jakarta Sans: humanist geometric — body copy, navigation, UI labels.
-// Slightly irregular stroke contrast and humanist warmth create the right
-// tension against Unbounded's pure mechanical geometry. 300/400/500 for body,
-// 600/700 for UI labels and emphasis.
-//
-// Both variables applied to <html> so globals.css can reference them at :root.
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
@@ -42,15 +29,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${plusJakartaSans.variable} ${unbounded.variable}`}>
       <body>
-        {/* Skip-to-content — visible on focus for keyboard/screen-reader users */}
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-secondary focus:px-4 focus:py-2 focus:text-xs focus:font-medium focus:uppercase focus:tracking-widest focus:text-white"
         >
           Skip to main content
         </a>
-        {/* Plausible analytics — privacy-first, no cookie banner required.
-            Sign up at plausible.io and add cadtri.com as a site to activate. */}
         <Script
           defer
           data-domain="cadtri.com"
@@ -58,9 +42,7 @@ export default function RootLayout({
           strategy="afterInteractive"
         />
         <LocalBusinessJsonLd />
-        <MarketingShell>
-          {children}
-        </MarketingShell>
+        {children}
       </body>
     </html>
   );

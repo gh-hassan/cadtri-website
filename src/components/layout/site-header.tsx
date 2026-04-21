@@ -24,6 +24,7 @@ export function SiteHeader() {
   const [scrolled, setScrolled]             = useState(false);
   const [isDesktop, setIsDesktop]           = useState(false);
   const navRef    = useRef<HTMLDivElement>(null);
+  const menuRef   = useRef<HTMLDivElement>(null);
   const pathname  = usePathname();
 
   // Pill mode = scrolled on desktop only
@@ -70,9 +71,10 @@ export function SiteHeader() {
   // Close dropdown when clicking outside the nav
   useEffect(() => {
     const onClickOutside = (e: globalThis.MouseEvent) => {
-      if (navRef.current && !navRef.current.contains(e.target as Node)) {
-        setOpenDropdown(null);
-      }
+      const target = e.target as Node;
+      const inNav  = navRef.current?.contains(target);
+      const inMenu = menuRef.current?.contains(target);
+      if (!inNav && !inMenu) setOpenDropdown(null);
     };
     document.addEventListener("mousedown", onClickOutside);
     return () => document.removeEventListener("mousedown", onClickOutside);
@@ -298,6 +300,7 @@ export function SiteHeader() {
       ───────────────────────────────────────────────────────────────────── */}
       {openDropdown === "Services" && (
         <div
+          ref={menuRef}
           style={{ top: HEADER_H }}
           className="mega-panel-enter fixed inset-x-0 z-40 hidden border-b border-border bg-background lg:block"
           role="region"

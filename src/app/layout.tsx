@@ -2,9 +2,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Unbounded } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
-import { SiteHeader } from "@/components/layout/site-header";
-import { SiteFooter } from "@/components/layout/site-footer";
-import { NewsletterSignup } from "@/components/sections/newsletter-signup";
+import { MarketingShell } from "@/components/layout/marketing-shell";
 import { siteMetadata } from "@/lib/metadata";
 import { LocalBusinessJsonLd } from "@/lib/json-ld";
 
@@ -60,10 +58,9 @@ export default function RootLayout({
           strategy="afterInteractive"
         />
         <LocalBusinessJsonLd />
-        <SiteHeader />
-        <main id="main-content">{children}</main>
-        <NewsletterSignup />
-        <SiteFooter />
+        <MarketingShell>
+          {children}
+        </MarketingShell>
       </body>
     </html>
   );

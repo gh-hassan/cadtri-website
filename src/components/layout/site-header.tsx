@@ -262,16 +262,16 @@ export function SiteHeader() {
               className="hidden items-center gap-5 lg:flex"
               style={sideStyle(30)}
             >
-              <div className="h-4 w-px bg-white/20" aria-hidden />
               <Link
-                href="/contact"
+                href="/portal"
                 className={cn(
                   "text-[11px] font-medium uppercase tracking-[0.12em] transition-colors duration-200",
-                  isActive({ href: "/contact" }) ? "text-white" : "text-white/50 hover:text-white",
+                  isActive({ href: "/portal" }) ? "text-white" : "text-white/50 hover:text-white",
                 )}
               >
-                Contact
+                Portal
               </Link>
+              <div className="h-4 w-px bg-white/20" aria-hidden />
               <Button href="/contact" variant="secondary" size="sm">
                 Request Proposal
               </Button>
@@ -489,10 +489,10 @@ export function SiteHeader() {
             Request Proposal
           </Button>
           <Link
-            href="/contact"
+            href="/portal"
             className="mt-5 block text-center text-xs font-medium uppercase tracking-[0.12em] text-muted transition-colors duration-200 hover:text-foreground"
           >
-            Contact us directly
+            Client Portal
           </Link>
         </div>
       </div>

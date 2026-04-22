@@ -49,11 +49,11 @@
   --color-error:               #dc2626;
 
   /* ── Typography ─────────────────────────────────────────────────────────── */
-  /* Two-font system. --font-outfit and --font-unbounded are injected on       */
-  /* <html> by next/font. --font-sans (Outfit) handles all body and UI text.  */
-  /* --font-heading (Unbounded) handles h1–h6 only.                           */
-  --font-sans:    var(--font-jakarta),   "Plus Jakarta Sans", system-ui, sans-serif;
-  --font-heading: var(--font-unbounded), "Unbounded",         system-ui, sans-serif;
+  /* Two-font system. --font-outfit and --font-unbounded are injected on  */
+  /* <html> by next/font. --font-sans (Outfit) handles all body/UI text. */
+  /* --font-heading (Unbounded) handles h1–h6 only.                      */
+  --font-sans:    var(--font-outfit),    "Outfit",    system-ui, sans-serif;
+  --font-heading: var(--font-unbounded), "Unbounded", system-ui, sans-serif;
 
   --font-size-xs:   0.75rem;
   --font-size-sm:   0.875rem;

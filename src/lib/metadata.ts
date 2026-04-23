@@ -28,10 +28,7 @@ export const siteMetadata: Metadata = {
       follow: true,
     },
   },
-  icons: {
-    icon: "/brand/favicon.ico",
-    apple: "/brand/apple-touch-icon.png",
-  },
+  // icons are generated via src/app/icon.tsx and src/app/apple-icon.tsx
 };
 
 // Helper: build per-page metadata with site defaults pre-applied.

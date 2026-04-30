@@ -2,11 +2,12 @@ import { siteLogin } from "./actions";
 
 export const metadata = { robots: { index: false } };
 
-export default function SiteLoginPage({
+export default async function SiteLoginPage({
   searchParams,
 }: {
   searchParams: Promise<{ error?: string }>;
 }) {
+  const { error } = await searchParams;
   return (
     <div
       style={{
@@ -66,6 +67,17 @@ export default function SiteLoginPage({
           >
             Password
           </label>
+          {error && (
+            <p
+              style={{
+                marginBottom: "0.75rem",
+                fontSize: "0.8125rem",
+                color: "#c0392b",
+              }}
+            >
+              Incorrect password. Try again.
+            </p>
+          )}
           <input
             id="password"
             name="password"

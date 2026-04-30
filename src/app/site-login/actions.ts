@@ -10,7 +10,7 @@ export async function siteLogin(formData: FormData) {
   const password = formData.get("password") as string;
 
   if (password !== SITE_PASSWORD) {
-    return { error: "Incorrect password." };
+    redirect("/site-login?error=1");
   }
 
   const jar = await cookies();

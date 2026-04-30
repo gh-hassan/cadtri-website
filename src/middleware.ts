@@ -10,6 +10,20 @@ const adminSecret  = new TextEncoder().encode(`${process.env.PORTAL_JWT_SECRET!}
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
+  // ── Site-wide preview gate ───────────────────────────────────────────────────
+  const isLoginPage = pathname.startsWith("/site-login");
+  const isPublicAsset =
+    pathname.startsWith("/_next") ||
+    pathname.startsWith("/api/") ||
+    pathname.match(/\.(ico|png|jpg|jpeg|svg|webp|woff2?|ttf|otf)$/);
+
+  if (!isLoginPage && !isPublicAsset) {
+    const previewCookie = req.cookies.get("cadtri_preview")?.value;
+    if (previewCookie !== "granted") {
+      return NextResponse.redirect(new URL("/site-login", req.url));
+    }
+  }
+
   // ── Portal ──────────────────────────────────────────────────────────────────
   if (pathname.startsWith("/portal")) {
     if (PORTAL_PUBLIC.some((p) => pathname.startsWith(p))) return NextResponse.next();
@@ -47,4 +61,6 @@ export async function middleware(req: NextRequest) {
   return NextResponse.next();
 }
 
-export const config = { matcher: ["/portal/:path*", "/admin/:path*"] };
+export const config = {
+  matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],
+};

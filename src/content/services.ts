@@ -87,9 +87,9 @@ export const services: readonly Service[] = [
     title:    "Architectural Drafting",
     category: "Drawings",
     layout:   "standard",
-    tagline:  "Complete, permit-ready plan sets for residential and commercial projects.",
+    tagline:  "Complete, permit-ready architectural drafting services for residential and commercial construction projects.",
     overview:
-      "We produce detailed architectural drawing packages that meet the documentation standards of local building departments. Every set includes all required plan sheets, built and coordinated to move through plan check without unnecessary corrections. Whether the project is a single-family addition, a ground-up commercial building, or an ADU, the drawings are prepared to the specific submission requirements of the applicable jurisdiction.",
+      "We provide architectural CAD drafting services designed for real-world permit approval. Every drawing package is built to the specific submission requirements of the applicable jurisdiction: all required plan sheets, code compliance notes, and coordinated documentation produced to clear plan check without unnecessary correction cycles. Whether the project is a single-family addition, a ground-up commercial building, or an ADU, the drawings are prepared to the standard the building department expects.",
     includes: [
       { title: "Floor Plans",       description: "Dimensioned floor plans for all levels, including existing and proposed conditions where required by the jurisdiction." },
       { title: "Elevations",        description: "Exterior building elevations showing all facades, heights, finish materials, and opening locations." },
@@ -105,7 +105,7 @@ export const services: readonly Service[] = [
       { title: "Real Estate Developers", description: "Building residential or commercial projects and need permit-ready documentation on a professional timeline." },
     ],
     whyItMatters:
-      "Incomplete or undercoordinated drawings are the most common cause of plan check corrections and permit delays. A professionally prepared permit set includes all required sheets, addresses the code requirements specific to the jurisdiction, and gives plan checkers a set that is straightforward to approve. CADTRI's drawings are built to that standard from the first submission.",
+      "One of the most common reasons projects get delayed during plan review is incomplete construction documentation. Missing sheets, uncoordinated details, or drawings that do not address jurisdiction-specific requirements send packages back for corrections that cost time and schedule. A professionally prepared architectural drawing set addresses the code requirements specific to the jurisdiction and gives plan checkers a set that is straightforward to approve from the first submission.",
     relatedSlugs: ["permit-set-preparation", "structural-coordination", "code-compliance-review"],
   },
 
@@ -115,9 +115,9 @@ export const services: readonly Service[] = [
     title:    "Permit Set Preparation",
     category: "Permitting",
     layout:   "process",
-    tagline:  "Jurisdiction-specific permit packages built for first-pass approval.",
+    tagline:  "Permit Set Preparation Services Built Around Real Building Department Requirements",
     overview:
-      "Permit set preparation covers the full document package required to initiate a building permit application. We research the submission requirements of the specific jurisdiction and assemble the complete set, built to those exact local standards. Every submission is prepared with the plan checker's expectations in mind.",
+      "Getting a permit approved is rarely just about submitting drawings. Each jurisdiction has its own submission format, required forms, checklist items, and plan check triggers. We research the specific building department requirements before assembling the permit set, so the package is built to the exact local standard. Every submission is prepared with the plan checker's expectations in mind, not a generic template.",
     processHighlights: [
       { label: "Average delivery",   value: "7-10 days" },
       { label: "Jurisdictions",      value: "All US" },
@@ -132,17 +132,18 @@ export const services: readonly Service[] = [
     includes: [
       { title: "Title Sheet and Project Summary",      description: "Project identification, scope, applicable codes, and owner, designer, and contractor information." },
       { title: "Code Compliance Documentation",        description: "Energy compliance, accessibility, zoning conformance, and all required regulatory documentation." },
+      { title: "Permit-Ready Construction Drawings",   description: "Complete drawing set built to the jurisdiction's specific sheet and documentation requirements." },
       { title: "Jurisdiction-Specific Requirements",   description: "Supplemental sheets, checklist forms, and documentation formats required by the specific building department." },
-      { title: "Application Package Assembly",         description: "All drawings and documents organized into a single submission-ready package per jurisdiction requirements." },
+      { title: "Permit Submittal Package Assembly",    description: "All drawings and documents organized into a single submission-ready package per jurisdiction requirements." },
       { title: "Plan Check Support",                   description: "Available to respond to plan check comments and prepare resubmission packages if corrections are issued." },
     ],
     audience: [
-      { title: "General Contractors", description: "Pulling permits for residential or light commercial projects who need a complete, organized submission." },
-      { title: "Property Owners",     description: "Navigating the permit process without prior experience in documentation requirements." },
+      { title: "General Contractors",    description: "Pulling permits for residential or light commercial projects who need a complete, organized submission." },
+      { title: "Property Owners",        description: "Navigating the permit process without prior experience in documentation requirements." },
       { title: "Designers and Drafters", description: "Who need a production partner for jurisdiction research and compliance documentation." },
     ],
     whyItMatters:
-      "Every jurisdiction has specific submission formats, checklist requirements, and common plan check triggers. Understanding those requirements before the set is built is what separates a first-pass approval from a two-round correction cycle. CADTRI's permit set preparation starts with jurisdiction research, not drafting.",
+      "One missing form, one uncoordinated sheet, or one overlooked code note can stop a permit application before a plan checker has reviewed a single drawing. Understanding the building department's specific submission requirements before the set is built is what separates a first-pass approval from a two-round correction cycle. Permit set preparation starts with jurisdiction research, not drafting.",
     relatedSlugs: ["architectural-drafting", "city-comments-response", "code-compliance-review"],
   },
 
@@ -152,9 +153,9 @@ export const services: readonly Service[] = [
     title:    "City Comments Response",
     category: "Permitting",
     layout:   "process",
-    tagline:  "Plan check corrections addressed, documented, and resubmitted.",
+    tagline:  "Plan Check Corrections Addressed, Revised, and Resubmitted",
     overview:
-      "When a building department issues a correction notice, the response needs to be clear, complete, and professionally documented. We review each plan check comment, prepare the required drawing revisions, and produce a formal response set that addresses every item directly. The goal is a response that closes the review without a second round.",
+      "When a building department issues a correction notice, the response needs to be organized, accurate, and easy for the plan checker to review. We analyze each comment, prepare the required drawing revisions, and produce a formal written response that addresses every item directly. Every correction is clouded on the drawings, cited in the response letter, and organized so the plan checker can verify the resolution without searching for it. The goal is a resubmission that closes the review in a single pass.",
     processHighlights: [
       { label: "Response time",   value: "5-7 days" },
       { label: "Format",         value: "Formal letter" },
@@ -167,11 +168,11 @@ export const services: readonly Service[] = [
       { title: "Resubmission Package",  description: "The complete resubmission set is assembled: revised sheets, response letter, and any required supplemental documentation, ready to submit." },
     ],
     includes: [
-      { title: "Comment Log Review",   description: "Full analysis of each plan check item and its required resolution, cross-referenced against the current drawing set." },
-      { title: "Drawing Corrections",  description: "Revised and clouded plan sheets addressing each identified deficiency with clear markup indicating the change." },
-      { title: "Response Letter",      description: "Formal written response documenting how each comment was addressed, with sheet and detail references." },
-      { title: "Resubmission Package", description: "Complete resubmission set incorporating all revised sheets, the response letter, and any required supplemental documentation." },
-      { title: "Follow-Up Coordination", description: "Available for subsequent correction rounds if the jurisdiction issues additional comments." },
+      { title: "Comment Log Review",     description: "Full analysis of each plan check item and its required resolution, cross-referenced against the current drawing set." },
+      { title: "Drawing Corrections",    description: "Revised and clouded plan sheets addressing each identified deficiency with clear markup indicating the change." },
+      { title: "Response Letter",        description: "Formal written response documenting how each comment was addressed, with sheet and detail references for every item." },
+      { title: "Resubmission Package",   description: "Complete resubmission set incorporating all revised sheets, the response letter, and any required supplemental documentation." },
+      { title: "Follow-Up Coordination", description: "Available for subsequent correction rounds if the jurisdiction issues additional comments after resubmission." },
     ],
     audience: [
       { title: "General Contractors",      description: "Who received a correction notice and need to get the project moving again on schedule." },
@@ -179,7 +180,7 @@ export const services: readonly Service[] = [
       { title: "Architects and Designers", description: "Who need a production partner to execute the technical corrections and format the response." },
     ],
     whyItMatters:
-      "A poorly organized correction response often triggers a second round of comments. A clean response set with clearly clouded corrections, a well-organized response letter, and properly marked revision dates gives the plan checker what they need to close the review in a single pass.",
+      "Unresolved city review comments can slow down an entire construction schedule. A poorly organized correction response often triggers a second round of comments and adds weeks to the timeline. A clean resubmission with clearly clouded corrections, a well-organized response letter, and properly marked revision dates gives the plan checker what they need to close the review without another cycle.",
     relatedSlugs: ["permit-set-preparation", "architectural-drafting", "code-compliance-review"],
   },
 
@@ -189,9 +190,9 @@ export const services: readonly Service[] = [
     title:    "Structural Coordination",
     category: "Coordination",
     layout:   "technical",
-    tagline:  "Architectural and structural drawings coordinated into one coherent permit set.",
+    tagline:  "Architectural and structural drawings coordinated into one permit-ready package through professional structural coordination services.",
     overview:
-      "On projects that require a licensed structural engineer, the architectural and structural drawing sets must work together as a single coherent package. We coordinate both sets, reviewing for dimensional conflicts, aligning references, and producing a combined permit package that reads as one document. All coordination is completed in direct communication with the engineer of record.",
+      "Projects involving a licensed structural engineer require architectural plans and structural construction documents to function as one coordinated permit set. We review both sets for dimensional conflicts, reference inconsistencies, and assembly gaps, then produce a combined package that reads as a single coherent document. All coordination is completed in direct communication with the engineer of record so that discrepancies are resolved before the package reaches plan check.",
     disciplines: ["Architectural Plans", "Structural Engineering", "Foundation Systems", "Lateral Force Resisting", "Gravity Framing", "Connection Details"],
     includes: [
       { title: "Coordination Review",   description: "Side-by-side review of structural drawings against architectural sheets to identify dimensional, assembly, and reference conflicts." },
@@ -206,7 +207,7 @@ export const services: readonly Service[] = [
       { title: "Real Estate Developers", description: "Running projects with multiple engineering consultants who need a single coordination point." },
     ],
     whyItMatters:
-      "Uncoordinated drawings are a leading cause of plan check corrections and field conflicts. When the architectural and structural sets do not agree on dimensions, bearing locations, or assembly details, the project pays twice: once at plan check and once in the field.",
+      "Uncoordinated drawings are a leading cause of plan check corrections and field conflicts. When the architectural and structural sets do not agree on dimensions, bearing locations, or assembly details, the project pays twice: once at plan check and again in the field. Structural coordination eliminates those conflicts before the package reaches submission.",
     relatedSlugs: ["architectural-drafting", "mep-coordination", "permit-set-preparation"],
   },
 
@@ -243,9 +244,9 @@ export const services: readonly Service[] = [
     title:        "Renderings and Visualization",
     category:     "Visualization",
     layout:       "visual",
-    tagline:      "3D renderings and visualizations for permitting, presentations, and approvals.",
+    tagline:      "3D architectural visualization and rendering services for permitting, presentations, approvals, and project marketing.",
     overview:
-      "We produce architectural renderings and visualization materials for projects that require visual presentations to jurisdictions, review boards, design review committees, or clients. Renderings are based directly on the permitted architectural drawings, ensuring consistency between the visual presentation and the technical permit set.",
+      "We provide architectural rendering services and 3D visualization support for projects that require clear visual communication beyond what construction drawings alone can convey. Renderings are produced directly from the permitted architectural drawings, ensuring the visual presentation and the technical permit set remain consistent. Whether the project requires a design review board submission, a client presentation, or pre-construction marketing imagery, every rendering is built to accurately represent what will be constructed.",
     useCases: [
       "Design review board submissions",
       "HOA approval packages",
@@ -268,13 +269,13 @@ export const services: readonly Service[] = [
       { title: "Presentation Package",       description: "Formatted set suitable for design review board submissions, HOA approval, or client review." },
     ],
     audience: [
-      { title: "Real Estate Developers",  description: "Presenting projects to city councils, design review boards, planning commissions, or investors." },
-      { title: "Property Owners",         description: "Needing visual approval from HOAs, neighbors, or historic preservation review committees." },
+      { title: "Real Estate Developers",   description: "Presenting projects to city councils, design review boards, planning commissions, or investors." },
+      { title: "Property Owners",          description: "Needing visual approval from HOAs, neighbors, or historic preservation review committees." },
       { title: "Architects and Designers", description: "Requiring production rendering support for client presentations or board submissions." },
-      { title: "Contractors",             description: "Presenting design options to clients before finalizing scope." },
+      { title: "Contractors",              description: "Presenting design options to clients before finalizing scope." },
     ],
     whyItMatters:
-      "Jurisdictions and review boards are more likely to approve projects they can clearly understand. Professional renderings reduce ambiguity, preempt objections, and give decision-makers confidence in what is being proposed. For complex or design-sensitive projects, strong visualization is part of the approval strategy.",
+      "Jurisdictions, review boards, and clients are more likely to approve projects they fully understand visually. Professional renderings reduce ambiguity, preempt objections, and give decision-makers confidence in what is being proposed. For design-sensitive projects, strong visualization is part of the approval strategy, not an afterthought.",
     relatedSlugs: ["digital-walkthroughs", "3d-staging", "architectural-drafting"],
   },
 
@@ -284,9 +285,9 @@ export const services: readonly Service[] = [
     title:    "As-Built Documentation",
     category: "Documentation",
     layout:   "technical",
-    tagline:  "Accurate existing-conditions drawings for renovation, permitting, and real estate.",
+    tagline:  "Accurate existing conditions drawings for renovation, permitting, and real estate projects.",
     overview:
-      "As-built documentation captures the precise dimensions, layout, and conditions of an existing structure as it stands today. Before any renovation, addition, or permit application can move forward, the building department and project team need to understand what already exists. We measure the building, verify against any available original drawings, and produce a complete set of existing-conditions plans that form the foundation for all subsequent design and permit work.",
+      "As-built documentation services focus on capturing the real, on-site conditions of a building exactly as it exists today. Before any renovation, addition, or permit application can move forward, the building department and project team need to understand what already exists. We measure the structure, verify against any available original drawings, and produce a complete set of existing-conditions plans that form the foundation for all subsequent design and permit work.",
     disciplines: ["Floor Plan Measurement", "Elevation Recording", "Ceiling Heights", "Structural Element Location", "Utility Stub Locations", "Permit Record Verification"],
     includes: [
       { title: "Existing Floor Plans",       description: "Fully dimensioned floor plans for all levels measured to field conditions, not original permit records." },
@@ -297,13 +298,13 @@ export const services: readonly Service[] = [
       { title: "Permit Record Cross-Check",  description: "Comparison of field measurements against original permit records where available, with discrepancies noted." },
     ],
     audience: [
-      { title: "Property Owners",    description: "Planning additions, renovations, or conversions who need an accurate baseline before design begins." },
-      { title: "Contractors",        description: "Bidding renovation work who need verified dimensions before preparing estimates or pulling permits." },
-      { title: "Architects",         description: "Beginning a renovation or addition project with no reliable existing documentation." },
+      { title: "Property Owners",           description: "Planning additions, renovations, or conversions who need an accurate baseline before design begins." },
+      { title: "Contractors",               description: "Bidding renovation work who need verified dimensions before preparing estimates or pulling permits." },
+      { title: "Architects",                description: "Beginning a renovation or addition project with no reliable existing documentation." },
       { title: "Real Estate Professionals", description: "Requiring accurate floor plans for listing, appraisal, or due diligence purposes." },
     ],
     whyItMatters:
-      "Proceeding without accurate as-built documentation is one of the most common sources of unexpected costs in renovation and permit work. Dimensions that do not match reality create problems at every phase: design, permit, and construction. A verified baseline eliminates that category of risk before the project begins.",
+      "Most renovation and remodeling issues begin with one problem: inaccurate or incomplete existing conditions information. Dimensions that do not match reality create conflicts at every phase, from design through permit to construction. A verified as-built baseline eliminates that category of risk before the project begins and gives every member of the project team a single accurate reference to work from.",
     relatedSlugs: ["architectural-drafting", "permit-set-preparation", "mep-coordination"],
   },
 
@@ -313,9 +314,9 @@ export const services: readonly Service[] = [
     title:    "Solar & EV Permit Packages",
     category: "Permitting",
     layout:   "package",
-    tagline:  "Permit-ready solar, battery storage, and EV charging documentation packages.",
+    tagline:  "Permit-ready solar EV permit packages for photovoltaic systems, battery storage, and EV charging installations.",
     overview:
-      "Solar photovoltaic, battery storage, and EV charging installations require complete permit documentation to satisfy the building department, utility interconnection requirements, and the installation contractor. We assemble the full permit package built to the exact submission format required by the applicable jurisdiction and utility. Packages are engineered for first-pass approval.",
+      "Our solar and EV permit services are built for fast, accurate permit approval across residential and commercial projects. Solar photovoltaic, battery storage, and EV charging installations require complete permit documentation to satisfy the building department, utility interconnection requirements, and the installation contractor. We assemble the full permit package built to the exact submission format required by the applicable jurisdiction and utility, engineered for first-pass approval.",
     includes: [
       { title: "Site and Roof Plan",             description: "Plan view showing module layout, roof orientation, setbacks, and access pathways." },
       { title: "Electrical Single-Line Diagram", description: "Complete electrical diagram from panels to inverter to utility meter, code-compliant and jurisdiction-ready." },
@@ -331,13 +332,13 @@ export const services: readonly Service[] = [
       { question: "What about battery storage and EV chargers?", answer: "Both are included. Battery storage and EV charging installations require their own permit documentation and we handle all three as part of a combined package or individually." },
     ],
     audience: [
-      { title: "Solar Installers",     description: "Who need a permit-ready package delivered fast so installations can stay on schedule." },
-      { title: "Electrical Contractors", description: "Installing EV charging infrastructure for residential or commercial clients." },
-      { title: "Property Owners",      description: "Pursuing solar or EV installations and navigating the permit process for the first time." },
-      { title: "Developers",           description: "Building new construction with solar or EV charging requirements built into the project." },
+      { title: "Solar Installers",        description: "Who need a permit-ready package delivered fast so installations can stay on schedule." },
+      { title: "Electrical Contractors",  description: "Installing EV charging infrastructure for residential or commercial clients." },
+      { title: "Property Owners",         description: "Pursuing solar or EV installations and navigating the permit process for the first time." },
+      { title: "Developers",              description: "Building new construction with solar or EV charging requirements built into the project." },
     ],
     whyItMatters:
-      "Solar and EV permit packages are time-sensitive. An incomplete submission delays the inspection, delays the utility interconnection, and pushes the installation date. A professionally prepared package eliminates that delay and keeps the project moving.",
+      "Solar and EV permit approvals move on tight installation schedules. An incomplete submission delays the inspection, delays the utility interconnection, and pushes the installation date. A professionally prepared package eliminates that delay and keeps the project moving from approval through installation without unnecessary holdups.",
     relatedSlugs: ["permit-set-preparation", "adu-permit-packages", "code-compliance-review"],
   },
 
@@ -347,9 +348,9 @@ export const services: readonly Service[] = [
     title:    "ADU Permit Packages",
     category: "Permitting",
     layout:   "package",
-    tagline:  "Complete permit packages for accessory dwelling units and garage conversions.",
+    tagline:  "Complete ADU permit packages for accessory dwelling units, garage conversions, and residential expansion projects.",
     overview:
-      "Accessory dwelling units are one of the most permit-intensive residential project types in most jurisdictions. We produce the complete ADU permit package: architectural drawings, site plan, energy compliance documentation, utility connection details, and all supplemental materials required by the applicable building department and local ADU ordinance.",
+      "Accessory dwelling unit projects require far more than basic drawings. We produce the complete ADU permit package: architectural drawings, site plan, energy compliance documentation, utility connection details, and all supplemental materials required by the applicable building department and local ADU ordinance. Every package is built after jurisdiction research so the submission reflects the specific requirements of the applicable city or county, not a generic template.",
     includes: [
       { title: "Existing and Proposed Floor Plans", description: "Dimensioned floor plans showing existing conditions and the proposed ADU layout, including all new walls, openings, and fixtures." },
       { title: "Elevations",                        description: "All building elevations showing the ADU exterior, heights, and relationship to the primary structure." },
@@ -370,7 +371,7 @@ export const services: readonly Service[] = [
       { title: "General Contractors",  description: "Building ADUs for clients who need a complete permit package before work begins." },
     ],
     whyItMatters:
-      "ADU permit packages are heavily jurisdiction-specific. Local ADU ordinances vary significantly in setback requirements, owner-occupancy rules, design standards, and required supplemental documentation. Building the package without jurisdiction research first is the most common cause of correction cycles.",
+      "ADU projects are among the most heavily reviewed residential permit types. Local ADU ordinances vary significantly in setback requirements, owner-occupancy rules, design standards, and required supplemental documentation. Building the package without jurisdiction research first is the most common cause of correction cycles and resubmission delays.",
     relatedSlugs: ["permit-set-preparation", "as-built-documentation", "code-compliance-review"],
   },
 
@@ -380,9 +381,9 @@ export const services: readonly Service[] = [
     title:    "Entitlement Support",
     category: "Entitlement",
     layout:   "process",
-    tagline:  "Variance applications, conditional use permits, and planning approvals.",
+    tagline:  "Variance applications, conditional use permits, zoning approvals, and development entitlement services for planning department review.",
     overview:
-      "Before a building permit can be issued, some projects require planning department approval: a variance, a conditional use permit, a design review, or a zoning change. We prepare the documentation packages required for entitlement applications, coordinate with planning staff, and support the applicant through the approval process.",
+      "Before a building permit can move forward, some projects require additional planning department approvals: a variance, a conditional use permit, a design review, or a zoning change. We prepare the documentation packages required for entitlement applications, coordinate with planning staff, and support the applicant through each stage of the approval process. Every package is organized to directly address the findings required by the planning commission or review board.",
     processHighlights: [
       { label: "Application types",  value: "Variance, CUP, Design Review" },
       { label: "Coordination",       value: "Planning staff direct" },
@@ -402,13 +403,13 @@ export const services: readonly Service[] = [
       { title: "Hearing Presentation Package", description: "Formatted boards, exhibits, and presentation materials for planning commission or board review." },
     ],
     audience: [
-      { title: "Real Estate Developers",        description: "Pursuing projects that require planning approval before a building permit can be issued." },
-      { title: "Property Owners",               description: "Seeking variances for additions, setback exceptions, or use changes on their property." },
-      { title: "Mixed-Use and Commercial Teams", description: "Navigating conditional use permit processes for new uses or intensifications." },
+      { title: "Real Estate Developers",           description: "Pursuing projects that require planning approval before a building permit can be issued." },
+      { title: "Property Owners",                  description: "Seeking variances for additions, setback exceptions, or use changes on their property." },
+      { title: "Mixed-Use and Commercial Teams",   description: "Navigating conditional use permit processes for new uses or intensifications." },
       { title: "Hospitality and Retail Operators", description: "Opening new locations that require discretionary planning approval." },
     ],
     whyItMatters:
-      "Entitlement outcomes are heavily influenced by the quality of the application package. A well-organized, clearly written submission that directly addresses the required findings gives the planning commission what it needs to approve the project. A poorly organized application creates questions and objections that could have been avoided.",
+      "Entitlement outcomes are heavily influenced by the quality of the application package. A well-organized submission that directly addresses the required findings gives the planning commission what it needs to approve the project. A poorly organized or incomplete application creates questions, objections, and delays that could have been avoided with proper preparation.",
     relatedSlugs: ["pre-application-meeting-prep", "permit-set-preparation", "code-compliance-review"],
   },
 
@@ -418,9 +419,9 @@ export const services: readonly Service[] = [
     title:    "Pre-Application Meeting Prep",
     category: "Permitting",
     layout:   "process",
-    tagline:  "Organized project documentation for productive pre-application meetings.",
+    tagline:  "Organized project documentation and permit strategy support for productive pre-application meetings with planning departments and building officials.",
     overview:
-      "A pre-application meeting with the building department or planning staff is the most effective way to understand the specific requirements and potential obstacles for a project before submitting. We prepare the complete pre-application package: project description, preliminary drawings, code analysis, and a structured set of questions designed to extract actionable guidance from the meeting.",
+      "A pre-application meeting with the planning department or building department is one of the most effective ways to understand permit approval requirements before design work begins. We prepare the complete pre-application package: project description, preliminary drawings, code and zoning analysis, and a structured set of specific questions designed to extract actionable guidance from the meeting. The goal is a meeting that produces real answers, not general information.",
     processHighlights: [
       { label: "Preparation time",  value: "3-5 days" },
       { label: "Output",            value: "Complete meeting package" },
@@ -440,13 +441,13 @@ export const services: readonly Service[] = [
       { title: "Meeting Notes Template",          description: "Pre-formatted documentation template for recording guidance received at the meeting." },
     ],
     audience: [
-      { title: "Property Owners",       description: "Initiating complex or unfamiliar project types where early jurisdiction guidance would reduce risk." },
-      { title: "Architects",            description: "Working in a new jurisdiction or on a project type with uncertain code path." },
-      { title: "Developers",            description: "Assessing feasibility before committing to full design and permit set production." },
-      { title: "Contractors",           description: "Preparing for ground-up permits in unfamiliar jurisdictions or for unusual use types." },
+      { title: "Property Owners",  description: "Initiating complex or unfamiliar project types where early jurisdiction guidance would reduce risk." },
+      { title: "Architects",       description: "Working in a new jurisdiction or on a project type with uncertain code path." },
+      { title: "Developers",       description: "Assessing feasibility before committing to full design and permit set production." },
+      { title: "Contractors",      description: "Preparing for ground-up permits in unfamiliar jurisdictions or for unusual use types." },
     ],
     whyItMatters:
-      "A well-prepared pre-application meeting can eliminate an entire correction cycle by surfacing the building department's specific requirements before the permit set is built. The guidance received at a pre-application meeting is worth far more than the preparation cost.",
+      "A well-prepared pre-application meeting can eliminate an entire correction cycle by surfacing the building department's specific requirements before the permit set is built. The guidance received from planning staff and building officials is only as useful as the preparation that went into the meeting. Coming in with organized documentation and specific questions produces specific answers.",
     relatedSlugs: ["entitlement-support", "permit-set-preparation", "code-compliance-review"],
   },
 
@@ -456,9 +457,9 @@ export const services: readonly Service[] = [
     title:    "MEP Coordination",
     category: "Coordination",
     layout:   "technical",
-    tagline:  "Mechanical, electrical, and plumbing coordination for complete permit sets.",
+    tagline:  "Mechanical, electrical, and plumbing coordination services for complete permit-ready construction documents.",
     overview:
-      "On commercial and multi-family projects, the mechanical, electrical, and plumbing engineering drawings must be coordinated with the architectural set before submission. Conflicts discovered during plan check or in the field are expensive. We review MEP drawings against architectural sheets, identify conflicts, and produce a fully coordinated package in direct communication with the responsible engineers.",
+      "On commercial, hospitality, and multi-family projects, mechanical, electrical, and plumbing systems must be fully coordinated with the architectural drawings before submission. Conflicts discovered during plan check or in the field are expensive to resolve and compound schedule delays. We review MEP drawings against architectural sheets, identify conflicts, and produce a fully coordinated combined package in direct communication with the responsible engineers.",
     disciplines: ["HVAC and Mechanical", "Electrical Distribution", "Plumbing Systems", "Fire Sprinkler Coordination", "Life Safety Systems", "Ceiling and Structural Clearance"],
     includes: [
       { title: "Discipline-by-Discipline Review",         description: "Systematic review of each MEP discipline against the architectural set, identifying spatial conflicts, reference inconsistencies, and coordination gaps." },
@@ -468,13 +469,13 @@ export const services: readonly Service[] = [
       { title: "Combined Permit Package Assembly",        description: "Final coordinated architectural and MEP set assembled and organized for joint permit submission." },
     ],
     audience: [
-      { title: "Architects",               description: "Coordinating multi-discipline project teams where MEP conflicts must be resolved before submission." },
-      { title: "Commercial Contractors",   description: "Building tenant improvements, restaurants, or commercial projects with complex MEP requirements." },
-      { title: "Real Estate Developers",   description: "Running projects with multiple engineering consultants who need a single coordination point." },
+      { title: "Architects",                           description: "Coordinating multi-discipline project teams where MEP conflicts must be resolved before submission." },
+      { title: "Commercial Contractors",               description: "Building tenant improvements, restaurants, or commercial projects with complex MEP requirements." },
+      { title: "Real Estate Developers",               description: "Running projects with multiple engineering consultants who need a single coordination point." },
       { title: "Restaurant and Hospitality Operators", description: "With complex kitchen exhaust, plumbing, and electrical requirements that require tight architectural coordination." },
     ],
     whyItMatters:
-      "MEP conflicts discovered at plan check require the architect and multiple engineers to issue corrections simultaneously, compounding the delay. Conflicts discovered in the field are far worse. Pre-submission MEP coordination is the most reliable way to prevent both.",
+      "MEP conflicts discovered at plan check require the architect and multiple engineers to issue corrections simultaneously, compounding the delay. Conflicts discovered in the field are far more expensive. Pre-submission MEP coordination is the most reliable way to prevent both and keep the permit review and construction schedule on track.",
     relatedSlugs: ["structural-coordination", "architectural-drafting", "tenant-improvement-packages"],
   },
 
@@ -484,9 +485,9 @@ export const services: readonly Service[] = [
     title:    "Tenant Improvement Packages",
     category: "Permitting",
     layout:   "package",
-    tagline:  "Complete permit documentation for commercial tenant improvements.",
+    tagline:  "Complete permit documentation for commercial tenant improvements and interior build outs.",
     overview:
-      "Tenant improvement projects require a complete permit package covering the existing conditions, the proposed layout, compliance with accessibility and life safety requirements, and coordination with base building systems. We produce the full TI permit set from scratch or from existing as-built drawings, built to the jurisdiction and building department requirements for the specific building and use.",
+      "Our tenant improvement packages are prepared for commercial spaces that need accurate, permit-ready construction drawings before build-out work begins. Whether the project involves an office renovation, retail tenant improvement, restaurant conversion, or full commercial interior build-out, we develop coordinated TI permit drawings that align with local building department requirements and the specific needs of the tenant space. We produce the full package from existing as-built drawings or create the documentation from field measurements when no reliable plans are available.",
     includes: [
       { title: "Existing Conditions Plan",           description: "Measured or verified existing floor plan showing current layout, walls, openings, and ceiling conditions." },
       { title: "Proposed Floor Plan",                description: "Complete proposed layout with all new partitions, doors, fixtures, and finish areas dimensioned and noted." },
@@ -502,13 +503,13 @@ export const services: readonly Service[] = [
       { question: "Can you coordinate with the building's MEP engineers?", answer: "Yes. If the TI requires mechanical, electrical, or plumbing engineering, we coordinate the architectural set with the MEP drawings before submission." },
     ],
     audience: [
-      { title: "Commercial Tenants",     description: "Buildout of a new leased space for retail, office, or food service use." },
-      { title: "Landlords and Owners",   description: "Preparing base building improvements or tenant-ready spaces for lease." },
-      { title: "Contractors",            description: "Bidding or building TI projects who need a complete permit package." },
-      { title: "Restaurant Operators",   description: "Opening or renovating restaurant spaces requiring full MEP and kitchen coordination." },
+      { title: "Commercial Tenants",   description: "Buildout of a new leased space for retail, office, or food service use." },
+      { title: "Landlords and Owners", description: "Preparing base building improvements or tenant-ready spaces for lease." },
+      { title: "Contractors",          description: "Bidding or building TI projects who need a complete permit package." },
+      { title: "Restaurant Operators", description: "Opening or renovating restaurant spaces requiring full MEP and kitchen coordination." },
     ],
     whyItMatters:
-      "Tenant improvement permits are among the most commonly delayed project types due to incomplete accessibility analysis and missing base building coordination. A permit-ready TI set addresses both before submission.",
+      "Commercial tenant improvements are one of the most common project types delayed during plan review. Missing accessibility details, incomplete HVAC systems coordination, and unverified base building information often lead to corrections that slow down permit approvals. A properly coordinated tenant improvement package addresses those issues before submission so the project can move forward without avoidable delays.",
     relatedSlugs: ["as-built-documentation", "mep-coordination", "code-compliance-review"],
   },
 
@@ -518,9 +519,9 @@ export const services: readonly Service[] = [
     title:        "Digital Walkthroughs",
     category:     "Visualization",
     layout:       "visual",
-    tagline:      "Interactive 3D walkthroughs for approvals, presentations, and pre-construction sales.",
+    tagline:      "Interactive 3D architectural walkthroughs for approvals, presentations, and pre-construction sales.",
     overview:
-      "Digital walkthroughs let stakeholders move through a proposed building or space before a single wall is built. We produce navigable 3D walkthroughs from architectural drawings, giving clients, investors, review boards, and approval authorities a first-person understanding of the project from the inside. Walkthroughs are delivered as interactive web links or video tours accessible from any device.",
+      "Architectural digital walkthroughs give stakeholders the ability to move through a proposed building or interior space before construction begins. We produce navigable 3D walkthroughs from architectural drawings, giving clients, investors, review boards, and approval authorities a first-person understanding of the project from the inside. Walkthroughs are delivered as interactive web links or video tours accessible from any device without specialized software.",
     useCases: [
       "Investor and lender presentations",
       "Design review board submissions",
@@ -544,13 +545,13 @@ export const services: readonly Service[] = [
       { title: "Revision Round",                description: "One revision round included to address material changes, layout adjustments, or presentation feedback." },
     ],
     audience: [
-      { title: "Real Estate Developers",    description: "Presenting projects to investors, lenders, or approval authorities before construction begins." },
-      { title: "Architects",               description: "Communicating design intent to clients or review boards in a format more accessible than plan drawings." },
-      { title: "Leasing Teams",            description: "Showing prospective tenants the finished space before construction is complete." },
-      { title: "Hospitality and Retail",   description: "Presenting design concepts to franchise approvers, brand partners, or investors." },
+      { title: "Real Estate Developers",  description: "Presenting projects to investors, lenders, or approval authorities before construction begins." },
+      { title: "Architects",             description: "Communicating design intent to clients or review boards in a format more accessible than plan drawings." },
+      { title: "Leasing Teams",          description: "Showing prospective tenants the finished space before construction is complete." },
+      { title: "Hospitality and Retail", description: "Presenting design concepts to franchise approvers, brand partners, or investors." },
     ],
     whyItMatters:
-      "Decision-makers who cannot read architectural drawings still make approval decisions. A digital walkthrough removes the abstraction barrier and gives non-technical stakeholders a clear, confident understanding of what is being proposed. Approvals move faster when the project is easy to understand.",
+      "Decision-makers often struggle to interpret traditional construction documents and 2D drawings. A digital walkthrough removes the abstraction barrier and gives non-technical stakeholders a clear, confident understanding of what is being proposed. Approvals move faster when the project is easy to understand, and leasing conversations advance more effectively when the finished space is visible.",
     relatedSlugs: ["renderings-visualization", "3d-staging", "entitlement-support"],
   },
 
@@ -560,9 +561,9 @@ export const services: readonly Service[] = [
     title:        "3D Staging",
     category:     "Visualization",
     layout:       "visual",
-    tagline:      "Photorealistic 3D staging for vacant spaces, new construction, and remodels.",
+    tagline:      "Photorealistic 3D staging services for vacant spaces, new construction, remodels, and real estate marketing visualization.",
     overview:
-      "3D staging replaces empty rooms and bare spaces with photorealistic furnishings, finishes, and lighting. We produce staged visualizations from architectural drawings or site photographs, showing the property exactly as it would appear fully finished and furnished. Outputs are used for listing photography, investor presentations, pre-construction marketing, and design presentations.",
+      "Virtual 3D staging transforms empty rooms and unfinished interiors into fully furnished, photorealistic CGI environments. We produce staged visualizations from architectural drawings or site photographs, showing the property exactly as it would appear fully finished and furnished. Outputs are used for real estate listing photography, investor presentations, pre-construction marketing, and interior design concept approvals.",
     useCases: [
       "Real estate listing photography",
       "New construction pre-sales",
@@ -585,13 +586,13 @@ export const services: readonly Service[] = [
       { title: "Revision Round",           description: "One revision round included to adjust furniture selections, finishes, or composition based on client feedback." },
     ],
     audience: [
-      { title: "Real Estate Agents and Brokers", description: "Listing vacant or under-construction properties with professional staged photography." },
-      { title: "Property Developers",            description: "Pre-selling units before construction is complete using photorealistic staged imagery." },
-      { title: "Interior Designers",             description: "Presenting design concepts to clients in a finished, photorealistic format before purchasing begins." },
+      { title: "Real Estate Agents and Brokers",  description: "Listing vacant or under-construction properties with professional staged photography." },
+      { title: "Property Developers",             description: "Pre-selling units before construction is complete using photorealistic staged imagery." },
+      { title: "Interior Designers",              description: "Presenting design concepts to clients in a finished, photorealistic format before purchasing begins." },
       { title: "Hotel and Hospitality Operators", description: "Visualizing room types, lobbies, and F&B spaces for brand approval or pre-opening marketing." },
     ],
     whyItMatters:
-      "Empty spaces are hard to sell. Professionally staged 3D imagery lets buyers, tenants, and investors see the property as a finished, lived-in space rather than as a construction site or vacant shell. The quality of the imagery directly affects the speed and price of the transaction.",
+      "Vacant properties are difficult to market because buyers and tenants often struggle to imagine the finished environment. Professionally staged 3D imagery lets buyers, tenants, and investors see the property as a fully realized space rather than an empty shell or construction site. The quality of the imagery directly affects the speed and outcome of the transaction.",
     relatedSlugs: ["renderings-visualization", "digital-walkthroughs", "architectural-drafting"],
   },
 
@@ -601,7 +602,7 @@ export const services: readonly Service[] = [
     title:    "Project Strategy",
     category: "Strategy",
     layout:   "strategy",
-    tagline:  "A complete project roadmap from raw idea to build-ready documentation.",
+    tagline:  "A structured advisory engagement that takes your project from concept to a fully defined, actionable roadmap.",
     overview:
       "Project Strategy is a structured advisory engagement that takes your project from concept to a fully defined, actionable roadmap. We analyze your site, goals, and constraints, map the full permit and approval pathway, identify every consultant you will need and when, and deliver a written roadmap that drives all downstream work. The output is clarity: you know exactly what the project requires, in what order, and what each phase will demand before you commit a dollar to production.",
     steps: [
@@ -669,7 +670,7 @@ export const services: readonly Service[] = [
       },
     ],
     whyItMatters:
-      "Most project delays and cost overruns do not come from bad design. They come from a project that was never properly planned. Missing consultant coordination, a permit pathway that was never mapped, approvals that were discovered too late. These are strategic failures, not technical ones. A defined project strategy removes ambiguity before it becomes expensive.",
+      "Most project delays and cost overruns do not come from poor design work. They stem from a project that was never strategically planned. Missing consultant coordination, a permit pathway that was never mapped, approvals discovered too late: these are strategic failures, not technical ones. A defined project strategy removes that ambiguity before it becomes expensive.",
     relatedSlugs: ["permit-set-preparation", "pre-application-meeting-prep", "entitlement-support"],
   },
 
@@ -680,9 +681,9 @@ export const services: readonly Service[] = [
     title:    "Feasibility Study",
     category: "Strategy",
     layout:   "feasibility",
-    tagline:  "A written site analysis that answers one question before you commit: can this project be built?",
+    tagline:  "A structured construction feasibility study designed to answer one critical question before major costs begin: can this project realistically be built?",
     overview:
-      "A Feasibility Study is a structured site analysis that evaluates your property against current zoning, code requirements, and permit pathway realities before any design work begins. We examine six analysis areas: zoning compliance, setbacks, FAR and lot coverage, permitted use, overlay districts, and permit risk factors. We deliver a written report with a clear summary of what the site can support, what requires a variance or discretionary approval, and what the highest-risk permit checkpoints are.",
+      "Our construction feasibility study services evaluate your site, zoning constraints, permit pathway, and overall project feasibility before design or construction planning starts. We examine six analysis areas: zoning compliance, setbacks, FAR and lot coverage, permitted use, overlay districts, and permit risk factors. The result is a written report with a clear summary of what the site can support, what requires a variance or discretionary approval, and what the highest-risk permit checkpoints are for your specific project.",
     steps: [
       { title: "Zoning Classification and Permitted Use",  description: "We identify the current zoning designation for your parcel and confirm what uses are permitted by right, permitted with conditions, and prohibited. Mixed-use, overlay, and transitional zones are examined in full." },
       { title: "Setbacks and Lot Coverage",               description: "Front, rear, and side yard setbacks, maximum lot coverage percentages, and impervious surface limits are pulled from the applicable zoning ordinance and checked against your site dimensions and proposed footprint." },
@@ -717,7 +718,7 @@ export const services: readonly Service[] = [
       { question: "What do you need from me to start?",                   answer: "The parcel number or address, the applicable jurisdiction, and a brief description of what you want to build. We handle the ordinance research from there." },
     ],
     whyItMatters:
-      "Most site acquisition mistakes and permit failures share a common thread: the zoning and code realities of the site were not analyzed before money was spent on design. A feasibility study costs a fraction of one round of design revisions. It is the least expensive risk-reduction tool in the development process.",
+      "Most permit failures, redesign cycles, and unsuccessful site acquisitions stem from one issue: the site was never properly evaluated before money was committed to design. A feasibility study costs a fraction of one round of design revisions and answers the most important questions about a project before any significant cost is incurred.",
     relatedSlugs: ["project-strategy", "pre-application-meeting-prep", "permit-set-preparation"],
   },
 
@@ -727,9 +728,9 @@ export const services: readonly Service[] = [
     title:    "Home Addition Packages",
     category: "Permitting",
     layout:   "addition",
-    tagline:  "Complete permit-ready drawing packages for residential additions: room additions, second stories, and covered expansions.",
+    tagline:  "Complete home addition packages for room additions, second story expansions, and permit-ready residential construction projects.",
     overview:
-      "Home Addition Packages cover the full scope of permit documentation for residential expansions: room additions, second-story additions, covered patios, sunrooms, and attached garage additions. We produce complete permit sets tailored to the specific addition type, jurisdiction requirements, and existing structure conditions. Every package is designed to clear plan check on the first submission.",
+      "Home Addition Packages cover the full scope of permit documentation for residential expansions: room additions, second-story additions, covered patios, sunrooms, and attached garage additions. We produce complete permit sets tailored to the specific addition type, jurisdiction requirements, and existing structure conditions. Every package is built after reviewing the existing structure's conditions and the applicable local requirements, designed to clear plan check on the first submission.",
     useCases: [
       "Single Room Addition",
       "Second Story Addition",
@@ -761,9 +762,9 @@ export const services: readonly Service[] = [
       { title: "Title Sheet and Code Summary",   description: "Project identification, scope description, applicable codes, and all regulatory summary information required by the jurisdiction." },
     ],
     audience: [
-      { title: "Homeowners",           description: "Adding living space to an existing home and need permit documentation to proceed with construction." },
-      { title: "General Contractors",  description: "Who need a complete permit set for a client's addition project before pulling the building permit." },
-      { title: "Design-Build Firms",   description: "Who need a production drafting partner to deliver permit sets on client addition projects." },
+      { title: "Homeowners",            description: "Adding living space to an existing home and need permit documentation to proceed with construction." },
+      { title: "General Contractors",   description: "Who need a complete permit set for a client's addition project before pulling the building permit." },
+      { title: "Design-Build Firms",    description: "Who need a production drafting partner to deliver permit sets on client addition projects." },
       { title: "Real Estate Investors", description: "Adding square footage to increase property value and need a code-compliant permit set for the work." },
     ],
     faqs: [
@@ -773,7 +774,7 @@ export const services: readonly Service[] = [
       { question: "Do you cover additions in California?",                        answer: "Yes. California additions require Title 24 energy compliance documentation, which is included in our California permit packages." },
     ],
     whyItMatters:
-      "Addition permits are rejected more often than new construction permits because the existing structure introduces variables that make compliance harder to demonstrate. A package built specifically for the addition type, not a generic template, passes plan check faster.",
+      "Many addition permits are delayed because the existing structure creates coordination challenges that a generic drawing template does not address. A permit set built specifically for the addition type and the existing structure's conditions demonstrates compliance more clearly and passes plan check faster than a standard template.",
     relatedSlugs: ["permit-set-preparation", "garage-conversion-packages", "structural-coordination"],
   },
 
@@ -783,9 +784,9 @@ export const services: readonly Service[] = [
     title:    "Garage Conversion Packages",
     category: "Permitting",
     layout:   "conversion",
-    tagline:  "Permit documentation for converting attached and detached garages into living space, ADUs, or accessory rooms.",
+    tagline:  "Complete garage conversion packages for turning attached or detached garages into habitable rooms, ADUs, or accessory living spaces.",
     overview:
-      "Garage conversions require a distinct permit package from new construction ADUs. Converting an existing garage to habitable space means satisfying building code requirements that the original structure was never designed to meet: insulation, egress, HVAC, ceiling height, and electrical, while working within fixed structural constraints. Our Garage Conversion Packages produce complete, code-compliant permit sets for attached and detached garage conversions, including full ADU conversions.",
+      "Garage conversions are not treated like standard new construction. Converting an existing garage to habitable space means satisfying building code requirements that the original structure was never designed to meet: insulation, egress, HVAC, ceiling height, and electrical, all within fixed structural constraints. Our Garage Conversion Packages produce complete, code-compliant permit sets for attached and detached garage conversions, including full ADU conversions.",
     steps: [
       { title: "Thermal Envelope Upgrade",    description: "Garage walls and the roof/ceiling assembly must meet residential energy code requirements. We document the proposed insulation assembly (type, R-value, and installation method) and confirm compliance with the applicable energy code." },
       { title: "Egress Requirements",         description: "Habitable rooms require emergency egress openings of minimum dimensions. We design the egress window or door configuration into the conversion and confirm compliance with net clear opening dimensions and height-above-floor requirements." },
@@ -822,7 +823,7 @@ export const services: readonly Service[] = [
       { question: "Can you handle the ADU compliance requirements specifically?",            answer: "Yes. ADU conversions require specific documentation: setback confirmation, owner-occupancy declarations in some jurisdictions, utility separation requirements, and rental restriction recordation in some cases. Our packages include all required ADU documentation." },
     ],
     whyItMatters:
-      "Garage conversions fail plan check because the code requirements that convert a non-habitable structure to a habitable one are more numerous and more specific than most people expect. A permit set built around the conversion code path, not a generic remodel template, is what moves through plan check.",
+      "Garage conversions fail plan check because the code requirements that convert a non-habitable structure to a habitable one are more numerous and more specific than most people expect. A permit set built around the conversion code path addresses egress, thermal envelope, HVAC, and electrical requirements as a coordinated package rather than as individual add-ons to a generic remodel template.",
     relatedSlugs: ["adu-permit-packages", "home-addition-packages", "permit-set-preparation"],
   },
 
@@ -832,9 +833,9 @@ export const services: readonly Service[] = [
     title:    "Construction Administration Support",
     category: "Coordination",
     layout:   "admin",
-    tagline:  "Ongoing drawing support through construction: RFIs, submittals, field sketches, and plan revisions on demand.",
+    tagline:  "Ongoing construction administration services for RFIs, submittals, field sketches, and permit-ready plan revisions throughout the construction phase.",
     overview:
-      "Construction Administration Support keeps your project moving from permit approval through final inspection. Once a building permit is issued, field conditions, contractor questions, and inspector requests generate a steady stream of documentation needs: RFI responses, submittal drawings, field sketches, and plan revisions. We provide fast, professionally formatted responses so the job site never waits on drawings.",
+      "Ongoing CA services keep your project moving from permit approval through final inspection. Once a building permit is issued, field conditions, contractor questions, and inspector requests generate a steady stream of documentation needs: RFI responses, submittal drawings, field sketches, and plan revisions. We provide fast, professionally formatted responses so the job site never waits on drawings.",
     disciplines: ["RFI Responses", "Submittal Review Support", "Field Sketch Drawings", "Plan Revision Packages", "Change Order Documentation", "Inspector Response Drawings"],
     steps: [
       { title: "Retainer Engagement",   description: "Most CA clients engage on a monthly retainer that covers a defined number of drawing hours per month. Retainer engagements have priority response times and predictable monthly cost." },
@@ -857,10 +858,10 @@ export const services: readonly Service[] = [
       { title: "Request Log and Tracking",   description: "All CA requests are logged by number, date, scope, and status. A running log is maintained and available for project record review at any time." },
     ],
     audience: [
-      { title: "General Contractors",  description: "Who need a reliable drawing resource available through construction to respond to field conditions and RFIs without waiting on the original design team." },
-      { title: "Project Managers",     description: "Managing complex projects with active submittals and RFI logs who need fast, professional drawing responses." },
-      { title: "Design-Build Teams",   description: "Who need production drawing support through the construction phase without carrying internal drafting staff." },
-      { title: "Property Owners",      description: "Owner-builders managing their own construction who need drawing support when field conditions don't match the permit plans." },
+      { title: "General Contractors", description: "Who need a reliable drawing resource available through construction to respond to field conditions and RFIs without waiting on the original design team." },
+      { title: "Project Managers",    description: "Managing complex projects with active submittals and RFI logs who need fast, professional drawing responses." },
+      { title: "Design-Build Teams",  description: "Who need production drawing support through the construction phase without carrying internal drafting staff." },
+      { title: "Property Owners",     description: "Owner-builders managing their own construction who need drawing support when field conditions don't match the permit plans." },
     ],
     faqs: [
       { question: "Does CA support replace the engineer of record?",        answer: "No. We handle drawing production and documentation. Structural, geotechnical, or life-safety questions that require a licensed engineer of record remain with the EOR. We coordinate with the EOR where needed and document the coordination." },
@@ -869,7 +870,7 @@ export const services: readonly Service[] = [
       { question: "What if my project has a fast-track schedule?",          answer: "Fast-track projects are accommodated with priority scheduling. We confirm availability at the start of the engagement and flag any periods where capacity may be limited." },
     ],
     whyItMatters:
-      "A building permit approval does not end the drawing work on a project. Every field condition, RFI, and inspector question that requires a drawing response is a potential schedule delay if the answer is not delivered fast. CA support keeps the job site moving.",
+      "A building permit approval does not end the drawing work on a project. Every field condition, RFI, and inspector question that requires a drawing response is a potential schedule delay if the answer is not delivered promptly. Construction administration support keeps the job site moving from permit issuance through final inspection without documentation bottlenecks.",
     relatedSlugs: ["permit-set-preparation", "city-comments-response", "structural-coordination"],
   },
 
@@ -879,9 +880,9 @@ export const services: readonly Service[] = [
     title:    "Contractor Bid Package",
     category: "Drawings",
     layout:   "bid",
-    tagline:  "A complete, bid-ready drawing and specification package that eliminates ambiguity and reduces scope gaps in contractor bids.",
+    tagline:  "A complete, bid-ready drawing and specification package designed to remove confusion and reduce scope gaps in contractor pricing.",
     overview:
-      "A Contractor Bid Package is a purpose-built set of documents designed to give bidding contractors everything they need to price the work accurately. Unlike a permit set (which is optimized for code review), a bid package is optimized for contractor comprehension: written scope narratives, specification references, material callouts, quantity summaries, and coordination drawings that remove the guesswork from every trade. The result is tighter bids, fewer scope gaps, and fewer change orders.",
+      "A construction bid package service is created specifically to help contractors price work with clarity and confidence. Unlike a permit set, which is optimized for code review, a bid package is optimized for contractor comprehension: written scope narratives, specification references, material callouts, quantity summaries, and coordination drawings that remove the guesswork from every trade. The result is tighter bids, fewer scope gaps, and fewer change orders during construction.",
     outputFormats: [
       "Written Scope Narrative",
       "Specification References (CSI Format)",
@@ -923,7 +924,7 @@ export const services: readonly Service[] = [
       { question: "Can the bid package be used for negotiated contracts as well?",        answer: "Yes. The bid package documentation (scope narrative, specifications, material schedule) serves equally well as the basis for a negotiated contract scope, owner-contractor agreement, or design-build subcontract." },
     ],
     whyItMatters:
-      "Incomplete bid documents are the leading cause of change orders. When bidding contractors make scope assumptions because the drawings are ambiguous, those assumptions become disputes during construction. A complete bid package eliminates the ambiguity before the first bid is submitted.",
+      "Most change orders don't happen because of design complexity. They happen because of missing information in the bid documents. When bidding contractors make scope assumptions because the drawings are ambiguous, those assumptions become disputes during construction. A complete bid package eliminates the ambiguity before the first bid is submitted and before the first dollar is committed to construction.",
     relatedSlugs: ["architectural-drafting", "permit-set-preparation", "construction-administration"],
   },
 
@@ -934,9 +935,9 @@ export const services: readonly Service[] = [
     title:    "Pool and Spa Permit Packages",
     category: "Permitting",
     layout:   "outdoor",
-    tagline:  "Complete permit documentation for residential and commercial pools, spas, and water features.",
+    tagline:  "Complete pool spa permits and permit-ready documentation for residential and commercial pools, spas, and water features.",
     overview:
-      "Pool and spa permit packages cover the full documentation required by building, engineering, and public health departments for new pool and spa construction. We produce site plans, barrier compliance drawings, structural documentation coordination, and all supplemental forms required by the applicable jurisdiction. Our packages are built to the specific submission requirements of California DSA, local building departments, and county health departments where applicable.",
+      "Our pool permit drawings and spa construction documentation include everything required for permit approval across building, structural, and health department reviews. We produce site plans, barrier compliance drawings, structural documentation coordination, and all supplemental forms required by the applicable jurisdiction. Packages are built to the specific submission requirements of local building departments and county health departments where applicable.",
     useCases: [
       "In-ground Swimming Pool",
       "Above-Ground Pool",
@@ -979,7 +980,7 @@ export const services: readonly Service[] = [
       { question: "Can you coordinate with the structural engineer for the shell?",  answer: "Yes. Our structural coordination service handles the integration of the engineer's shell drawings into the permit set. We manage the coordination so the submission is a single package." },
     ],
     whyItMatters:
-      "Pool permits are reviewed by multiple departments with overlapping requirements. A package that satisfies building code but misses health department or barrier compliance requirements results in a hold at a different counter. We build the package to clear all applicable reviews from one submission.",
+      "Pool and spa permit reviews often involve multiple departments reviewing the same project simultaneously. A package that satisfies building code but misses health department or barrier compliance requirements results in a hold at a different counter. We build the package to address all applicable reviews from a single coordinated submission.",
     relatedSlugs: ["permit-set-preparation", "structural-coordination", "home-addition-packages"],
   },
 
@@ -989,9 +990,9 @@ export const services: readonly Service[] = [
     title:    "Interior Remodel Packages",
     category: "Permitting",
     layout:   "remodel",
-    tagline:  "Permit-ready documentation for kitchen, bathroom, and whole-home interior remodel projects.",
+    tagline:  "Permit-ready interior remodel packages for kitchen remodels, bathroom renovations, and full residential interior remodeling projects.",
     overview:
-      "Interior remodel permit packages cover the full drawing documentation required to permit kitchen, bathroom, and whole-home interior remodel projects. We produce existing and proposed floor plans, finish and fixture schedules, electrical and lighting plans, and any structural or MEP coordination drawings required by the project scope. Every package is built to the specific documentation requirements of the applicable jurisdiction and the permit trigger thresholds of the remodel scope.",
+      "Our interior remodel services provide the complete drawing documentation required for kitchen remodels, bathroom renovations, wall removal projects, and full residential interior remodels. We produce existing and proposed floor plans, finish and fixture schedules, electrical and lighting plans, and any structural or MEP coordination drawings required by the project scope. Every package is built to the specific documentation requirements of the applicable jurisdiction and the permit trigger thresholds of the remodel scope.",
     useCases: [
       "Kitchen Remodel",
       "Primary Bathroom Remodel",
@@ -1034,7 +1035,7 @@ export const services: readonly Service[] = [
       { question: "Can you document existing conditions remotely?",                   answer: "Yes, with your provided measurements, photographs, and any available city records. We document on the title sheet that existing conditions are based on owner-furnished measurements. Most jurisdictions accept this for interior remodel scopes." },
     ],
     whyItMatters:
-      "Kitchen and bathroom remodel permits are among the highest-volume permit applications at most building departments, and they generate a disproportionate share of plan check corrections because incomplete documentation is common. A complete package with proper MEP coordination and code references passes faster.",
+      "Kitchen and bathroom remodel permits are some of the most frequently reviewed permit applications at most building departments, and they generate a disproportionate share of plan check corrections because incomplete documentation is common. A complete package with proper MEP coordination, interior elevations, and jurisdiction-specific code references passes review faster and without unnecessary correction cycles.",
     relatedSlugs: ["permit-set-preparation", "architectural-drafting", "city-comments-response"],
   },
 
@@ -1044,9 +1045,9 @@ export const services: readonly Service[] = [
     title:    "Short-Term Rental Conversion Permits",
     category: "Permitting",
     layout:   "compliance",
-    tagline:  "Permit and compliance documentation for converting residential properties to short-term rental use.",
+    tagline:  "Permit-ready documentation and compliance support for short-term rental permits, Airbnb permit services, and vacation rental approvals.",
     overview:
-      "Short-term rental conversion permits require a distinct compliance pathway from standard residential permits. Converting a property to STR use triggers fire safety, egress, occupancy, and zoning compliance requirements that vary significantly by jurisdiction. We research the specific STR ordinance for your city, identify every permit and compliance requirement, and produce the documentation package required to achieve legal STR status.",
+      "Short-term rental permits follow a different approval process than standard residential permits. Converting a property to STR use triggers fire safety, egress, occupancy, and zoning compliance requirements that vary significantly by jurisdiction. We research the specific STR ordinance for your city, identify every permit and compliance requirement, and produce the documentation package required to achieve legal STR status.",
     useCases: [
       "Single-Family Home STR Conversion",
       "ADU STR Registration",
@@ -1078,9 +1079,9 @@ export const services: readonly Service[] = [
       { title: "Compliance Checklist",              description: "A checklist summarizing every compliance requirement, its applicable code section, and the documentation produced to satisfy it." },
     ],
     audience: [
-      { title: "Property Owners",           description: "Converting a home or ADU to STR use and needing to navigate the permit and compliance process legally." },
-      { title: "Real Estate Investors",     description: "Acquiring properties for STR investment and needing compliance documentation to confirm legal STR status before closing." },
-      { title: "STR Management Companies", description: "Onboarding new properties into a managed STR portfolio and needing permit compliance documentation as a standard intake step." },
+      { title: "Property Owners",              description: "Converting a home or ADU to STR use and needing to navigate the permit and compliance process legally." },
+      { title: "Real Estate Investors",        description: "Acquiring properties for STR investment and needing compliance documentation to confirm legal STR status before closing." },
+      { title: "STR Management Companies",     description: "Onboarding new properties into a managed STR portfolio and needing permit compliance documentation as a standard intake step." },
       { title: "Attorneys and Title Companies", description: "Confirming STR legal compliance as part of a property transaction or due diligence review." },
     ],
     faqs: [
@@ -1089,7 +1090,7 @@ export const services: readonly Service[] = [
       { question: "Do you handle the fire inspection coordination?",                answer: "We produce the compliance documentation that supports a fire inspection. Scheduling and attending the inspection is the property owner's responsibility. We provide a checklist of what inspectors typically look for and the documentation they expect to see." },
     ],
     whyItMatters:
-      "Unpermitted short-term rentals are subject to fines, forced closure, and platform delisting. The permit pathway is jurisdiction-specific and often multi-department, meaning a property owner who starts without a compliance map ends up navigating contradictory requirements from different counters. We map the pathway first.",
+      "Operating a short-term rental without permit approval can lead to fines, suspended listings, failed safety inspections, or forced closure. The permit pathway is jurisdiction-specific and often multi-department, meaning a property owner who starts without a compliance map ends up navigating contradictory requirements from different counters. We map the pathway first and produce the documentation needed to complete each step.",
     relatedSlugs: ["permit-set-preparation", "adu-permit-packages", "city-comments-response"],
   },
 
@@ -1156,7 +1157,7 @@ export const services: readonly Service[] = [
     layout:   "energy",
     tagline:  "California Title 24 energy compliance documentation for residential and commercial permit submissions.",
     overview:
-      "Title 24 energy compliance documentation is required for all new construction, additions, and alterations to conditioned space in California. We produce compliance reports using the prescriptive and performance pathways for residential and nonresidential projects, coordinated with the permit drawing set. Every compliance report is prepared by a certified energy analyst and delivered in the correct submission format for the applicable California building department.",
+      "Title 24 energy compliance documentation is required for all new construction, additions, and alterations to conditioned space in California. We produce compliance reports using the prescriptive and performance pathways for residential and nonresidential projects, coordinated with the permit drawing set. Every compliance report is prepared using CEC-approved software and delivered in the correct submission format for the applicable California building department.",
     processHighlights: [
       { label: "Compliance Path",    value: "Prescriptive / Performance" },
       { label: "Delivery",           value: "3–5 Days" },
@@ -1199,9 +1200,9 @@ export const services: readonly Service[] = [
     title:    "Historic District Submissions",
     category: "Coordination",
     layout:   "historic",
-    tagline:  "Documentation packages for historic preservation review boards and certificate of appropriateness applications.",
+    tagline:  "Documentation packages for historic preservation review boards, certificate of appropriateness applications, and historic district permit submissions.",
     overview:
-      "Historic district submissions require documentation that goes well beyond a standard permit set. A Certificate of Appropriateness (COA) application must demonstrate that proposed work is consistent with the Secretary of the Interior's Standards for Rehabilitation and the specific design guidelines of the applicable local historic district. We produce the full submission package: existing conditions documentation, materials analysis, proposed scope drawings, and the written narrative that demonstrates compliance with the preservation standards.",
+      "Historic district submissions require far more documentation than a standard permit package. A Certificate of Appropriateness application must demonstrate that proposed work is consistent with the Secretary of the Interior's Standards for Rehabilitation and the specific design guidelines of the applicable local historic district. We produce the full submission package: existing conditions documentation, materials analysis, proposed scope drawings, and the written compliance narrative that demonstrates consistency with the preservation standards.",
     processHighlights: [
       { label: "Standards",          value: "Secretary of Interior" },
       { label: "Package Type",       value: "COA Application" },
@@ -1234,7 +1235,7 @@ export const services: readonly Service[] = [
       { question: "Can you assist with historic tax credit documentation?",      answer: "Yes. Federal and California historic tax credit applications require documentation that is substantially similar to the COA package. We produce the Part 1 (property evaluation) and Part 2 (rehabilitation description) documentation in coordination with the tax credit consultant." },
     ],
     whyItMatters:
-      "Historic preservation boards review proposed work against specific published standards, not general building code. A permit set that passes building department review may fail historic review entirely if it does not demonstrate materials compatibility, reversibility, and consistency with the character of the historic resource. The documentation requirements are different, and the submission must address them specifically.",
+      "Historic preservation commissions review projects under preservation regulations and historic district design guidelines rather than standard building code alone. A permit set that passes building department review may fail historic review entirely if it does not demonstrate materials compatibility, reversibility, and consistency with the character of the historic resource. The documentation requirements are fundamentally different, and the submission must address them specifically.",
     relatedSlugs: ["permit-set-preparation", "architectural-drafting", "pre-application-meeting-prep"],
   },
 
@@ -1244,9 +1245,9 @@ export const services: readonly Service[] = [
     title:    "BIM Coordination",
     category: "Coordination",
     layout:   "bim",
-    tagline:  "Building Information Modeling coordination for complex commercial, institutional, and multi-trade projects.",
+    tagline:  "Building Information Modeling coordination services for commercial, institutional, and multi-trade construction projects.",
     overview:
-      "BIM Coordination is the process of integrating architectural, structural, and MEP models into a single federated model to detect and resolve spatial conflicts before construction begins. We provide BIM coordination services for commercial, institutional, and complex residential projects, producing coordinated models, clash detection reports, and coordination drawings that prevent field conflicts from becoming construction delays. All work is delivered in Revit and IFC formats.",
+      "BIM coordination is the process of integrating architectural, structural, and MEP systems into a single federated BIM model to detect and resolve spatial conflicts before construction begins. We provide BIM coordination services for commercial, institutional, and complex residential projects, producing coordinated models, clash detection reports, and coordination drawings that prevent field conflicts from becoming construction delays. All work is delivered in Revit and IFC formats.",
     disciplines: ["Architectural BIM", "Structural BIM", "MEP Coordination", "Clash Detection", "4D Scheduling Coordination", "As-Built BIM Documentation"],
     processHighlights: [
       { label: "Model Format",       value: "Revit / IFC" },
@@ -1292,9 +1293,9 @@ export const services: readonly Service[] = [
     title:    "Zoning and Code Research Report",
     category: "Strategy",
     layout:   "zoning",
-    tagline:  "Know exactly what your parcel allows before a single drawing is made.",
+    tagline:  "Know exactly what your parcel allows before a single drawing is produced.",
     overview:
-      "We research the zoning designation, development standards, overlay requirements, ADU eligibility, and regulatory constraints that apply to a specific parcel and jurisdiction. The result is a written report that gives your entire project team a verified baseline before design begins. No assumptions, no surprises at plan check.",
+      "Our zoning code research services provide a detailed review of the zoning designation, development standards, overlay requirements, ADU eligibility, and regulatory constraints tied to a specific parcel and jurisdiction. The result is a structured written report that gives your architects, contractors, consultants, and development team a verified baseline before design begins. No assumptions, no missed code requirements, and no surprises during the entitlement process or plan check.",
     processHighlights: [
       { label: "Delivery",                  value: "3-5 Days"  },
       { label: "Jurisdictions",             value: "All US"    },
@@ -1318,13 +1319,13 @@ export const services: readonly Service[] = [
       { title: "Variance and Adjustment Flag List",     description: "A clear list of any conditions requiring variance, adjustment, or special approval before permits can be issued." },
     ],
     audience: [
-      { title: "General Contractors",    description: "Confirm what the zoning allows before committing to a project scope or providing a bid." },
-      { title: "Real Estate Developers", description: "Underwrite acquisitions with a verified picture of development potential before the purchase closes." },
-      { title: "Property Owners",        description: "Understand what you can build on your parcel before hiring a designer or engaging consultants." },
-      { title: "Licensed Architects",    description: "Get jurisdiction research completed before production drafting begins so drawings are built to the correct standards from day one." },
+      { title: "General Contractors",    description: "Verify what the zoning allows before preparing bids, committing to schedules, or advancing a construction scope that may not comply with local regulations." },
+      { title: "Real Estate Developers", description: "Perform zoning due diligence and evaluate development potential before acquisitions close using a verified analysis prepared for the specific parcel." },
+      { title: "Property Owners",        description: "Understand what can legally be built on your property before hiring consultants, beginning design work, or submitting a permit application." },
+      { title: "Licensed Architects",    description: "Start production drafting with verified development standards and zoning compliance information already researched, reducing revision cycles during the permit approval process." },
     ],
     whyItMatters:
-      "Most design errors start before the first drawing is made. A designer who skips zoning verification, overlooks setback requirements, or misses a regulatory overlay will produce drawings that fail plan check. A zoning and code research report eliminates that risk at the lowest possible cost: a fraction of a single redesign, delivered before the designer opens their first file.",
+      "Most permit and design problems begin long before drawings reach the building department. A designer who skips zoning compliance research, overlooks setback requirements, or misses a regulatory overlay can unintentionally create a drawing set that fails plan check or triggers major revisions. A zoning and code research report eliminates that risk at a fraction of the cost of a single redesign, delivered before the designer opens their first file.",
     relatedSlugs: ["feasibility-study", "permit-pathway-analysis", "project-strategy"],
     faqs: [
       { question: "What information do I need to provide?",           answer: "The parcel address, APN if available, jurisdiction name, and a brief description of the intended project scope. That is all we need to begin research." },
@@ -1340,9 +1341,9 @@ export const services: readonly Service[] = [
     title:    "Permit Pathway Analysis",
     category: "Strategy",
     layout:   "pathway",
-    tagline:  "Every permit required. Every agency involved. Every timeline, written down.",
+    tagline:  "Every permit required. Every agency involved. Every timeline documented before the project moves into active design or permit submission.",
     overview:
-      "We map the complete permit pathway for your project: every permit type required, every agency involved in review, every consultant your team will need to engage, and a realistic timeline grounded in actual jurisdiction data. Delivered as a written report before design begins.",
+      "Our permit pathway analysis services map the full approval path for your project from the beginning. Every permit type required, every agency involved in review, every consultant your team will need to engage, and a realistic timeline grounded in actual jurisdiction data are documented in a written report delivered before design begins.",
     processHighlights: [
       { label: "Delivery",         value: "3-5 Days" },
       { label: "Jurisdictions",    value: "All US"   },
@@ -1371,7 +1372,7 @@ export const services: readonly Service[] = [
       { title: "Licensed Architects",    description: "Confirm permit scope and consultant requirements before your own engagement begins so there are no late additions to the project team." },
     ],
     whyItMatters:
-      "The most expensive permit problems are the ones nobody saw coming: a discretionary review requirement that was missed, a consultant engagement that happened too late, a timeline that assumed ministerial review on a project that required a variance. A permit pathway analysis resolves all of that before a drawing is made. The cost of the report is returned the first time a schedule delay is avoided.",
+      "The most expensive permit issues are often the ones discovered too late: a discretionary review requirement that was missed, a consultant engagement that happened out of sequence, a timeline that assumed ministerial review on a project that required a variance. A permit pathway analysis resolves all of that before a drawing is made. The cost of the report is recovered the first time a schedule delay is avoided.",
     relatedSlugs: ["zoning-code-research", "project-strategy", "permit-set-preparation"],
     faqs: [
       { question: "What project types do you cover?",                answer: "Residential, commercial, mixed-use, industrial, and institutional projects in any US jurisdiction. The analysis is scoped to the specific project type and applicable agency requirements." },
@@ -1386,9 +1387,9 @@ export const services: readonly Service[] = [
     title:    "Pre-Purchase Property Assessment",
     category: "Strategy",
     layout:   "assessment",
-    tagline:  "Know what you can build on a parcel before you commit to buying it.",
+    tagline:  "Know what a property can realistically support before you commit to buying it.",
     overview:
-      "We assess a property's development potential and permit complexity before the purchase closes. The report covers zoning and entitlement analysis, permit history review, proposed scope feasibility, and a clear summary of risks and opportunities. Designed to be delivered before the inspection contingency expires.",
+      "Our pre-purchase assessment services evaluate a property's development potential, permit complexity, and overall feasibility before acquisition. The report covers zoning and entitlement analysis, permit history review, proposed scope feasibility, and a clear summary of risks and opportunities. Designed to be delivered before the inspection contingency expires so findings can inform the transaction.",
     processHighlights: [
       { label: "Delivery",          value: "3-5 Days" },
       { label: "Risk summary",      value: "Written"  },
@@ -1417,7 +1418,7 @@ export const services: readonly Service[] = [
       { title: "Individual Buyers",         description: "Understand exactly what your intended renovation or addition project requires before the purchase closes." },
     ],
     whyItMatters:
-      "Properties that look straightforward rarely are. Unpermitted additions that require demolition, zoning designations that prohibit intended uses, setback violations that prevent expansions, discretionary review requirements that add months to a timeline: these are the surprises that surface after closing. A pre-purchase assessment answers the most important questions while there is still time to negotiate the price, adjust the scope, or walk away.",
+      "Properties that look straightforward rarely are. Unpermitted additions that require demolition, zoning designations that prohibit intended uses, setback violations that prevent expansions, discretionary review requirements that add months to a timeline: these are the surprises that surface after closing. A pre-purchase assessment answers the most important questions while there is still time to negotiate the purchase price, adjust the project scope, or walk away from the deal.",
     relatedSlugs: ["zoning-code-research", "feasibility-study", "permit-pathway-analysis"],
     faqs: [
       { question: "When in the purchase process should I order this?",   answer: "Ideally during the inspection contingency period, when you still have the option to negotiate or exit the transaction. For larger acquisitions, some clients order the assessment before submitting an offer." },
@@ -1432,9 +1433,9 @@ export const services: readonly Service[] = [
     title:    "Scope Definition Package",
     category: "Strategy",
     layout:   "scope",
-    tagline:  "A precise project brief before a single consultant is hired.",
+    tagline:  "A clear project brief before design starts, built to align consultants, permitting requirements, timelines, and construction expectations from day one.",
     overview:
-      "We translate your project goals into a formal scope document: a complete drawing list, consultant engagement sequence, applicable permit types, preliminary timeline, and a written scope boundary statement. Delivered before design begins so every member of your project team starts with the same information.",
+      "Our construction scope definition services help organize a project before drawings, consultant coordination, or permit submissions begin. We translate your project goals into a formal scope document: a complete drawing list, consultant engagement sequence, applicable permit types, preliminary timeline, and a written scope boundary statement. Delivered before design begins so every member of your project team starts with the same information.",
     processHighlights: [
       { label: "Delivery",          value: "5-7 Days" },
       { label: "Output format",     value: "Written"  },
@@ -1464,7 +1465,7 @@ export const services: readonly Service[] = [
       { title: "Licensed Architects",    description: "Receive a fully researched scope document that eliminates early-phase uncertainty and sets production drafting up for success from day one." },
     ],
     whyItMatters:
-      "Scope creep, consultant engagement in the wrong order, budget overruns from late-added drawing requirements: these are not random outcomes. They are the predictable result of starting a project without a defined scope. A scope definition package costs far less than the rework it prevents, and it gives every member of your project team a single document to work from instead of competing assumptions.",
+      "Many construction delays originate long before permit review or field work begins. Scope creep, consultant engagement in the wrong order, budget overruns from late-added drawing requirements: these are the predictable result of starting a project without a defined scope. A scope definition package costs far less than the rework it prevents and gives every member of your project team a single document to work from instead of competing assumptions.",
     relatedSlugs: ["project-strategy", "permit-pathway-analysis", "zoning-code-research"],
     faqs: [
       { question: "How is this different from a project strategy engagement?",  answer: "A project strategy engagement is a broader advisory service that covers the full strategic picture of a project from goals to execution plan. A scope definition package is a more focused deliverable: a formal written brief with a complete drawing list, consultant list, and timeline." },
@@ -1479,9 +1480,9 @@ export const services: readonly Service[] = [
     title:    "Design Options Study",
     category: "Strategy",
     layout:   "options",
-    tagline:  "Two or three layout directions explored and compared before you commit.",
+    tagline:  "Explore multiple layout directions, compare tradeoffs, and make informed design decisions before production drawings begin.",
     overview:
-      "We develop two or three conceptual layout alternatives for your project and deliver them as a written comparison: floor plan diagrams, rough square footage, regulatory fit analysis, and a clear summary of the tradeoffs between each option. Designed to be completed before production drawings begin.",
+      "Our design options study services help clients evaluate different layout directions before committing to a final design path. We develop two or three conceptual layout alternatives and deliver them as a written comparison: floor plan diagrams, rough square footage, regulatory fit analysis, and a clear summary of the tradeoffs between each option. Designed to be completed before production drawings begin, when changing direction costs nothing.",
     processHighlights: [
       { label: "Delivery",         value: "5-7 Days"    },
       { label: "Options",          value: "2-3"         },
@@ -1510,7 +1511,7 @@ export const services: readonly Service[] = [
       { title: "Licensed Architects",    description: "Use as an early-phase analysis tool to document the options explored before a preferred direction is selected." },
     ],
     whyItMatters:
-      "Committing to a design direction before alternatives have been explored is one of the most reliable ways to generate expensive redesign work. A layout that seems obvious at first often misses a more code-efficient or cost-effective arrangement that was never considered. A design options study forces that comparison to happen before drawings begin, when changing direction costs nothing.",
+      "Many projects move too quickly into a single layout direction without evaluating alternatives first. A layout that seems obvious at first often misses a more code-efficient or cost-effective arrangement that was never considered. A design options study forces that comparison to happen before drawings begin, when changing direction costs nothing.",
     relatedSlugs: ["feasibility-study", "project-strategy", "scope-definition"],
     faqs: [
       { question: "How detailed are the conceptual diagrams?",          answer: "The diagrams are schematic-level floor plans: scaled, dimensioned, showing room organization and key circulation paths, but not full production drawings. They are detailed enough for meaningful comparison and regulatory analysis." },
@@ -1525,9 +1526,9 @@ export const services: readonly Service[] = [
     title:    "Code Compliance Gap Analysis",
     category: "Strategy",
     layout:   "gap",
-    tagline:  "Find every code exposure in your existing building before renovation begins.",
+    tagline:  "Identify hidden code issues, permit risks, and non-conforming conditions before they delay approvals or trigger expensive redesign work.",
     overview:
-      "We analyze the existing conditions of a building against current code requirements and the proposed renovation scope to identify non-conforming conditions, triggered upgrades, and compliance gaps that could surface at plan check. Delivered as a written findings report before production drawings begin.",
+      "Our compliance gap analysis services are designed to evaluate existing building conditions against current regulatory requirements and the proposed renovation scope to identify non-conforming conditions, triggered upgrades, and compliance gaps before they surface at plan check. The result is a written findings report delivered before production drawings begin, when issues can be addressed at planning cost rather than construction cost.",
     processHighlights: [
       { label: "Delivery",          value: "3-5 Days" },
       { label: "Output",            value: "Written"  },
@@ -1556,7 +1557,7 @@ export const services: readonly Service[] = [
       { title: "Building Owners",        description: "Know your building's compliance exposure before starting work so there are no surprise upgrade requirements at plan check." },
     ],
     whyItMatters:
-      "Non-conforming conditions that go unidentified before permit submission become plan check corrections that stop a project cold. Triggered upgrade requirements discovered mid-construction become change orders that destroy budgets. A code compliance gap analysis answers the hard questions at the start of the project, when corrections cost time rather than money and there is still room to adjust the scope.",
+      "Most permit delays tied to code issues happen because hidden deficiencies were discovered too late to address without costly changes. Non-conforming conditions that go unidentified before permit submission become plan check corrections that stop a project cold. Triggered upgrade requirements discovered mid-construction become change orders that destroy budgets. A compliance gap analysis answers the hard questions at the start of the project, when corrections cost planning time rather than construction money.",
     relatedSlugs: ["permit-set-preparation", "city-comments-response", "zoning-code-research"],
     faqs: [
       { question: "What documents do I need to provide?",                    answer: "Any available as-built drawings, the permit history for the property, and a description of the proposed renovation scope. If no as-built drawings exist, we can also scope an as-built documentation engagement to establish the baseline." },
@@ -1711,9 +1712,9 @@ export const services: readonly Service[] = [
     title:    "Interior Detail Package",
     category: "Drawings",
     layout:   "interior",
-    tagline:  "Kitchen, bath, stair, and millwork elevations built to pass interior plan check.",
+    tagline:  "Interior drawings built for permit approval.",
     overview:
-      "Interior Detail Packages provide the room-level drawing documentation that building departments and inspectors require for kitchen remodels, bathroom renovations, stair replacements, and custom millwork scopes. We produce complete interior elevation sets, cabinet layout drawings, stair section details, shower waterproofing details, and millwork dimension schedules. Every sheet is drawn to the standard required by the applicable jurisdiction, so the package moves through plan check without corrections.",
+      "Our interior detail package services provide the room-level construction documents needed for kitchen remodels, bathroom renovations, stair replacements, tenant fit-outs, and custom millwork projects. We produce complete interior elevation sets, cabinet layout drawings, stair section details, shower waterproofing details, and millwork dimension schedules. Every sheet is drawn to the standard required by the applicable jurisdiction, so the package moves through plan check without corrections.",
     processHighlights: [
       { label: "Turnaround",    value: "5-7 Days"  },
       { label: "Jurisdictions", value: "All US"    },
@@ -1747,7 +1748,7 @@ export const services: readonly Service[] = [
       { question: "Do you handle ADA-compliant bathroom drawings?",             answer: "Yes. For commercial bathroom scopes or residential projects subject to accessible design requirements, we draw elevations to ADA standards and include applicable code notes and clearance dimensions." },
     ],
     whyItMatters:
-      "The plan checker assigned to a kitchen or bathroom remodel is looking at three things: the waterproofing details, the cabinet heights, and the ventilation. If any one of those is missing or unclear, the package comes back as a correction. Interior detail drawings that address exactly what the plan checker needs to see are the only way to move a remodel permit through on the first review. Generic floor plans are not enough.",
+      "Most plan check corrections on interior remodel projects happen because critical details are missing. The plan checker assigned to a kitchen or bathroom remodel is looking for waterproofing details, cabinet heights, and ventilation documentation. If any one of those is missing or unclear, the package comes back for correction. Interior detail drawings that address exactly what the plan checker needs to see are the only way to move a remodel permit through on the first review.",
     relatedSlugs: ["architectural-drafting", "as-built-documentation", "contractor-bid-package"],
   },
 
@@ -1757,9 +1758,9 @@ export const services: readonly Service[] = [
     title:    "Site Plan Package",
     category: "Drawings",
     layout:   "siteplan",
-    tagline:  "Jurisdiction-researched site plans built to pass first review at any building department.",
+    tagline:  "Permit-ready site plan drawings prepared to meet local building department and planning review requirements.",
     overview:
-      "A Site Plan Package provides the overhead property documentation required for building permit applications, site improvement permits, and planning submissions. We research the parcel, confirm setback requirements, locate utilities and easements, and produce a complete site plan drawn to the jurisdiction's submission standards. The plan checker opens the site plan first. Ours gives them what they need to approve it.",
+      "Our site plan drafting services provide the property documentation required for building permits, planning department submissions, land development reviews, and site improvement applications. We research the parcel, confirm setback requirements, locate utilities and easements, and produce a complete site plan drawn to the jurisdiction's submission standards. The plan checker opens the site plan first. Ours gives them what they need to approve it.",
     processHighlights: [
       { label: "Turnaround",      value: "3-5 Days" },
       { label: "Jurisdictions",   value: "All US"   },
@@ -1782,10 +1783,10 @@ export const services: readonly Service[] = [
       { title: "Title Block and Code Notes",     description: "Project identification, applicable codes, zoning designation, parcel number, scale, and all required administrative information formatted for the building department." },
     ],
     audience: [
-      { title: "Contractors on Site Improvements",  description: "Pulling permits for parking lots, retaining walls, hardscaping, or site grading and needing a complete site plan for submission." },
-      { title: "Civil Engineers",                   description: "Who need architectural site documentation to accompany civil sheets in a permit package." },
-      { title: "Developers Pre-Vertical",           description: "Completing site improvements before vertical construction begins and needing a permit-ready site plan for the site work phase." },
-      { title: "Property Owners",                   description: "Adding structures, fences, pools, or accessory buildings that require a site plan for the building permit application." },
+      { title: "Contractors on Site Improvements", description: "Pulling permits for parking lots, retaining walls, hardscaping, or site grading and needing a complete site plan for submission." },
+      { title: "Civil Engineers",                  description: "Who need architectural site documentation to accompany civil sheets in a permit package." },
+      { title: "Developers Pre-Vertical",          description: "Completing site improvements before vertical construction begins and needing a permit-ready site plan for the site work phase." },
+      { title: "Property Owners",                  description: "Adding structures, fences, pools, or accessory buildings that require a site plan for the building permit application." },
     ],
     faqs: [
       { question: "What do I need to provide?",                            answer: "The parcel address, jurisdiction, and a description of the proposed site work or structure. Any existing drawings you have are helpful but not required. We pull the parcel data and establish existing conditions from our own research." },
@@ -1793,7 +1794,7 @@ export const services: readonly Service[] = [
       { question: "Can this be used for a planning department submittal?", answer: "Yes. We format the site plan for the specific submission requirements of the reviewing agency. Planning department submittals often require additional notation, context maps, or photo sheets, which we include when the scope calls for them." },
     ],
     whyItMatters:
-      "The site plan is the first sheet every plan checker opens. Setback dimensions that are wrong or missing, access that is unclear, a parking count that does not add up: any one of these sends the package back for correction before a single structural sheet has been reviewed. A site plan built from verified parcel research and drawn to the jurisdiction's exact requirements does not come back for site plan corrections. It lets the review move forward.",
+      "The site plan is usually the first sheet reviewed during permit approval. Setback dimensions that are wrong or missing, access that is unclear, a parking count that does not add up: any one of these sends the package back for correction before a single structural sheet has been reviewed. A site plan built from verified parcel research and drawn to the jurisdiction's exact requirements does not come back for site plan corrections. It lets the review move forward.",
     relatedSlugs: ["architectural-drafting", "permit-set-preparation", "as-built-documentation"],
   },
 
@@ -1828,10 +1829,10 @@ export const services: readonly Service[] = [
       { title: "Jurisdiction Submission Format", description: "Record set formatted to the specific submission requirements of the building department handling the final inspection." },
     ],
     audience: [
-      { title: "General Contractors Closing Out",   description: "Need a record drawing set that matches field conditions before the inspector conducts the final inspection for the CO." },
-      { title: "Project Managers Pursuing CO",      description: "Managing closeout on projects where field changes were made and the approved drawings no longer reflect what was built." },
-      { title: "Developers with Stalled Closeouts", description: "Projects that are built and occupied but cannot obtain the CO because the approved and as-built conditions do not match." },
-      { title: "Property Owners Post-Construction", description: "Who completed permitted work with field modifications and now need the drawing record updated to close the permit." },
+      { title: "General Contractors Closing Out",    description: "Need a record drawing set that matches field conditions before the inspector conducts the final inspection for the CO." },
+      { title: "Project Managers Pursuing CO",       description: "Managing closeout on projects where field changes were made and the approved drawings no longer reflect what was built." },
+      { title: "Developers with Stalled Closeouts",  description: "Projects that are built and occupied but cannot obtain the CO because the approved and as-built conditions do not match." },
+      { title: "Property Owners Post-Construction",  description: "Who completed permitted work with field modifications and now need the drawing record updated to close the permit." },
     ],
     faqs: [
       { question: "What do I need to provide?",                             answer: "The full approved drawing set (PDF or original files) and documentation of field changes: change orders, redlined drawings, RFI logs, or site photos. The more documentation you provide, the faster we can produce the record set." },
@@ -1849,9 +1850,9 @@ export const services: readonly Service[] = [
     title:    "Demolition Permit Drawings",
     category: "Drawings",
     layout:   "demolition",
-    tagline:  "Permit-ready demolition drawings that satisfy every jurisdiction requirement before a wall comes down.",
+    tagline:  "Permit-ready demolition permit drawings prepared to meet local building department requirements before demolition work begins.",
     overview:
-      "Demolition work requires its own permit set in most jurisdictions, and that permit set is more demanding than most contractors expect. We produce the complete demolition drawing package: existing conditions, scope of demolition clearly delineated with standard notation, structural notes where required, and asbestos and hazardous material notations where applicable. Every sheet is produced to the jurisdiction's specific submission requirements so the permit issues without correction cycles.",
+      "Demolition work may look straightforward on site, but from a permitting standpoint it requires a carefully documented set of construction documents. We produce the complete demolition drawing package: existing conditions, scope of demolition clearly delineated with standard notation, structural notes where required, and hazardous material notations where applicable. Every sheet is produced to the jurisdiction's specific submission requirements so the permit issues without correction cycles.",
     processHighlights: [
       { label: "Turnaround",    value: "3-5 Days" },
       { label: "Sheet count",   value: "Varies"   },
@@ -1867,10 +1868,10 @@ export const services: readonly Service[] = [
       { title: "Jurisdiction Compliance",     description: "All sheets formatted to the jurisdiction's exact submission requirements: sheet size, title block format, seal and signature requirements, and submittal checklist compliance." },
     ],
     audience: [
-      { title: "General Contractors",   description: "Pulling demo permits before a major renovation, addition, or ground-up project where selective or full demolition is required." },
-      { title: "Developers",            description: "Demolishing existing structures on acquired sites as the first phase of a redevelopment project." },
-      { title: "Property Owners",       description: "Removing unpermitted additions, damaged structures, or obsolete outbuildings that require a formal permit to demolish." },
-      { title: "Architects",            description: "Needing demo drawing production support on projects where the design scope does not include demolition document production." },
+      { title: "General Contractors", description: "Pulling demo permits before a major renovation, addition, or ground-up project where selective or full demolition is required." },
+      { title: "Developers",          description: "Demolishing existing structures on acquired sites as the first phase of a redevelopment project." },
+      { title: "Property Owners",     description: "Removing unpermitted additions, damaged structures, or obsolete outbuildings that require a formal permit to demolish." },
+      { title: "Architects",          description: "Needing demo drawing production support on projects where the design scope does not include demolition document production." },
     ],
     faqs: [
       { question: "When is a demolition permit required?",         answer: "Most jurisdictions require a demo permit for any structural demolition, full building removal, or demolition that exposes exterior conditions. Some jurisdictions also require permits for interior demolition beyond a certain scope. We confirm the requirement for your jurisdiction before we begin." },
@@ -1879,7 +1880,7 @@ export const services: readonly Service[] = [
       { question: "What if demolition is part of a larger renovation permit?", answer: "Demolition can be combined with a renovation or addition permit as a separate sheet within the overall package. We coordinate the demolition drawings with the full permit set so the plan checker reviews both scopes together." },
     ],
     whyItMatters:
-      "Demolition without a permit creates problems that follow a property for years. Stop-work orders that freeze the entire project. Fines that run per day until the violation is corrected. Certificate of occupancy withheld at the end of a project because unpermitted demolition was discovered during inspection. Title complications that surface at sale or refinancing. A demolition permit costs less than an afternoon of project downtime. The drawings that support it should not be an obstacle.",
+      "Skipping the permit process can create long-term problems for a property: stop-work orders that freeze the entire project, fines that run per day, certificate of occupancy withheld because unpermitted demolition was discovered during inspection, and title complications that surface at sale or refinancing. A demolition permit costs less than an afternoon of project downtime. The drawings that support it should not be an obstacle.",
     relatedSlugs: ["architectural-drafting", "permit-set-preparation", "code-compliance-review"],
   },
 
@@ -1889,9 +1890,9 @@ export const services: readonly Service[] = [
     title:    "Redline to CAD Conversion",
     category: "Drawings",
     layout:   "redline",
-    tagline:  "Field markups and hand sketches converted into production-ready CAD drawings within days.",
+    tagline:  "Field markups, contractor notes, and hand sketches turned into clean CAD drawings without slowing down the project.",
     overview:
-      "When field conditions diverge from the approved drawings, someone has to close the gap before the next submission. We take any form of red-line markup, contractor sketch, RFI response, or site photo and convert it into clean, dimensioned, production-ready CAD drawings formatted to the original drawing set standards. No re-drafting the entire set. No waiting for an in-house drafter. Send us the markups and we send back drawings the building department will accept.",
+      "Projects change in the field all the time. When field conditions diverge from the approved drawings, someone has to close the gap before the next submission. We take any form of red-line markup, contractor sketch, RFI response, or site photo and convert it into clean, dimensioned, production-ready CAD drawings formatted to the original drawing set standards. No re-drafting the entire set. No waiting for an in-house drafter.",
     processHighlights: [
       { label: "Turnaround",      value: "2-4 Days" },
       { label: "Source formats",  value: "Any"      },
@@ -1914,10 +1915,10 @@ export const services: readonly Service[] = [
       { title: "Coordination Check",       description: "Cross-sheet coordination review confirming that changes on one sheet are reflected on all related sheets." },
     ],
     audience: [
-      { title: "General Contractors",    description: "Converting field change orders, RFI responses, and contractor markups into updated drawings for building department resubmission." },
-      { title: "Architects",             description: "Outsourcing redline incorporation on projects with heavy construction administration workloads or tight revision turnaround requirements." },
-      { title: "Developers",             description: "Updating drawing sets after phased scope changes, value engineering decisions, or owner-directed field changes." },
-      { title: "Building Owners",        description: "Bringing outdated drawing sets up to current conditions before sale, lease, or permit resubmission." },
+      { title: "General Contractors", description: "Converting field change orders, RFI responses, and contractor markups into updated drawings for building department resubmission." },
+      { title: "Architects",          description: "Outsourcing redline incorporation on projects with heavy construction administration workloads or tight revision turnaround requirements." },
+      { title: "Developers",          description: "Updating drawing sets after phased scope changes, value engineering decisions, or owner-directed field changes." },
+      { title: "Property Owners",     description: "Bringing outdated drawing sets up to current conditions before sale, lease, or permit resubmission." },
     ],
     faqs: [
       { question: "What formats do you accept?",                   answer: "Anything: hand-drawn red-lines on printed drawings, annotated PDFs, phone photos of field sketches, verbal descriptions with measurements. We work with whatever documentation is available." },
@@ -1926,7 +1927,7 @@ export const services: readonly Service[] = [
       { question: "Can you handle large sets with many changes?",  answer: "Yes. Large sets with extensive revisions are quoted per sheet or per scope. Send us the set and a summary of the change scope and we will confirm the turnaround and price before you commit." },
     ],
     whyItMatters:
-      "The gap between what was approved and what was built is not a problem until it is a very expensive one. Inspectors who find conditions that do not match the drawings stop work. Building departments that receive resubmissions with uncoordinated redlines return the package for correction. The cost of clean, accurate drawings at the point of change is a fraction of the cost of a stop-work order, a correction cycle, or a delayed certificate of occupancy. Redlines that sit in a folder are a liability. Redlines converted to CAD are a solved problem.",
+      "Small field changes become expensive when the drawings are never updated. Inspectors who find conditions that do not match the approved drawings stop work. Building departments that receive resubmissions with uncoordinated redlines return the package for correction. Converting markups to clean CAD drawings at the point of change is a fraction of the cost of a stop-work order, a correction cycle, or a delayed certificate of occupancy.",
     relatedSlugs: ["as-built-documentation", "record-drawing-updates", "permit-set-preparation"],
   },
 

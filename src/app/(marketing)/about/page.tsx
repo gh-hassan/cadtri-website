@@ -6,9 +6,9 @@ import { Button } from "@/components/shared/button";
 import { team } from "@/content/team";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "About CADTRI | Architectural Drafting & Permit Services",
   description:
-    "CADTRI is a professional architectural drafting and permit support practice producing complete, permit-ready drawing packages for residential and commercial project teams.",
+    "Learn about CADTRI, a professional architectural drafting and permit coordination company specializing in permit-ready construction drawings and drafting services.",
 };
 
 // ─── Page data ────────────────────────────────────────────────────────────────
@@ -33,22 +33,22 @@ const standards = [
   {
     title: "Jurisdiction Research First",
     description:
-      "We research the submission requirements of the applicable building department before drafting begins. Sets are built to those local standards from day one, not revised to fit them after.",
+      "We research local building department requirements, zoning standards, and submission procedures before drafting begins. Every permit-ready plan set is prepared around the jurisdiction's actual review standards from day one, reducing delays and helping projects move through city approvals more efficiently.",
   },
   {
     title: "Coordinated Documentation",
     description:
-      "Architectural, structural, and supplemental sheets are reviewed and aligned before submission. Dimensional conflicts and reference gaps are resolved before the plan checker encounters them.",
+      "Architectural, structural, and supplemental construction documents are reviewed together before submission. Dimensional conflicts, missing references, and coordination gaps are resolved early before they reach the plan reviewer or job site.",
   },
   {
     title: "Single Point of Contact",
     description:
-      "Every project has a dedicated contact from intake through delivery. No handoffs, no miscommunication, no tracking deliverables across multiple people.",
+      "Every CADTRI project is managed through one dedicated contact from intake through delivery. No unnecessary handoffs, no confusion between departments, and no chasing updates across multiple people.",
   },
   {
     title: "Complete Correction Response",
     description:
-      "When plan check corrections are issued, we prepare a fully documented response with clouded revisions and a formal response letter. Every comment addressed in one organized package.",
+      "When building departments issue plan check corrections, we prepare a complete response package with clouded revisions, updated permit-ready plans, and formal response documentation addressing every comment clearly and professionally.",
   },
 ] as const;
 
@@ -56,27 +56,27 @@ const clientTypes = [
   {
     title: "General Contractors",
     description:
-      "Need a complete, coordinated permit set before pulling a building permit. We deliver packages built to the jurisdiction and ready for plan check.",
+      "Need a complete permit-ready construction drawing package before pulling a building permit. We prepare coordinated sets built specifically for jurisdiction review and plan check approval.",
   },
   {
     title: "Licensed Architects",
     description:
-      "Overflow production drafting, permit coordination, or full documentation support for projects where internal capacity is stretched.",
+      "Overflow production drafting, construction documentation services, permit coordination, and drafting team support when internal capacity is stretched.",
   },
   {
     title: "Real Estate Developers",
     description:
-      "Documentation built across single parcels or multi-site development pipelines. From feasibility drawing through jurisdiction submission.",
+      "Construction planning support across single parcels or multi-site developments, from feasibility drawings through permit submission and project coordination services.",
   },
   {
     title: "Residential Contractors",
     description:
-      "Additions, ADUs, garage conversions, and remodels. Complete drawing sets prepared specifically for residential plan check requirements.",
+      "ADUs, additions, remodels, and garage conversions prepared with residential drafting services tailored to local building department requirements.",
   },
   {
     title: "Property Owners",
     description:
-      "We guide you through what the jurisdiction requires and prepare everything needed for a clean, complete permit submission.",
+      "We guide property owners through permit services, city approvals, and permit-ready documentation requirements while preparing complete drawing packages for submission.",
   },
 ] as const;
 
@@ -97,17 +97,18 @@ export default function AboutPage() {
               fontSize: "clamp(2.5rem, 6vw, 5rem)",
               lineHeight: 1.05,
               letterSpacing: "-0.03em",
-              maxWidth: "18ch",
+              maxWidth: "22ch",
             }}
           >
-            The most complete documentation your project will see.
+            The most complete construction documentation and permit coordination support your project will see.
           </h1>
           <p
             className="mt-8 font-light leading-relaxed text-white/55"
             style={{ maxWidth: "52ch", fontSize: "clamp(1rem, 1.5vw, 1.125rem)" }}
           >
-            CADTRI handles the full documentation scope so contractors, developers,
-            architects, and property owners can keep their projects moving on schedule.
+            CADTRI helps contractors, developers, architects, and property owners
+            keep projects moving with permit-ready construction drawings, coordinated
+            documentation, and reliable drafting support services.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <Button href="/services" variant="secondary" size="md">
@@ -170,16 +171,21 @@ export default function AboutPage() {
               Drafting and permit support built for project teams.
             </h2>
             <p className="font-light leading-relaxed text-foreground sm:text-lg">
-              CADTRI is a professional architectural drafting and permit support
-              practice. We produce complete, permit-ready drawing packages for
-              residential and commercial projects and handle the full coordination
-              scope that moves a project from design intent to approved permit.
+              CADTRI is a professional architectural drafting company specializing
+              in permit-ready construction drawings, permit coordination services,
+              and complete construction documentation support for residential and
+              commercial projects. From early project planning through final
+              jurisdiction submission, we help streamline the permit workflow with
+              organized, code-conscious documentation built for real-world
+              construction timelines.
             </p>
             <p className="mt-5 font-light leading-relaxed text-muted sm:text-lg">
-              Project teams engage CADTRI as a single resource for every
-              documentation deliverable, from first scope review through final
-              jurisdiction submission. The goal is straightforward: drawings that
-              clear plan check and a permit process that runs on schedule.
+              Project teams rely on CADTRI as a single resource for architectural
+              drafting, permit set preparation, structural coordination services,
+              MEP coordination services, and BIM coordination services. Our focus
+              is straightforward: deliver accurate construction drawings that
+              support faster permit approvals and reduce costly revisions during
+              plan check.
             </p>
           </div>
 
@@ -225,8 +231,8 @@ export default function AboutPage() {
                 lineHeight: 1.1,
               }}
             >
-              Every permit set we produce is built to clear plan check. Not to be
-              revised after it comes back.
+              Every permit set we produce is built to clear plan check the first
+              time. Not corrected after rejection.
             </h2>
           </div>
 
@@ -337,9 +343,10 @@ export default function AboutPage() {
           </div>
           <div className="flex items-end">
             <p className="font-light leading-relaxed text-muted">
-              CADTRI works directly with the professionals and owners who need
-              permit-ready documentation on a professional timeline. If your
-              situation is not listed, contact us to discuss whether it fits.
+              CADTRI works directly with professionals, builders, and property
+              owners who need reliable architectural drafting services and permit
+              coordination on a professional timeline. If your project type is not
+              listed, contact us to discuss the scope and documentation requirements.
             </p>
           </div>
         </div>

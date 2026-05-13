@@ -4,9 +4,9 @@ import { Section } from "@/components/shared/section";
 import { CtaBand } from "@/components/shared/cta-band";
 
 export const metadata: Metadata = {
-  title: "Process",
+  title: "Architectural Drafting Process | CADTRI",
   description:
-    "A clear, step-by-step account of how CADTRI manages every project from initial inquiry through permit issuance. Structured for contractors, developers, architects, and property owners.",
+    "Explore CADTRI's architectural drafting process from planning and BIM coordination to permit-ready construction documentation.",
 };
 
 // ─── Page data ────────────────────────────────────────────────────────────────
@@ -16,28 +16,28 @@ const steps = [
     number: "01",
     title: "Inquiry and Scope Review",
     description:
-      "Send us your project details: location, project type, scope description, and any existing documentation you have. We review what you have sent, identify which services apply, and confirm the full scope of deliverables, timeline, and fee before any work begins. No ambiguity at the start means no surprises mid-project.",
+      "Send us your project details: location, project type, scope description, and any existing documentation available. We review the information, identify the required services, and confirm the complete scope of deliverables, timeline, and fee before work begins. Clear project planning at the start helps avoid delays later in the architectural project workflow.",
     outcome: "Signed scope of work and confirmed project timeline.",
   },
   {
     number: "02",
     title: "Document Review and Jurisdiction Research",
     description:
-      "Before drafting begins, we review any existing drawings, site surveys, or prior permit documentation. We research the submission requirements specific to the applicable jurisdiction: checklist items, plan sheet standards, code versions in effect, and common plan check triggers for the project type. Issues identified here do not become corrections later.",
+      "Before drafting starts, we review existing drawings, surveys, and prior permit documentation. We also research jurisdiction-specific submission standards, applicable code editions, checklist requirements, and common plan review triggers tied to the project type. This phase is a critical part of our permit drawing process and helps prevent avoidable corrections during plan check.",
     outcome: "Confirmed documentation set and jurisdiction requirements on file.",
   },
   {
     number: "03",
     title: "Production and Coordination",
     description:
-      "Your permit set is produced to the verified jurisdiction standards. Architectural sheets are drafted, structural drawings are coordinated if required, supplemental documentation is assembled, and the complete package is reviewed internally before delivery. You receive a permit-ready set, not a draft requiring further work on your end.",
+      "Your permit set is developed using verified jurisdiction standards and a coordinated CAD drafting workflow. Architectural sheets are prepared, structural and MEP coordination is completed where required, and all supporting construction documents are internally reviewed before delivery. The result is a fully coordinated set prepared for permit approval, not a draft requiring additional work.",
     outcome: "Complete, coordinated permit set delivered and ready for submission.",
   },
   {
     number: "04",
-    title: "Submission Support and Follow-Through",
+    title: "Submission Support and Follow Through",
     description:
-      "The completed package is delivered in your required format for permit submission. We remain available throughout the plan review period to address comments, prepare correction responses, and support resubmission if needed. The engagement is not closed until the permit is issued.",
+      "The completed package is delivered in the required submission format for the applicable building department. We remain available throughout the review cycle to address comments, prepare correction responses, and support resubmissions when necessary. Our construction administration support continues until the permit is issued.",
     outcome: "Permit issued. Correction response support included throughout.",
   },
 ] as const;
@@ -46,42 +46,42 @@ const preSubmissionChecks = [
   {
     title: "Jurisdiction Checklist Gaps",
     description:
-      "Submission requirements vary by city and county. Missing a required sheet, note, or form is the most common cause of immediate rejection before plan review even begins.",
+      "Submission requirements vary between cities and counties. Missing forms, notes, or sheets are among the most common causes of rejection before review even begins.",
   },
   {
     title: "Sheet Coordination Conflicts",
     description:
-      "Dimensions that appear on the floor plan but contradict the elevation or section. Every sheet is cross-referenced before the package is assembled.",
+      "Dimensions shown on plans that conflict with elevations or sections are identified during our multidisciplinary coordination review process before the package is assembled.",
   },
   {
     title: "Wrong Code Edition Referenced",
     description:
-      "California adopts code cycles on different schedules than federal adoptions. Sets referencing a superseded code edition are returned for correction at plan check.",
+      "California jurisdictions adopt code cycles differently than federal standards. Referencing outdated codes creates immediate plan check corrections and delays permit approval.",
   },
   {
     title: "Missing Structural Callouts",
     description:
-      "Headers at new openings, post and beam connections, hold-down locations: elements required by the structural drawings that are not called out on the architectural sheets.",
+      "Headers, beam connections, hold downs, and structural references required by engineering drawings are verified during the coordination phase to maintain construction-ready documentation.",
   },
   {
-    title: "Accessibility Path-of-Travel",
+    title: "Accessibility Path of Travel",
     description:
-      "Commercial tenant improvements trigger path-of-travel upgrade requirements. Sets without the required accessibility analysis are incomplete at submission.",
+      "Commercial tenant improvements often trigger ADA upgrade requirements. Accessibility analysis is reviewed as part of the complete construction documentation process before submission.",
   },
   {
     title: "Egress Travel Distance Errors",
     description:
-      "Exit widths, travel distances, and occupant loads calculated against the wrong occupancy classification. Caught in our review, not in the building department's.",
+      "Occupant load calculations, exit widths, and travel distances are verified against the proper occupancy classification during our internal review workflow.",
   },
   {
     title: "Energy Compliance Documentation",
     description:
-      "Title 24 compliance forms must match the design parameters on the drawing sheets. Mismatches between the CF1R and the drawings generate plan check comments on every submission.",
+      "Title 24 energy forms must align with the architectural drawings. Any inconsistencies between the CF1R documentation and the permit sheets are corrected before submission.",
   },
   {
     title: "Setback and Coverage Violations",
     description:
-      "Site plans that show proposed construction within required setbacks or exceeding lot coverage limits. Verified against the current zoning designation before submission.",
+      "Site plans are checked against zoning requirements, setback limitations, and lot coverage restrictions before the permit package reaches the building department.",
   },
 ] as const;
 
@@ -89,32 +89,32 @@ const prepItems = [
   {
     number: "01",
     label: "Site address and parcel number",
-    detail: "Required for jurisdiction research and zoning verification.",
+    detail: "Required for zoning verification and jurisdiction research.",
   },
   {
     number: "02",
     label: "Project description and scope of work",
-    detail: "A plain-language summary is sufficient to begin scope review.",
+    detail: "A simple written summary is enough to begin the architectural review process.",
   },
   {
     number: "03",
     label: "Existing drawings, if available",
-    detail: "CAD files, PDFs, or hand sketches are all accepted.",
+    detail: "CAD files, PDFs, sketches, and prior construction documents are all accepted.",
   },
   {
     number: "04",
     label: "Prior permit history or building department correspondence",
-    detail: "Previous comment letters and approval conditions affect the new submission.",
+    detail: "Previous correction notices and approval conditions often affect the new submission strategy.",
   },
   {
     number: "05",
     label: "Engineering reports or structural calculations, if obtained",
-    detail: "Soils reports, structural analyses, and third-party studies are incorporated during coordination.",
+    detail: "Structural reports, soils studies, and third-party engineering documentation are integrated during the BIM coordination and consultant workflow.",
   },
   {
     number: "06",
     label: "Preferred timeline and target permit submission date",
-    detail: "Helps us confirm production scheduling and set realistic delivery expectations.",
+    detail: "This helps us confirm production scheduling, project delivery expectations, and the overall construction-ready project coordination timeline.",
   },
 ] as const;
 
@@ -126,7 +126,7 @@ export default function ProcessPage() {
       <PageHeader
         eyebrow="Process"
         heading="How every project moves from scope to permit."
-        description="A structured four-step system designed to eliminate surprises and keep your project on schedule from first submission to final approval."
+        description="A structured four-step architectural drafting process designed to eliminate surprises and keep your project on schedule from first submission to final permit approval."
       />
 
       {/* ── Process steps ────────────────────────────────────────────────────── */}
@@ -151,10 +151,11 @@ export default function ProcessPage() {
           </div>
           <div className="flex items-end">
             <p className="font-light leading-relaxed text-muted">
-              Every CADTRI project runs through the same workflow regardless of
-              size or complexity. The system is built to surface problems early,
-              keep communication clear, and deliver a permit-ready set that does
-              not require rework.
+              Every CADTRI project follows the same streamlined construction
+              documentation workflow regardless of project size or complexity. The
+              system is built to identify issues early, simplify communication, and
+              deliver permit-ready drawing packages that minimize revisions and
+              support a smoother permit submission workflow.
             </p>
           </div>
         </div>
@@ -236,10 +237,10 @@ export default function ProcessPage() {
           <div className="flex items-end">
             <p className="font-light leading-relaxed text-white/60">
               Before any drawing leaves our production queue, every set goes
-              through a structured internal review. The items below represent the
-              most common rejection and comment triggers across California
-              jurisdictions. We address each one before the package reaches the
-              counter.
+              through a structured architectural quality control and coordination
+              review. These are the most common plan check issues across residential
+              and commercial jurisdictions, and they are addressed during our
+              internal construction drawing process before submission.
             </p>
           </div>
         </div>
@@ -301,9 +302,9 @@ export default function ProcessPage() {
           </div>
           <div className="flex items-end">
             <p className="font-light leading-relaxed text-muted">
-              You do not need everything before reaching out. Having these items
-              available helps us review your scope accurately and provide a
-              precise deliverable list and timeline from the first conversation.
+              You do not need a complete package before contacting us. Having the
+              following information available helps us review your scope accurately
+              and develop a precise project coordination workflow from the beginning.
             </p>
           </div>
         </div>

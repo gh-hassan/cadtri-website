@@ -4,18 +4,18 @@
 // ─── Hero ─────────────────────────────────────────────────────────────────────
 
 export const heroContent = {
-  eyebrow: "Architectural Drafting & Permit Support",
-  heading: ["Precision Drawings.", "Permits That Move."],
+  eyebrow: "Professional CAD Drafting & Permit Services",
+  heading: ["Professional CAD Drafting Services.", "Permits That Move."],
   description:
-    "CADTRI prepares complete, permit-ready architectural drawing packages for residential and commercial projects. From first scope review through final jurisdiction submission.",
+    "Stop worrying about rejected permits. CADTRI delivers complete, permit-ready architectural drawings and CAD solutions built to your jurisdiction's standards and approved the first time.",
   primaryCta:    { label: "Request Proposal",   href: "/contact"  },
   secondaryCta:  { label: "View Our Services",  href: "/services" },
   credentials: [
-    "Complete architectural drawing packages",
-    "Permit application coordination",
+    "Permit-ready architectural drawing packages",
+    "Jurisdiction research before drafting begins",
     "Residential and commercial project types",
-    "Jurisdiction-specific documentation standards",
-    "Coordinated consultant deliverables",
+    "BIM coordination and structural documentation",
+    "CAD outsourcing and overflow drafting support",
   ],
   indicators: [
     { label: "Project Types",      value: "Residential & Commercial" },
@@ -29,24 +29,24 @@ export const heroContent = {
 
 export const trustItems = [
   {
-    label: "Full Package Delivery",
+    label: "Architectural CAD Drafting",
     description:
-      "Every drawing set includes all required plan sheets, dimensions, and specifications. Complete packages prepared for submission, not piecemeal files.",
+      "Floor plans, elevations, sections, and construction details prepared with AutoCAD and BIM workflows. Every sheet coordinated and ready for plan check, not just visually complete.",
   },
   {
-    label: "Permit-Ready Standard",
+    label: "Jurisdiction Research First",
     description:
-      "We review jurisdiction requirements before drafting begins. Sets are built to local plan-check standards from the first submission.",
+      "We research your city's submission standards, checklist requirements, and code editions before drafting begins. Sets are built to pass the first time, not revised after rejection.",
   },
   {
     label: "Residential & Commercial",
     description:
-      "From single-family additions and ADUs to multi-story commercial tenant improvements. Our scope covers both project types at the same standard.",
+      "From single-family additions and ADUs to commercial tenant improvements and mixed-use projects. Complete CAD solutions across every project type at the same standard.",
   },
   {
-    label: "Responsive Coordination",
+    label: "CAD Solutions Beyond Drafting",
     description:
-      "Dedicated point of contact, structured revision cycles, and clear communication from intake through permit approval.",
+      "BIM coordination, as-built documentation, redline-to-CAD conversion, contractor bid packages, and construction design support, all under one roof.",
   },
 ] as const;
 
@@ -84,32 +84,32 @@ export const servicesOverview = [
 
 export const whyCadtri = {
   eyebrow:    "Why CADTRI",
-  heading:    "Technical execution without the guesswork.",
-  subheading: "We handle the drawings and permit coordination so your project moves on schedule.",
+  heading:    "We understand construction from every angle.",
+  subheading: "Whether you are a contractor, architect, developer, or property owner, we know what works and what gets rejected.",
   items: [
     {
       number:      "01",
       title:       "Permit-Ready Every Time",
       description:
-        "Every drawing set is built to the submission standards of its jurisdiction. We review local requirements before drafting begins. Corrections at plan check are the exception, not the rule.",
+        "Our professional CAD services are built specifically to get permits approved on the first submission. We research your jurisdiction, understand what the plan checker wants, and deliver drawings that work.",
     },
     {
       number:      "02",
-      title:       "Precision at Every Stage",
+      title:       "BIM Coordination That Prevents Problems",
       description:
-        "Coordinated, dimensioned, and detailed packages that give contractors, structural engineers, and MEP consultants exactly what they need to move forward without ambiguity.",
+        "We coordinate architectural, structural, MEP, and all other systems so conflicts are caught before they reach the plan checker. That saves you money. That saves you time.",
     },
     {
       number:      "03",
-      title:       "Structured Project Workflow",
+      title:       "Strategy Before CAD",
       description:
-        "From intake to delivery, every step is tracked and communicated clearly. You always know where your project stands and when the next deliverable is due.",
+        "Before we open AutoCAD, we do project planning to confirm the project can actually happen. We answer the real questions: can this be built, will the city approve it, and what is the timeline.",
     },
     {
       number:      "04",
-      title:       "Scope That Scales",
+      title:       "Complete Compliance Documentation",
       description:
-        "Whether you are managing one permit or a multi-site development pipeline, CADTRI adjusts to your volume without sacrificing quality or turnaround time.",
+        "Title 24 energy compliance, accessibility requirements, and all the building compliance documentation that makes permits stick. Handled as part of every complete drawing package.",
     },
   ],
 } as const;
@@ -119,27 +119,27 @@ export const whyCadtri = {
 export const processSteps = [
   {
     step:        "01",
-    title:       "Project Intake",
+    title:       "We Research Your Jurisdiction",
     description:
-      "Submit your project scope, site address, and any existing documentation. We confirm jurisdiction requirements, deliverable scope, and timeline before work begins.",
+      "Before we touch CAD software, we figure out what your city actually wants. That is how permit set preparation gets done right, built to local standards from day one.",
   },
   {
     step:        "02",
-    title:       "Document Review",
+    title:       "We Build It Right the First Time",
     description:
-      "Existing drawings, surveys, or site conditions are reviewed and gaps are identified early. Resolving unknowns at intake prevents costly revision cycles mid-project.",
+      "Our architectural CAD drafting follows every local requirement. Coordinated, complete, and ready to submit, not a draft requiring additional work on your end.",
   },
   {
     step:        "03",
-    title:       "Drafting & Coordination",
+    title:       "You Submit. We Stay Available.",
     description:
-      "Your permit set is drafted to jurisdiction-ready standards and coordinated across architectural, structural, and all required plan sheet types.",
+      "If the city has questions, we respond. If they want revisions, we handle them. That is what real construction documentation services look like.",
   },
   {
     step:        "04",
-    title:       "Delivery & Submission",
+    title:       "You Get Your Permit",
     description:
-      "Final packages are delivered in your required format. We remain available to address plan-check comments and support resubmission if needed.",
+      "That is the goal. Permits that actually happen, on schedule. The engagement is not closed until the permit is issued.",
   },
 ] as const;
 
@@ -148,31 +148,31 @@ export const processSteps = [
 export const industriesServed = {
   eyebrow:    "Who We Work With",
   heading:    "Built for project teams that move.",
-  subheading: "We work directly with contractors, developers, architects, and property owners who need permit-ready documentation on a professional timeline.",
+  subheading: "We work directly with contractors, developers, architects, and property owners who need reliable architectural drafting services and permit coordination on a professional timeline.",
   items: [
     {
       title:       "General Contractors",
-      description: "Need a permit set before you can pull a permit. We deliver coordinated packages that keep your job schedule moving.",
+      description: "Need a complete permit-ready construction drawing package before pulling a building permit. We prepare coordinated sets built specifically for jurisdiction review and plan check approval.",
     },
     {
       title:       "Licensed Architects",
-      description: "Overflow drafting, permit coordination support, or production documentation for projects where internal capacity is stretched.",
+      description: "Overflow production drafting, construction documentation services, permit coordination, and drafting team support when internal capacity is stretched.",
     },
     {
       title:       "Real Estate Developers",
-      description: "Documentation built across single parcels or multi-site portfolios. From feasibility sketch to jurisdiction-ready submission.",
+      description: "Construction planning support across single parcels or multi-site developments, from feasibility drawings through permit submission and project coordination services.",
     },
     {
       title:       "Residential Contractors",
-      description: "Additions, ADUs, garage conversions, and remodels. Complete drawing sets prepared specifically for residential plan check.",
+      description: "ADUs, additions, remodels, and garage conversions prepared with residential drafting services tailored to local building department requirements.",
     },
     {
       title:       "Property Owners",
-      description: "We guide you through what the jurisdiction requires and prepare everything needed for a clean permit submission.",
+      description: "We guide property owners through permit services, city approvals, and permit-ready documentation requirements while preparing complete drawing packages for submission.",
     },
     {
-      title:       "Interior Designers",
-      description: "Permit-required architectural documentation for tenant improvements, remodels, and buildouts that require a stamped set.",
+      title:       "Mixed-Use & Hospitality",
+      description: "Stacked residential over commercial, restaurants, hotels, and event spaces. We coordinate building, health department, and fire requirements in one complete package.",
     },
   ],
 } as const;
@@ -216,8 +216,8 @@ export const portfolioItems = [
 // ─── Closing CTA ──────────────────────────────────────────────────────────────
 
 export const closingCta = {
-  heading:         "Your project needs drawings that work.",
-  subheading:      "Tell us your scope and we will confirm timeline, deliverables, and next steps. No commitment required.",
+  heading:         "Stop worrying about rejected permits.",
+  subheading:      "Tell us your scope and we will confirm timeline, deliverables, and next steps. Get permit-ready drawings that pass the first time.",
   primaryAction:   { label: "Request a Proposal", href: "/contact"  },
   secondaryAction: { label: "View Our Services",  href: "/services" },
 } as const;

@@ -53,7 +53,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const service = getServiceBySlug(slug);
   if (!service) return { title: "Service Not Found" };
-  const firstSentence = service.overview.split(".")[0] + ".";
+  const firstSentence = (typeof service.overview === "string" ? service.overview : "").split(".")[0] + ".";
   return {
     title: service.title,
     description: `${service.tagline} ${firstSentence}`,
@@ -65,7 +65,7 @@ export default async function ServiceDetailPage({ params }: Props) {
   const service = getServiceBySlug(slug);
   if (!service) notFound();
 
-  const firstSentence = service.overview.split(".")[0] + ".";
+  const firstSentence = (typeof service.overview === "string" ? service.overview : "").split(".")[0] + ".";
 
   return (
     <>

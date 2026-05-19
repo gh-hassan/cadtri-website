@@ -1,25 +1,28 @@
 // Service content model — drives both the /services index and individual /services/[slug] pages.
 
+import type { ReactNode } from "react";
+import Link from "next/link";
+
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 export interface ServiceIncludes {
   readonly title: string;
-  readonly description: string;
+  readonly description: ReactNode;
 }
 
 export interface ServiceAudience {
   readonly title: string;
-  readonly description: string;
+  readonly description: ReactNode;
 }
 
 export interface ServiceStep {
   readonly title: string;
-  readonly description: string;
+  readonly description: ReactNode;
 }
 
 export interface ServiceFaq {
   readonly question: string;
-  readonly answer: string;
+  readonly answer: ReactNode;
 }
 
 export type ServiceLayout =
@@ -63,10 +66,10 @@ export interface Service {
   readonly category: string;
   readonly tagline: string;
   readonly layout: ServiceLayout;
-  readonly overview: string;
+  readonly overview: ReactNode;
   readonly includes: readonly ServiceIncludes[];
   readonly audience: readonly ServiceAudience[];
-  readonly whyItMatters: string;
+  readonly whyItMatters: ReactNode;
   readonly relatedSlugs: readonly string[];
   // Layout-specific optional fields
   readonly steps?: readonly ServiceStep[];
@@ -125,13 +128,13 @@ export const services: readonly Service[] = [
     ],
     steps: [
       { title: "Jurisdiction Research",   description: "We review the building department's submission checklist, known plan check triggers, applicable codes, and any local amendments that affect the project scope." },
-      { title: "Document Assembly",       description: "All drawings, code compliance forms, energy documentation, and supplemental materials are compiled and formatted to the jurisdiction's exact requirements." },
+      { title: "Document Assembly",       description: <>All drawings, code compliance forms, <Link href="/services/title-24-energy-compliance" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">energy documentation</Link>, and supplemental materials are compiled and formatted to the jurisdiction&apos;s exact requirements.</> },
       { title: "Internal Review",         description: "We review the complete package against the submission checklist before delivery, checking for completeness, sheet coordination, and common correction triggers." },
       { title: "Submission and Support",  description: "The complete package is delivered ready for submission. We remain available to respond to plan check comments and prepare resubmission packages if corrections are issued." },
     ],
     includes: [
       { title: "Title Sheet and Project Summary",      description: "Project identification, scope, applicable codes, and owner, designer, and contractor information." },
-      { title: "Code Compliance Documentation",        description: "Energy compliance, accessibility, zoning conformance, and all required regulatory documentation." },
+      { title: "Code Compliance Documentation",        description: <><Link href="/services/title-24-energy-compliance" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">Energy compliance</Link>, accessibility, zoning conformance, and all required regulatory documentation.</> },
       { title: "Permit-Ready Construction Drawings",   description: "Complete drawing set built to the jurisdiction's specific sheet and documentation requirements." },
       { title: "Jurisdiction-Specific Requirements",   description: "Supplemental sheets, checklist forms, and documentation formats required by the specific building department." },
       { title: "Permit Submittal Package Assembly",    description: "All drawings and documents organized into a single submission-ready package per jurisdiction requirements." },
@@ -234,7 +237,7 @@ export const services: readonly Service[] = [
       { title: "Property Owners",        description: "Who have received drawings from a third party and want to verify compliance before signing off." },
     ],
     whyItMatters:
-      "A pre-submission code review is the most cost-effective risk management available in the permit process. One correction cycle typically costs more in schedule delays and rework fees than the review itself. CADTRI's compliance review gives you a documented compliance position before you submit.",
+      <>A pre-submission code review is the most cost-effective risk management available in the permit process. One correction cycle typically costs more in schedule delays and rework fees than the review itself. <Link href="/" className="underline underline-offset-2 decoration-white/30 hover:decoration-secondary transition-colors duration-150">CADTRI</Link>&apos;s compliance review gives you a documented compliance position before you submit.</>,
     relatedSlugs: ["permit-set-preparation", "architectural-drafting", "city-comments-response"],
   },
 
@@ -246,7 +249,7 @@ export const services: readonly Service[] = [
     layout:       "visual",
     tagline:      "3D architectural visualization and rendering services for permitting, presentations, approvals, and project marketing.",
     overview:
-      "We provide architectural rendering services and 3D visualization support for projects that require clear visual communication beyond what construction drawings alone can convey. Renderings are produced directly from the permitted architectural drawings, ensuring the visual presentation and the technical permit set remain consistent. Whether the project requires a design review board submission, a client presentation, or pre-construction marketing imagery, every rendering is built to accurately represent what will be constructed.",
+      <>We provide architectural rendering services and 3D visualization support for projects that require clear visual communication beyond what construction drawings alone can convey. Renderings are produced directly from the permitted <Link href="/services/architectural-drafting" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">architectural drawings</Link>, ensuring the visual presentation and the technical permit set remain consistent. Whether the project requires a design review board submission, a client presentation, or pre-construction marketing imagery, every rendering is built to accurately represent what will be constructed.</>,
     useCases: [
       "Design review board submissions",
       "HOA approval packages",
@@ -263,7 +266,7 @@ export const services: readonly Service[] = [
     ],
     includes: [
       { title: "Exterior Renderings",        description: "Full-color exterior views showing massing, material finishes, fenestration, and site context." },
-      { title: "Interior Views",             description: "Interior perspective renderings for tenant improvements, residential remodels, and commercial buildouts." },
+      { title: "Interior Views",             description: <>Interior perspective renderings for <Link href="/services/tenant-improvement-packages" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">tenant improvements</Link>, residential remodels, and commercial buildouts.</> },
       { title: "Elevation Perspectives",     description: "Architectural elevations enhanced with material indication, shadow study, and context." },
       { title: "Site Context Visualization", description: "Site plan views showing the project within its surrounding parcel and street context." },
       { title: "Presentation Package",       description: "Formatted set suitable for design review board submissions, HOA approval, or client review." },
@@ -362,7 +365,7 @@ export const services: readonly Service[] = [
     faqs: [
       { question: "Can you help with garage conversions?", answer: "Yes. Garage conversions to living space are treated as ADUs in most jurisdictions and we handle the complete permit package, including change-of-use documentation." },
       { question: "What is the typical delivery timeline?", answer: "Most ADU permit packages are delivered within 10-15 business days of intake, depending on project complexity and completeness of site information." },
-      { question: "Do ADUs require energy compliance documentation?", answer: "Yes. Title 24 or equivalent energy compliance is required in most jurisdictions. We include the required compliance documentation in every ADU package." },
+      { question: "Do ADUs require energy compliance documentation?", answer: <>Yes. <Link href="/services/title-24-energy-compliance" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">Title 24</Link> or equivalent energy compliance is required in most jurisdictions. We include the required compliance documentation in every ADU package.</> },
       { question: "Can you work from existing drawings?", answer: "Yes. If you have existing site plans or partial drawings, we can use them as the starting point and build the complete package from there." },
     ],
     audience: [
@@ -390,7 +393,7 @@ export const services: readonly Service[] = [
       { label: "Deliverable",        value: "Hearing-ready package" },
     ],
     steps: [
-      { title: "Zoning and Jurisdiction Research", description: "We review the applicable zoning classification, overlay districts, entitlement thresholds, and any specific standards that apply to the project site and use." },
+      { title: "Zoning and Jurisdiction Research", description: <>We review the applicable <Link href="/services/zoning-code-research" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">zoning classification</Link>, overlay districts, entitlement thresholds, and any specific standards that apply to the project site and use.</> },
       { title: "Application Package Preparation",  description: "Required drawings, forms, written project narrative, and any exhibits are assembled in the format required by the planning department." },
       { title: "Planning Staff Coordination",      description: "We respond to comments from planning staff during the application review period and prepare any supplemental materials requested before the hearing." },
       { title: "Hearing Support",                  description: "Presentation materials, boards, and supporting documentation are prepared for the planning commission or design review board hearing." },
@@ -421,21 +424,21 @@ export const services: readonly Service[] = [
     layout:   "process",
     tagline:  "Organized project documentation and permit strategy support for productive pre-application meetings with planning departments and building officials.",
     overview:
-      "A pre-application meeting with the planning department or building department is one of the most effective ways to understand permit approval requirements before design work begins. We prepare the complete pre-application package: project description, preliminary drawings, code and zoning analysis, and a structured set of specific questions designed to extract actionable guidance from the meeting. The goal is a meeting that produces real answers, not general information.",
+      <>A pre-application meeting with the planning department or building department is one of the most effective ways to understand <Link href="/services/permit-pathway-analysis" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">permit approval requirements</Link> before design work begins. We prepare the complete pre-application package: project description, preliminary drawings, code and zoning analysis, and a structured set of specific questions designed to extract actionable guidance from the meeting. The goal is a meeting that produces real answers, not general information.</>,
     processHighlights: [
       { label: "Preparation time",  value: "3-5 days" },
       { label: "Output",            value: "Complete meeting package" },
       { label: "Follow-up",        value: "Meeting notes support" },
     ],
     steps: [
-      { title: "Project and Jurisdiction Research", description: "We gather jurisdiction-specific requirements, applicable codes, zoning classification, known local plan check standards, and any relevant precedents for the project type." },
+      { title: "Project and Jurisdiction Research", description: <>We gather jurisdiction-specific requirements, applicable codes, <Link href="/services/zoning-code-research" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">zoning classification</Link>, known local plan check standards, and any relevant precedents for the project type.</> },
       { title: "Preliminary Documentation",        description: "Schematic drawings, project description, site data, and any preliminary design information are organized into a clear, professional package." },
       { title: "Question Development",             description: "A structured set of specific technical questions is developed to direct the meeting toward the most important unknowns: code interpretation, submittal requirements, and known objections." },
       { title: "Meeting and Follow-Up",            description: "We prepare meeting notes templates and are available to assist with follow-up documentation or next steps based on the guidance received." },
     ],
     includes: [
       { title: "Project Description Summary",     description: "Clear written summary of the project scope, site conditions, and specific questions for the jurisdiction." },
-      { title: "Preliminary Drawing Set",         description: "Schematic site plan, floor plan, and elevations sufficient to illustrate the project scope." },
+      { title: "Preliminary Drawing Set",         description: <>Schematic <Link href="/services/site-plan-package" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">site plan</Link>, floor plan, and elevations sufficient to illustrate the project scope.</> },
       { title: "Code and Zoning Analysis",        description: "Summary of applicable codes, zoning requirements, and potential compliance questions." },
       { title: "Structured Question List",        description: "Organized set of specific technical questions designed to maximize useful guidance from the meeting." },
       { title: "Meeting Notes Template",          description: "Pre-formatted documentation template for recording guidance received at the meeting." },
@@ -459,7 +462,7 @@ export const services: readonly Service[] = [
     layout:   "technical",
     tagline:  "Mechanical, electrical, and plumbing coordination services for complete permit-ready construction documents.",
     overview:
-      "On commercial, hospitality, and multi-family projects, mechanical, electrical, and plumbing systems must be fully coordinated with the architectural drawings before submission. Conflicts discovered during plan check or in the field are expensive to resolve and compound schedule delays. We review MEP drawings against architectural sheets, identify conflicts, and produce a fully coordinated combined package in direct communication with the responsible engineers.",
+      <>On commercial, hospitality, and multi-family projects, mechanical, electrical, and plumbing systems must be fully coordinated with the <Link href="/services/architectural-drafting" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">architectural drawings</Link> before submission. Conflicts discovered during plan check or in the field are expensive to resolve and compound schedule delays. We review MEP drawings against architectural sheets, identify conflicts, and produce a fully coordinated combined package in direct communication with the responsible engineers.</>,
     disciplines: ["HVAC and Mechanical", "Electrical Distribution", "Plumbing Systems", "Fire Sprinkler Coordination", "Life Safety Systems", "Ceiling and Structural Clearance"],
     includes: [
       { title: "Discipline-by-Discipline Review",         description: "Systematic review of each MEP discipline against the architectural set, identifying spatial conflicts, reference inconsistencies, and coordination gaps." },
@@ -500,7 +503,7 @@ export const services: readonly Service[] = [
       { question: "What building uses do you handle?", answer: "Retail, office, medical office, restaurant, salon, light industrial, and mixed-use. If your use type is not listed, contact us to confirm we can support it." },
       { question: "Do I need as-built drawings first?", answer: "Not always. If no reliable as-built documentation is available, we can perform field measurement as part of the TI engagement before producing the permit set." },
       { question: "How do accessibility requirements apply to TI projects?", answer: "Most TI projects trigger path of travel accessibility requirements for the portion of the building affected by the work. We include this analysis in every TI package as a standard deliverable." },
-      { question: "Can you coordinate with the building's MEP engineers?", answer: "Yes. If the TI requires mechanical, electrical, or plumbing engineering, we coordinate the architectural set with the MEP drawings before submission." },
+      { question: "Can you coordinate with the building's MEP engineers?", answer: <>Yes. If the TI requires mechanical, electrical, or plumbing engineering, we coordinate the architectural set with the <Link href="/services/mep-coordination" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">MEP drawings</Link> before submission.</> },
     ],
     audience: [
       { title: "Commercial Tenants",   description: "Buildout of a new leased space for retail, office, or food service use." },
@@ -521,7 +524,7 @@ export const services: readonly Service[] = [
     layout:       "visual",
     tagline:      "Interactive 3D architectural walkthroughs for approvals, presentations, and pre-construction sales.",
     overview:
-      "Architectural digital walkthroughs give stakeholders the ability to move through a proposed building or interior space before construction begins. We produce navigable 3D walkthroughs from architectural drawings, giving clients, investors, review boards, and approval authorities a first-person understanding of the project from the inside. Walkthroughs are delivered as interactive web links or video tours accessible from any device without specialized software.",
+      <>Architectural digital walkthroughs give stakeholders the ability to move through a proposed building or interior space before construction begins. We produce navigable 3D walkthroughs from <Link href="/services/architectural-drafting" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">architectural drawings</Link>, giving clients, investors, review boards, and approval authorities a first-person understanding of the project from the inside. Walkthroughs are delivered as interactive web links or video tours accessible from any device without specialized software.</>,
     useCases: [
       "Investor and lender presentations",
       "Design review board submissions",
@@ -563,7 +566,7 @@ export const services: readonly Service[] = [
     layout:       "visual",
     tagline:      "Photorealistic 3D staging services for vacant spaces, new construction, remodels, and real estate marketing visualization.",
     overview:
-      "Virtual 3D staging transforms empty rooms and unfinished interiors into fully furnished, photorealistic CGI environments. We produce staged visualizations from architectural drawings or site photographs, showing the property exactly as it would appear fully finished and furnished. Outputs are used for real estate listing photography, investor presentations, pre-construction marketing, and interior design concept approvals.",
+      <>Virtual 3D staging transforms empty rooms and unfinished interiors into fully furnished, photorealistic CGI environments. We produce staged visualizations from <Link href="/services/architectural-drafting" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">architectural drawings</Link> or site photographs, showing the property exactly as it would appear fully finished and furnished. Outputs are used for real estate listing photography, investor presentations, pre-construction marketing, and interior design concept approvals.</>,
     useCases: [
       "Real estate listing photography",
       "New construction pre-sales",
@@ -620,7 +623,7 @@ export const services: readonly Service[] = [
       },
       {
         title: "Consultant Identification",
-        description: "We identify every consultant your project will require (structural, MEP, civil, soils, energy, accessibility) and build a coordination matrix that sequences their involvement correctly, preventing the expensive mistake of bringing in consultants out of order.",
+        description: <>We identify every consultant your project will require (structural, <Link href="/services/mep-coordination" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">MEP</Link>, civil, soils, energy, accessibility) and build a coordination matrix that sequences their involvement correctly, preventing the expensive mistake of bringing in consultants out of order.</>,
       },
       {
         title: "Phased Scope Definition",
@@ -640,7 +643,7 @@ export const services: readonly Service[] = [
     includes: [
       { title: "Site and Zoning Analysis Report",    description: "Written analysis of your site against current zoning, including permitted uses, setbacks, FAR, height limits, overlay districts, and any known restrictions." },
       { title: "Permit Pathway Map",                 description: "A complete map of every approval required for your project, with estimated timelines, submission requirements, and flagged risk factors for each checkpoint." },
-      { title: "Consultant Coordination Matrix",     description: "A structured matrix identifying all required consultants, their scope of work, sequencing, and handoff points." },
+      { title: "Consultant Coordination Matrix",     description: <>A structured matrix identifying all required consultants, their scope of work, sequencing, and handoff points. Covers structural, <Link href="/services/mep-coordination" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">MEP</Link>, civil, and specialty consultants.</> },
       { title: "Phased Project Roadmap",             description: "A phase-by-phase breakdown of your project from pre-design through permit-ready, with scope, deliverables, and decision points defined for each phase." },
       { title: "Strategy Briefing Call",             description: "A dedicated video call to walk through the complete roadmap, answer questions, and confirm next steps and priorities." },
       { title: "30-Day Follow-Up Support",           description: "Email support for 30 days following delivery to answer questions as your project moves from strategy into active design and permitting." },
@@ -666,7 +669,7 @@ export const services: readonly Service[] = [
       },
       {
         question: "Can CADTRI execute the work defined in the strategy?",
-        answer: "Yes. Most clients who engage us for Project Strategy continue with CADTRI for permit set preparation, drafting, coordination, and response services. The strategy gives us a shared understanding of your project from the start.",
+        answer: <>Yes. Most clients who engage us for Project Strategy continue with CADTRI for <Link href="/services/permit-set-preparation" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">permit set preparation</Link>, drafting, coordination, and response services. The strategy gives us a shared understanding of your project from the start.</>,
       },
     ],
     whyItMatters:
@@ -685,11 +688,11 @@ export const services: readonly Service[] = [
     overview:
       "Our construction feasibility study services evaluate your site, zoning constraints, permit pathway, and overall project feasibility before design or construction planning starts. We examine six analysis areas: zoning compliance, setbacks, FAR and lot coverage, permitted use, overlay districts, and permit risk factors. The result is a written report with a clear summary of what the site can support, what requires a variance or discretionary approval, and what the highest-risk permit checkpoints are for your specific project.",
     steps: [
-      { title: "Zoning Classification and Permitted Use",  description: "We identify the current zoning designation for your parcel and confirm what uses are permitted by right, permitted with conditions, and prohibited. Mixed-use, overlay, and transitional zones are examined in full." },
+      { title: "Zoning Classification and Permitted Use",  description: <>We identify the current zoning designation for your parcel and confirm what uses are permitted by right, permitted with conditions, and prohibited. <Link href="/services/zoning-code-research" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">Mixed-use</Link>, overlay, and transitional zones are examined in full.</> },
       { title: "Setbacks and Lot Coverage",               description: "Front, rear, and side yard setbacks, maximum lot coverage percentages, and impervious surface limits are pulled from the applicable zoning ordinance and checked against your site dimensions and proposed footprint." },
       { title: "Floor Area Ratio and Density",            description: "FAR limits, maximum allowable gross floor area, unit density restrictions, and bonus density provisions are calculated and presented against your project program." },
       { title: "Overlay Districts and Special Conditions", description: "We identify all overlay zones that affect your parcel: flood zones, historic districts, fire hazard severity zones, hillside overlays, and view corridors. We document the additional requirements each imposes." },
-      { title: "Permit Pathway Classification",           description: "We classify the permit pathway for your project: ministerial (over-the-counter), discretionary (requires planning approval), or hybrid. Discretionary permits add 3–18 months to timelines and require separate analysis." },
+      { title: "Permit Pathway Classification",           description: <>We classify the <Link href="/services/permit-pathway-analysis" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">permit pathway</Link> for your project: ministerial (over-the-counter), discretionary (requires planning approval), or hybrid. Discretionary permits add 3–18 months to timelines and require separate analysis.</> },
       { title: "Risk Factor Summary",                     description: "We document the highest-risk items for your project: code ambiguities, known plan check triggers, non-conforming conditions, and any site factors that are likely to require a variance or exception." },
     ],
     processHighlights: [
@@ -714,7 +717,7 @@ export const services: readonly Service[] = [
     faqs: [
       { question: "How is this different from a zoning report?",           answer: "A zoning report pulls the ordinance data. A Feasibility Study interprets it against your specific project. We tell you not just what the code says but what it means for your project, where the risks are, and what the realistic permit path looks like." },
       { question: "Does this guarantee my project will be approved?",      answer: "No feasibility analysis can guarantee permit approval. What we can do is give you an accurate picture of the obstacles and risks before you spend money on design. Most projects that fail at plan check ran into conditions that were identifiable at the feasibility stage." },
-      { question: "Can I use this report in a pre-application meeting?",   answer: "Yes. Our feasibility reports are written to support pre-application meetings. The permit pathway classification and risk summary sections are specifically formatted for that use." },
+      { question: "Can I use this report in a pre-application meeting?",   answer: <>Yes. Our feasibility reports are written to support <Link href="/services/pre-application-meeting-prep" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">pre-application meetings</Link>. The permit pathway classification and risk summary sections are specifically formatted for that use.</> },
       { question: "What do you need from me to start?",                   answer: "The parcel number or address, the applicable jurisdiction, and a brief description of what you want to build. We handle the ordinance research from there." },
     ],
     whyItMatters:
@@ -744,7 +747,7 @@ export const services: readonly Service[] = [
     steps: [
       { title: "Existing Conditions Documentation", description: "We establish the existing structure on record (floor plan, elevations, and site conditions) as the baseline from which the addition is drawn. Accuracy here prevents corrections during plan check." },
       { title: "Addition Design Drafting",          description: "The proposed addition is drawn in full, coordinated against the existing structure: new floor plans, exterior elevations, building sections, and all required detail drawings." },
-      { title: "Code and Zoning Compliance",        description: "The addition is reviewed against setback requirements, lot coverage limits, FAR, height restrictions, and all applicable building code requirements including egress, structural, and energy compliance." },
+      { title: "Code and Zoning Compliance",        description: <>The addition is reviewed against setback requirements, lot coverage limits, FAR, height restrictions, and all applicable building code requirements including egress, structural, and <Link href="/services/title-24-energy-compliance" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">energy compliance</Link>.</> },
       { title: "Permit Set Assembly",               description: "All sheets are compiled into a jurisdiction-specific submission package, formatted to the building department's requirements, with a complete title sheet, code summary, and sheet index." },
     ],
     processHighlights: [
@@ -758,7 +761,7 @@ export const services: readonly Service[] = [
       { title: "Proposed Addition Floor Plan",   description: "Complete dimensioned plan of the addition with all new construction shown in context with the existing structure." },
       { title: "Exterior Elevations",            description: "All affected building elevations showing the addition in context with the existing structure, with heights, materials, and openings called out." },
       { title: "Building Section",               description: "Cross-section through the addition showing structural assembly, ceiling heights, insulation locations, and floor-to-floor dimensions." },
-      { title: "Site Plan",                      description: "Site plan showing the addition footprint against property lines, with all required setback dimensions and updated lot coverage calculation." },
+      { title: "Site Plan",                      description: <><Link href="/services/site-plan-package" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">Site plan</Link> showing the addition footprint against property lines, with all required setback dimensions and updated lot coverage calculation.</> },
       { title: "Title Sheet and Code Summary",   description: "Project identification, scope description, applicable codes, and all regulatory summary information required by the jurisdiction." },
     ],
     audience: [
@@ -768,10 +771,10 @@ export const services: readonly Service[] = [
       { title: "Real Estate Investors", description: "Adding square footage to increase property value and need a code-compliant permit set for the work." },
     ],
     faqs: [
-      { question: "Do you handle additions that require structural engineering?", answer: "Yes. We coordinate with the structural engineer of record. Our structural coordination service handles the integration of structural drawings into the permit set. We manage the coordination so you have one submission-ready package." },
+      { question: "Do you handle additions that require structural engineering?", answer: <>Yes. We coordinate with the structural engineer of record. Our <Link href="/services/structural-coordination" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">structural coordination service</Link> handles the integration of structural drawings into the permit set. We manage the coordination so you have one submission-ready package.</> },
       { question: "What if the existing structure isn't in the city's records?",  answer: "We work from your provided measurements, site photos, or an existing conditions survey. We document on the title sheet that existing conditions are based on field measurement. Most jurisdictions accept this for additions under a certain size threshold." },
       { question: "Can you match the existing architecture?",                     answer: "Yes. We draw the addition to match or complement the existing structure's architectural style, materials, and proportions as documented in your provided reference." },
-      { question: "Do you cover additions in California?",                        answer: "Yes. California additions require Title 24 energy compliance documentation, which is included in our California permit packages." },
+      { question: "Do you cover additions in California?",                        answer: <>Yes. California additions require <Link href="/services/title-24-energy-compliance" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">Title 24</Link> energy compliance documentation, which is included in our California permit packages.</> },
     ],
     whyItMatters:
       "Many addition permits are delayed because the existing structure creates coordination challenges that a generic drawing template does not address. A permit set built specifically for the addition type and the existing structure's conditions demonstrates compliance more clearly and passes plan check faster than a standard template.",
@@ -786,7 +789,7 @@ export const services: readonly Service[] = [
     layout:   "conversion",
     tagline:  "Complete garage conversion packages for turning attached or detached garages into habitable rooms, ADUs, or accessory living spaces.",
     overview:
-      "Garage conversions are not treated like standard new construction. Converting an existing garage to habitable space means satisfying building code requirements that the original structure was never designed to meet: insulation, egress, HVAC, ceiling height, and electrical, all within fixed structural constraints. Our Garage Conversion Packages produce complete, code-compliant permit sets for attached and detached garage conversions, including full ADU conversions.",
+      <>Garage conversions are not treated like standard new construction. Converting an existing garage to habitable space means satisfying building code requirements that the original structure was never designed to meet: insulation, egress, HVAC, ceiling height, and electrical, all within fixed structural constraints. Our Garage Conversion Packages produce complete, <Link href="/services/code-compliance-review" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">code-compliant</Link> permit sets for attached and detached garage conversions, including full ADU conversions.</>,
     steps: [
       { title: "Thermal Envelope Upgrade",    description: "Garage walls and the roof/ceiling assembly must meet residential energy code requirements. We document the proposed insulation assembly (type, R-value, and installation method) and confirm compliance with the applicable energy code." },
       { title: "Egress Requirements",         description: "Habitable rooms require emergency egress openings of minimum dimensions. We design the egress window or door configuration into the conversion and confirm compliance with net clear opening dimensions and height-above-floor requirements." },
@@ -806,7 +809,7 @@ export const services: readonly Service[] = [
       { title: "Proposed Conversion Floor Plan",    description: "Complete floor plan of the converted space showing new walls, windows, doors, and room layout with all dimensions." },
       { title: "Exterior Elevations",               description: "Elevations showing all changes to the exterior: garage door infill, new window and door locations, finish materials." },
       { title: "Building Section",                  description: "Section through the converted space showing ceiling assembly, insulation locations, structural conditions, and floor-to-floor heights." },
-      { title: "Energy Compliance Documentation",   description: "Title 24 (California) or equivalent energy compliance forms demonstrating that the thermal envelope upgrade meets the applicable residential energy code." },
+      { title: "Energy Compliance Documentation",   description: <><Link href="/services/title-24-energy-compliance" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">Title 24</Link> (California) or equivalent energy compliance forms demonstrating that the thermal envelope upgrade meets the applicable residential energy code.</> },
       { title: "Site Plan Update",                  description: "Updated site plan reflecting the conversion and, if applicable, confirming ADU compliance with setback and coverage requirements." },
     ],
     audience: [
@@ -853,7 +856,7 @@ export const services: readonly Service[] = [
       { title: "RFI Response Drawings",      description: "Formatted drawing responses to contractor RFIs (plans, details, or sections) ready to attach to the RFI log and distribute to the field." },
       { title: "Submittal Drawing Support",  description: "Drawing documentation in support of contractor submittals: shop drawing coordination, equipment rough-in confirmation, and dimension verification." },
       { title: "Field Sketch Production",    description: "Fast-turnaround field sketches for conditions discovered during construction that require a drawing resolution before work can continue." },
-      { title: "Plan Revision Packages",     description: "Formally revised plan sheets addressing scope changes, inspector corrections, or field-verified conditions, ready for building department re-submission if required." },
+      { title: "Plan Revision Packages",     description: <>Formally revised plan sheets addressing scope changes, <Link href="/services/city-comments-response" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">inspector corrections</Link>, or field-verified conditions, ready for building department re-submission if required.</> },
       { title: "Change Order Documentation", description: "Drawing documentation for change orders (revised scope, added work, or deleted work) formatted for the project record and, if required, for permit revision." },
       { title: "Request Log and Tracking",   description: "All CA requests are logged by number, date, scope, and status. A running log is maintained and available for project record review at any time." },
     ],
@@ -920,7 +923,7 @@ export const services: readonly Service[] = [
     faqs: [
       { question: "Can you build a bid package from permit drawings only?",               answer: "Yes. Most bid packages start from the permit set. We add the scope narrative, specifications, material schedule, and bid-specific drawing markups to transform a code-review document into a contractor procurement document." },
       { question: "What if specifications haven't been selected yet?",                    answer: "We can include specification placeholders with owner-to-select designations and criteria, or we can recommend specifications based on project type. The bid package can note substitution criteria so contractors can bid with alternates." },
-      { question: "Do you cover MEP scope?",                                              answer: "Yes. MEP scope narratives, rough-in drawings, and equipment schedules are included. For projects with complex MEP scope, we coordinate with the MEP engineer of record to confirm bid documentation accuracy." },
+      { question: "Do you cover MEP scope?",                                              answer: <>Yes. <Link href="/services/mep-coordination" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">MEP</Link> scope narratives, rough-in drawings, and equipment schedules are included. For projects with complex MEP scope, we coordinate with the MEP engineer of record to confirm bid documentation accuracy.</> },
       { question: "Can the bid package be used for negotiated contracts as well?",        answer: "Yes. The bid package documentation (scope narrative, specifications, material schedule) serves equally well as the basis for a negotiated contract scope, owner-contractor agreement, or design-build subcontract." },
     ],
     whyItMatters:
@@ -977,7 +980,7 @@ export const services: readonly Service[] = [
     faqs: [
       { question: "Do you handle both building and health department submissions?",  answer: "Yes. We prepare documentation for both. Building department packages cover structural, site, and barrier compliance. Health department packages cover water quality, equipment, and circulation requirements for jurisdictions that review these separately." },
       { question: "Is barrier compliance always required?",                          answer: "Yes, in virtually all jurisdictions with residential pools. California Health and Safety Code Section 115922 requires a compliant barrier for all pools and spas. The specific requirements vary by construction date and pool type, which we verify at intake." },
-      { question: "Can you coordinate with the structural engineer for the shell?",  answer: "Yes. Our structural coordination service handles the integration of the engineer's shell drawings into the permit set. We manage the coordination so the submission is a single package." },
+      { question: "Can you coordinate with the structural engineer for the shell?",  answer: <>Yes. Our <Link href="/services/structural-coordination" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">structural coordination service</Link> handles the integration of the engineer&apos;s shell drawings into the permit set. We manage the coordination so the submission is a single package.</> },
     ],
     whyItMatters:
       "Pool and spa permit reviews often involve multiple departments reviewing the same project simultaneously. A package that satisfies building code but misses health department or barrier compliance requirements results in a hold at a different counter. We build the package to address all applicable reviews from a single coordinated submission.",
@@ -992,7 +995,7 @@ export const services: readonly Service[] = [
     layout:   "remodel",
     tagline:  "Permit-ready interior remodel packages for kitchen remodels, bathroom renovations, and full residential interior remodeling projects.",
     overview:
-      "Our interior remodel services provide the complete drawing documentation required for kitchen remodels, bathroom renovations, wall removal projects, and full residential interior remodels. We produce existing and proposed floor plans, finish and fixture schedules, electrical and lighting plans, and any structural or MEP coordination drawings required by the project scope. Every package is built to the specific documentation requirements of the applicable jurisdiction and the permit trigger thresholds of the remodel scope.",
+      <>Our interior remodel services provide the complete drawing documentation required for kitchen remodels, bathroom renovations, wall removal projects, and full residential interior remodels. We produce existing and proposed floor plans, finish and fixture schedules, electrical and lighting plans, and any structural or <Link href="/services/mep-coordination" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">MEP coordination</Link> drawings required by the project scope. Every package is built to the specific documentation requirements of the applicable jurisdiction and the permit trigger thresholds of the remodel scope.</>,
     useCases: [
       "Kitchen Remodel",
       "Primary Bathroom Remodel",
@@ -1031,7 +1034,7 @@ export const services: readonly Service[] = [
     ],
     faqs: [
       { question: "What remodel scopes actually require a permit?",                   answer: "Any work that involves structural changes, electrical panel modifications, plumbing rough-in changes, or HVAC alterations requires a permit in most jurisdictions. Cosmetic changes (paint, flooring, cabinet refacing) typically do not. We clarify the permit trigger at intake based on your specific scope and jurisdiction." },
-      { question: "Do you handle load-bearing wall removal?",                         answer: "Yes, with structural coordination. Load-bearing wall removal requires engineer input and a structural drawing showing the beam sizing and connection details. Our structural coordination service manages this integration." },
+      { question: "Do you handle load-bearing wall removal?",                         answer: <>Yes, with structural coordination. Load-bearing wall removal requires engineer input and a structural drawing showing the beam sizing and connection details. Our <Link href="/services/structural-coordination" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">structural coordination service</Link> manages this integration.</> },
       { question: "Can you document existing conditions remotely?",                   answer: "Yes, with your provided measurements, photographs, and any available city records. We document on the title sheet that existing conditions are based on owner-furnished measurements. Most jurisdictions accept this for interior remodel scopes." },
     ],
     whyItMatters:
@@ -1047,7 +1050,7 @@ export const services: readonly Service[] = [
     layout:   "compliance",
     tagline:  "Permit-ready documentation and compliance support for short-term rental permits, Airbnb permit services, and vacation rental approvals.",
     overview:
-      "Short-term rental permits follow a different approval process than standard residential permits. Converting a property to STR use triggers fire safety, egress, occupancy, and zoning compliance requirements that vary significantly by jurisdiction. We research the specific STR ordinance for your city, identify every permit and compliance requirement, and produce the documentation package required to achieve legal STR status.",
+      <>Short-term rental permits follow a different approval process than standard residential permits. Converting a property to STR use triggers fire safety, egress, occupancy, and <Link href="/services/zoning-code-research" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">zoning compliance</Link> requirements that vary significantly by jurisdiction. We research the specific STR ordinance for your city, identify every permit and compliance requirement, and produce the documentation package required to achieve legal STR status.</>,
     useCases: [
       "Single-Family Home STR Conversion",
       "ADU STR Registration",
@@ -1202,7 +1205,7 @@ export const services: readonly Service[] = [
     layout:   "historic",
     tagline:  "Documentation packages for historic preservation review boards, certificate of appropriateness applications, and historic district permit submissions.",
     overview:
-      "Historic district submissions require far more documentation than a standard permit package. A Certificate of Appropriateness application must demonstrate that proposed work is consistent with the Secretary of the Interior's Standards for Rehabilitation and the specific design guidelines of the applicable local historic district. We produce the full submission package: existing conditions documentation, materials analysis, proposed scope drawings, and the written compliance narrative that demonstrates consistency with the preservation standards.",
+      <>Historic district submissions require far more documentation than a standard permit package. A Certificate of Appropriateness application must demonstrate that proposed work is consistent with the Secretary of the Interior&apos;s Standards for Rehabilitation and the specific design guidelines of the applicable local historic district. We produce the full submission package: <Link href="/services/as-built-documentation" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">existing conditions documentation</Link>, materials analysis, proposed scope drawings, and the written compliance narrative that demonstrates consistency with the preservation standards.</>,
     processHighlights: [
       { label: "Standards",          value: "Secretary of Interior" },
       { label: "Package Type",       value: "COA Application" },
@@ -1212,7 +1215,7 @@ export const services: readonly Service[] = [
     steps: [
       { title: "Historic Resource Documentation", description: "We document the existing historic resource: architectural character, defining features, materials, period-significant elements, and any prior alterations. This existing conditions documentation is the foundation of the COA application." },
       { title: "Standards Compliance Analysis",   description: "The proposed scope is evaluated against the applicable Secretary of the Interior's Standards for Rehabilitation and the local historic district design guidelines. We identify any elements that require modification to comply and note any areas requiring clarification from the preservation board." },
-      { title: "Submission Package Preparation",  description: "We produce the complete COA submission package: existing and proposed drawings, materials specifications, photo documentation, and the written compliance narrative demonstrating consistency with the preservation standards." },
+      { title: "Submission Package Preparation",  description: <>We produce the complete COA submission package: existing and <Link href="/services/architectural-drafting" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">proposed drawings</Link>, materials specifications, photo documentation, and the written compliance narrative demonstrating consistency with the preservation standards.</> },
       { title: "Board Response Support",          description: "If the preservation board issues comments or requests additional information, we prepare the response drawings and supplemental documentation required to address each item." },
     ],
     includes: [
@@ -1247,7 +1250,7 @@ export const services: readonly Service[] = [
     layout:   "bim",
     tagline:  "Building Information Modeling coordination services for commercial, institutional, and multi-trade construction projects.",
     overview:
-      "BIM coordination is the process of integrating architectural, structural, and MEP systems into a single federated BIM model to detect and resolve spatial conflicts before construction begins. We provide BIM coordination services for commercial, institutional, and complex residential projects, producing coordinated models, clash detection reports, and coordination drawings that prevent field conflicts from becoming construction delays. All work is delivered in Revit and IFC formats.",
+      <>BIM coordination is the process of integrating architectural, structural, and <Link href="/services/mep-coordination" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">MEP</Link> systems into a single federated BIM model to detect and resolve spatial conflicts before construction begins. We provide BIM coordination services for commercial, institutional, and complex residential projects, producing coordinated models, clash detection reports, and coordination drawings that prevent field conflicts from becoming construction delays. All work is delivered in Revit and IFC formats.</>,
     disciplines: ["Architectural BIM", "Structural BIM", "MEP Coordination", "Clash Detection", "4D Scheduling Coordination", "As-Built BIM Documentation"],
     processHighlights: [
       { label: "Model Format",       value: "Revit / IFC" },
@@ -1354,7 +1357,7 @@ export const services: readonly Service[] = [
       { title: "Scope and Jurisdiction Classification",  description: "We classify the project scope (residential, commercial, mixed-use) and confirm the applicable building department, planning department, and any additional agencies with review authority over the project." },
       { title: "Permit Type Determination",             description: "We identify every permit type the project requires: building, electrical, mechanical, plumbing, grading, fire, environmental, and any discretionary approvals such as CUPs or variances." },
       { title: "Agency and Review Type Mapping",        description: "For each permit type, we document the reviewing agency, whether review is ministerial or discretionary, typical review timelines, and any known local triggers for additional review." },
-      { title: "Consultant Requirements",               description: "We identify every consultant the project will require (structural engineer, civil, Title 24 energy, soils, surveyor, MEP) and at which phase each must be engaged for the project to proceed without delays." },
+      { title: "Consultant Requirements",               description: <>We identify every consultant the project will require (structural engineer, civil, <Link href="/services/title-24-energy-compliance" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">Title 24</Link> energy, soils, surveyor, <Link href="/services/mep-coordination" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">MEP</Link>) and at which phase each must be engaged for the project to proceed without delays.</> },
       { title: "Written Pathway Report",                description: "All findings are compiled into a written report: a complete permit matrix, agency contact list, consultant sequence, and a realistic milestone timeline from submission to permit issuance." },
     ],
     includes: [
@@ -1446,7 +1449,7 @@ export const services: readonly Service[] = [
       { title: "Project Goals Review",          description: "We review your project description, site information, and intended outcomes to establish a clear picture of what the project is meant to accomplish." },
       { title: "Code and Jurisdiction Research", description: "We confirm the applicable zoning, code requirements, and permit types for the jurisdiction so the scope document reflects real regulatory constraints, not assumptions." },
       { title: "Drawing List Assembly",          description: "We compile the complete list of drawings required for permit submission, organized by discipline and sheet type, based on the project scope and jurisdiction requirements." },
-      { title: "Consultant Identification",      description: "We identify every consultant the project will require (structural, civil, MEP, Title 24, soils, surveyor) and specify the phase at which each must be engaged to avoid schedule delays." },
+      { title: "Consultant Identification",      description: <>We identify every consultant the project will require (structural, civil, <Link href="/services/mep-coordination" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">MEP</Link>, <Link href="/services/title-24-energy-compliance" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">Title 24</Link>, soils, surveyor) and specify the phase at which each must be engaged to avoid schedule delays.</> },
       { title: "Timeline and Budget Framework",  description: "We develop a preliminary milestone timeline from scope finalization through permit issuance and establish a realistic framework for design and permit fees." },
       { title: "Scope Document Delivery",        description: "All outputs are compiled into a single written scope document delivered to your team with a live walkthrough session included in the engagement." },
     ],
@@ -1714,7 +1717,7 @@ export const services: readonly Service[] = [
     layout:   "interior",
     tagline:  "Interior drawings built for permit approval.",
     overview:
-      "Our interior detail package services provide the room-level construction documents needed for kitchen remodels, bathroom renovations, stair replacements, tenant fit-outs, and custom millwork projects. We produce complete interior elevation sets, cabinet layout drawings, stair section details, shower waterproofing details, and millwork dimension schedules. Every sheet is drawn to the standard required by the applicable jurisdiction, so the package moves through plan check without corrections.",
+      <>Our interior detail package services provide the room-level <Link href="/services/permit-set-preparation" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">construction documents</Link> needed for kitchen remodels, bathroom renovations, stair replacements, tenant fit-outs, and custom millwork projects. We produce complete interior elevation sets, cabinet layout drawings, stair section details, shower waterproofing details, and millwork dimension schedules. Every sheet is drawn to the standard required by the applicable jurisdiction, so the package moves through plan check without corrections.</>,
     processHighlights: [
       { label: "Turnaround",    value: "5-7 Days"  },
       { label: "Jurisdictions", value: "All US"    },
@@ -1880,7 +1883,7 @@ export const services: readonly Service[] = [
       { question: "What if demolition is part of a larger renovation permit?", answer: "Demolition can be combined with a renovation or addition permit as a separate sheet within the overall package. We coordinate the demolition drawings with the full permit set so the plan checker reviews both scopes together." },
     ],
     whyItMatters:
-      "Skipping the permit process can create long-term problems for a property: stop-work orders that freeze the entire project, fines that run per day, certificate of occupancy withheld because unpermitted demolition was discovered during inspection, and title complications that surface at sale or refinancing. A demolition permit costs less than an afternoon of project downtime. The drawings that support it should not be an obstacle.",
+      <>Skipping the <Link href="/process" className="underline underline-offset-2 decoration-white/30 hover:decoration-secondary transition-colors duration-150">permit process</Link> can create long-term problems for a property: stop-work orders that freeze the entire project, fines that run per day, certificate of occupancy withheld because unpermitted demolition was discovered during inspection, and title complications that surface at sale or refinancing. A demolition permit costs less than an afternoon of project downtime. The drawings that support it should not be an obstacle.</>,
     relatedSlugs: ["architectural-drafting", "permit-set-preparation", "code-compliance-review"],
   },
 

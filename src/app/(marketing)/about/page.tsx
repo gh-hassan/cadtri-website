@@ -171,7 +171,8 @@ export default function AboutPage() {
               Drafting and permit support built for project teams.
             </h2>
             <p className="font-light leading-relaxed text-foreground sm:text-lg">
-              CADTRI is a professional architectural drafting company specializing
+              <Link href="/" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">CADTRI</Link>{" "}
+              is a professional architectural drafting company specializing
               in permit-ready construction drawings, permit coordination services,
               and complete construction documentation support for residential and
               commercial projects. From early project planning through final
@@ -181,11 +182,13 @@ export default function AboutPage() {
             </p>
             <p className="mt-5 font-light leading-relaxed text-muted sm:text-lg">
               Project teams rely on CADTRI as a single resource for architectural
-              drafting, permit set preparation, structural coordination services,
-              MEP coordination services, and BIM coordination services. Our focus
-              is straightforward: deliver accurate construction drawings that
-              support faster permit approvals and reduce costly revisions during
-              plan check.
+              drafting, permit set preparation, structural coordination services,{" "}
+              <Link href="/services/mep-coordination" className="underline underline-offset-2 decoration-muted/40 hover:text-secondary hover:decoration-secondary transition-colors duration-150">MEP coordination services</Link>
+              , and{" "}
+              <Link href="/services/bim-coordination" className="underline underline-offset-2 decoration-muted/40 hover:text-secondary hover:decoration-secondary transition-colors duration-150">BIM coordination services</Link>
+              . Our focus is straightforward: deliver accurate construction drawings
+              that support faster permit approvals and reduce costly revisions
+              during plan check.
             </p>
           </div>
 

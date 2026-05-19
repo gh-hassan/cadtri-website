@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
+import Link from "next/link";
 import { PageHeader } from "@/components/shared/page-header";
 import { Section } from "@/components/shared/section";
 import { CtaBand } from "@/components/shared/cta-band";
@@ -11,7 +13,7 @@ export const metadata: Metadata = {
 
 // ─── Page data ────────────────────────────────────────────────────────────────
 
-const steps = [
+const steps: { number: string; title: string; description: ReactNode; outcome: string }[] = [
   {
     number: "01",
     title: "Inquiry and Scope Review",
@@ -29,8 +31,18 @@ const steps = [
   {
     number: "03",
     title: "Production and Coordination",
-    description:
-      "Your permit set is developed using verified jurisdiction standards and a coordinated CAD drafting workflow. Architectural sheets are prepared, structural and MEP coordination is completed where required, and all supporting construction documents are internally reviewed before delivery. The result is a fully coordinated set prepared for permit approval, not a draft requiring additional work.",
+    description: (
+      <>
+        Your permit set is developed using verified jurisdiction standards and a coordinated CAD
+        drafting workflow. Architectural sheets are prepared,{" "}
+        <Link href="/services/structural-coordination" className="underline underline-offset-2 decoration-muted/40 hover:text-secondary hover:decoration-secondary transition-colors duration-150">structural</Link>
+        {" "}and{" "}
+        <Link href="/services/mep-coordination" className="underline underline-offset-2 decoration-muted/40 hover:text-secondary hover:decoration-secondary transition-colors duration-150">MEP</Link>
+        {" "}coordination is completed where required, and all supporting construction documents are
+        internally reviewed before delivery. The result is a fully coordinated set prepared for
+        permit approval, not a draft requiring additional work.
+      </>
+    ),
     outcome: "Complete, coordinated permit set delivered and ready for submission.",
   },
   {
@@ -40,9 +52,9 @@ const steps = [
       "The completed package is delivered in the required submission format for the applicable building department. We remain available throughout the review cycle to address comments, prepare correction responses, and support resubmissions when necessary. Our construction administration support continues until the permit is issued.",
     outcome: "Permit issued. Correction response support included throughout.",
   },
-] as const;
+];
 
-const preSubmissionChecks = [
+const preSubmissionChecks: { title: string; description: ReactNode }[] = [
   {
     title: "Jurisdiction Checklist Gaps",
     description:
@@ -65,8 +77,14 @@ const preSubmissionChecks = [
   },
   {
     title: "Accessibility Path of Travel",
-    description:
-      "Commercial tenant improvements often trigger ADA upgrade requirements. Accessibility analysis is reviewed as part of the complete construction documentation process before submission.",
+    description: (
+      <>
+        Commercial{" "}
+        <Link href="/services/tenant-improvement-packages" className="underline underline-offset-2 decoration-white/25 hover:text-secondary hover:decoration-secondary transition-colors duration-150">tenant improvements</Link>
+        {" "}often trigger ADA upgrade requirements. Accessibility analysis is reviewed as part of
+        the complete construction documentation process before submission.
+      </>
+    ),
   },
   {
     title: "Egress Travel Distance Errors",
@@ -75,17 +93,22 @@ const preSubmissionChecks = [
   },
   {
     title: "Energy Compliance Documentation",
-    description:
-      "Title 24 energy forms must align with the architectural drawings. Any inconsistencies between the CF1R documentation and the permit sheets are corrected before submission.",
+    description: (
+      <>
+        <Link href="/services/title-24-energy-compliance" className="underline underline-offset-2 decoration-white/25 hover:text-secondary hover:decoration-secondary transition-colors duration-150">Title 24</Link>
+        {" "}energy forms must align with the architectural drawings. Any inconsistencies between
+        the CF1R documentation and the permit sheets are corrected before submission.
+      </>
+    ),
   },
   {
     title: "Setback and Coverage Violations",
     description:
       "Site plans are checked against zoning requirements, setback limitations, and lot coverage restrictions before the permit package reaches the building department.",
   },
-] as const;
+];
 
-const prepItems = [
+const prepItems: { number: string; label: string; detail: ReactNode }[] = [
   {
     number: "01",
     label: "Site address and parcel number",
@@ -109,14 +132,21 @@ const prepItems = [
   {
     number: "05",
     label: "Engineering reports or structural calculations, if obtained",
-    detail: "Structural reports, soils studies, and third-party engineering documentation are integrated during the BIM coordination and consultant workflow.",
+    detail: (
+      <>
+        Structural reports, soils studies, and third-party engineering documentation are integrated
+        during the{" "}
+        <Link href="/services/bim-coordination" className="underline underline-offset-2 decoration-muted/40 hover:text-secondary hover:decoration-secondary transition-colors duration-150">BIM coordination</Link>
+        {" "}and consultant workflow.
+      </>
+    ),
   },
   {
     number: "06",
     label: "Preferred timeline and target permit submission date",
     detail: "This helps us confirm production scheduling, project delivery expectations, and the overall construction-ready project coordination timeline.",
   },
-] as const;
+];
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
@@ -151,11 +181,13 @@ export default function ProcessPage() {
           </div>
           <div className="flex items-end">
             <p className="font-light leading-relaxed text-muted">
-              Every CADTRI project follows the same streamlined construction
-              documentation workflow regardless of project size or complexity. The
-              system is built to identify issues early, simplify communication, and
-              deliver permit-ready drawing packages that minimize revisions and
-              support a smoother permit submission workflow.
+              Every{" "}
+              <Link href="/" className="underline underline-offset-2 decoration-muted/40 hover:text-secondary hover:decoration-secondary transition-colors duration-150">CADTRI</Link>
+              {" "}project follows the same streamlined construction documentation
+              workflow regardless of project size or complexity. The system is built
+              to identify issues early, simplify communication, and deliver
+              permit-ready drawing packages that minimize revisions and support a
+              smoother permit submission workflow.
             </p>
           </div>
         </div>

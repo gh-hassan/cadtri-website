@@ -6,9 +6,9 @@ import { CtaBand } from "@/components/shared/cta-band";
 import { PortfolioGate } from "./portfolio-gate";
 
 export const metadata: Metadata = {
-  title: "Portfolio",
+  title: "Project Portfolio",
   description:
-    "A cross-section of the residential, commercial, and mixed-use project types CADTRI delivers. Architectural drawing packages, permit sets, and documentation across California jurisdictions.",
+    "A selection of CADTRI's residential, commercial, and mixed-use projects — ADU packages, home additions, tenant improvements, and permit-ready architectural drawings.",
   robots: { index: false },
 };
 

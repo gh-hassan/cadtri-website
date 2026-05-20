@@ -6,9 +6,9 @@ import { CtaBand } from "@/components/shared/cta-band";
 import { services } from "@/content/services";
 
 export const metadata: Metadata = {
-  title: "Services",
+  title: "Architectural Drafting & Permit Services",
   description:
-    "CADTRI provides architectural drafting, permit set preparation, city comments response, structural coordination, code and compliance review, and renderings for residential and commercial projects.",
+    "42 specialized architectural drafting and permit services — ADU packages, permit set preparation, Title 24 compliance, structural coordination, tenant improvements, and more.",
 };
 
 export default function ServicesPage() {

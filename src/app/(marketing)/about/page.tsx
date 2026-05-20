@@ -6,9 +6,11 @@ import { Button } from "@/components/shared/button";
 import { team } from "@/content/team";
 
 export const metadata: Metadata = {
-  title: "About CADTRI | Architectural Drafting & Permit Services",
+  title: {
+    absolute: "About CADTRI | Architectural Drafting & Permit Services",
+  },
   description:
-    "Learn about CADTRI, a professional architectural drafting and permit coordination company specializing in permit-ready construction drawings and drafting services.",
+    "CADTRI is a professional architectural drafting and permit coordination company. We produce complete, permit-ready construction drawings for residential and commercial projects.",
 };
 
 // ─── Page data ────────────────────────────────────────────────────────────────

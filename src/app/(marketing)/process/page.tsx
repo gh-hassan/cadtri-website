@@ -6,9 +6,11 @@ import { Section } from "@/components/shared/section";
 import { CtaBand } from "@/components/shared/cta-band";
 
 export const metadata: Metadata = {
-  title: "Architectural Drafting Process | CADTRI",
+  title: {
+    absolute: "Our Process | CADTRI Architectural Drafting",
+  },
   description:
-    "Explore CADTRI's architectural drafting process from planning and BIM coordination to permit-ready construction documentation.",
+    "CADTRI's four-step permit drafting process: scope review, jurisdiction research, production, and submission support — designed to clear plan check on the first cycle.",
 };
 
 // ─── Page data ────────────────────────────────────────────────────────────────

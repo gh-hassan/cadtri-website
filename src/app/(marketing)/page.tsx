@@ -13,9 +13,10 @@ import { CtaBand } from "@/components/shared/cta-band";
 
 export const metadata: Metadata = {
   title: {
-    absolute: `${company.name} | ${company.tagline}`,
+    absolute: "CADTRI | Architectural Drafting & Permit Services",
   },
-  description: company.description,
+  description:
+    "CADTRI delivers permit-ready architectural drawings for residential and commercial projects across California. Professional drafting and permit coordination — built to clear plan check.",
 };
 
 export default function HomePage() {

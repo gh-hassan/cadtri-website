@@ -7,9 +7,9 @@ import { getAllPosts, formatDate } from "@/lib/posts";
 import { BreadcrumbJsonLd } from "@/lib/json-ld";
 
 export const metadata: Metadata = {
-  title: "Resources",
+  title: "Permit & Drafting Resource Guides",
   description:
-    "Practical guides on California and Texas permit requirements, documentation standards, plan check processes, and what to expect at every stage of a construction project.",
+    "Free guides on ADU permits in California, Title 24 compliance, plan check corrections, pre-application meetings, and what goes inside a permit set.",
 };
 
 export default function ResourcesPage() {

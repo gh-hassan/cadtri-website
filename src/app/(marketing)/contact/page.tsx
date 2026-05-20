@@ -5,9 +5,9 @@ import { ContactForm } from "./contact-form";
 import { company } from "@/content/company";
 
 export const metadata: Metadata = {
-  title: "Contact",
+  title: "Request a Proposal",
   description:
-    "Submit your project details to CADTRI. We review every inquiry and respond with a clear scope of deliverables, timeline, and pricing.",
+    "Submit your project details to CADTRI. We review every inquiry and respond with a clear scope of work, timeline, and fee estimate within one business day.",
 };
 
 // ─── What to include — for the left column ───────────────────────────────────

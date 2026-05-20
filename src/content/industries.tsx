@@ -108,7 +108,7 @@ export const industries: readonly Industry[] = [
       "accessory-structure-permits",
     ],
     metaDescription:
-      "Professional residential drafting services including permit-ready construction drawings, home addition plans, ADU permit packages, and residential construction documentation.",
+      "Permit-ready residential drafting services including home additions, ADU permit packages, garage conversions, and complete construction drawings across California.",
   },
   {
     slug: "commercial",
@@ -204,7 +204,7 @@ export const industries: readonly Industry[] = [
       "pre-application-meeting-prep",
     ],
     metaDescription:
-      "Professional commercial drafting services including architectural drawings, BIM coordination, and permit-ready construction documentation.",
+      "Commercial architectural drafting and permit coordination — tenant improvements, new construction, BIM coordination, and permit-ready construction documents across California.",
   },
   {
     slug: "hospitality",
@@ -282,7 +282,7 @@ export const industries: readonly Industry[] = [
       "renderings-visualization",
     ],
     metaDescription:
-      "Professional hospitality drafting services including hotel, restaurant, and resort construction drawings, BIM coordination, and visualization.",
+      "Architectural drafting for hotels, restaurants, and resorts — health department coordination, occupancy and life safety documentation, and permit-ready construction drawings.",
   },
   {
     slug: "mixed-use",
@@ -372,7 +372,7 @@ export const industries: readonly Industry[] = [
       "city-comments-response",
     ],
     metaDescription:
-      "Professional mixed-use drafting services including BIM coordination, construction drawings, and permit-ready documentation for integrated developments.",
+      "Mixed-use architectural drafting including occupancy separation, multi-phase permitting, entitlement support, and BIM coordination for integrated residential and commercial developments.",
   },
 ];
 

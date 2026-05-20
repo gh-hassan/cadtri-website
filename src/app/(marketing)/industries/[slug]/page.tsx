@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const industry = getIndustryBySlug(slug);
   if (!industry) return { title: "Industry Not Found" };
   return {
-    title: industry.title,
+    title: `${industry.title} Architectural Drafting Services`,
     description: industry.metaDescription,
   };
 }

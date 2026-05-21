@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import type { Metadata } from "next";
 
 // Cal.com username — set this to your Cal.com username and event slug.
 // Example: if your booking link is cal.com/cadtri/consultation, set:

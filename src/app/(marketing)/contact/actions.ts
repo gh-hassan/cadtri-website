@@ -21,22 +21,28 @@ const PROJECT_TYPES: Record<string, string> = {
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 async function verifyTurnstile(token: string): Promise<boolean> {
+  const secret = process.env.TURNSTILE_SECRET_KEY;
+  if (!secret) {
+    console.error("[contact] TURNSTILE_SECRET_KEY is not set");
+    return false;
+  }
   try {
     const res = await fetch(
       "https://challenges.cloudflare.com/turnstile/v0/siteverify",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          secret: process.env.TURNSTILE_SECRET_KEY,
-          response: token,
-        }),
+        body: JSON.stringify({ secret, response: token }),
         cache: "no-store",
       },
     );
-    const data = (await res.json()) as { success: boolean };
+    const data = (await res.json()) as { success: boolean; "error-codes"?: string[] };
+    if (!data.success) {
+      console.error("[contact] Turnstile failed:", data["error-codes"]);
+    }
     return data.success === true;
-  } catch {
+  } catch (err) {
+    console.error("[contact] Turnstile fetch error:", err);
     return false;
   }
 }
@@ -114,7 +120,8 @@ export async function submitContactForm(
 
     return { status: "success" };
   } catch (err) {
-    console.error("[contact] Resend error:", err);
+    const msg = err instanceof Error ? err.message : String(err);
+    console.error("[contact] Resend error:", msg);
     return {
       status: "error",
       message:

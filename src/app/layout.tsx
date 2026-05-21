@@ -28,6 +28,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${outfit.variable} ${unbounded.variable}`}>
+      <head>
+        {/*
+          Preconnect to third-party origins used on every page.
+          Opens TCP + TLS early so the browser doesn't wait when the
+          script/request fires. crossOrigin="anonymous" is required for
+          font origins; omit it for script-only origins.
+        */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.google-analytics.com" />
+        <link rel="preconnect" href="https://plausible.io" />
+        {/* DNS prefetch as a fallback for browsers that don't support preconnect */}
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://plausible.io" />
+      </head>
       <body>
         <a
           href="#main-content"
@@ -35,18 +49,22 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
+
+        {/*
+          lazyOnload: fires during browser idle time — zero render-blocking impact.
+          Both analytics scripts are non-critical and safe to delay until idle.
+          Redundant defer/async attributes removed — strategy prop handles loading.
+        */}
         <Script
-          defer
           data-domain="cadtri.com"
           src="https://plausible.io/js/script.js"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
         <Script
-          async
           src="https://www.googletagmanager.com/gtag/js?id=G-KW5845W0QX"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="gtag-init" strategy="afterInteractive">
+        <Script id="gtag-init" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -54,6 +72,7 @@ export default function RootLayout({
             gtag('config', 'G-KW5845W0QX');
           `}
         </Script>
+
         <LocalBusinessJsonLd />
         {children}
       </body>

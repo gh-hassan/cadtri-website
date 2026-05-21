@@ -157,7 +157,7 @@ export function SiteHeader() {
         />
 
         {/* Content layer — not clipped, dropdowns overflow freely */}
-        <div className="relative mx-auto grid h-[72px] max-w-container grid-cols-[auto_1fr_auto] items-center px-6">
+        <div className="relative mx-auto grid h-[72px] max-w-container grid-cols-[auto_1fr_auto] items-center px-6 lg:grid-cols-[1fr_auto_1fr]">
 
           {/* ── Col 1: Wordmark */}
           <div style={sideStyle(0)}>

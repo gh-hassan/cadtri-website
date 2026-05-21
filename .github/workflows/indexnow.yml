@@ -1,0 +1,31 @@
+name: IndexNow — Submit URLs after deploy
+
+on:
+  # Runs automatically after the main branch is pushed
+  push:
+    branches:
+      - main
+
+  # Allow manual trigger from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  submit:
+    name: Ping IndexNow
+    runs-on: ubuntu-latest
+    # Wait a bit for Vercel to finish building and deploying
+    steps:
+      - name: Wait for Vercel deployment (90s)
+        run: sleep 90
+
+      - name: Submit all URLs to IndexNow
+        run: |
+          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -X POST \
+            "https://cadtri.com/api/indexnow?secret=${{ secrets.INDEXNOW_SUBMIT_SECRET }}")
+          echo "IndexNow API response: $RESPONSE"
+          if [ "$RESPONSE" -ge 200 ] && [ "$RESPONSE" -lt 300 ]; then
+            echo "✅ URLs submitted successfully"
+          else
+            echo "⚠️ Unexpected response: $RESPONSE"
+            exit 1
+          fi

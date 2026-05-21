@@ -15,12 +15,13 @@ jobs:
     runs-on: ubuntu-latest
     # Wait a bit for Vercel to finish building and deploying
     steps:
-      - name: Wait for Vercel deployment (90s)
-        run: sleep 90
+      - name: Wait for Vercel deployment (120s)
+        run: sleep 120
 
       - name: Submit all URLs to IndexNow
         run: |
-          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -X POST \
+          # -L follows redirects (Vercel may issue a 307 during deployment transitions)
+          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -L -X POST \
             "https://cadtri.com/api/indexnow?secret=${{ secrets.INDEXNOW_SUBMIT_SECRET }}")
           echo "IndexNow API response: $RESPONSE"
           if [ "$RESPONSE" -ge 200 ] && [ "$RESPONSE" -lt 300 ]; then

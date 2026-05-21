@@ -9,5 +9,7 @@ export default function robots(): MetadataRoute.Robots {
       disallow: "/api/",
     },
     sitemap: `${company.website}/sitemap.xml`,
+    // LLM crawler hints — see /llms.txt and /llms-full.txt
+    host: company.website,
   };
 }

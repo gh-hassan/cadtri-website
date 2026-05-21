@@ -4,6 +4,48 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
+
+  async redirects() {
+    return [
+      // ── www → non-www canonical redirect ─────────────────────────────────
+      // Prevents Google from indexing www.cadtri.com and cadtri.com as duplicates.
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.cadtri.com" }],
+        destination: "https://cadtri.com/:path*",
+        permanent: true, // 301
+      },
+
+      // ── Old resource article URLs → new SEO-optimised slugs ───────────────
+      // These were renamed in May 2026. 301s preserve any existing link equity
+      // and prevent Google from indexing the old URLs as 404s.
+      {
+        source: "/resources/adu-permit-california",
+        destination: "/resources/how-to-get-adu-permit-in-california",
+        permanent: true,
+      },
+      {
+        source: "/resources/garage-conversion-adu-guide",
+        destination: "/resources/garage-conversion-adu-california",
+        permanent: true,
+      },
+      {
+        source: "/resources/plan-check-corrections-guide",
+        destination: "/resources/how-to-respond-to-plan-check-corrections",
+        permanent: true,
+      },
+      {
+        source: "/resources/pre-application-meeting-guide",
+        destination: "/resources/pre-application-meeting-construction",
+        permanent: true,
+      },
+      {
+        source: "/resources/title-24-energy-compliance-guide",
+        destination: "/resources/title-24-energy-compliance-california",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

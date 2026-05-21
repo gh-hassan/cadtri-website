@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     absolute: "CADTRI | Architectural Drafting & Permit Services",
   },
   description:
-    "CADTRI delivers permit-ready architectural drawings for residential and commercial projects across California. Professional drafting and permit coordination — built to clear plan check.",
+    "Permit-ready architectural drawings for California residential & commercial projects. Expert drafting and permit coordination that clears plan check.",
 };
 
 export default function HomePage() {

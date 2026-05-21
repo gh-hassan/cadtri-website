@@ -6,7 +6,7 @@ export const company = {
   legalName: "CADTRI Drafting & Permit Services",
   tagline: "Precision Drafting. Seamless Permits.",
   description:
-    "CADTRI delivers permit-ready architectural drawings for residential and commercial projects across California. Professional drafting and permit coordination — built to clear plan check.",
+    "Permit-ready architectural drawings for California residential & commercial projects. Expert drafting and permit coordination that clears plan check.",
   email: "info@cadtri.com",
   phone: "(941) 300-1033",
   website: "https://www.cadtri.com",

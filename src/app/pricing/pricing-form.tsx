@@ -213,11 +213,11 @@ export function PricingForm() {
   // ── Success screen ────────────────────────────────────────────────────────
   if (done) {
     return (
-      <div className="flex min-h-[70vh] flex-col items-center justify-center px-6 text-center">
-        <CheckCircle size={40} strokeWidth={1.5} className="mb-6 text-secondary" />
+      <div className="flex flex-1 flex-col items-center justify-center px-8 py-20 text-center">
+        <CheckCircle size={44} strokeWidth={1.5} className="mb-8 text-secondary" />
         <h2
-          className="mb-4 font-bold text-white"
-          style={{ fontSize: "clamp(1.75rem, 4vw, 2.5rem)", letterSpacing: "-0.03em" }}
+          className="mb-5 font-bold text-white"
+          style={{ fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.03em" }}
         >
           Request received.
         </h2>
@@ -225,7 +225,7 @@ export function PricingForm() {
           We will review your project details and send a tailored estimate
           within one business day.
         </p>
-        <p className="mt-6 text-xs text-white/30">
+        <p className="mt-8 text-xs text-white/30">
           Questions? Email{" "}
           <a href="mailto:info@cadtri.com" className="text-secondary hover:underline">
             info@cadtri.com
@@ -236,411 +236,446 @@ export function PricingForm() {
   }
 
   // ── Layout wrapper ────────────────────────────────────────────────────────
-  return (
-    <div className="mx-auto w-full max-w-2xl px-6 pb-20 pt-8">
+  // Steps 6–8 use a wide centered layout; steps 1–5 use a two-column split
+  const isWideStep = step >= 6;
 
-      {/* Progress bar */}
-      <div className="mb-8 h-[2px] w-full bg-white/[0.08] rounded-full overflow-hidden">
+  // Step meta used in left panel
+  const STEP_META: Record<number, { question: string; hint?: string }> = {
+    1: { question: "Which best describes you?" },
+    2: { question: "What are you working on?" },
+    3: { question: "Where are you in the process?" },
+    4: { question: "How large is the project?" },
+    5: { question: "What is your timeline?" },
+  };
+
+  const meta = STEP_META[step];
+
+  return (
+    <div className="flex flex-1 flex-col">
+      {/* Progress bar — flush to top */}
+      <div className="h-[3px] w-full bg-white/[0.08]">
         <div
-          className="h-full bg-secondary transition-all duration-500 ease-out rounded-full"
+          className="h-full bg-secondary transition-all duration-500 ease-out"
           style={{ width: `${progress}%` }}
         />
       </div>
 
-      {/* Nav row */}
-      <div className="mb-10 flex items-center justify-between">
-        {step > 1 ? (
-          <button
-            type="button"
-            onClick={() => setStep((s) => s - 1)}
-            className="flex items-center gap-2 text-xs font-medium uppercase tracking-widest text-white/30 transition-colors hover:text-white/70"
-          >
-            <ArrowLeft size={12} strokeWidth={2} />
-            Back
-          </button>
-        ) : <span />}
-        <span className="text-[11px] tabular-nums tracking-widest text-white/25">
-          {step} of {TOTAL_STEPS}
-        </span>
-      </div>
+      {!isWideStep ? (
+        /* ── Steps 1–5: Two-column split on lg+ ── */
+        <div className="flex flex-1 flex-col lg:flex-row lg:items-stretch">
 
-      {/* ── Step 1: Client type ──────────────────────────────────────────── */}
-      {step === 1 && (
-        <div className="animate-in">
-          <StepLabel n={1} />
-          <Question>Which best describes you?</Question>
-          <div className="grid gap-2 sm:grid-cols-2">
-            {CLIENT_TYPES.map((opt) => (
-              <SelectCard
-                key={opt.label}
-                label={opt.label}
-                sub={opt.sub}
-                selected={data.clientType === opt.label}
-                onClick={() => selectSingle("clientType", opt.label)}
-              />
-            ))}
-            <OtherCard
-              stepKey="clientType"
-              active={otherActive === "clientType"}
-              value={otherText["clientType"] ?? ""}
-              onChange={(v) => setOtherText((p) => ({ ...p, clientType: v }))}
-              onActivate={() => selectOther("clientType")}
-              onConfirm={() => confirmOther("clientType", "clientType")}
-            />
+          {/* Left panel — question + nav */}
+          <div className="relative flex flex-col justify-center border-b border-white/[0.06] px-8 py-12 lg:w-[38%] lg:border-b-0 lg:border-r lg:px-14 lg:py-20">
+            <p className="mb-5 text-[11px] font-medium uppercase tracking-widest text-secondary">
+              Step {step} of {TOTAL_STEPS}
+            </p>
+            <h2
+              className="font-bold text-white"
+              style={{
+                fontSize: "clamp(1.75rem, 2.8vw, 3rem)",
+                letterSpacing: "-0.03em",
+                lineHeight: 1.06,
+              }}
+            >
+              {meta?.question}
+            </h2>
+            {step > 1 && (
+              <button
+                type="button"
+                onClick={() => setStep((s) => s - 1)}
+                className="mt-10 flex items-center gap-2 text-xs font-medium uppercase tracking-widest text-white/30 transition-colors hover:text-white/70 lg:absolute lg:bottom-14 lg:left-14 lg:mt-0"
+              >
+                <ArrowLeft size={12} strokeWidth={2} />
+                Back
+              </button>
+            )}
+          </div>
+
+          {/* Right panel — options */}
+          <div className="flex flex-1 flex-col justify-center overflow-y-auto px-8 py-12 lg:px-14 lg:py-20">
+
+            {/* ── Step 1 ── */}
+            {step === 1 && (
+              <div className="animate-in grid gap-3 sm:grid-cols-2">
+                {CLIENT_TYPES.map((opt) => (
+                  <SelectCard
+                    key={opt.label}
+                    label={opt.label}
+                    sub={opt.sub}
+                    selected={data.clientType === opt.label}
+                    onClick={() => selectSingle("clientType", opt.label)}
+                  />
+                ))}
+                <OtherCard
+                  stepKey="clientType"
+                  active={otherActive === "clientType"}
+                  value={otherText["clientType"] ?? ""}
+                  onChange={(v) => setOtherText((p) => ({ ...p, clientType: v }))}
+                  onActivate={() => selectOther("clientType")}
+                  onConfirm={() => confirmOther("clientType", "clientType")}
+                />
+              </div>
+            )}
+
+            {/* ── Step 2 ── */}
+            {step === 2 && (
+              <div className="animate-in grid gap-3 sm:grid-cols-2">
+                {(PROJECT_TYPES[data.clientType] ?? PROJECT_TYPES["General Contractor"]).map((label) => (
+                  <SelectCard
+                    key={label}
+                    label={label}
+                    selected={data.projectType === label}
+                    onClick={() => selectSingle("projectType", label)}
+                  />
+                ))}
+                <OtherCard
+                  stepKey="projectType"
+                  active={otherActive === "projectType"}
+                  value={otherText["projectType"] ?? ""}
+                  onChange={(v) => setOtherText((p) => ({ ...p, projectType: v }))}
+                  onActivate={() => selectOther("projectType")}
+                  onConfirm={() => confirmOther("projectType", "projectType")}
+                />
+              </div>
+            )}
+
+            {/* ── Step 3 ── */}
+            {step === 3 && (
+              <div className="animate-in grid gap-3 sm:grid-cols-2">
+                {STAGE_OPTIONS.map((label) => (
+                  <SelectCard
+                    key={label}
+                    label={label}
+                    selected={data.projectStage === label}
+                    onClick={() => selectSingle("projectStage", label)}
+                  />
+                ))}
+                <OtherCard
+                  stepKey="projectStage"
+                  active={otherActive === "projectStage"}
+                  value={otherText["projectStage"] ?? ""}
+                  onChange={(v) => setOtherText((p) => ({ ...p, projectStage: v }))}
+                  onActivate={() => selectOther("projectStage")}
+                  onConfirm={() => confirmOther("projectStage", "projectStage")}
+                />
+              </div>
+            )}
+
+            {/* ── Step 4 ── */}
+            {step === 4 && (
+              <div className="animate-in grid gap-3 sm:grid-cols-2">
+                {SIZE_OPTIONS.map((label) => (
+                  <SelectCard
+                    key={label}
+                    label={label}
+                    selected={data.projectSize === label}
+                    onClick={() => selectSingle("projectSize", label)}
+                  />
+                ))}
+                <OtherCard
+                  stepKey="projectSize"
+                  active={otherActive === "projectSize"}
+                  value={otherText["projectSize"] ?? ""}
+                  onChange={(v) => setOtherText((p) => ({ ...p, projectSize: v }))}
+                  onActivate={() => selectOther("projectSize")}
+                  onConfirm={() => confirmOther("projectSize", "projectSize")}
+                />
+              </div>
+            )}
+
+            {/* ── Step 5 ── */}
+            {step === 5 && (
+              <div className="animate-in grid gap-3 sm:grid-cols-2">
+                {TIMELINE_OPTIONS.map((label) => (
+                  <SelectCard
+                    key={label}
+                    label={label}
+                    selected={data.timeline === label}
+                    onClick={() => selectSingle("timeline", label)}
+                  />
+                ))}
+                <OtherCard
+                  stepKey="timeline"
+                  active={otherActive === "timeline"}
+                  value={otherText["timeline"] ?? ""}
+                  onChange={(v) => setOtherText((p) => ({ ...p, timeline: v }))}
+                  onActivate={() => selectOther("timeline")}
+                  onConfirm={() => confirmOther("timeline", "timeline")}
+                />
+              </div>
+            )}
+
           </div>
         </div>
-      )}
 
-      {/* ── Step 2: Project type ─────────────────────────────────────────── */}
-      {step === 2 && (
-        <div className="animate-in">
-          <StepLabel n={2} />
-          <Question>What are you working on?</Question>
-          <div className="grid gap-2 sm:grid-cols-2">
-            {(PROJECT_TYPES[data.clientType] ?? PROJECT_TYPES["General Contractor"]).map((label) => (
-              <SelectCard
-                key={label}
-                label={label}
-                selected={data.projectType === label}
-                onClick={() => selectSingle("projectType", label)}
-              />
-            ))}
-            <OtherCard
-              stepKey="projectType"
-              active={otherActive === "projectType"}
-              value={otherText["projectType"] ?? ""}
-              onChange={(v) => setOtherText((p) => ({ ...p, projectType: v }))}
-              onActivate={() => selectOther("projectType")}
-              onConfirm={() => confirmOther("projectType", "projectType")}
-            />
-          </div>
-        </div>
-      )}
+      ) : (
+        /* ── Steps 6–8: Wide centered layout ── */
+        <div className="flex flex-1 flex-col items-center justify-center px-8 py-12 sm:px-12">
+          <div className="w-full max-w-3xl">
 
-      {/* ── Step 3: Stage ────────────────────────────────────────────────── */}
-      {step === 3 && (
-        <div className="animate-in">
-          <StepLabel n={3} />
-          <Question>Where are you in the process?</Question>
-          <div className="grid gap-2 sm:grid-cols-2">
-            {STAGE_OPTIONS.map((label) => (
-              <SelectCard
-                key={label}
-                label={label}
-                selected={data.projectStage === label}
-                onClick={() => selectSingle("projectStage", label)}
-              />
-            ))}
-            <OtherCard
-              stepKey="projectStage"
-              active={otherActive === "projectStage"}
-              value={otherText["projectStage"] ?? ""}
-              onChange={(v) => setOtherText((p) => ({ ...p, projectStage: v }))}
-              onActivate={() => selectOther("projectStage")}
-              onConfirm={() => confirmOther("projectStage", "projectStage")}
-            />
-          </div>
-        </div>
-      )}
+            {/* Nav row */}
+            <div className="mb-10 flex items-center justify-between">
+              <button
+                type="button"
+                onClick={() => setStep((s) => s - 1)}
+                className="flex items-center gap-2 text-xs font-medium uppercase tracking-widest text-white/30 transition-colors hover:text-white/70"
+              >
+                <ArrowLeft size={12} strokeWidth={2} />
+                Back
+              </button>
+              <span className="text-[11px] tabular-nums tracking-widest text-white/25">
+                {step} / {TOTAL_STEPS}
+              </span>
+            </div>
 
-      {/* ── Step 4: Size ─────────────────────────────────────────────────── */}
-      {step === 4 && (
-        <div className="animate-in">
-          <StepLabel n={4} />
-          <Question>How large is the project?</Question>
-          <div className="grid gap-2 sm:grid-cols-2">
-            {SIZE_OPTIONS.map((label) => (
-              <SelectCard
-                key={label}
-                label={label}
-                selected={data.projectSize === label}
-                onClick={() => selectSingle("projectSize", label)}
-              />
-            ))}
-            <OtherCard
-              stepKey="projectSize"
-              active={otherActive === "projectSize"}
-              value={otherText["projectSize"] ?? ""}
-              onChange={(v) => setOtherText((p) => ({ ...p, projectSize: v }))}
-              onActivate={() => selectOther("projectSize")}
-              onConfirm={() => confirmOther("projectSize", "projectSize")}
-            />
-          </div>
-        </div>
-      )}
-
-      {/* ── Step 5: Timeline ─────────────────────────────────────────────── */}
-      {step === 5 && (
-        <div className="animate-in">
-          <StepLabel n={5} />
-          <Question>What is your timeline?</Question>
-          <div className="grid gap-2 sm:grid-cols-2">
-            {TIMELINE_OPTIONS.map((label) => (
-              <SelectCard
-                key={label}
-                label={label}
-                selected={data.timeline === label}
-                onClick={() => selectSingle("timeline", label)}
-              />
-            ))}
-            <OtherCard
-              stepKey="timeline"
-              active={otherActive === "timeline"}
-              value={otherText["timeline"] ?? ""}
-              onChange={(v) => setOtherText((p) => ({ ...p, timeline: v }))}
-              onActivate={() => selectOther("timeline")}
-              onConfirm={() => confirmOther("timeline", "timeline")}
-            />
-          </div>
-        </div>
-      )}
-
-      {/* ── Step 6: Services — pills ─────────────────────────────────────── */}
-      {step === 6 && (
-        <div className="animate-in">
-          <StepLabel n={6} />
-          <Question>Which services do you need?</Question>
-          <p className="mb-6 text-sm font-light text-white/40">
-            We pre-selected the most relevant ones based on your project.
-            Add or remove as needed.
-          </p>
-          <div className="flex flex-wrap gap-2">
-            {ALL_SERVICES.map((label) => {
-              const selected = data.services.includes(label);
-              const suggested = suggestedServices.includes(label);
-              return (
+            {/* ── Step 6: Services — pills ── */}
+            {step === 6 && (
+              <div className="animate-in">
+                <StepLabel n={6} />
+                <Question>Which services do you need?</Question>
+                <p className="mb-8 text-sm font-light text-white/40">
+                  We pre-selected the most relevant ones. Add or remove as needed.
+                </p>
+                <div className="flex flex-wrap gap-2.5">
+                  {ALL_SERVICES.map((label) => {
+                    const selected = data.services.includes(label);
+                    const suggested = suggestedServices.includes(label);
+                    return (
+                      <button
+                        key={label}
+                        type="button"
+                        onClick={() => toggleService(label)}
+                        className={cn(
+                          "inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-medium transition-all duration-200",
+                          selected
+                            ? "border-secondary bg-secondary/15 text-secondary"
+                            : suggested
+                            ? "border-white/30 bg-white/[0.07] text-white/70 hover:border-secondary/60 hover:text-white"
+                            : "border-white/15 bg-transparent text-white/40 hover:border-white/30 hover:text-white/70",
+                        )}
+                      >
+                        {selected && <Check size={11} strokeWidth={2.5} />}
+                        {label}
+                      </button>
+                    );
+                  })}
+                </div>
                 <button
-                  key={label}
                   type="button"
-                  onClick={() => toggleService(label)}
+                  disabled={data.services.length === 0}
+                  onClick={() => advance(7)}
                   className={cn(
-                    "inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition-all duration-200",
-                    selected
-                      ? "border-secondary bg-secondary/15 text-secondary"
-                      : suggested
-                      ? "border-white/30 bg-white/[0.07] text-white/70 hover:border-secondary/60 hover:text-white"
-                      : "border-white/15 bg-transparent text-white/40 hover:border-white/30 hover:text-white/70",
+                    "mt-10 px-12 py-4 text-sm font-semibold uppercase tracking-widest transition-all duration-200",
+                    data.services.length > 0
+                      ? "bg-secondary text-white hover:bg-secondary/90"
+                      : "bg-white/[0.06] text-white/20 cursor-not-allowed",
                   )}
                 >
-                  {selected && <Check size={11} strokeWidth={2.5} />}
-                  {label}
+                  Continue
                 </button>
-              );
-            })}
-          </div>
-          <button
-            type="button"
-            disabled={data.services.length === 0}
-            onClick={() => advance(7)}
-            className={cn(
-              "mt-8 px-10 py-3.5 text-sm font-semibold uppercase tracking-widest transition-all duration-200",
-              data.services.length > 0
-                ? "bg-secondary text-white hover:bg-secondary/90"
-                : "bg-white/[0.06] text-white/20 cursor-not-allowed",
-            )}
-          >
-            Continue
-          </button>
-        </div>
-      )}
-
-      {/* ── Step 7: Location ─────────────────────────────────────────────── */}
-      {step === 7 && (
-        <div className="animate-in">
-          <StepLabel n={7} />
-          <Question>Where is the project located?</Question>
-          <p className="mb-8 text-sm font-light text-white/40">
-            Location affects permit requirements and project complexity.
-          </p>
-          <div className="grid gap-4 sm:grid-cols-[1fr_160px]">
-            <div className="flex flex-col gap-2">
-              <label className="text-xs font-semibold uppercase tracking-widest text-white/55">
-                City <span className="text-secondary">*</span>
-              </label>
-              <input
-                type="text"
-                value={data.city}
-                onChange={(e) => setData((p) => ({ ...p, city: e.target.value }))}
-                placeholder="e.g. Miami"
-                className={inputClass}
-              />
-            </div>
-            <div className="flex flex-col gap-2">
-              <label className="text-xs font-semibold uppercase tracking-widest text-white/55">
-                State <span className="text-secondary">*</span>
-              </label>
-              <input
-                type="text"
-                value={data.state}
-                onChange={(e) => setData((p) => ({ ...p, state: e.target.value }))}
-                placeholder="e.g. Florida"
-                className={inputClass}
-              />
-            </div>
-          </div>
-          <button
-            type="button"
-            disabled={data.city.trim().length < 2 || data.state.trim().length < 2}
-            onClick={() => advance(8)}
-            className={cn(
-              "mt-8 px-10 py-3.5 text-sm font-semibold uppercase tracking-widest transition-all duration-200",
-              data.city.trim().length >= 2 && data.state.trim().length >= 2
-                ? "bg-secondary text-white hover:bg-secondary/90"
-                : "bg-white/[0.06] text-white/20 cursor-not-allowed",
-            )}
-          >
-            Continue
-          </button>
-        </div>
-      )}
-
-      {/* ── Step 8: Contact + optional file upload ──────────────────────── */}
-      {step === 8 && (
-        <div className="animate-in">
-          <StepLabel n={8} label="Last step" />
-          <Question>Where should we send your estimate?</Question>
-          <p className="mb-8 text-sm font-light text-white/40">
-            We review every request manually and respond within one business day.
-          </p>
-
-          <div className="flex flex-col gap-5">
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div className="flex flex-col gap-2">
-                <label className="text-xs font-semibold uppercase tracking-widest text-white/55">
-                  Full Name <span className="text-secondary">*</span>
-                </label>
-                <input
-                  type="text"
-                  value={data.name}
-                  onChange={(e) => setData((p) => ({ ...p, name: e.target.value }))}
-                  placeholder="Your name"
-                  className={inputClass}
-                />
               </div>
-              <div className="flex flex-col gap-2">
-                <label className="text-xs font-semibold uppercase tracking-widest text-white/55">
-                  Email Address <span className="text-secondary">*</span>
-                </label>
-                <input
-                  type="email"
-                  value={data.email}
-                  onChange={(e) => setData((p) => ({ ...p, email: e.target.value }))}
-                  placeholder="you@company.com"
-                  className={inputClass}
-                />
-              </div>
-            </div>
+            )}
 
-            <div className="flex flex-col gap-2">
-              <label className="text-xs font-semibold uppercase tracking-widest text-white/55">
-                Phone{" "}
-                <span className="text-white/30 font-light normal-case tracking-normal">optional</span>
-              </label>
-              <input
-                type="tel"
-                value={data.phone}
-                onChange={(e) => setData((p) => ({ ...p, phone: e.target.value }))}
-                placeholder="(555) 000-0000"
-                className={inputClass}
-              />
-            </div>
-
-            <div className="flex flex-col gap-2">
-              <label className="text-xs font-semibold uppercase tracking-widest text-white/55">
-                Anything else we should know?{" "}
-                <span className="text-white/30 font-light normal-case tracking-normal">optional</span>
-              </label>
-              <textarea
-                value={data.notes}
-                onChange={(e) => setData((p) => ({ ...p, notes: e.target.value }))}
-                rows={3}
-                placeholder="Any details that would help us give a more accurate estimate"
-                className={cn(inputClass, "resize-none")}
-              />
-            </div>
-
-            {/* File upload — prominent when they have drawings */}
-            <div className="flex flex-col gap-2">
-              <label className="text-xs font-semibold uppercase tracking-widest text-white/55">
-                {hasExistingDrawings ? "Upload your drawings" : "Attach a reference file"}{" "}
-                <span className="text-white/30 font-light normal-case tracking-normal">
-                  optional, max 10 MB
-                </span>
-              </label>
-
-              {file ? (
-                <div className="flex items-center justify-between border border-white/20 bg-white/[0.06] px-4 py-3">
-                  <div className="flex items-center gap-3 min-w-0">
-                    <Paperclip size={13} strokeWidth={1.5} className="shrink-0 text-secondary" />
-                    <span className="truncate text-sm font-light text-white/70">{file.name}</span>
-                    <span className="shrink-0 text-xs text-white/30">
-                      {(file.size / 1024 / 1024).toFixed(1)} MB
-                    </span>
+            {/* ── Step 7: Location ── */}
+            {step === 7 && (
+              <div className="animate-in">
+                <StepLabel n={7} />
+                <Question>Where is the project located?</Question>
+                <p className="mb-8 text-sm font-light text-white/40">
+                  Location affects permit requirements and project complexity.
+                </p>
+                <div className="grid gap-5 sm:grid-cols-[1fr_200px]">
+                  <div className="flex flex-col gap-2">
+                    <label className="text-xs font-semibold uppercase tracking-widest text-white/55">
+                      City <span className="text-secondary">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      value={data.city}
+                      onChange={(e) => setData((p) => ({ ...p, city: e.target.value }))}
+                      placeholder="e.g. Miami"
+                      className={inputClass}
+                    />
                   </div>
-                  <button
-                    type="button"
-                    onClick={() => setFile(null)}
-                    className="ml-3 shrink-0 text-white/30 hover:text-white/70 transition-colors"
-                    aria-label="Remove file"
-                  >
-                    <X size={14} strokeWidth={2} />
-                  </button>
+                  <div className="flex flex-col gap-2">
+                    <label className="text-xs font-semibold uppercase tracking-widest text-white/55">
+                      State <span className="text-secondary">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      value={data.state}
+                      onChange={(e) => setData((p) => ({ ...p, state: e.target.value }))}
+                      placeholder="e.g. Florida"
+                      className={inputClass}
+                    />
+                  </div>
                 </div>
-              ) : (
                 <button
                   type="button"
-                  onClick={() => fileRef.current?.click()}
-                  className="flex items-center gap-3 border border-dashed border-white/20 bg-white/[0.03] px-4 py-4 text-sm font-light text-white/40 transition-all hover:border-white/35 hover:bg-white/[0.06] hover:text-white/60"
+                  disabled={data.city.trim().length < 2 || data.state.trim().length < 2}
+                  onClick={() => advance(8)}
+                  className={cn(
+                    "mt-10 px-12 py-4 text-sm font-semibold uppercase tracking-widest transition-all duration-200",
+                    data.city.trim().length >= 2 && data.state.trim().length >= 2
+                      ? "bg-secondary text-white hover:bg-secondary/90"
+                      : "bg-white/[0.06] text-white/20 cursor-not-allowed",
+                  )}
                 >
-                  <Paperclip size={14} strokeWidth={1.5} className="shrink-0" />
-                  Click to attach drawings, sketches, or reference files
+                  Continue
                 </button>
-              )}
-
-              <input
-                ref={fileRef}
-                type="file"
-                accept=".pdf,.dwg,.dxf,.png,.jpg,.jpeg,.doc,.docx"
-                className="hidden"
-                onChange={(e) => {
-                  const f = e.target.files?.[0] ?? null;
-                  if (f && f.size > 10 * 1024 * 1024) {
-                    setSubmitError("File must be under 10 MB.");
-                    return;
-                  }
-                  setFile(f);
-                  setSubmitError("");
-                }}
-              />
-            </div>
-
-            {submitError && (
-              <p className="border-l-2 border-secondary pl-4 text-sm font-light text-white/70">
-                {submitError}
-              </p>
+              </div>
             )}
 
-            <button
-              type="button"
-              disabled={!data.name.trim() || !data.email.trim() || submitting}
-              onClick={handleSubmit}
-              className={cn(
-                "py-4 text-sm font-semibold uppercase tracking-widest transition-all duration-200",
-                data.name.trim() && data.email.trim() && !submitting
-                  ? "bg-secondary text-white hover:bg-secondary/90"
-                  : "bg-white/[0.06] text-white/20 cursor-not-allowed",
-              )}
-            >
-              {submitting ? "Sending your request..." : "Send My Request"}
-            </button>
+            {/* ── Step 8: Contact + file upload ── */}
+            {step === 8 && (
+              <div className="animate-in">
+                <StepLabel n={8} label="Last step" />
+                <Question>Where should we send your estimate?</Question>
+                <p className="mb-8 text-sm font-light text-white/40">
+                  We review every request manually and respond within one business day.
+                </p>
 
-            <p className="text-center text-xs font-light text-white/25">
-              No spam. We only use this to send your pricing estimate.
-            </p>
+                <div className="flex flex-col gap-5">
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <div className="flex flex-col gap-2">
+                      <label className="text-xs font-semibold uppercase tracking-widest text-white/55">
+                        Full Name <span className="text-secondary">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        value={data.name}
+                        onChange={(e) => setData((p) => ({ ...p, name: e.target.value }))}
+                        placeholder="Your name"
+                        className={inputClass}
+                      />
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <label className="text-xs font-semibold uppercase tracking-widest text-white/55">
+                        Email Address <span className="text-secondary">*</span>
+                      </label>
+                      <input
+                        type="email"
+                        value={data.email}
+                        onChange={(e) => setData((p) => ({ ...p, email: e.target.value }))}
+                        placeholder="you@company.com"
+                        className={inputClass}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col gap-2">
+                    <label className="text-xs font-semibold uppercase tracking-widest text-white/55">
+                      Phone{" "}
+                      <span className="text-white/30 font-light normal-case tracking-normal">optional</span>
+                    </label>
+                    <input
+                      type="tel"
+                      value={data.phone}
+                      onChange={(e) => setData((p) => ({ ...p, phone: e.target.value }))}
+                      placeholder="(555) 000-0000"
+                      className={inputClass}
+                    />
+                  </div>
+
+                  <div className="flex flex-col gap-2">
+                    <label className="text-xs font-semibold uppercase tracking-widest text-white/55">
+                      Anything else we should know?{" "}
+                      <span className="text-white/30 font-light normal-case tracking-normal">optional</span>
+                    </label>
+                    <textarea
+                      value={data.notes}
+                      onChange={(e) => setData((p) => ({ ...p, notes: e.target.value }))}
+                      rows={3}
+                      placeholder="Any details that would help us give a more accurate estimate"
+                      className={cn(inputClass, "resize-none")}
+                    />
+                  </div>
+
+                  {/* File upload */}
+                  <div className="flex flex-col gap-2">
+                    <label className="text-xs font-semibold uppercase tracking-widest text-white/55">
+                      {hasExistingDrawings ? "Upload your drawings" : "Attach a reference file"}{" "}
+                      <span className="text-white/30 font-light normal-case tracking-normal">
+                        optional, max 10 MB
+                      </span>
+                    </label>
+
+                    {file ? (
+                      <div className="flex items-center justify-between border border-white/20 bg-white/[0.06] px-4 py-3">
+                        <div className="flex items-center gap-3 min-w-0">
+                          <Paperclip size={13} strokeWidth={1.5} className="shrink-0 text-secondary" />
+                          <span className="truncate text-sm font-light text-white/70">{file.name}</span>
+                          <span className="shrink-0 text-xs text-white/30">
+                            {(file.size / 1024 / 1024).toFixed(1)} MB
+                          </span>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => setFile(null)}
+                          className="ml-3 shrink-0 text-white/30 hover:text-white/70 transition-colors"
+                          aria-label="Remove file"
+                        >
+                          <X size={14} strokeWidth={2} />
+                        </button>
+                      </div>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => fileRef.current?.click()}
+                        className="flex items-center gap-3 border border-dashed border-white/20 bg-white/[0.03] px-4 py-4 text-sm font-light text-white/40 transition-all hover:border-white/35 hover:bg-white/[0.06] hover:text-white/60"
+                      >
+                        <Paperclip size={14} strokeWidth={1.5} className="shrink-0" />
+                        Click to attach drawings, sketches, or reference files
+                      </button>
+                    )}
+
+                    <input
+                      ref={fileRef}
+                      type="file"
+                      accept=".pdf,.dwg,.dxf,.png,.jpg,.jpeg,.doc,.docx"
+                      className="hidden"
+                      onChange={(e) => {
+                        const f = e.target.files?.[0] ?? null;
+                        if (f && f.size > 10 * 1024 * 1024) {
+                          setSubmitError("File must be under 10 MB.");
+                          return;
+                        }
+                        setFile(f);
+                        setSubmitError("");
+                      }}
+                    />
+                  </div>
+
+                  {submitError && (
+                    <p className="border-l-2 border-secondary pl-4 text-sm font-light text-white/70">
+                      {submitError}
+                    </p>
+                  )}
+
+                  <button
+                    type="button"
+                    disabled={!data.name.trim() || !data.email.trim() || submitting}
+                    onClick={handleSubmit}
+                    className={cn(
+                      "py-4 text-sm font-semibold uppercase tracking-widest transition-all duration-200",
+                      data.name.trim() && data.email.trim() && !submitting
+                        ? "bg-secondary text-white hover:bg-secondary/90"
+                        : "bg-white/[0.06] text-white/20 cursor-not-allowed",
+                    )}
+                  >
+                    {submitting ? "Sending your request..." : "Send My Request"}
+                  </button>
+
+                  <p className="text-center text-xs font-light text-white/25">
+                    No spam. We only use this to send your pricing estimate.
+                  </p>
+                </div>
+              </div>
+            )}
+
           </div>
         </div>
       )}
-
     </div>
   );
 }
@@ -658,11 +693,11 @@ function StepLabel({ n, label }: { n: number; label?: string }) {
 function Question({ children }: { children: React.ReactNode }) {
   return (
     <h2
-      className="mb-8 font-bold text-white"
+      className="mb-10 font-bold text-white"
       style={{
-        fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)",
+        fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
         letterSpacing: "-0.03em",
-        lineHeight: 1.12,
+        lineHeight: 1.1,
       }}
     >
       {children}
@@ -686,30 +721,30 @@ function SelectCard({
       type="button"
       onClick={onClick}
       className={cn(
-        "group w-full text-left border px-5 py-4 transition-all duration-200",
+        "group w-full text-left border px-6 py-6 min-h-[88px] transition-all duration-200",
         "focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary",
         selected
           ? "border-secondary bg-secondary/10"
-          : "border-white/15 bg-white/[0.04] hover:border-white/30 hover:bg-white/[0.08]",
+          : "border-white/15 bg-white/[0.04] hover:border-white/25 hover:bg-white/[0.08]",
       )}
     >
-      <div className="flex items-center justify-between gap-3">
-        <div className="min-w-0">
+      <div className="flex items-start justify-between gap-4">
+        <div className="min-w-0 flex-1">
           <p className={cn(
-            "text-sm font-semibold transition-colors duration-150",
+            "text-base font-semibold leading-snug transition-colors duration-150",
             selected ? "text-secondary" : "text-white",
           )}>
             {label}
           </p>
           {sub && (
-            <p className="mt-0.5 text-xs font-light text-white/40">{sub}</p>
+            <p className="mt-1.5 text-sm font-light leading-relaxed text-white/40">{sub}</p>
           )}
         </div>
         <span className={cn(
-          "flex h-4 w-4 shrink-0 items-center justify-center rounded-full border transition-all duration-150",
+          "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border transition-all duration-150",
           selected ? "border-secondary bg-secondary" : "border-white/20 group-hover:border-white/45",
         )}>
-          {selected && <Check size={9} strokeWidth={3} className="text-white" />}
+          {selected && <Check size={10} strokeWidth={3} className="text-white" />}
         </span>
       </div>
     </button>
@@ -736,7 +771,7 @@ function OtherCard({
       <button
         type="button"
         onClick={onActivate}
-        className="w-full text-left border border-dashed border-white/15 bg-transparent px-5 py-4 text-sm font-medium text-white/35 transition-all duration-200 hover:border-white/30 hover:text-white/60"
+        className="w-full text-left border border-dashed border-white/15 bg-transparent px-6 py-5 text-base font-medium text-white/30 transition-all duration-200 hover:border-white/30 hover:text-white/55"
       >
         Something else, I&apos;ll describe it
       </button>

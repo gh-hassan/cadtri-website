@@ -53,6 +53,13 @@ export function HomeHero() {
 
           <div className="flex flex-wrap items-center gap-4">
             <Button
+              href="/pricing"
+              variant="secondary"
+              size="lg"
+            >
+              Get a Pricing Estimate
+            </Button>
+            <Button
               href={heroContent.secondaryCta.href}
               variant="ghost"
               size="lg"

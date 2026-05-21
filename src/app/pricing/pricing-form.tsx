@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useCallback, useMemo, useRef } from "react";
-import { ArrowLeft, Check, CheckCircle, Paperclip, X } from "lucide-react";
+import { useState, useCallback, useMemo, useRef, useEffect } from "react";
+import { ArrowLeft, Check, CheckCircle, Paperclip, Plus, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { submitPricingForm, type PricingFormData } from "./actions";
 
@@ -119,6 +119,11 @@ export function PricingForm() {
   const [otherActive, setOtherActive] = useState<string | null>(null);
   const [otherText, setOtherText]     = useState<Record<string, string>>({});
 
+  // Custom service input (step 6)
+  const [customServiceText, setCustomServiceText] = useState("");
+  const [showCustomInput, setShowCustomInput]     = useState(false);
+  const customInputRef = useRef<HTMLInputElement>(null);
+
   // File upload
   const [file, setFile] = useState<File | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
@@ -190,6 +195,21 @@ export function PricingForm() {
         : [...prev.services, label],
     }));
   }, []);
+
+  const addCustomService = useCallback(() => {
+    const val = customServiceText.trim();
+    if (!val) return;
+    setData((prev) => ({
+      ...prev,
+      services: prev.services.includes(val) ? prev.services : [...prev.services, val],
+    }));
+    setCustomServiceText("");
+    setShowCustomInput(false);
+  }, [customServiceText]);
+
+  useEffect(() => {
+    if (showCustomInput) customInputRef.current?.focus();
+  }, [showCustomInput]);
 
   const handleSubmit = async () => {
     if (!data.name.trim() || !data.email.trim()) return;
@@ -437,6 +457,7 @@ export function PricingForm() {
                   We pre-selected the most relevant ones. Add or remove as needed.
                 </p>
                 <div className="flex flex-wrap gap-2.5">
+                  {/* Standard service pills */}
                   {ALL_SERVICES.map((label) => {
                     const selected = data.services.includes(label);
                     const suggested = suggestedServices.includes(label);
@@ -459,6 +480,69 @@ export function PricingForm() {
                       </button>
                     );
                   })}
+
+                  {/* Custom services added by the user */}
+                  {data.services
+                    .filter((s) => !ALL_SERVICES.includes(s))
+                    .map((label) => (
+                      <button
+                        key={label}
+                        type="button"
+                        onClick={() => toggleService(label)}
+                        className="inline-flex items-center gap-2 rounded-full border border-secondary bg-secondary/15 px-5 py-2.5 text-sm font-medium text-secondary transition-all duration-200"
+                      >
+                        <Check size={11} strokeWidth={2.5} />
+                        {label}
+                        <X size={10} strokeWidth={2.5} className="ml-0.5 opacity-60" />
+                      </button>
+                    ))}
+
+                  {/* Inline "Add your own" input */}
+                  {showCustomInput ? (
+                    <div className="inline-flex items-center gap-0 rounded-full border border-secondary/60 bg-white/[0.07] pl-4 pr-1 py-1">
+                      <input
+                        ref={customInputRef}
+                        type="text"
+                        value={customServiceText}
+                        onChange={(e) => setCustomServiceText(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") addCustomService();
+                          if (e.key === "Escape") { setShowCustomInput(false); setCustomServiceText(""); }
+                        }}
+                        placeholder="e.g. Historic preservation"
+                        className="w-44 bg-transparent text-sm font-medium text-white placeholder:text-white/30 focus:outline-none"
+                      />
+                      <button
+                        type="button"
+                        onClick={addCustomService}
+                        disabled={!customServiceText.trim()}
+                        className={cn(
+                          "ml-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-all",
+                          customServiceText.trim()
+                            ? "bg-secondary text-white"
+                            : "bg-white/10 text-white/30",
+                        )}
+                      >
+                        <Check size={12} strokeWidth={2.5} />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => { setShowCustomInput(false); setCustomServiceText(""); }}
+                        className="ml-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-white/30 transition-colors hover:text-white/60"
+                      >
+                        <X size={11} strokeWidth={2} />
+                      </button>
+                    </div>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => setShowCustomInput(true)}
+                      className="inline-flex items-center gap-2 rounded-full border border-dashed border-white/20 px-4 py-2.5 text-sm font-medium text-white/35 transition-all duration-200 hover:border-white/35 hover:text-white/60"
+                    >
+                      <Plus size={12} strokeWidth={2.5} />
+                      Add your own
+                    </button>
+                  )}
                 </div>
                 <button
                   type="button"

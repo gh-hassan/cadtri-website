@@ -1,9 +1,78 @@
 "use client";
 
 import { useState, useCallback, useMemo, useRef, useEffect } from "react";
-import { ArrowLeft, Check, CheckCircle, Paperclip, Plus, X } from "lucide-react";
+import {
+  ArrowLeft, Check, CheckCircle, Paperclip, Plus, X,
+  Home, HardHat, PenTool, TrendingUp, Briefcase,
+  Warehouse, LayoutDashboard, Zap, Waves, Box,
+  Building2, Layers, FileCheck, FileText,
+  MessageSquare, BarChart2, Building,
+  Lightbulb, Clock, CalendarDays, HelpCircle,
+  Upload, MapPin, Key, List, Users, Type,
+  Minimize2, Maximize2, Square, FolderOpen,
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { submitPricingForm, type PricingFormData } from "./actions";
+
+// ─── Card icon map — one icon per selectable option ───────────────────────────
+const CARD_ICONS: Record<string, LucideIcon> = {
+  // Step 1 — client type
+  "Homeowner":             Home,
+  "General Contractor":    HardHat,
+  "Architect or Designer": PenTool,
+  "Developer or Investor": TrendingUp,
+  "Business Owner":        Briefcase,
+  // Step 2 — project type (homeowner)
+  "Home Addition":              Maximize2,
+  "ADU or Garage Conversion":   Warehouse,
+  "Interior Remodel":           LayoutDashboard,
+  "New Custom Home":            Home,
+  "Pool or Spa":                Waves,
+  "Solar or EV Installation":   Zap,
+  "Accessory Structure":        Box,
+  // Step 2 — project type (contractor)
+  "Residential Project":        Home,
+  "Commercial Build-out":       Building2,
+  "Mixed-Use Development":      Layers,
+  "Permit Coordination":        FileCheck,
+  "As-Built Documentation":     FileText,
+  // Step 2 — project type (architect)
+  "Drafting Support":           PenTool,
+  "Permit Set Coordination":    FileCheck,
+  "BIM Coordination":           Layers,
+  "Structural Coordination":    Building,
+  "Plan Check Response":        MessageSquare,
+  "Overflow Drafting":          List,
+  // Step 2 — project type (developer)
+  "Ground-Up Construction":     Building,
+  "Multi-Family Development":   Building2,
+  "ADU Development":            Home,
+  "Commercial Development":     Briefcase,
+  "Feasibility and Planning":   BarChart2,
+  "Portfolio Permitting":       FolderOpen,
+  // Step 2 — project type (business owner)
+  "Tenant Improvement":         LayoutDashboard,
+  "New Business Location":      MapPin,
+  "ADA Compliance Upgrade":     Users,
+  "Signage Permit":             Type,
+  "Short-Term Rental Conversion": Key,
+  // Step 3 — stage
+  "Just an idea, no drawings yet":            Lightbulb,
+  "Have sketches or rough concepts":          PenTool,
+  "Have existing drawings":                   FileText,
+  "Ready to submit, need a permit package":   Upload,
+  // Step 4 — size
+  "Under 500 sq ft":      Minimize2,
+  "500 to 1,500 sq ft":   Square,
+  "1,500 to 3,000 sq ft": Maximize2,
+  "3,000 sq ft or more":  Building2,
+  "Not sure yet":         HelpCircle,
+  // Step 5 — timeline
+  "Urgent, within 2 weeks":    Zap,
+  "Soon, 1 to 2 months":       Clock,
+  "Planning ahead, 3+ months": CalendarDays,
+};
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
@@ -336,122 +405,96 @@ export function PricingForm() {
 
             {/* ── Step 1 ── */}
             {step === 1 && (
-              <div className="animate-in flex flex-1 flex-col">
+              <div className="animate-in flex flex-1 flex-col gap-3">
                 <div className="grid flex-1 gap-3 sm:grid-cols-2 [grid-auto-rows:1fr]">
                   {CLIENT_TYPES.map((opt) => (
-                    <SelectCard
-                      key={opt.label}
-                      label={opt.label}
-                      sub={opt.sub}
+                    <SelectCard key={opt.label} label={opt.label} sub={opt.sub}
+                      icon={CARD_ICONS[opt.label]}
                       selected={data.clientType === opt.label}
-                      onClick={() => selectSingle("clientType", opt.label)}
-                    />
+                      onClick={() => selectSingle("clientType", opt.label)} />
                   ))}
-                  <OtherCard
-                    stepKey="clientType"
-                    active={otherActive === "clientType"}
-                    value={otherText["clientType"] ?? ""}
-                    onChange={(v) => setOtherText((p) => ({ ...p, clientType: v }))}
-                    onActivate={() => selectOther("clientType")}
-                    onConfirm={() => confirmOther("clientType", "clientType")}
-                  />
                 </div>
+                <OtherCard stepKey="clientType" active={otherActive === "clientType"}
+                  value={otherText["clientType"] ?? ""}
+                  onChange={(v) => setOtherText((p) => ({ ...p, clientType: v }))}
+                  onActivate={() => selectOther("clientType")}
+                  onConfirm={() => confirmOther("clientType", "clientType")} />
               </div>
             )}
 
             {/* ── Step 2 ── */}
             {step === 2 && (
-              <div className="animate-in flex flex-1 flex-col">
+              <div className="animate-in flex flex-1 flex-col gap-3">
                 <div className="grid flex-1 gap-3 sm:grid-cols-2 [grid-auto-rows:1fr]">
                   {(PROJECT_TYPES[data.clientType] ?? PROJECT_TYPES["General Contractor"]).map((label) => (
-                    <SelectCard
-                      key={label}
-                      label={label}
+                    <SelectCard key={label} label={label}
+                      icon={CARD_ICONS[label]}
                       selected={data.projectType === label}
-                      onClick={() => selectSingle("projectType", label)}
-                    />
+                      onClick={() => selectSingle("projectType", label)} />
                   ))}
-                  <OtherCard
-                    stepKey="projectType"
-                    active={otherActive === "projectType"}
-                    value={otherText["projectType"] ?? ""}
-                    onChange={(v) => setOtherText((p) => ({ ...p, projectType: v }))}
-                    onActivate={() => selectOther("projectType")}
-                    onConfirm={() => confirmOther("projectType", "projectType")}
-                  />
                 </div>
+                <OtherCard stepKey="projectType" active={otherActive === "projectType"}
+                  value={otherText["projectType"] ?? ""}
+                  onChange={(v) => setOtherText((p) => ({ ...p, projectType: v }))}
+                  onActivate={() => selectOther("projectType")}
+                  onConfirm={() => confirmOther("projectType", "projectType")} />
               </div>
             )}
 
             {/* ── Step 3 ── */}
             {step === 3 && (
-              <div className="animate-in flex flex-1 flex-col">
+              <div className="animate-in flex flex-1 flex-col gap-3">
                 <div className="grid flex-1 gap-3 sm:grid-cols-2 [grid-auto-rows:1fr]">
                   {STAGE_OPTIONS.map((label) => (
-                    <SelectCard
-                      key={label}
-                      label={label}
+                    <SelectCard key={label} label={label}
+                      icon={CARD_ICONS[label]}
                       selected={data.projectStage === label}
-                      onClick={() => selectSingle("projectStage", label)}
-                    />
+                      onClick={() => selectSingle("projectStage", label)} />
                   ))}
-                  <OtherCard
-                    stepKey="projectStage"
-                    active={otherActive === "projectStage"}
-                    value={otherText["projectStage"] ?? ""}
-                    onChange={(v) => setOtherText((p) => ({ ...p, projectStage: v }))}
-                    onActivate={() => selectOther("projectStage")}
-                    onConfirm={() => confirmOther("projectStage", "projectStage")}
-                  />
                 </div>
+                <OtherCard stepKey="projectStage" active={otherActive === "projectStage"}
+                  value={otherText["projectStage"] ?? ""}
+                  onChange={(v) => setOtherText((p) => ({ ...p, projectStage: v }))}
+                  onActivate={() => selectOther("projectStage")}
+                  onConfirm={() => confirmOther("projectStage", "projectStage")} />
               </div>
             )}
 
             {/* ── Step 4 ── */}
             {step === 4 && (
-              <div className="animate-in flex flex-1 flex-col">
+              <div className="animate-in flex flex-1 flex-col gap-3">
                 <div className="grid flex-1 gap-3 sm:grid-cols-2 [grid-auto-rows:1fr]">
                   {SIZE_OPTIONS.map((label) => (
-                    <SelectCard
-                      key={label}
-                      label={label}
+                    <SelectCard key={label} label={label}
+                      icon={CARD_ICONS[label]}
                       selected={data.projectSize === label}
-                      onClick={() => selectSingle("projectSize", label)}
-                    />
+                      onClick={() => selectSingle("projectSize", label)} />
                   ))}
-                  <OtherCard
-                    stepKey="projectSize"
-                    active={otherActive === "projectSize"}
-                    value={otherText["projectSize"] ?? ""}
-                    onChange={(v) => setOtherText((p) => ({ ...p, projectSize: v }))}
-                    onActivate={() => selectOther("projectSize")}
-                    onConfirm={() => confirmOther("projectSize", "projectSize")}
-                  />
                 </div>
+                <OtherCard stepKey="projectSize" active={otherActive === "projectSize"}
+                  value={otherText["projectSize"] ?? ""}
+                  onChange={(v) => setOtherText((p) => ({ ...p, projectSize: v }))}
+                  onActivate={() => selectOther("projectSize")}
+                  onConfirm={() => confirmOther("projectSize", "projectSize")} />
               </div>
             )}
 
             {/* ── Step 5 ── */}
             {step === 5 && (
-              <div className="animate-in flex flex-1 flex-col">
+              <div className="animate-in flex flex-1 flex-col gap-3">
                 <div className="grid flex-1 gap-3 sm:grid-cols-2 [grid-auto-rows:1fr]">
                   {TIMELINE_OPTIONS.map((label) => (
-                    <SelectCard
-                      key={label}
-                      label={label}
+                    <SelectCard key={label} label={label}
+                      icon={CARD_ICONS[label]}
                       selected={data.timeline === label}
-                      onClick={() => selectSingle("timeline", label)}
-                    />
+                      onClick={() => selectSingle("timeline", label)} />
                   ))}
-                  <OtherCard
-                    stepKey="timeline"
-                    active={otherActive === "timeline"}
-                    value={otherText["timeline"] ?? ""}
-                    onChange={(v) => setOtherText((p) => ({ ...p, timeline: v }))}
-                    onActivate={() => selectOther("timeline")}
-                    onConfirm={() => confirmOther("timeline", "timeline")}
-                  />
                 </div>
+                <OtherCard stepKey="timeline" active={otherActive === "timeline"}
+                  value={otherText["timeline"] ?? ""}
+                  onChange={(v) => setOtherText((p) => ({ ...p, timeline: v }))}
+                  onActivate={() => selectOther("timeline")}
+                  onConfirm={() => confirmOther("timeline", "timeline")} />
               </div>
             )}
 
@@ -825,25 +868,37 @@ function SelectCard({
   sub,
   selected,
   onClick,
+  icon: Icon,
 }: {
   label: string;
   sub?: string;
   selected: boolean;
   onClick: () => void;
+  icon?: LucideIcon;
 }) {
   return (
     <button
       type="button"
       onClick={onClick}
       className={cn(
-        "group w-full text-left border px-6 py-6 min-h-[88px] transition-all duration-200",
+        "group w-full h-full text-left border rounded-2xl px-6 py-6",
+        "flex flex-col justify-between transition-all duration-200",
         "focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary",
         selected
           ? "border-secondary bg-secondary/10"
           : "border-white/15 bg-white/[0.04] hover:border-white/25 hover:bg-white/[0.08]",
       )}
     >
-      <div className="flex items-start justify-between gap-4">
+      {/* Icon — top of card */}
+      <div className={cn(
+        "mb-4 transition-colors duration-200",
+        selected ? "text-secondary/55" : "text-white/[0.13] group-hover:text-white/25",
+      )}>
+        {Icon ? <Icon size={28} strokeWidth={1.5} /> : <div className="h-7" />}
+      </div>
+
+      {/* Label + radio — bottom of card */}
+      <div className="flex items-end justify-between gap-3">
         <div className="min-w-0 flex-1">
           <p className={cn(
             "text-base font-semibold leading-snug transition-colors duration-150",
@@ -856,7 +911,7 @@ function SelectCard({
           )}
         </div>
         <span className={cn(
-          "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border transition-all duration-150",
+          "flex h-5 w-5 shrink-0 items-center justify-center rounded-full border transition-all duration-150",
           selected ? "border-secondary bg-secondary" : "border-white/20 group-hover:border-white/45",
         )}>
           {selected && <Check size={10} strokeWidth={3} className="text-white" />}
@@ -886,7 +941,7 @@ function OtherCard({
       <button
         type="button"
         onClick={onActivate}
-        className="w-full text-left border border-dashed border-white/15 bg-transparent px-6 py-5 text-base font-medium text-white/30 transition-all duration-200 hover:border-white/30 hover:text-white/55"
+        className="w-full text-left border border-dashed border-white/15 bg-transparent rounded-2xl px-6 py-4 text-base font-medium text-white/30 transition-all duration-200 hover:border-white/30 hover:text-white/55"
       >
         Something else, I&apos;ll describe it
       </button>
@@ -894,7 +949,7 @@ function OtherCard({
   }
 
   return (
-    <div className="col-span-full flex gap-2">
+    <div className="flex gap-2">
       <input
         type="text"
         autoFocus
@@ -902,14 +957,14 @@ function OtherCard({
         onChange={(e) => onChange(e.target.value)}
         onKeyDown={(e) => { if (e.key === "Enter") onConfirm(); }}
         placeholder={`Describe your ${stepKey.replace(/([A-Z])/g, " $1").toLowerCase()}...`}
-        className="flex-1 border border-secondary/50 bg-white/[0.08] px-4 py-3.5 text-sm font-light text-white placeholder:text-white/35 focus:border-secondary focus:outline-none transition-all"
+        className="flex-1 rounded-2xl border border-secondary/50 bg-white/[0.08] px-4 py-3.5 text-sm font-light text-white placeholder:text-white/35 focus:border-secondary focus:outline-none transition-all"
       />
       <button
         type="button"
         disabled={!value.trim()}
         onClick={onConfirm}
         className={cn(
-          "shrink-0 px-6 py-3.5 text-sm font-semibold uppercase tracking-wider transition-all",
+          "shrink-0 rounded-2xl px-6 py-3.5 text-sm font-semibold uppercase tracking-wider transition-all",
           value.trim() ? "bg-secondary text-white" : "bg-white/[0.06] text-white/20 cursor-not-allowed",
         )}
       >

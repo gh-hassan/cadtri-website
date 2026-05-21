@@ -157,10 +157,10 @@ export function SiteHeader() {
         />
 
         {/* Content layer — not clipped, dropdowns overflow freely */}
-        <div className="relative mx-auto grid h-[72px] max-w-container grid-cols-[1fr_auto_1fr] items-center px-6">
+        <div className="relative mx-auto grid h-[72px] max-w-container grid-cols-[auto_1fr_auto] items-center px-6">
 
-          {/* ── Col 1: Wordmark — min-w-0 prevents this from inflating the 1fr track */}
-          <div className="min-w-0" style={sideStyle(0)}>
+          {/* ── Col 1: Wordmark */}
+          <div style={sideStyle(0)}>
             <CadtriLogo variant="dark" className="shrink-0" />
           </div>
 
@@ -254,8 +254,8 @@ export function SiteHeader() {
             </div>
           </div>
 
-          {/* ── Col 3: CTAs + hamburger — min-w-0 keeps 1fr tracks equal */}
-          <div className="flex min-w-0 items-center justify-end">
+          {/* ── Col 3: CTAs + hamburger */}
+          <div className="flex items-center justify-end">
 
             {/* Desktop CTAs — full set fades out in pill mode */}
             <div

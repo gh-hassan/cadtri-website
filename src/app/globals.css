@@ -155,6 +155,8 @@
     scroll-behavior: smooth;
     scrollbar-width: thin;
     scrollbar-color: var(--color-border) transparent;
+    /* Prevent horizontal scroll on iOS Safari (body overflow-x alone is ignored) */
+    overflow-x: clip;
   }
 
   body {

@@ -331,117 +331,127 @@ export function PricingForm() {
             )}
           </div>
 
-          {/* Right panel — options, top-aligned to match left */}
+          {/* Right panel — fills full height, cards stretch to fill */}
           <div className="flex flex-1 flex-col overflow-y-auto px-8 pb-10 pt-12 lg:px-14 lg:pb-20 lg:pt-16">
 
             {/* ── Step 1 ── */}
             {step === 1 && (
-              <div className="animate-in grid gap-3 sm:grid-cols-2">
-                {CLIENT_TYPES.map((opt) => (
-                  <SelectCard
-                    key={opt.label}
-                    label={opt.label}
-                    sub={opt.sub}
-                    selected={data.clientType === opt.label}
-                    onClick={() => selectSingle("clientType", opt.label)}
+              <div className="animate-in flex flex-1 flex-col">
+                <div className="grid flex-1 gap-3 sm:grid-cols-2 [grid-auto-rows:1fr]">
+                  {CLIENT_TYPES.map((opt) => (
+                    <SelectCard
+                      key={opt.label}
+                      label={opt.label}
+                      sub={opt.sub}
+                      selected={data.clientType === opt.label}
+                      onClick={() => selectSingle("clientType", opt.label)}
+                    />
+                  ))}
+                  <OtherCard
+                    stepKey="clientType"
+                    active={otherActive === "clientType"}
+                    value={otherText["clientType"] ?? ""}
+                    onChange={(v) => setOtherText((p) => ({ ...p, clientType: v }))}
+                    onActivate={() => selectOther("clientType")}
+                    onConfirm={() => confirmOther("clientType", "clientType")}
                   />
-                ))}
-                <OtherCard
-                  stepKey="clientType"
-                  active={otherActive === "clientType"}
-                  value={otherText["clientType"] ?? ""}
-                  onChange={(v) => setOtherText((p) => ({ ...p, clientType: v }))}
-                  onActivate={() => selectOther("clientType")}
-                  onConfirm={() => confirmOther("clientType", "clientType")}
-                />
+                </div>
               </div>
             )}
 
             {/* ── Step 2 ── */}
             {step === 2 && (
-              <div className="animate-in grid gap-3 sm:grid-cols-2">
-                {(PROJECT_TYPES[data.clientType] ?? PROJECT_TYPES["General Contractor"]).map((label) => (
-                  <SelectCard
-                    key={label}
-                    label={label}
-                    selected={data.projectType === label}
-                    onClick={() => selectSingle("projectType", label)}
+              <div className="animate-in flex flex-1 flex-col">
+                <div className="grid flex-1 gap-3 sm:grid-cols-2 [grid-auto-rows:1fr]">
+                  {(PROJECT_TYPES[data.clientType] ?? PROJECT_TYPES["General Contractor"]).map((label) => (
+                    <SelectCard
+                      key={label}
+                      label={label}
+                      selected={data.projectType === label}
+                      onClick={() => selectSingle("projectType", label)}
+                    />
+                  ))}
+                  <OtherCard
+                    stepKey="projectType"
+                    active={otherActive === "projectType"}
+                    value={otherText["projectType"] ?? ""}
+                    onChange={(v) => setOtherText((p) => ({ ...p, projectType: v }))}
+                    onActivate={() => selectOther("projectType")}
+                    onConfirm={() => confirmOther("projectType", "projectType")}
                   />
-                ))}
-                <OtherCard
-                  stepKey="projectType"
-                  active={otherActive === "projectType"}
-                  value={otherText["projectType"] ?? ""}
-                  onChange={(v) => setOtherText((p) => ({ ...p, projectType: v }))}
-                  onActivate={() => selectOther("projectType")}
-                  onConfirm={() => confirmOther("projectType", "projectType")}
-                />
+                </div>
               </div>
             )}
 
             {/* ── Step 3 ── */}
             {step === 3 && (
-              <div className="animate-in grid gap-3 sm:grid-cols-2">
-                {STAGE_OPTIONS.map((label) => (
-                  <SelectCard
-                    key={label}
-                    label={label}
-                    selected={data.projectStage === label}
-                    onClick={() => selectSingle("projectStage", label)}
+              <div className="animate-in flex flex-1 flex-col">
+                <div className="grid flex-1 gap-3 sm:grid-cols-2 [grid-auto-rows:1fr]">
+                  {STAGE_OPTIONS.map((label) => (
+                    <SelectCard
+                      key={label}
+                      label={label}
+                      selected={data.projectStage === label}
+                      onClick={() => selectSingle("projectStage", label)}
+                    />
+                  ))}
+                  <OtherCard
+                    stepKey="projectStage"
+                    active={otherActive === "projectStage"}
+                    value={otherText["projectStage"] ?? ""}
+                    onChange={(v) => setOtherText((p) => ({ ...p, projectStage: v }))}
+                    onActivate={() => selectOther("projectStage")}
+                    onConfirm={() => confirmOther("projectStage", "projectStage")}
                   />
-                ))}
-                <OtherCard
-                  stepKey="projectStage"
-                  active={otherActive === "projectStage"}
-                  value={otherText["projectStage"] ?? ""}
-                  onChange={(v) => setOtherText((p) => ({ ...p, projectStage: v }))}
-                  onActivate={() => selectOther("projectStage")}
-                  onConfirm={() => confirmOther("projectStage", "projectStage")}
-                />
+                </div>
               </div>
             )}
 
             {/* ── Step 4 ── */}
             {step === 4 && (
-              <div className="animate-in grid gap-3 sm:grid-cols-2">
-                {SIZE_OPTIONS.map((label) => (
-                  <SelectCard
-                    key={label}
-                    label={label}
-                    selected={data.projectSize === label}
-                    onClick={() => selectSingle("projectSize", label)}
+              <div className="animate-in flex flex-1 flex-col">
+                <div className="grid flex-1 gap-3 sm:grid-cols-2 [grid-auto-rows:1fr]">
+                  {SIZE_OPTIONS.map((label) => (
+                    <SelectCard
+                      key={label}
+                      label={label}
+                      selected={data.projectSize === label}
+                      onClick={() => selectSingle("projectSize", label)}
+                    />
+                  ))}
+                  <OtherCard
+                    stepKey="projectSize"
+                    active={otherActive === "projectSize"}
+                    value={otherText["projectSize"] ?? ""}
+                    onChange={(v) => setOtherText((p) => ({ ...p, projectSize: v }))}
+                    onActivate={() => selectOther("projectSize")}
+                    onConfirm={() => confirmOther("projectSize", "projectSize")}
                   />
-                ))}
-                <OtherCard
-                  stepKey="projectSize"
-                  active={otherActive === "projectSize"}
-                  value={otherText["projectSize"] ?? ""}
-                  onChange={(v) => setOtherText((p) => ({ ...p, projectSize: v }))}
-                  onActivate={() => selectOther("projectSize")}
-                  onConfirm={() => confirmOther("projectSize", "projectSize")}
-                />
+                </div>
               </div>
             )}
 
             {/* ── Step 5 ── */}
             {step === 5 && (
-              <div className="animate-in grid gap-3 sm:grid-cols-2">
-                {TIMELINE_OPTIONS.map((label) => (
-                  <SelectCard
-                    key={label}
-                    label={label}
-                    selected={data.timeline === label}
-                    onClick={() => selectSingle("timeline", label)}
+              <div className="animate-in flex flex-1 flex-col">
+                <div className="grid flex-1 gap-3 sm:grid-cols-2 [grid-auto-rows:1fr]">
+                  {TIMELINE_OPTIONS.map((label) => (
+                    <SelectCard
+                      key={label}
+                      label={label}
+                      selected={data.timeline === label}
+                      onClick={() => selectSingle("timeline", label)}
+                    />
+                  ))}
+                  <OtherCard
+                    stepKey="timeline"
+                    active={otherActive === "timeline"}
+                    value={otherText["timeline"] ?? ""}
+                    onChange={(v) => setOtherText((p) => ({ ...p, timeline: v }))}
+                    onActivate={() => selectOther("timeline")}
+                    onConfirm={() => confirmOther("timeline", "timeline")}
                   />
-                ))}
-                <OtherCard
-                  stepKey="timeline"
-                  active={otherActive === "timeline"}
-                  value={otherText["timeline"] ?? ""}
-                  onChange={(v) => setOtherText((p) => ({ ...p, timeline: v }))}
-                  onActivate={() => selectOther("timeline")}
-                  onConfirm={() => confirmOther("timeline", "timeline")}
-                />
+                </div>
               </div>
             )}
 
@@ -449,24 +459,25 @@ export function PricingForm() {
         </div>
 
       ) : (
-        /* ── Steps 6–8: Wide centered layout ── */
-        <div className="flex flex-1 flex-col items-center justify-center px-8 py-12 sm:px-12">
-          <div className="w-full max-w-3xl">
+        /* ── Steps 6–8: Fixed top-anchored layout ── */
+        <div className="flex flex-1 flex-col overflow-y-auto px-8 pb-16 pt-12 sm:px-12 lg:px-20 lg:pt-16">
 
-            {/* Nav row */}
-            <div className="mb-10 flex items-center justify-between">
-              <button
-                type="button"
-                onClick={() => setStep((s) => s - 1)}
-                className="flex items-center gap-2 text-xs font-medium uppercase tracking-widest text-white/30 transition-colors hover:text-white/70"
-              >
-                <ArrowLeft size={12} strokeWidth={2} />
-                Back
-              </button>
-              <span className="text-[11px] tabular-nums tracking-widest text-white/25">
-                {step} / {TOTAL_STEPS}
-              </span>
-            </div>
+          {/* Fixed nav row — always at the same position */}
+          <div className="mb-10 flex items-center justify-between">
+            <button
+              type="button"
+              onClick={() => setStep((s) => s - 1)}
+              className="flex items-center gap-2 text-xs font-medium uppercase tracking-widest text-white/30 transition-colors hover:text-white/70"
+            >
+              <ArrowLeft size={12} strokeWidth={2} />
+              Back
+            </button>
+            <span className="text-[11px] tabular-nums tracking-widest text-white/25">
+              {step} / {TOTAL_STEPS}
+            </span>
+          </div>
+
+          <div className="w-full max-w-3xl">
 
             {/* ── Step 6: Services — pills ── */}
             {step === 6 && (

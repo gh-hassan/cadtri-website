@@ -1,32 +1,99 @@
 name: IndexNow — Submit URLs after deploy
 
 on:
-  # Runs automatically after the main branch is pushed
   push:
     branches:
       - main
-
-  # Allow manual trigger from the Actions tab
   workflow_dispatch:
 
 jobs:
   submit:
     name: Ping IndexNow
     runs-on: ubuntu-latest
-    # Wait a bit for Vercel to finish building and deploying
     steps:
       - name: Wait for Vercel deployment (120s)
         run: sleep 120
 
-      - name: Submit all URLs to IndexNow
+      - name: Submit all URLs directly to IndexNow API
         run: |
-          # -L follows redirects (Vercel may issue a 307 during deployment transitions)
-          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -X POST \
-            "https://www.cadtri.com/api/indexnow?secret=${{ secrets.INDEXNOW_SUBMIT_SECRET }}")
-          echo "IndexNow API response: $RESPONSE"
-          if [ "$RESPONSE" -ge 200 ] && [ "$RESPONSE" -lt 300 ]; then
-            echo "✅ URLs submitted successfully"
+          RESPONSE=$(curl -s -w "\n%{http_code}" -X POST "https://api.indexnow.org/indexnow" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            -d '{
+              "host": "www.cadtri.com",
+              "key": "ba31e0a349b14384859bded1e188c968",
+              "keyLocation": "https://www.cadtri.com/ba31e0a349b14384859bded1e188c968.txt",
+              "urlList": [
+                "https://www.cadtri.com/",
+                "https://www.cadtri.com/about",
+                "https://www.cadtri.com/services",
+                "https://www.cadtri.com/industries",
+                "https://www.cadtri.com/process",
+                "https://www.cadtri.com/resources",
+                "https://www.cadtri.com/contact",
+                "https://www.cadtri.com/services/architectural-drafting",
+                "https://www.cadtri.com/services/permit-set-preparation",
+                "https://www.cadtri.com/services/city-comments-response",
+                "https://www.cadtri.com/services/structural-coordination",
+                "https://www.cadtri.com/services/code-compliance-review",
+                "https://www.cadtri.com/services/renderings-visualization",
+                "https://www.cadtri.com/services/as-built-documentation",
+                "https://www.cadtri.com/services/solar-ev-permit-packages",
+                "https://www.cadtri.com/services/adu-permit-packages",
+                "https://www.cadtri.com/services/entitlement-support",
+                "https://www.cadtri.com/services/pre-application-meeting-prep",
+                "https://www.cadtri.com/services/mep-coordination",
+                "https://www.cadtri.com/services/tenant-improvement-packages",
+                "https://www.cadtri.com/services/digital-walkthroughs",
+                "https://www.cadtri.com/services/3d-staging",
+                "https://www.cadtri.com/services/project-strategy",
+                "https://www.cadtri.com/services/feasibility-study",
+                "https://www.cadtri.com/services/home-addition-packages",
+                "https://www.cadtri.com/services/garage-conversion-packages",
+                "https://www.cadtri.com/services/construction-administration",
+                "https://www.cadtri.com/services/contractor-bid-package",
+                "https://www.cadtri.com/services/pool-spa-permits",
+                "https://www.cadtri.com/services/interior-remodel-packages",
+                "https://www.cadtri.com/services/short-term-rental-permits",
+                "https://www.cadtri.com/services/accessory-structure-permits",
+                "https://www.cadtri.com/services/title-24-energy-compliance",
+                "https://www.cadtri.com/services/historic-district-submissions",
+                "https://www.cadtri.com/services/bim-coordination",
+                "https://www.cadtri.com/services/zoning-code-research",
+                "https://www.cadtri.com/services/permit-pathway-analysis",
+                "https://www.cadtri.com/services/pre-purchase-assessment",
+                "https://www.cadtri.com/services/scope-definition",
+                "https://www.cadtri.com/services/design-options-study",
+                "https://www.cadtri.com/services/compliance-gap-analysis",
+                "https://www.cadtri.com/services/deferred-submittal-packages",
+                "https://www.cadtri.com/services/fire-life-safety-drawings",
+                "https://www.cadtri.com/services/signage-permit-drawings",
+                "https://www.cadtri.com/services/interior-detail-package",
+                "https://www.cadtri.com/services/site-plan-package",
+                "https://www.cadtri.com/services/record-drawing-updates",
+                "https://www.cadtri.com/services/demolition-permit-drawings",
+                "https://www.cadtri.com/services/redline-to-cad",
+                "https://www.cadtri.com/industries/residential",
+                "https://www.cadtri.com/industries/commercial",
+                "https://www.cadtri.com/industries/hospitality",
+                "https://www.cadtri.com/industries/mixed-use",
+                "https://www.cadtri.com/resources/what-is-a-permit-set",
+                "https://www.cadtri.com/resources/how-to-get-adu-permit-in-california",
+                "https://www.cadtri.com/resources/how-to-respond-to-plan-check-corrections",
+                "https://www.cadtri.com/resources/title-24-energy-compliance-california",
+                "https://www.cadtri.com/resources/pre-application-meeting-construction",
+                "https://www.cadtri.com/resources/garage-conversion-adu-california"
+              ]
+            }')
+
+          HTTP_CODE=$(echo "$RESPONSE" | tail -1)
+          BODY=$(echo "$RESPONSE" | head -1)
+
+          echo "IndexNow response code: $HTTP_CODE"
+          echo "IndexNow response body: $BODY"
+
+          if [ "$HTTP_CODE" -ge 200 ] && [ "$HTTP_CODE" -lt 300 ]; then
+            echo "✅ All URLs submitted to IndexNow successfully"
           else
-            echo "⚠️ Unexpected response: $RESPONSE"
+            echo "⚠️ IndexNow returned: $HTTP_CODE"
             exit 1
           fi

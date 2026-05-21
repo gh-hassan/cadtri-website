@@ -32,6 +32,10 @@ ${industries.map((i) => `- [${i.title}](${base}/industries/${i.slug}): ${i.metaD
 
 ${posts.map((p) => `- [${p.title}](${base}/resources/${p.slug}): ${p.description}`).join("\n")}
 
+## Get a Pricing Estimate
+
+${base}/pricing — Answer a few quick questions about your project and receive a tailored estimate within one business day.
+
 ## About
 
 ${base}/about

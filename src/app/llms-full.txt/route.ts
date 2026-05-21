@@ -141,6 +141,12 @@ CADTRI follows a four-step permit drafting process:
 
 ---
 
+## Get a Pricing Estimate
+
+URL: ${base}/pricing
+
+An 8-step interactive form that collects project details and sends a tailored pricing estimate within one business day. Covers all client types: homeowners, contractors, architects, developers, and business owners. Supports file attachments for existing drawings.
+
 ## Contact
 
 URL: ${base}/contact

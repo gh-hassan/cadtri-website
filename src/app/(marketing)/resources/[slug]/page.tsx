@@ -106,19 +106,19 @@ export default async function ResourceArticlePage({ params }: Props) {
                 </Link>
               </div>
 
-              {/* Book a call */}
+              {/* Contact */}
               <div className="bg-primary p-6">
                 <p className="mb-3 text-[10px] font-medium uppercase tracking-widest text-secondary">
-                  Free Consultation
+                  Get in Touch
                 </p>
                 <p className="text-sm font-light leading-relaxed text-white/60">
-                  15 minutes. Confirm scope, timeline, and what the jurisdiction requires.
+                  Confirm scope, timeline, and what the jurisdiction requires.
                 </p>
                 <Link
-                  href="/book"
+                  href="/contact"
                   className="mt-4 inline-block text-[11px] font-medium uppercase tracking-wider text-secondary hover:text-primary-foreground"
                 >
-                  Book a Call →
+                  Contact Us →
                 </Link>
               </div>
 

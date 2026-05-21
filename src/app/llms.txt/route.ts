@@ -16,7 +16,7 @@ CADTRI is a professional architectural drafting and permit coordination company 
 
 - Website: ${base}
 - Contact: ${base}/contact
-- Book a consultation: ${base}/book
+
 - Email: ${company.email}
 - Phone: ${company.phone}
 

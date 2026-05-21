@@ -186,7 +186,6 @@ export const footerColumns: readonly FooterColumn[] = [
       { label: "Industries", href: "/industries" },
       { label: "Process",    href: "/process"    },
       { label: "Resources",  href: "/resources"  },
-      { label: "Book a Call", href: "/book"      },
       { label: "Portfolio",  href: "/portfolio"  },
       { label: "Contact",    href: "/contact"    },
     ],

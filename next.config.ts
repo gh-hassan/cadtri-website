@@ -16,6 +16,13 @@ const nextConfig: NextConfig = {
         permanent: true, // 301
       },
 
+      // ── /book removed — redirect to /contact ─────────────────────────────
+      {
+        source: "/book",
+        destination: "/contact",
+        permanent: true,
+      },
+
       // ── Old resource article URLs → new SEO-optimised slugs ───────────────
       // These were renamed in May 2026. 301s preserve any existing link equity
       // and prevent Google from indexing the old URLs as 404s.

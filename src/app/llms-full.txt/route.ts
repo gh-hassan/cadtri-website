@@ -144,7 +144,7 @@ CADTRI follows a four-step permit drafting process:
 ## Contact
 
 URL: ${base}/contact
-Book a consultation: ${base}/book
+
 Email: ${company.email}
 Phone: ${company.phone}
 `;

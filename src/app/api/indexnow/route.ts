@@ -21,7 +21,7 @@ function getAllUrls(): string[] {
     `${BASE}/process`,
     `${BASE}/resources`,
     `${BASE}/contact`,
-    `${BASE}/book`,
+
   ];
 
   const serviceUrls = services.map((s) => `${BASE}/services/${s.slug}`);

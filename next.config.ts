@@ -7,15 +7,6 @@ const nextConfig: NextConfig = {
 
   async redirects() {
     return [
-      // ── www → non-www canonical redirect ─────────────────────────────────
-      // Prevents Google from indexing www.cadtri.com and cadtri.com as duplicates.
-      {
-        source: "/:path*",
-        has: [{ type: "host", value: "www.cadtri.com" }],
-        destination: "https://cadtri.com/:path*",
-        permanent: true, // 301
-      },
-
       // ── /book removed — redirect to /contact ─────────────────────────────
       {
         source: "/book",

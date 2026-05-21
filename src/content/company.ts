@@ -9,7 +9,7 @@ export const company = {
     "CADTRI delivers permit-ready architectural drawings for residential and commercial projects across California. Professional drafting and permit coordination — built to clear plan check.",
   email: "info@cadtri.com",
   phone: "(941) 300-1033",
-  website: "https://cadtri.com",
+  website: "https://www.cadtri.com",
   address: {
     street: "",
     city: "Austin",

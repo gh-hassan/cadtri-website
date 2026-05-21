@@ -21,8 +21,8 @@ jobs:
       - name: Submit all URLs to IndexNow
         run: |
           # -L follows redirects (Vercel may issue a 307 during deployment transitions)
-          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -L -X POST \
-            "https://cadtri.com/api/indexnow?secret=${{ secrets.INDEXNOW_SUBMIT_SECRET }}")
+          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -X POST \
+            "https://www.cadtri.com/api/indexnow?secret=${{ secrets.INDEXNOW_SUBMIT_SECRET }}")
           echo "IndexNow API response: $RESPONSE"
           if [ "$RESPONSE" -ge 200 ] && [ "$RESPONSE" -lt 300 ]; then
             echo "✅ URLs submitted successfully"

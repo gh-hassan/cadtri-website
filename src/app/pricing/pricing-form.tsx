@@ -10,7 +10,7 @@ import {
   Lightbulb, Clock, CalendarDays, HelpCircle,
   Upload, MapPin, Key, List, Users, Type,
   Minimize2, Maximize2, Square, FolderOpen,
-  Wallet, Coins, Banknote, PiggyBank, DollarSign,
+  Wallet, Coins, Banknote, PiggyBank, DollarSign, CreditCard, BarChart, TrendingDown,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -73,13 +73,16 @@ const CARD_ICONS: Record<string, LucideIcon> = {
   "Urgent, within 2 weeks":    Zap,
   "Soon, 1 to 2 months":       Clock,
   "Planning ahead, 3+ months": CalendarDays,
-  // Step 6 — budget
-  "Under $10,000":               Wallet,
-  "$10,000 to $50,000":          Coins,
-  "$50,000 to $250,000":         Banknote,
-  "$250,000 to $1,000,000":      BarChart2,
-  "Over $1,000,000":             Building2,
-  "Prefer not to say":           DollarSign,
+  // Step 6 — budget (service pricing ranges)
+  "$2,000":   Wallet,
+  "$5,000":   Coins,
+  "$8,000":   PiggyBank,
+  "$10,000":  Banknote,
+  "$15,000":  CreditCard,
+  "$20,000":  BarChart,
+  "$30,000":  BarChart2,
+  "$50,000":  TrendingUp,
+  "$100,000": Building,
 };
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
@@ -123,12 +126,15 @@ const TIMELINE_OPTIONS = [
 ];
 
 const BUDGET_OPTIONS = [
-  "Under $10,000",
-  "$10,000 to $50,000",
-  "$50,000 to $250,000",
-  "$250,000 to $1,000,000",
-  "Over $1,000,000",
-  "Prefer not to say",
+  "$2,000",
+  "$5,000",
+  "$8,000",
+  "$10,000",
+  "$15,000",
+  "$20,000",
+  "$30,000",
+  "$50,000",
+  "$100,000",
 ];
 
 // Universal services — no state-specific items
@@ -205,10 +211,15 @@ export function PricingForm() {
   const [otherActive, setOtherActive] = useState<string | null>(null);
   const [otherText, setOtherText]     = useState<Record<string, string>>({});
 
-  // Custom service input (step 6)
+  // Custom service input (step 7)
   const [customServiceText, setCustomServiceText] = useState("");
   const [showCustomInput, setShowCustomInput]     = useState(false);
   const customInputRef = useRef<HTMLInputElement>(null);
+
+  // Custom budget input (step 6)
+  const [customBudget, setCustomBudget]           = useState("");
+  const [showCustomBudget, setShowCustomBudget]   = useState(false);
+  const customBudgetRef = useRef<HTMLInputElement>(null);
 
   // File upload
   const [file, setFile] = useState<File | null>(null);
@@ -297,6 +308,10 @@ export function PricingForm() {
   useEffect(() => {
     if (showCustomInput) customInputRef.current?.focus();
   }, [showCustomInput]);
+
+  useEffect(() => {
+    if (showCustomBudget) customBudgetRef.current?.focus();
+  }, [showCustomBudget]);
 
   const handleSubmit = async () => {
     if (!data.name.trim() || !data.email.trim()) return;
@@ -531,6 +546,65 @@ export function PricingForm() {
                       onClick={() => selectSingle("budget", label)} />
                   ))}
                 </div>
+
+                {/* Custom budget input */}
+                {showCustomBudget ? (
+                  <div className="flex gap-2">
+                    <div className="relative flex-1">
+                      <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-sm font-medium text-white/40">
+                        $
+                      </span>
+                      <input
+                        ref={customBudgetRef}
+                        type="text"
+                        value={customBudget}
+                        onChange={(e) => setCustomBudget(e.target.value.replace(/[^0-9,]/g, ""))}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" && customBudget.trim()) {
+                            setData((p) => ({ ...p, budget: `$${customBudget.trim()}` }));
+                            setTimeout(() => advance(step + 1, { budget: `$${customBudget.trim()}` }), 180);
+                          }
+                          if (e.key === "Escape") { setShowCustomBudget(false); setCustomBudget(""); }
+                        }}
+                        placeholder="Enter your budget"
+                        className="w-full rounded-2xl border border-secondary/50 bg-white/[0.08] py-3.5 pl-8 pr-4 text-sm font-light text-white placeholder:text-white/35 focus:border-secondary focus:outline-none transition-all"
+                      />
+                    </div>
+                    <button
+                      type="button"
+                      disabled={!customBudget.trim()}
+                      onClick={() => {
+                        if (!customBudget.trim()) return;
+                        setData((p) => ({ ...p, budget: `$${customBudget.trim()}` }));
+                        setTimeout(() => advance(step + 1, { budget: `$${customBudget.trim()}` }), 180);
+                      }}
+                      className={cn(
+                        "shrink-0 rounded-2xl px-6 py-3.5 text-sm font-semibold uppercase tracking-wider transition-all",
+                        customBudget.trim() ? "bg-secondary text-white" : "bg-white/[0.06] text-white/20 cursor-not-allowed",
+                      )}
+                    >
+                      Next
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => { setShowCustomBudget(false); setCustomBudget(""); }}
+                      className="shrink-0 rounded-2xl border border-white/15 px-4 text-white/30 transition-colors hover:text-white/60"
+                    >
+                      <X size={14} strokeWidth={2} />
+                    </button>
+                  </div>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => setShowCustomBudget(true)}
+                    className="w-full rounded-2xl border border-dashed border-white/15 bg-transparent px-6 py-4 text-left text-base font-medium text-white/30 transition-all duration-200 hover:border-white/30 hover:text-white/55"
+                  >
+                    <span className="flex items-center gap-2">
+                      <Plus size={14} strokeWidth={2.5} />
+                      Enter a custom amount
+                    </span>
+                  </button>
+                )}
               </div>
             )}
 

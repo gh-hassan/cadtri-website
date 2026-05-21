@@ -881,41 +881,41 @@ function SelectCard({
       type="button"
       onClick={onClick}
       className={cn(
-        "group w-full h-full text-left border rounded-2xl px-6 py-6",
-        "flex flex-col justify-between transition-all duration-200",
+        "group relative w-full h-full border rounded-2xl px-6 py-8",
+        "flex flex-col items-center justify-center gap-5 transition-all duration-200",
         "focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary",
         selected
           ? "border-secondary bg-secondary/10"
           : "border-white/15 bg-white/[0.04] hover:border-white/25 hover:bg-white/[0.08]",
       )}
     >
-      {/* Icon — top of card */}
-      <div className={cn(
-        "mb-4 transition-colors duration-200",
-        selected ? "text-secondary/55" : "text-white/[0.13] group-hover:text-white/25",
+      {/* Radio — absolute top-right */}
+      <span className={cn(
+        "absolute right-4 top-4 flex h-5 w-5 items-center justify-center rounded-full border transition-all duration-150",
+        selected ? "border-secondary bg-secondary" : "border-white/20 group-hover:border-white/45",
       )}>
-        {Icon ? <Icon size={28} strokeWidth={1.5} /> : <div className="h-7" />}
+        {selected && <Check size={10} strokeWidth={3} className="text-white" />}
+      </span>
+
+      {/* Icon — large, centered */}
+      <div className={cn(
+        "transition-colors duration-200",
+        selected ? "text-secondary/70" : "text-white/20 group-hover:text-white/35",
+      )}>
+        {Icon ? <Icon size={40} strokeWidth={1.25} /> : <div className="h-10 w-10" />}
       </div>
 
-      {/* Label + radio — bottom of card */}
-      <div className="flex items-end justify-between gap-3">
-        <div className="min-w-0 flex-1">
-          <p className={cn(
-            "text-base font-semibold leading-snug transition-colors duration-150",
-            selected ? "text-secondary" : "text-white",
-          )}>
-            {label}
-          </p>
-          {sub && (
-            <p className="mt-1.5 text-sm font-light leading-relaxed text-white/40">{sub}</p>
-          )}
-        </div>
-        <span className={cn(
-          "flex h-5 w-5 shrink-0 items-center justify-center rounded-full border transition-all duration-150",
-          selected ? "border-secondary bg-secondary" : "border-white/20 group-hover:border-white/45",
+      {/* Label + sub — centered below icon */}
+      <div className="text-center">
+        <p className={cn(
+          "text-base font-semibold leading-snug transition-colors duration-150",
+          selected ? "text-secondary" : "text-white",
         )}>
-          {selected && <Check size={10} strokeWidth={3} className="text-white" />}
-        </span>
+          {label}
+        </p>
+        {sub && (
+          <p className="mt-1.5 text-sm font-light leading-relaxed text-white/40">{sub}</p>
+        )}
       </div>
     </button>
   );

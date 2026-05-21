@@ -10,6 +10,7 @@ import {
   Lightbulb, Clock, CalendarDays, HelpCircle,
   Upload, MapPin, Key, List, Users, Type,
   Minimize2, Maximize2, Square, FolderOpen,
+  Wallet, Coins, Banknote, PiggyBank, DollarSign,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -72,6 +73,13 @@ const CARD_ICONS: Record<string, LucideIcon> = {
   "Urgent, within 2 weeks":    Zap,
   "Soon, 1 to 2 months":       Clock,
   "Planning ahead, 3+ months": CalendarDays,
+  // Step 6 — budget
+  "Under $10,000":               Wallet,
+  "$10,000 to $50,000":          Coins,
+  "$50,000 to $250,000":         Banknote,
+  "$250,000 to $1,000,000":      BarChart2,
+  "Over $1,000,000":             Building2,
+  "Prefer not to say":           DollarSign,
 };
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
@@ -112,6 +120,15 @@ const TIMELINE_OPTIONS = [
   "Soon, 1 to 2 months",
   "Planning ahead, 3+ months",
   "Not sure yet",
+];
+
+const BUDGET_OPTIONS = [
+  "Under $10,000",
+  "$10,000 to $50,000",
+  "$50,000 to $250,000",
+  "$250,000 to $1,000,000",
+  "Over $1,000,000",
+  "Prefer not to say",
 ];
 
 // Universal services — no state-specific items
@@ -167,7 +184,7 @@ const SERVICE_MAP: Record<string, string[]> = {
   "Short-Term Rental Conversion": ["Permit set preparation", "Plan check response"],
 };
 
-const TOTAL_STEPS = 8;
+const TOTAL_STEPS = 9;
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -202,9 +219,10 @@ export function PricingForm() {
     projectType:  "",
     projectStage: "",
     projectSize:  "",
+    timeline:     "",
+    budget:       "",
     city:         "",
     state:        "",
-    timeline:     "",
     services:     [],
     name:         "",
     email:        "",
@@ -227,8 +245,8 @@ export function PricingForm() {
     setOtherActive(null);
     setData((prev) => {
       const merged = { ...prev, ...updates };
-      // Pre-select services when entering step 6
-      if (next === 6 && merged.services.length === 0) {
+      // Pre-select services when entering step 7
+      if (next === 7 && merged.services.length === 0) {
         merged.services = SERVICE_MAP[merged.projectType] ?? [];
       }
       return merged;
@@ -325,8 +343,8 @@ export function PricingForm() {
   }
 
   // ── Layout wrapper ────────────────────────────────────────────────────────
-  // Steps 6–8 use a wide centered layout; steps 1–5 use a two-column split
-  const isWideStep = step >= 6;
+  // Steps 7–9 use a wide centered layout; steps 1–6 use a two-column split
+  const isWideStep = step >= 7;
 
   // Step meta used in left panel
   const STEP_META: Record<number, { question: string; description: string }> = {
@@ -349,6 +367,10 @@ export function PricingForm() {
     5: {
       question: "What is your timeline?",
       description: "We work to accommodate urgent timelines. Knowing your target date helps us plan production and review cycles.",
+    },
+    6: {
+      question: "What is your project budget?",
+      description: "This helps us scope our services to fit your budget and recommend the most cost-effective package for your project.",
     },
   };
 
@@ -405,8 +427,8 @@ export function PricingForm() {
 
             {/* ── Step 1 ── */}
             {step === 1 && (
-              <div className="animate-in flex flex-1 flex-col gap-3">
-                <div className="grid flex-1 gap-3 sm:grid-cols-2 [grid-auto-rows:1fr]">
+              <div className="animate-in flex flex-col gap-3">
+                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                   {CLIENT_TYPES.map((opt) => (
                     <SelectCard key={opt.label} label={opt.label} sub={opt.sub}
                       icon={CARD_ICONS[opt.label]}
@@ -424,8 +446,8 @@ export function PricingForm() {
 
             {/* ── Step 2 ── */}
             {step === 2 && (
-              <div className="animate-in flex flex-1 flex-col gap-3">
-                <div className="grid flex-1 gap-3 sm:grid-cols-2 [grid-auto-rows:1fr]">
+              <div className="animate-in flex flex-col gap-3">
+                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                   {(PROJECT_TYPES[data.clientType] ?? PROJECT_TYPES["General Contractor"]).map((label) => (
                     <SelectCard key={label} label={label}
                       icon={CARD_ICONS[label]}
@@ -443,8 +465,8 @@ export function PricingForm() {
 
             {/* ── Step 3 ── */}
             {step === 3 && (
-              <div className="animate-in flex flex-1 flex-col gap-3">
-                <div className="grid flex-1 gap-3 sm:grid-cols-2 [grid-auto-rows:1fr]">
+              <div className="animate-in flex flex-col gap-3">
+                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                   {STAGE_OPTIONS.map((label) => (
                     <SelectCard key={label} label={label}
                       icon={CARD_ICONS[label]}
@@ -462,8 +484,8 @@ export function PricingForm() {
 
             {/* ── Step 4 ── */}
             {step === 4 && (
-              <div className="animate-in flex flex-1 flex-col gap-3">
-                <div className="grid flex-1 gap-3 sm:grid-cols-2 [grid-auto-rows:1fr]">
+              <div className="animate-in flex flex-col gap-3">
+                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                   {SIZE_OPTIONS.map((label) => (
                     <SelectCard key={label} label={label}
                       icon={CARD_ICONS[label]}
@@ -481,8 +503,8 @@ export function PricingForm() {
 
             {/* ── Step 5 ── */}
             {step === 5 && (
-              <div className="animate-in flex flex-1 flex-col gap-3">
-                <div className="grid flex-1 gap-3 sm:grid-cols-2 [grid-auto-rows:1fr]">
+              <div className="animate-in flex flex-col gap-3">
+                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                   {TIMELINE_OPTIONS.map((label) => (
                     <SelectCard key={label} label={label}
                       icon={CARD_ICONS[label]}
@@ -498,11 +520,25 @@ export function PricingForm() {
               </div>
             )}
 
+            {/* ── Step 6: Budget ── */}
+            {step === 6 && (
+              <div className="animate-in flex flex-col gap-3">
+                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                  {BUDGET_OPTIONS.map((label) => (
+                    <SelectCard key={label} label={label}
+                      icon={CARD_ICONS[label]}
+                      selected={data.budget === label}
+                      onClick={() => selectSingle("budget", label)} />
+                  ))}
+                </div>
+              </div>
+            )}
+
           </div>
         </div>
 
       ) : (
-        /* ── Steps 6–8: Fixed top-anchored layout ── */
+        /* ── Steps 7–9: Fixed top-anchored layout ── */
         <div className="flex flex-1 flex-col overflow-y-auto px-8 pb-16 pt-12 sm:px-12 lg:px-20 lg:pt-16">
 
           {/* Fixed nav row — always at the same position */}
@@ -522,10 +558,10 @@ export function PricingForm() {
 
           <div className="w-full max-w-3xl">
 
-            {/* ── Step 6: Services — pills ── */}
-            {step === 6 && (
+            {/* ── Step 7: Services — pills ── */}
+            {step === 7 && (
               <div className="animate-in">
-                <StepLabel n={6} />
+                <StepLabel n={7} />
                 <Question>Which services do you need?</Question>
                 <p className="mb-8 text-sm font-light text-white/40">
                   We pre-selected the most relevant ones. Add or remove as needed.
@@ -621,7 +657,7 @@ export function PricingForm() {
                 <button
                   type="button"
                   disabled={data.services.length === 0}
-                  onClick={() => advance(7)}
+                  onClick={() => advance(8)}
                   className={cn(
                     "mt-10 px-12 py-4 text-sm font-semibold uppercase tracking-widest transition-all duration-200",
                     data.services.length > 0
@@ -634,10 +670,10 @@ export function PricingForm() {
               </div>
             )}
 
-            {/* ── Step 7: Location ── */}
-            {step === 7 && (
+            {/* ── Step 8: Location ── */}
+            {step === 8 && (
               <div className="animate-in">
-                <StepLabel n={7} />
+                <StepLabel n={8} />
                 <Question>Where is the project located?</Question>
                 <p className="mb-8 text-sm font-light text-white/40">
                   Location affects permit requirements and project complexity.
@@ -671,7 +707,7 @@ export function PricingForm() {
                 <button
                   type="button"
                   disabled={data.city.trim().length < 2 || data.state.trim().length < 2}
-                  onClick={() => advance(8)}
+                  onClick={() => advance(9)}
                   className={cn(
                     "mt-10 px-12 py-4 text-sm font-semibold uppercase tracking-widest transition-all duration-200",
                     data.city.trim().length >= 2 && data.state.trim().length >= 2
@@ -684,10 +720,10 @@ export function PricingForm() {
               </div>
             )}
 
-            {/* ── Step 8: Contact + file upload ── */}
-            {step === 8 && (
+            {/* ── Step 9: Contact + file upload ── */}
+            {step === 9 && (
               <div className="animate-in">
-                <StepLabel n={8} label="Last step" />
+                <StepLabel n={9} label="Last step" />
                 <Question>Where should we send your estimate?</Question>
                 <p className="mb-8 text-sm font-light text-white/40">
                   We review every request manually and respond within one business day.
@@ -881,8 +917,8 @@ function SelectCard({
       type="button"
       onClick={onClick}
       className={cn(
-        "group relative w-full h-full border rounded-2xl px-6 py-8",
-        "flex flex-col items-center justify-center gap-5 transition-all duration-200",
+        "group relative w-full border rounded-2xl px-5 py-6 min-h-[140px] sm:min-h-[160px]",
+        "flex flex-col items-center justify-center gap-4 transition-all duration-200",
         "focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary",
         selected
           ? "border-secondary bg-secondary/10"

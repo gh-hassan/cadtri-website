@@ -260,12 +260,27 @@ export function PricingForm() {
   const isWideStep = step >= 6;
 
   // Step meta used in left panel
-  const STEP_META: Record<number, { question: string; hint?: string }> = {
-    1: { question: "Which best describes you?" },
-    2: { question: "What are you working on?" },
-    3: { question: "Where are you in the process?" },
-    4: { question: "How large is the project?" },
-    5: { question: "What is your timeline?" },
+  const STEP_META: Record<number, { question: string; description: string }> = {
+    1: {
+      question: "Which best describes you?",
+      description: "We tailor the rest of the form to your role so you only see options that are relevant to your type of project.",
+    },
+    2: {
+      question: "What are you working on?",
+      description: "Select the project type that fits closest. This helps us match you with the right service package and scope.",
+    },
+    3: {
+      question: "Where are you in the process?",
+      description: "Knowing your current stage lets us quote accurately and identify what drawings or documents you may already have.",
+    },
+    4: {
+      question: "How large is the project?",
+      description: "Approximate square footage is fine. Project size affects drafting time, permit fees, and overall scope.",
+    },
+    5: {
+      question: "What is your timeline?",
+      description: "We work to accommodate urgent timelines. Knowing your target date helps us plan production and review cycles.",
+    },
   };
 
   const meta = STEP_META[step];
@@ -285,20 +300,25 @@ export function PricingForm() {
         <div className="flex flex-1 flex-col lg:flex-row lg:items-stretch">
 
           {/* Left panel — question + nav */}
-          <div className="relative flex flex-col justify-center border-b border-white/[0.06] px-8 py-12 lg:w-[38%] lg:border-b-0 lg:border-r lg:px-14 lg:py-20">
-            <p className="mb-5 text-[11px] font-medium uppercase tracking-widest text-secondary">
-              Step {step} of {TOTAL_STEPS}
-            </p>
-            <h2
-              className="font-bold text-white"
-              style={{
-                fontSize: "clamp(1.75rem, 2.8vw, 3rem)",
-                letterSpacing: "-0.03em",
-                lineHeight: 1.06,
-              }}
-            >
-              {meta?.question}
-            </h2>
+          <div className="relative flex flex-col border-b border-white/[0.06] px-8 pb-10 pt-12 lg:w-[38%] lg:border-b-0 lg:border-r lg:px-14 lg:pb-20 lg:pt-16">
+            <div>
+              <p className="mb-5 text-[11px] font-medium uppercase tracking-widest text-secondary">
+                Step {step} of {TOTAL_STEPS}
+              </p>
+              <h2
+                className="font-bold text-white"
+                style={{
+                  fontSize: "clamp(1.75rem, 2.8vw, 2.75rem)",
+                  letterSpacing: "-0.03em",
+                  lineHeight: 1.06,
+                }}
+              >
+                {meta?.question}
+              </h2>
+              <p className="mt-5 text-sm font-light leading-relaxed text-white/40">
+                {meta?.description}
+              </p>
+            </div>
             {step > 1 && (
               <button
                 type="button"
@@ -311,8 +331,8 @@ export function PricingForm() {
             )}
           </div>
 
-          {/* Right panel — options */}
-          <div className="flex flex-1 flex-col justify-center overflow-y-auto px-8 py-12 lg:px-14 lg:py-20">
+          {/* Right panel — options, top-aligned to match left */}
+          <div className="flex flex-1 flex-col overflow-y-auto px-8 pb-10 pt-12 lg:px-14 lg:pb-20 lg:pt-16">
 
             {/* ── Step 1 ── */}
             {step === 1 && (

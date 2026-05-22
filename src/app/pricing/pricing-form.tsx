@@ -250,6 +250,10 @@ export function PricingForm() {
   const [showCustomBudget, setShowCustomBudget]   = useState(false);
   const customBudgetRef = useRef<HTMLInputElement>(null);
 
+  // IP geolocation for step 7
+  const [locationLoading, setLocationLoading] = useState(false);
+  const [locationDetected, setLocationDetected] = useState(false);
+
   // File upload
   const [file, setFile] = useState<File | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
@@ -341,6 +345,27 @@ export function PricingForm() {
   useEffect(() => {
     if (showCustomBudget) customBudgetRef.current?.focus();
   }, [showCustomBudget]);
+
+  // Auto-detect city/state from IP when entering step 7
+  useEffect(() => {
+    if (step !== 7 || data.city || data.state) return;
+    setLocationLoading(true);
+    fetch("https://ipapi.co/json/")
+      .then((r) => r.json())
+      .then((loc) => {
+        if (loc.city && loc.region) {
+          setData((p) => ({
+            ...p,
+            city:  p.city  || loc.city,
+            state: p.state || loc.region,
+          }));
+          setLocationDetected(true);
+        }
+      })
+      .catch(() => {})
+      .finally(() => setLocationLoading(false));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [step]);
 
   const handleSubmit = async () => {
     if (!data.name.trim() || !data.email.trim()) return;
@@ -714,9 +739,20 @@ export function PricingForm() {
               <div className="animate-in">
                 <StepLabel n={7} />
                 <Question>Where is the project located?</Question>
-                <p className="mb-8 text-sm font-light text-white/40">
-                  Location affects permit requirements and project complexity.
-                </p>
+                <div className="mb-8 flex items-center gap-2">
+                  <p className="text-sm font-light text-white/40">
+                    Location affects permit requirements and project complexity.
+                  </p>
+                  {locationLoading && (
+                    <span className="text-xs text-white/30 animate-pulse">Detecting...</span>
+                  )}
+                  {locationDetected && !locationLoading && (
+                    <span className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/[0.05] px-2 py-0.5 text-[10px] font-medium text-white/40">
+                      <span className="h-1.5 w-1.5 rounded-full bg-secondary/70" />
+                      Auto-detected
+                    </span>
+                  )}
+                </div>
                 <div className="grid gap-5 sm:grid-cols-[1fr_200px]">
                   <div className="flex flex-col gap-2">
                     <label className="text-xs font-semibold uppercase tracking-widest text-white/55">
@@ -725,8 +761,11 @@ export function PricingForm() {
                     <input
                       type="text"
                       value={data.city}
-                      onChange={(e) => setData((p) => ({ ...p, city: e.target.value }))}
-                      placeholder="e.g. Miami"
+                      onChange={(e) => {
+                        setLocationDetected(false);
+                        setData((p) => ({ ...p, city: e.target.value }));
+                      }}
+                      placeholder={locationLoading ? "Detecting..." : "e.g. Miami"}
                       className={inputClass}
                     />
                   </div>
@@ -737,8 +776,11 @@ export function PricingForm() {
                     <input
                       type="text"
                       value={data.state}
-                      onChange={(e) => setData((p) => ({ ...p, state: e.target.value }))}
-                      placeholder="e.g. Florida"
+                      onChange={(e) => {
+                        setLocationDetected(false);
+                        setData((p) => ({ ...p, state: e.target.value }));
+                      }}
+                      placeholder={locationLoading ? "Detecting..." : "e.g. Florida"}
                       className={inputClass}
                     />
                   </div>

@@ -397,13 +397,28 @@ export function PricingForm() {
     fd.append("data", JSON.stringify(data));
     if (file) fd.append("file", file);
 
-    const result = await submitPricingForm(fd);
-    setSubmitting(false);
+    try {
+      // Race the server action against a 20-second client timeout
+      const timeout = new Promise<never>((_, reject) =>
+        setTimeout(() => reject(new Error("timeout")), 20_000),
+      );
 
-    if (result.status === "success") {
-      setDone(true);
-    } else {
-      setSubmitError(result.message ?? "Something went wrong. Please try again.");
+      const result = await Promise.race([submitPricingForm(fd), timeout]);
+
+      if (result.status === "success") {
+        setDone(true);
+      } else {
+        setSubmitError(result.message ?? "Something went wrong. Please try again.");
+      }
+    } catch (err) {
+      const isTimeout = err instanceof Error && err.message === "timeout";
+      setSubmitError(
+        isTimeout
+          ? "Request timed out. Please try again or email us directly at info@cadtri.com."
+          : "Something went wrong. Please email us directly at info@cadtri.com.",
+      );
+    } finally {
+      setSubmitting(false);
     }
   };
 

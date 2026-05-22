@@ -137,57 +137,86 @@ const BUDGET_OPTIONS = [
   "$100,000",
 ];
 
-// Universal services — no state-specific items
+// All 42 CADTRI services — exact titles from the website
 const ALL_SERVICES = [
-  "Architectural drawings",
-  "Permit set preparation",
-  "ADU permit package",
-  "Structural coordination",
-  "MEP coordination",
-  "BIM coordination",
-  "Plan check response",
-  "As-built documentation",
-  "Site plan package",
-  "Tenant improvement package",
-  "Feasibility study",
-  "Zoning code research",
-  "Permit pathway analysis",
-  "Demolition permit drawings",
-  "Signage permit drawings",
-  "Not sure, need guidance",
+  "Architectural Drafting",
+  "Permit Set Preparation",
+  "City Comments Response",
+  "Structural Coordination",
+  "Code and Compliance Review",
+  "Renderings and Visualization",
+  "ADU Permit Packages",
+  "Solar and EV Permit Packages",
+  "MEP Coordination",
+  "Entitlement Support",
+  "Pre-Application Meeting Prep",
+  "As-Built Documentation",
+  "Tenant Improvement Packages",
+  "Digital Walkthroughs",
+  "3D Staging",
+  "Project Strategy",
+  "Feasibility Study",
+  "Home Addition Packages",
+  "Garage Conversion Packages",
+  "Construction Administration Support",
+  "Contractor Bid Package",
+  "Pool and Spa Permit Packages",
+  "Interior Remodel Packages",
+  "Short-Term Rental Conversion Permits",
+  "Accessory Structure Permits",
+  "Title 24 Energy Compliance",
+  "Historic District Submissions",
+  "BIM Coordination",
+  "Zoning Code Research",
+  "Permit Pathway Analysis",
+  "Pre-Purchase Assessment",
+  "Scope Definition",
+  "Design Options Study",
+  "Compliance Gap Analysis",
+  "Deferred Submittal Packages",
+  "Fire and Life Safety Drawings",
+  "Signage Permit Drawings",
+  "Interior Detail Package",
+  "Site Plan Package",
+  "Record Drawing Updates",
+  "Demolition Permit Drawings",
+  "Redline to CAD Conversion",
 ];
 
-// Smart pre-selection per project type
+// Honeycomb row sizes: 6+5+6+5+6+5+6+3 = 42
+const HONEYCOMB_ROWS = [6, 5, 6, 5, 6, 5, 6, 3] as const;
+
+// Smart pre-selection per project type (matched to exact service titles)
 const SERVICE_MAP: Record<string, string[]> = {
-  "Home Addition":             ["Architectural drawings", "Permit set preparation", "Structural coordination"],
-  "ADU or Garage Conversion":  ["ADU permit package", "Architectural drawings", "Structural coordination"],
-  "Interior Remodel":          ["Architectural drawings", "Plan check response"],
-  "New Custom Home":           ["Architectural drawings", "Permit set preparation", "Structural coordination", "Site plan package"],
-  "Pool or Spa":               ["Permit set preparation", "Structural coordination"],
-  "Solar or EV Installation":  ["Permit set preparation"],
-  "Accessory Structure":       ["Permit set preparation"],
-  "Residential Project":       ["Architectural drawings", "Permit set preparation", "Structural coordination"],
-  "Commercial Build-out":      ["Architectural drawings", "Plan check response", "MEP coordination"],
-  "Mixed-Use Development":     ["Architectural drawings", "BIM coordination", "MEP coordination"],
-  "Permit Coordination":       ["Plan check response", "Permit set preparation"],
-  "As-Built Documentation":    ["As-built documentation"],
-  "Drafting Support":          ["Architectural drawings", "Structural coordination"],
-  "Permit Set Coordination":   ["Permit set preparation", "Plan check response"],
-  "BIM Coordination":          ["BIM coordination", "MEP coordination"],
-  "Structural Coordination":   ["Structural coordination"],
-  "Plan Check Response":       ["Plan check response"],
-  "Overflow Drafting":         ["Architectural drawings"],
-  "Ground-Up Construction":    ["Architectural drawings", "Permit set preparation", "Structural coordination", "Site plan package"],
-  "Multi-Family Development":  ["Architectural drawings", "Permit set preparation", "BIM coordination"],
-  "ADU Development":           ["ADU permit package", "Architectural drawings"],
-  "Commercial Development":    ["Architectural drawings", "BIM coordination", "MEP coordination"],
-  "Feasibility and Planning":  ["Feasibility study", "Zoning code research", "Permit pathway analysis"],
-  "Portfolio Permitting":      ["Permit set preparation", "Plan check response"],
-  "Tenant Improvement":        ["Tenant improvement package", "Plan check response", "MEP coordination"],
-  "New Business Location":     ["Architectural drawings", "Permit set preparation", "MEP coordination"],
-  "ADA Compliance Upgrade":    ["Architectural drawings", "Plan check response"],
-  "Signage Permit":            ["Signage permit drawings"],
-  "Short-Term Rental Conversion": ["Permit set preparation", "Plan check response"],
+  "Home Addition":              ["Architectural Drafting", "Permit Set Preparation", "Structural Coordination", "Home Addition Packages"],
+  "ADU or Garage Conversion":   ["ADU Permit Packages", "Garage Conversion Packages", "Architectural Drafting"],
+  "Interior Remodel":           ["Architectural Drafting", "Interior Remodel Packages", "City Comments Response"],
+  "New Custom Home":            ["Architectural Drafting", "Permit Set Preparation", "Structural Coordination", "Site Plan Package"],
+  "Pool or Spa":                ["Pool and Spa Permit Packages", "Structural Coordination"],
+  "Solar or EV Installation":   ["Solar and EV Permit Packages"],
+  "Accessory Structure":        ["Accessory Structure Permits", "Permit Set Preparation"],
+  "Residential Project":        ["Architectural Drafting", "Permit Set Preparation", "Structural Coordination"],
+  "Commercial Build-out":       ["Architectural Drafting", "City Comments Response", "MEP Coordination"],
+  "Mixed-Use Development":      ["Architectural Drafting", "BIM Coordination", "MEP Coordination"],
+  "Permit Coordination":        ["City Comments Response", "Permit Set Preparation"],
+  "As-Built Documentation":     ["As-Built Documentation"],
+  "Drafting Support":           ["Architectural Drafting", "Structural Coordination"],
+  "Permit Set Coordination":    ["Permit Set Preparation", "City Comments Response"],
+  "BIM Coordination":           ["BIM Coordination", "MEP Coordination"],
+  "Structural Coordination":    ["Structural Coordination"],
+  "Plan Check Response":        ["City Comments Response"],
+  "Overflow Drafting":          ["Architectural Drafting"],
+  "Ground-Up Construction":     ["Architectural Drafting", "Permit Set Preparation", "Structural Coordination", "Site Plan Package"],
+  "Multi-Family Development":   ["Architectural Drafting", "Permit Set Preparation", "BIM Coordination"],
+  "ADU Development":            ["ADU Permit Packages", "Architectural Drafting"],
+  "Commercial Development":     ["Architectural Drafting", "BIM Coordination", "MEP Coordination"],
+  "Feasibility and Planning":   ["Feasibility Study", "Zoning Code Research", "Permit Pathway Analysis"],
+  "Portfolio Permitting":       ["Permit Set Preparation", "City Comments Response"],
+  "Tenant Improvement":         ["Tenant Improvement Packages", "City Comments Response", "MEP Coordination"],
+  "New Business Location":      ["Architectural Drafting", "Permit Set Preparation", "MEP Coordination"],
+  "ADA Compliance Upgrade":     ["Architectural Drafting", "City Comments Response"],
+  "Signage Permit":             ["Signage Permit Drawings"],
+  "Short-Term Rental Conversion": ["Short-Term Rental Conversion Permits", "City Comments Response"],
 };
 
 const TOTAL_STEPS = 9;
@@ -553,60 +582,86 @@ export function PricingForm() {
             </span>
           </div>
 
-          <div className="w-full max-w-3xl">
+          {/* Step 6 uses full width for honeycomb; others are constrained */}
+          <div className={cn("w-full", step !== 6 && "max-w-3xl")}>
 
-            {/* ── Step 6: Services — pills ── */}
+            {/* ── Step 6: Services — honeycomb ── */}
             {step === 6 && (
               <div className="animate-in">
                 <StepLabel n={6} />
                 <Question>Which services do you need?</Question>
-                <p className="mb-8 text-sm font-light text-white/40">
-                  We pre-selected the most relevant ones. Add or remove as needed.
+                <p className="mb-6 text-sm font-light text-white/40">
+                  Select all that apply. Pre-selected based on your project type.
                 </p>
-                <div className="flex flex-wrap gap-2.5">
-                  {/* Standard service pills */}
-                  {ALL_SERVICES.map((label) => {
-                    const selected = data.services.includes(label);
-                    const suggested = suggestedServices.includes(label);
-                    return (
-                      <button
-                        key={label}
-                        type="button"
-                        onClick={() => toggleService(label)}
-                        className={cn(
-                          "inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-medium transition-all duration-200",
-                          selected
-                            ? "border-secondary bg-secondary/15 text-secondary"
-                            : suggested
-                            ? "border-white/30 bg-white/[0.07] text-white/70 hover:border-secondary/60 hover:text-white"
-                            : "border-white/15 bg-transparent text-white/40 hover:border-white/30 hover:text-white/70",
-                        )}
-                      >
-                        {selected && <Check size={11} strokeWidth={2.5} />}
-                        {label}
-                      </button>
-                    );
-                  })}
 
-                  {/* Custom services added by the user */}
-                  {data.services
-                    .filter((s) => !ALL_SERVICES.includes(s))
-                    .map((label) => (
-                      <button
-                        key={label}
-                        type="button"
-                        onClick={() => toggleService(label)}
-                        className="inline-flex items-center gap-2 rounded-full border border-secondary bg-secondary/15 px-5 py-2.5 text-sm font-medium text-secondary transition-all duration-200"
-                      >
-                        <Check size={11} strokeWidth={2.5} />
-                        {label}
-                        <X size={10} strokeWidth={2.5} className="ml-0.5 opacity-60" />
-                      </button>
-                    ))}
+                {/* Honeycomb staggered rows */}
+                <div className="space-y-2">
+                  {(() => {
+                    let cursor = 0;
+                    return HONEYCOMB_ROWS.map((rowSize, rowIdx) => {
+                      const row = ALL_SERVICES.slice(cursor, cursor + rowSize);
+                      cursor += rowSize;
+                      return (
+                        <div
+                          key={rowIdx}
+                          className="flex gap-2"
+                          style={rowIdx % 2 === 1 ? { paddingLeft: "4%" } : {}}
+                        >
+                          {row.map((label) => {
+                            const selected = data.services.includes(label);
+                            const suggested = suggestedServices.includes(label);
+                            return (
+                              <button
+                                key={label}
+                                type="button"
+                                onClick={() => toggleService(label)}
+                                className={cn(
+                                  "flex-1 rounded-xl border px-3 py-3 text-xs font-medium leading-snug transition-all duration-200",
+                                  "focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary",
+                                  selected
+                                    ? "border-secondary bg-secondary/15 text-secondary"
+                                    : suggested
+                                    ? "border-white/30 bg-white/[0.07] text-white/75 hover:border-secondary/50 hover:text-white"
+                                    : "border-white/12 bg-white/[0.03] text-white/45 hover:border-white/25 hover:text-white/70",
+                                )}
+                              >
+                                {selected && (
+                                  <Check size={9} strokeWidth={3} className="inline mb-0.5 mr-1" />
+                                )}
+                                {label}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      );
+                    });
+                  })()}
+                </div>
 
-                  {/* Inline "Add your own" input */}
+                {/* Custom services added by the user */}
+                {data.services.filter((s) => !ALL_SERVICES.includes(s)).length > 0 && (
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {data.services
+                      .filter((s) => !ALL_SERVICES.includes(s))
+                      .map((label) => (
+                        <button
+                          key={label}
+                          type="button"
+                          onClick={() => toggleService(label)}
+                          className="inline-flex items-center gap-2 rounded-xl border border-secondary bg-secondary/15 px-4 py-2 text-xs font-medium text-secondary"
+                        >
+                          <Check size={9} strokeWidth={3} />
+                          {label}
+                          <X size={9} strokeWidth={2.5} className="opacity-60" />
+                        </button>
+                      ))}
+                  </div>
+                )}
+
+                {/* Add your own + Continue row */}
+                <div className="mt-5 flex items-center gap-4">
                   {showCustomInput ? (
-                    <div className="inline-flex items-center gap-0 rounded-full border border-secondary/60 bg-white/[0.07] pl-4 pr-1 py-1">
+                    <div className="inline-flex items-center gap-0 rounded-xl border border-secondary/60 bg-white/[0.07] pl-4 pr-1 py-1">
                       <input
                         ref={customInputRef}
                         type="text"
@@ -617,53 +672,40 @@ export function PricingForm() {
                           if (e.key === "Escape") { setShowCustomInput(false); setCustomServiceText(""); }
                         }}
                         placeholder="e.g. Historic preservation"
-                        className="w-44 bg-transparent text-sm font-medium text-white placeholder:text-white/30 focus:outline-none"
+                        className="w-48 bg-transparent text-sm font-medium text-white placeholder:text-white/30 focus:outline-none"
                       />
-                      <button
-                        type="button"
-                        onClick={addCustomService}
-                        disabled={!customServiceText.trim()}
-                        className={cn(
-                          "ml-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-all",
-                          customServiceText.trim()
-                            ? "bg-secondary text-white"
-                            : "bg-white/10 text-white/30",
-                        )}
-                      >
+                      <button type="button" onClick={addCustomService} disabled={!customServiceText.trim()}
+                        className={cn("ml-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg transition-all",
+                          customServiceText.trim() ? "bg-secondary text-white" : "bg-white/10 text-white/30")}>
                         <Check size={12} strokeWidth={2.5} />
                       </button>
-                      <button
-                        type="button"
-                        onClick={() => { setShowCustomInput(false); setCustomServiceText(""); }}
-                        className="ml-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-white/30 transition-colors hover:text-white/60"
-                      >
+                      <button type="button" onClick={() => { setShowCustomInput(false); setCustomServiceText(""); }}
+                        className="ml-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-white/30 hover:text-white/60">
                         <X size={11} strokeWidth={2} />
                       </button>
                     </div>
                   ) : (
-                    <button
-                      type="button"
-                      onClick={() => setShowCustomInput(true)}
-                      className="inline-flex items-center gap-2 rounded-full border border-dashed border-white/20 px-4 py-2.5 text-sm font-medium text-white/35 transition-all duration-200 hover:border-white/35 hover:text-white/60"
-                    >
-                      <Plus size={12} strokeWidth={2.5} />
+                    <button type="button" onClick={() => setShowCustomInput(true)}
+                      className="inline-flex items-center gap-2 rounded-xl border border-dashed border-white/20 px-4 py-2 text-xs font-medium text-white/35 hover:border-white/35 hover:text-white/60 transition-all duration-200">
+                      <Plus size={11} strokeWidth={2.5} />
                       Add your own
                     </button>
                   )}
+
+                  <button
+                    type="button"
+                    disabled={data.services.length === 0}
+                    onClick={() => advance(7)}
+                    className={cn(
+                      "ml-auto px-10 py-3 text-sm font-semibold uppercase tracking-widest transition-all duration-200",
+                      data.services.length > 0
+                        ? "bg-secondary text-white hover:bg-secondary/90"
+                        : "bg-white/[0.06] text-white/20 cursor-not-allowed",
+                    )}
+                  >
+                    Continue
+                  </button>
                 </div>
-                <button
-                  type="button"
-                  disabled={data.services.length === 0}
-                  onClick={() => advance(7)}
-                  className={cn(
-                    "mt-10 px-12 py-4 text-sm font-semibold uppercase tracking-widest transition-all duration-200",
-                    data.services.length > 0
-                      ? "bg-secondary text-white hover:bg-secondary/90"
-                      : "bg-white/[0.06] text-white/20 cursor-not-allowed",
-                  )}
-                >
-                  Continue
-                </button>
               </div>
             )}
 

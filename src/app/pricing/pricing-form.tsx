@@ -1018,60 +1018,33 @@ export function PricingForm() {
 
             {/* ── Step 8: Budget ── */}
             {step === 8 && (() => {
-              const estimate  = computeEstimate(data.services, data.city, data.state, data.projectSize, data.projectStage, data.timeline);
+              const estimate   = computeEstimate(data.services, data.city, data.state, data.projectSize, data.projectStage, data.timeline);
               const budgetOpts = smartBudgetOptions(estimate);
-              const hasEstimate = estimate > 0;
               return (
               <div className="animate-in">
                 <StepLabel n={8} />
                 <Question>What is your project budget?</Question>
 
                 {/* Smart estimate hint */}
-                {hasEstimate ? (
-                  <div className="mb-8 space-y-2">
-                    <div className="flex flex-wrap items-center gap-3">
-                      <span className="inline-flex items-center gap-1.5 rounded-full border border-secondary/30 bg-secondary/10 px-3 py-1 text-xs font-semibold text-secondary">
-                        <span className="h-1.5 w-1.5 rounded-full bg-secondary" />
-                        Estimated {fmtBudget(niceRound(estimate * 0.85))} to {fmtBudget(niceRound(estimate * 1.2))}
-                      </span>
-                    </div>
-                    <p className="text-xs font-light text-white/30">
-                      Based on {data.services.length} service{data.services.length !== 1 ? "s" : ""}
-                      {data.projectSize && data.projectSize !== "Not sure yet" ? `, ${data.projectSize}` : ""}
-                      {data.projectStage ? ` (${data.projectStage.toLowerCase()})` : ""}
-                      {data.timeline && data.timeline !== "Not sure yet" ? `, ${data.timeline.toLowerCase()}` : ""}
-                      {data.city ? ` in ${data.city}${data.state ? `, ${data.state}` : ""}` : ""}.
-                      Select the range that fits your budget.
-                    </p>
-                  </div>
-                ) : (
-                  <p className="mb-8 text-sm font-light text-white/40">
-                    This helps us recommend the most cost-effective package for your project.
-                  </p>
-                )}
+                <p className="mb-8 text-sm font-light text-white/40">
+                  This helps us tailor the most cost-effective package for your project.
+                </p>
 
                 <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-4">
-                  {budgetOpts.map(({ label, recommended }) => (
+                  {budgetOpts.map(({ label }) => (
                     <button
                       key={label}
                       type="button"
                       onClick={() => selectSingle("budget", label)}
                       className={cn(
-                        "relative rounded-2xl border px-4 py-5 text-center transition-all duration-200",
+                        "rounded-2xl border px-4 py-5 text-center transition-all duration-200",
                         "focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary",
                         data.budget === label
                           ? "border-secondary bg-secondary/10 text-secondary"
-                          : recommended
-                          ? "border-secondary/40 bg-secondary/[0.06] text-white hover:border-secondary/70 hover:bg-secondary/10"
                           : "border-white/15 bg-white/[0.04] text-white hover:border-white/25 hover:bg-white/[0.08]",
                       )}
                     >
                       <span className="block text-sm font-semibold">{label}</span>
-                      {recommended && data.budget !== label && (
-                        <span className="absolute -top-2 left-1/2 -translate-x-1/2 rounded-full bg-secondary px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide text-white">
-                          Suggested
-                        </span>
-                      )}
                     </button>
                   ))}
                 </div>

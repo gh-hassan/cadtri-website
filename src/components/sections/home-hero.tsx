@@ -60,6 +60,14 @@ export function HomeHero() {
               Get a Pricing Estimate
             </Button>
             <Button
+              href="/strategy"
+              variant="outline"
+              size="lg"
+              className="border-white/30 text-white/80 hover:border-white hover:bg-transparent hover:text-white"
+            >
+              Get a Free Strategy
+            </Button>
+            <Button
               href={heroContent.secondaryCta.href}
               variant="ghost"
               size="lg"

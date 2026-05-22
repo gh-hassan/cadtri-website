@@ -219,7 +219,13 @@ const SERVICE_MAP: Record<string, string[]> = {
   "Short-Term Rental Conversion": ["Short-Term Rental Conversion Permits", "City Comments Response"],
 };
 
-const TOTAL_STEPS = 9;
+const FUTURE_TIMEFRAME_OPTIONS: { label: string; icon: LucideIcon }[] = [
+  { label: "Within 3 months",    icon: Zap },
+  { label: "3 to 6 months",      icon: Clock },
+  { label: "6 months to 1 year", icon: CalendarDays },
+  { label: "1 year or more",     icon: HelpCircle },
+  { label: "Not sure yet",       icon: HelpCircle },
+];
 
 // ─── Smart budget estimation ───────────────────────────────────────────────────
 
@@ -433,22 +439,25 @@ export function PricingForm() {
   const fileRef = useRef<HTMLInputElement>(null);
 
   const [data, setData] = useState<PricingFormData>({
-    clientType:   "",
-    projectType:  "",
-    projectStage: "",
-    projectSize:  "",
-    timeline:     "",
-    budget:       "",
-    city:         "",
-    state:        "",
-    county:       "",
-    services:     [],
-    name:         "",
-    email:        "",
-    phone:        "",
-    notes:        "",
+    path:            "",
+    clientType:      "",
+    projectType:     "",
+    projectStage:    "",
+    projectSize:     "",
+    timeline:        "",
+    budget:          "",
+    city:            "",
+    state:           "",
+    county:          "",
+    services:        [],
+    futureTimeframe: "",
+    name:            "",
+    email:           "",
+    phone:           "",
+    notes:           "",
   });
 
+  const TOTAL_STEPS = data.path === "future" ? 5 : 9;
   const progress = Math.round(((step - 1) / TOTAL_STEPS) * 100);
 
   const suggestedServices = useMemo(
@@ -613,7 +622,269 @@ export function PricingForm() {
     );
   }
 
-  // ── Layout wrapper ────────────────────────────────────────────────────────
+  // ── Gate screen ──────────────────────────────────────────────────────────
+  if (!data.path) {
+    return (
+      <div className="flex flex-1 flex-col items-center justify-center px-8 py-16 lg:py-24">
+        <p className="mb-6 text-[11px] font-medium uppercase tracking-widest text-secondary">
+          Get Started
+        </p>
+        <h2
+          className="mb-5 text-center font-bold text-white"
+          style={{ fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.03em", lineHeight: 1.08 }}
+        >
+          What best describes
+          <br className="hidden sm:block" /> your situation?
+        </h2>
+        <p className="mb-12 max-w-md text-center text-sm font-light leading-relaxed text-white/40">
+          We tailor the questions to what&apos;s relevant for you. Takes about 2 minutes.
+        </p>
+        <div className="grid w-full max-w-2xl gap-5 sm:grid-cols-2">
+          <PathCard
+            icon={Zap}
+            label="I have an active project"
+            sub="Ready to move forward. I have a specific project and need drawings, permits, or coordination right now."
+            onClick={() => { setData(d => ({ ...d, path: "active" })); setStep(1); }}
+          />
+          <PathCard
+            icon={Lightbulb}
+            label="I'm planning ahead"
+            sub="Exploring options for a future project. No firm start date yet, but I want to understand scope and cost."
+            onClick={() => { setData(d => ({ ...d, path: "future" })); setStep(1); }}
+          />
+        </div>
+      </div>
+    );
+  }
+
+  // ── Future path ───────────────────────────────────────────────────────────
+  if (data.path === "future") {
+    const isFutureWideStep = step >= 4;
+    const FUTURE_STEP_META: Record<number, { question: string; description: string }> = {
+      1: {
+        question: "Which best describes you?",
+        description: "This helps us understand your perspective and tailor our response accordingly.",
+      },
+      2: {
+        question: "What type of project?",
+        description: "Give us a general sense of what you have in mind. No specifics needed just yet.",
+      },
+      3: {
+        question: "When do you plan to start?",
+        description: "A rough timeframe helps us understand your planning horizon and what information to share.",
+      },
+    };
+    const futureMeta = FUTURE_STEP_META[step];
+    const goBack = () => step > 1 ? setStep(s => s - 1) : setData(d => ({ ...d, path: "" }));
+
+    return (
+      <div className="flex flex-1 flex-col">
+        <div className="h-[3px] w-full bg-white/[0.08]">
+          <div className="h-full bg-secondary transition-all duration-500 ease-out" style={{ width: `${progress}%` }} />
+        </div>
+
+        {!isFutureWideStep ? (
+          <div className="flex flex-1 flex-col lg:flex-row lg:items-stretch">
+            <div className="relative flex flex-col border-b border-white/[0.06] px-8 pb-10 pt-12 lg:w-[38%] lg:border-b-0 lg:border-r lg:px-14 lg:pb-20 lg:pt-16">
+              <div>
+                <p className="mb-5 text-[11px] font-medium uppercase tracking-widest text-secondary">
+                  Step {step} of {TOTAL_STEPS}
+                </p>
+                <h2 className="font-bold text-white" style={{ fontSize: "clamp(1.75rem, 2.8vw, 2.75rem)", letterSpacing: "-0.03em", lineHeight: 1.06 }}>
+                  {futureMeta?.question}
+                </h2>
+                <p className="mt-5 text-sm font-light leading-relaxed text-white/40">{futureMeta?.description}</p>
+              </div>
+              <button type="button" onClick={goBack}
+                className="mt-10 flex items-center gap-2 text-xs font-medium uppercase tracking-widest text-white/30 transition-colors hover:text-white/70 lg:absolute lg:bottom-14 lg:left-14 lg:mt-0">
+                <ArrowLeft size={12} strokeWidth={2} />Back
+              </button>
+            </div>
+
+            <div className="flex flex-1 flex-col overflow-y-auto px-8 pb-10 pt-12 lg:px-14 lg:pb-20 lg:pt-16">
+              {step === 1 && (
+                <div className="animate-in flex flex-col gap-3">
+                  <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                    {CLIENT_TYPES.map((opt) => (
+                      <SelectCard key={opt.label} label={opt.label} sub={opt.sub} icon={CARD_ICONS[opt.label]}
+                        selected={data.clientType === opt.label}
+                        onClick={() => setTimeout(() => { setData(d => ({ ...d, clientType: opt.label })); setStep(2); }, 180)} />
+                    ))}
+                  </div>
+                  <OtherCard stepKey="clientType" active={otherActive === "clientType"}
+                    value={otherText["clientType"] ?? ""}
+                    onChange={(v) => setOtherText(p => ({ ...p, clientType: v }))}
+                    onActivate={() => setOtherActive("clientType")}
+                    onConfirm={() => {
+                      const val = (otherText["clientType"] ?? "").trim();
+                      if (!val) return;
+                      setData(d => ({ ...d, clientType: val }));
+                      setOtherActive(null);
+                      setStep(2);
+                    }} />
+                </div>
+              )}
+
+              {step === 2 && (
+                <div className="animate-in flex flex-col gap-3">
+                  <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                    {(PROJECT_TYPES[data.clientType] ?? PROJECT_TYPES["General Contractor"]).map((label) => (
+                      <SelectCard key={label} label={label} icon={CARD_ICONS[label]}
+                        selected={data.projectType === label}
+                        onClick={() => setTimeout(() => { setData(d => ({ ...d, projectType: label })); setStep(3); }, 180)} />
+                    ))}
+                  </div>
+                  <OtherCard stepKey="projectType" active={otherActive === "projectType"}
+                    value={otherText["projectType"] ?? ""}
+                    onChange={(v) => setOtherText(p => ({ ...p, projectType: v }))}
+                    onActivate={() => setOtherActive("projectType")}
+                    onConfirm={() => {
+                      const val = (otherText["projectType"] ?? "").trim();
+                      if (!val) return;
+                      setData(d => ({ ...d, projectType: val }));
+                      setOtherActive(null);
+                      setStep(3);
+                    }} />
+                </div>
+              )}
+
+              {step === 3 && (
+                <div className="animate-in flex flex-col gap-3">
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    {FUTURE_TIMEFRAME_OPTIONS.map(({ label, icon: Icon }) => (
+                      <SelectCard key={label} label={label} icon={Icon}
+                        selected={data.futureTimeframe === label}
+                        onClick={() => setTimeout(() => { setData(d => ({ ...d, futureTimeframe: label })); setStep(4); }, 180)} />
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        ) : (
+          <div className="flex flex-1 flex-col overflow-y-auto px-8 pb-16 pt-12 sm:px-12 lg:px-20 lg:pt-16">
+            <div className="mb-10 flex items-center justify-between">
+              <button type="button" onClick={goBack}
+                className="flex items-center gap-2 text-xs font-medium uppercase tracking-widest text-white/30 transition-colors hover:text-white/70">
+                <ArrowLeft size={12} strokeWidth={2} />Back
+              </button>
+              <span className="text-[11px] tabular-nums tracking-widest text-white/25">{step} / {TOTAL_STEPS}</span>
+            </div>
+
+            <div className="w-full max-w-3xl">
+              {step === 4 && (
+                <div className="animate-in">
+                  <StepLabel n={4} />
+                  <Question>Where is the project located?</Question>
+                  <p className="mb-8 text-sm font-light text-white/40">
+                    Location affects permit requirements and project complexity.
+                  </p>
+                  <div className="grid gap-5 sm:grid-cols-2">
+                    <div className="flex flex-col gap-2">
+                      <label className="text-xs font-semibold uppercase tracking-widest text-white/55">
+                        City <span className="text-secondary">*</span>
+                      </label>
+                      <input type="text" value={data.city}
+                        onChange={(e) => setData(p => ({ ...p, city: e.target.value }))}
+                        placeholder="e.g. Miami" className={inputClass} />
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <label className="text-xs font-semibold uppercase tracking-widest text-white/55">
+                        State <span className="text-secondary">*</span>
+                      </label>
+                      <input type="text" value={data.state}
+                        onChange={(e) => setData(p => ({ ...p, state: e.target.value }))}
+                        placeholder="e.g. Florida" className={inputClass} />
+                    </div>
+                  </div>
+                  <button type="button"
+                    disabled={data.city.trim().length < 2 || data.state.trim().length < 2}
+                    onClick={() => setStep(5)}
+                    className={cn(
+                      "mt-10 px-12 py-4 text-sm font-semibold uppercase tracking-widest transition-all duration-200",
+                      data.city.trim().length >= 2 && data.state.trim().length >= 2
+                        ? "bg-secondary text-white hover:bg-secondary/90"
+                        : "bg-white/[0.06] text-white/20 cursor-not-allowed",
+                    )}>
+                    Continue
+                  </button>
+                </div>
+              )}
+
+              {step === 5 && (
+                <div className="animate-in">
+                  <StepLabel n={5} label="Last step" />
+                  <Question>How should we reach you?</Question>
+                  <p className="mb-8 text-sm font-light text-white/40">
+                    We&apos;ll review your project interest and follow up with relevant information within one business day.
+                  </p>
+                  <div className="flex flex-col gap-5">
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <div className="flex flex-col gap-2">
+                        <label className="text-xs font-semibold uppercase tracking-widest text-white/55">
+                          Full Name <span className="text-secondary">*</span>
+                        </label>
+                        <input type="text" value={data.name}
+                          onChange={(e) => setData(p => ({ ...p, name: e.target.value }))}
+                          placeholder="Your name" className={inputClass} />
+                      </div>
+                      <div className="flex flex-col gap-2">
+                        <label className="text-xs font-semibold uppercase tracking-widest text-white/55">
+                          Email Address <span className="text-secondary">*</span>
+                        </label>
+                        <input type="email" value={data.email}
+                          onChange={(e) => setData(p => ({ ...p, email: e.target.value }))}
+                          placeholder="you@company.com" className={inputClass} />
+                      </div>
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <label className="text-xs font-semibold uppercase tracking-widest text-white/55">
+                        Phone{" "}
+                        <span className="text-white/30 font-light normal-case tracking-normal">optional</span>
+                      </label>
+                      <input type="tel" value={data.phone}
+                        onChange={(e) => setData(p => ({ ...p, phone: e.target.value }))}
+                        placeholder="(555) 000-0000" className={inputClass} />
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <label className="text-xs font-semibold uppercase tracking-widest text-white/55">
+                        Tell us more about your project{" "}
+                        <span className="text-white/30 font-light normal-case tracking-normal">optional</span>
+                      </label>
+                      <textarea value={data.notes}
+                        onChange={(e) => setData(p => ({ ...p, notes: e.target.value }))}
+                        rows={3}
+                        placeholder="Any details that would help us give you better information"
+                        className={cn(inputClass, "resize-none")} />
+                    </div>
+                    {submitError && (
+                      <p className="border-l-2 border-secondary pl-4 text-sm font-light text-white/70">{submitError}</p>
+                    )}
+                    <button type="button"
+                      disabled={!data.name.trim() || !data.email.trim() || submitting}
+                      onClick={handleSubmit}
+                      className={cn(
+                        "py-4 text-sm font-semibold uppercase tracking-widest transition-all duration-200",
+                        data.name.trim() && data.email.trim() && !submitting
+                          ? "bg-secondary text-white hover:bg-secondary/90"
+                          : "bg-white/[0.06] text-white/20 cursor-not-allowed",
+                      )}>
+                      {submitting ? "Sending..." : "Send My Inquiry"}
+                    </button>
+                    <p className="text-center text-xs font-light text-white/25">
+                      No spam. We only use this to follow up on your project inquiry.
+                    </p>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  // ── Active path layout ────────────────────────────────────────────────────
   // Steps 6–9 use a wide centered layout; steps 1–5 use a two-column split
   const isWideStep = step >= 6;
 
@@ -677,16 +948,14 @@ export function PricingForm() {
                 {meta?.description}
               </p>
             </div>
-            {step > 1 && (
-              <button
-                type="button"
-                onClick={() => setStep((s) => s - 1)}
-                className="mt-10 flex items-center gap-2 text-xs font-medium uppercase tracking-widest text-white/30 transition-colors hover:text-white/70 lg:absolute lg:bottom-14 lg:left-14 lg:mt-0"
-              >
-                <ArrowLeft size={12} strokeWidth={2} />
-                Back
-              </button>
-            )}
+            <button
+              type="button"
+              onClick={() => step > 1 ? setStep((s) => s - 1) : setData(d => ({ ...d, path: "" }))}
+              className="mt-10 flex items-center gap-2 text-xs font-medium uppercase tracking-widest text-white/30 transition-colors hover:text-white/70 lg:absolute lg:bottom-14 lg:left-14 lg:mt-0"
+            >
+              <ArrowLeft size={12} strokeWidth={2} />
+              Back
+            </button>
           </div>
 
           {/* Right panel — fills full height, cards stretch to fill */}
@@ -1369,5 +1638,45 @@ function OtherCard({
         Next
       </button>
     </div>
+  );
+}
+
+function PathCard({
+  icon: Icon,
+  label,
+  sub,
+  onClick,
+}: {
+  icon: LucideIcon;
+  label: string;
+  sub: string;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={cn(
+        "group relative w-full rounded-2xl border border-white/15 bg-white/[0.04] px-8 py-10",
+        "flex flex-col items-start gap-5 text-left transition-all duration-200",
+        "hover:border-secondary/50 hover:bg-white/[0.08]",
+        "focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary",
+      )}
+    >
+      <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/[0.06] text-white/40 transition-colors group-hover:border-secondary/30 group-hover:text-secondary/70">
+        <Icon size={22} strokeWidth={1.5} />
+      </div>
+      <div>
+        <p className="text-lg font-semibold leading-snug text-white transition-colors group-hover:text-secondary">
+          {label}
+        </p>
+        <p className="mt-2 text-sm font-light leading-relaxed text-white/40">{sub}</p>
+      </div>
+      <ArrowLeft
+        size={16}
+        strokeWidth={2}
+        className="absolute right-6 top-1/2 -translate-y-1/2 rotate-180 text-white/20 transition-all duration-200 group-hover:translate-x-1 group-hover:text-secondary/60"
+      />
+    </button>
   );
 }

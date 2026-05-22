@@ -2,8 +2,6 @@
 
 import { Resend } from "resend";
 
-export const maxDuration = 30; // extend Vercel function timeout to 30s
-
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export interface PricingFormData {

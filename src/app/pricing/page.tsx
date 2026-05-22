@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { PricingForm } from "./pricing-form";
 
+export const maxDuration = 30; // extend Vercel function timeout for email sending
+
 export const metadata: Metadata = {
   title: "Get a Pricing Estimate",
   description:

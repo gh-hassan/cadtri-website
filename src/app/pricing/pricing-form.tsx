@@ -221,6 +221,133 @@ const SERVICE_MAP: Record<string, string[]> = {
 
 const TOTAL_STEPS = 9;
 
+// ─── Smart budget estimation ───────────────────────────────────────────────────
+
+// Base cost per service (USD, national average for drafting/permit work)
+const SERVICE_BASE_COSTS: Record<string, number> = {
+  "Architectural Drafting":               2500,
+  "Permit Set Preparation":               2000,
+  "City Comments Response":               800,
+  "Structural Coordination":              1500,
+  "Code and Compliance Review":           1000,
+  "Renderings and Visualization":         2800,
+  "ADU Permit Packages":                  4000,
+  "Solar and EV Permit Packages":         1200,
+  "MEP Coordination":                     2000,
+  "Entitlement Support":                  3500,
+  "Pre-Application Meeting Prep":         700,
+  "As-Built Documentation":              1500,
+  "Tenant Improvement Packages":          3000,
+  "Digital Walkthroughs":                2500,
+  "3D Staging":                          2000,
+  "Project Strategy":                    1200,
+  "Feasibility Study":                   1500,
+  "Home Addition Packages":              3500,
+  "Garage Conversion Packages":          2500,
+  "Construction Administration Support": 2000,
+  "Contractor Bid Package":              1000,
+  "Pool and Spa Permit Packages":        1500,
+  "Interior Remodel Packages":           2000,
+  "Short-Term Rental Conversion Permits":1200,
+  "Accessory Structure Permits":         1500,
+  "Title 24 Energy Compliance":          1000,
+  "Historic District Submissions":       2500,
+  "BIM Coordination":                    3000,
+  "Zoning Code Research":                800,
+  "Permit Pathway Analysis":             800,
+  "Pre-Purchase Assessment":             600,
+  "Scope Definition":                    600,
+  "Design Options Study":                1200,
+  "Compliance Gap Analysis":             800,
+  "Deferred Submittal Packages":         1500,
+  "Fire and Life Safety Drawings":       2000,
+  "Signage Permit Drawings":             800,
+  "Interior Detail Package":             2000,
+  "Site Plan Package":                   1500,
+  "Record Drawing Updates":              1200,
+  "Demolition Permit Drawings":          1200,
+  "Redline to CAD Conversion":           800,
+};
+
+// State cost multiplier relative to national average
+const STATE_COST_MULT: Record<string, number> = {
+  "california": 1.40, "ca": 1.40,
+  "new york":   1.35, "ny": 1.35,
+  "massachusetts": 1.30, "ma": 1.30,
+  "washington": 1.25, "wa": 1.25,
+  "new jersey": 1.20, "nj": 1.20,
+  "connecticut":1.20, "ct": 1.20,
+  "colorado":   1.15, "co": 1.15,
+  "oregon":     1.15, "or": 1.15,
+  "florida":    1.10, "fl": 1.10,
+  "virginia":   1.10, "va": 1.10,
+  "maryland":   1.10, "md": 1.10,
+  "illinois":   1.10, "il": 1.10,
+  "georgia":    1.05, "ga": 1.05,
+  "texas":      1.00, "tx": 1.00,
+  "arizona":    1.00, "az": 1.00,
+  "nevada":     1.00, "nv": 1.00,
+};
+
+// Extra city-level bump (stacks on top of state)
+const CITY_COST_BUMP: Record<string, number> = {
+  "new york":      0.30,
+  "san francisco": 0.30,
+  "los angeles":   0.20,
+  "miami":         0.10,
+  "boston":        0.20,
+  "seattle":       0.15,
+  "chicago":       0.10,
+  "washington":    0.15,
+  "denver":        0.10,
+  "san jose":      0.20,
+  "san diego":     0.15,
+  "honolulu":      0.20,
+};
+
+function computeEstimate(services: string[], city: string, state: string): number {
+  if (!services.length) return 0;
+  const base = services.reduce((sum, s) => sum + (SERVICE_BASE_COSTS[s] ?? 1000), 0);
+  const stateKey = Object.keys(STATE_COST_MULT).find((k) =>
+    state.toLowerCase().includes(k));
+  const stateMult = stateKey ? STATE_COST_MULT[stateKey] : 1.0;
+  const cityLower = city.toLowerCase();
+  const cityBump  = Object.entries(CITY_COST_BUMP).find(([k]) => cityLower.includes(k))?.[1] ?? 0;
+  return Math.round(base * (stateMult + cityBump));
+}
+
+function niceRound(n: number): number {
+  if (n <=  2000) return Math.round(n / 250) * 250;
+  if (n <=  5000) return Math.round(n / 500) * 500;
+  if (n <= 20000) return Math.round(n / 1000) * 1000;
+  if (n <= 50000) return Math.round(n / 2500) * 2500;
+  return Math.round(n / 5000) * 5000;
+}
+
+function fmtBudget(n: number): string {
+  return "$" + n.toLocaleString("en-US");
+}
+
+function smartBudgetOptions(estimate: number): { label: string; value: number; recommended: boolean }[] {
+  if (estimate <= 0) {
+    // No services selected — fall back to defaults
+    return [2000, 5000, 8000, 10000, 15000, 20000, 30000, 50000, 100000].map((v) => ({
+      label: fmtBudget(v), value: v, recommended: false,
+    }));
+  }
+  // Build 7 options: spread below and above the estimate
+  const multipliers = [0.4, 0.6, 0.8, 1.0, 1.25, 1.6, 2.2];
+  const seen = new Set<number>();
+  const opts: { label: string; value: number; recommended: boolean }[] = [];
+  for (const m of multipliers) {
+    const v = niceRound(estimate * m);
+    if (v < 500 || seen.has(v)) continue;
+    seen.add(v);
+    opts.push({ label: fmtBudget(v), value: v, recommended: m >= 0.9 && m <= 1.1 });
+  }
+  return opts.sort((a, b) => a.value - b.value);
+}
+
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
 const inputClass =
@@ -851,28 +978,56 @@ export function PricingForm() {
             )}
 
             {/* ── Step 8: Budget ── */}
-            {step === 8 && (
+            {step === 8 && (() => {
+              const estimate  = computeEstimate(data.services, data.city, data.state);
+              const budgetOpts = smartBudgetOptions(estimate);
+              const hasEstimate = estimate > 0;
+              return (
               <div className="animate-in">
                 <StepLabel n={8} />
                 <Question>What is your project budget?</Question>
-                <p className="mb-8 text-sm font-light text-white/40">
-                  This helps us recommend the most cost-effective package for your project.
-                </p>
-                <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-5">
-                  {BUDGET_OPTIONS.map((label) => (
+
+                {/* Smart estimate hint */}
+                {hasEstimate ? (
+                  <div className="mb-8 flex flex-wrap items-center gap-3">
+                    <p className="text-sm font-light text-white/40">
+                      Based on your selections
+                      {data.city ? ` in ${data.city}${data.state ? `, ${data.state}` : ""}` : ""}:
+                    </p>
+                    <span className="inline-flex items-center gap-1.5 rounded-full border border-secondary/30 bg-secondary/10 px-3 py-1 text-xs font-semibold text-secondary">
+                      <span className="h-1.5 w-1.5 rounded-full bg-secondary" />
+                      Estimated {fmtBudget(niceRound(estimate * 0.85))} to {fmtBudget(niceRound(estimate * 1.2))}
+                    </span>
+                    <p className="text-xs text-white/25">Select the range that fits your budget.</p>
+                  </div>
+                ) : (
+                  <p className="mb-8 text-sm font-light text-white/40">
+                    This helps us recommend the most cost-effective package for your project.
+                  </p>
+                )}
+
+                <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-4">
+                  {budgetOpts.map(({ label, recommended }) => (
                     <button
                       key={label}
                       type="button"
                       onClick={() => selectSingle("budget", label)}
                       className={cn(
-                        "group relative rounded-2xl border px-4 py-5 text-center transition-all duration-200",
+                        "relative rounded-2xl border px-4 py-5 text-center transition-all duration-200",
                         "focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary",
                         data.budget === label
                           ? "border-secondary bg-secondary/10 text-secondary"
+                          : recommended
+                          ? "border-secondary/40 bg-secondary/[0.06] text-white hover:border-secondary/70 hover:bg-secondary/10"
                           : "border-white/15 bg-white/[0.04] text-white hover:border-white/25 hover:bg-white/[0.08]",
                       )}
                     >
                       <span className="block text-sm font-semibold">{label}</span>
+                      {recommended && data.budget !== label && (
+                        <span className="absolute -top-2 left-1/2 -translate-x-1/2 rounded-full bg-secondary px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide text-white">
+                          Suggested
+                        </span>
+                      )}
                     </button>
                   ))}
                 </div>
@@ -936,7 +1091,8 @@ export function PricingForm() {
                   )}
                 </div>
               </div>
-            )}
+              );
+            })()}
 
             {/* ── Step 9: Contact + file upload ── */}
             {step === 9 && (

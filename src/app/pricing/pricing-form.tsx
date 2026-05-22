@@ -347,24 +347,44 @@ export function PricingForm() {
     if (showCustomBudget) customBudgetRef.current?.focus();
   }, [showCustomBudget]);
 
-  // Auto-detect city/state from IP when entering step 7
+  // Auto-detect city, county, and state from IP when entering step 7
   useEffect(() => {
     if (step !== 7 || data.city || data.state) return;
     setLocationLoading(true);
-    fetch("https://ipapi.co/json/")
-      .then((r) => r.json())
-      .then((loc) => {
-        if (loc.city && loc.region) {
-          setData((p) => ({
-            ...p,
-            city:  p.city  || loc.city,
-            state: p.state || loc.region,
-          }));
-          setLocationDetected(true);
+
+    (async () => {
+      try {
+        // Step 1 — get city, state, and lat/lon from IP
+        const ipRes  = await fetch("https://ipapi.co/json/");
+        const loc    = await ipRes.json();
+        if (!loc.city || !loc.region) return;
+
+        setData((p) => ({
+          ...p,
+          city:  p.city  || loc.city,
+          state: p.state || loc.region,
+        }));
+
+        // Step 2 — use lat/lon to reverse-geocode county via Nominatim
+        if (loc.latitude && loc.longitude) {
+          const geoRes = await fetch(
+            `https://nominatim.openstreetmap.org/reverse?format=json&lat=${loc.latitude}&lon=${loc.longitude}`,
+            { headers: { "User-Agent": "CADTRI-PricingForm/1.0" } },
+          );
+          const geo = await geoRes.json();
+          const county = geo?.address?.county as string | undefined;
+          if (county) {
+            setData((p) => ({ ...p, county: p.county || county }));
+          }
         }
-      })
-      .catch(() => {})
-      .finally(() => setLocationLoading(false));
+
+        setLocationDetected(true);
+      } catch {
+        // fail silently — user fills in manually
+      } finally {
+        setLocationLoading(false);
+      }
+    })();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [step]);
 

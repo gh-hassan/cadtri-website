@@ -130,8 +130,8 @@ export async function submitPricingForm(formData: FormData): Promise<PricingForm
   }
 
   try {
-    console.log("[pricing] Sending email for:", data.email);
-    const result = await resend.emails.send({
+    console.log("[pricing] Sending to Resend for:", data.email);
+    const { data: sent, error } = await resend.emails.send({
       from:        "CADTRI Pricing <no-reply@cadtri.com>",
       to:          ["info@cadtri.com"],
       replyTo:     data.email,
@@ -140,19 +140,16 @@ export async function submitPricingForm(formData: FormData): Promise<PricingForm
       attachments: attachments.length > 0 ? attachments : undefined,
     });
 
-    if (result.error) {
-      console.error("[pricing] Resend returned error:", JSON.stringify(result.error));
+    if (error) {
+      console.error("[pricing] Resend error:", JSON.stringify(error));
       return { status: "error", message: "Could not send your request. Please email us directly at info@cadtri.com." };
     }
 
-    console.log("[pricing] Email sent successfully, id:", result.data?.id);
+    console.log("[pricing] Email sent, id:", sent?.id);
     return { status: "success" };
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err);
-    console.error("[pricing] Resend exception:", msg);
-    return {
-      status:  "error",
-      message: "Could not send your request. Please email us directly at info@cadtri.com.",
-    };
+    console.error("[pricing] Exception:", msg);
+    return { status: "error", message: "Could not send your request. Please email us directly at info@cadtri.com." };
   }
 }

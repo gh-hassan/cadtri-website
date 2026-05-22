@@ -256,8 +256,8 @@ export function PricingForm() {
     setOtherActive(null);
     setData((prev) => {
       const merged = { ...prev, ...updates };
-      // Pre-select services when entering step 7
-      if (next === 7 && merged.services.length === 0) {
+      // Pre-select services when entering step 6
+      if (next === 6 && merged.services.length === 0) {
         merged.services = SERVICE_MAP[merged.projectType] ?? [];
       }
       return merged;
@@ -358,8 +358,8 @@ export function PricingForm() {
   }
 
   // ── Layout wrapper ────────────────────────────────────────────────────────
-  // Steps 7–9 use a wide centered layout; steps 1–6 use a two-column split
-  const isWideStep = step >= 7;
+  // Steps 6–9 use a wide centered layout; steps 1–5 use a two-column split
+  const isWideStep = step >= 6;
 
   // Step meta used in left panel
   const STEP_META: Record<number, { question: string; description: string }> = {
@@ -382,10 +382,6 @@ export function PricingForm() {
     5: {
       question: "What is your timeline?",
       description: "We work to accommodate urgent timelines. Knowing your target date helps us plan production and review cycles.",
-    },
-    6: {
-      question: "What is your project budget?",
-      description: "This helps us scope our services to fit your budget and recommend the most cost-effective package for your project.",
     },
   };
 
@@ -535,84 +531,11 @@ export function PricingForm() {
               </div>
             )}
 
-            {/* ── Step 6: Budget ── */}
-            {step === 6 && (
-              <div className="animate-in flex flex-col gap-3">
-                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                  {BUDGET_OPTIONS.map((label) => (
-                    <SelectCard key={label} label={label}
-                      icon={CARD_ICONS[label]}
-                      selected={data.budget === label}
-                      onClick={() => selectSingle("budget", label)} />
-                  ))}
-                </div>
-
-                {/* Custom budget input */}
-                {showCustomBudget ? (
-                  <div className="flex gap-2">
-                    <div className="relative flex-1">
-                      <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-sm font-medium text-white/40">
-                        $
-                      </span>
-                      <input
-                        ref={customBudgetRef}
-                        type="text"
-                        value={customBudget}
-                        onChange={(e) => setCustomBudget(e.target.value.replace(/[^0-9,]/g, ""))}
-                        onKeyDown={(e) => {
-                          if (e.key === "Enter" && customBudget.trim()) {
-                            setData((p) => ({ ...p, budget: `$${customBudget.trim()}` }));
-                            setTimeout(() => advance(step + 1, { budget: `$${customBudget.trim()}` }), 180);
-                          }
-                          if (e.key === "Escape") { setShowCustomBudget(false); setCustomBudget(""); }
-                        }}
-                        placeholder="Enter your budget"
-                        className="w-full rounded-2xl border border-secondary/50 bg-white/[0.08] py-3.5 pl-8 pr-4 text-sm font-light text-white placeholder:text-white/35 focus:border-secondary focus:outline-none transition-all"
-                      />
-                    </div>
-                    <button
-                      type="button"
-                      disabled={!customBudget.trim()}
-                      onClick={() => {
-                        if (!customBudget.trim()) return;
-                        setData((p) => ({ ...p, budget: `$${customBudget.trim()}` }));
-                        setTimeout(() => advance(step + 1, { budget: `$${customBudget.trim()}` }), 180);
-                      }}
-                      className={cn(
-                        "shrink-0 rounded-2xl px-6 py-3.5 text-sm font-semibold uppercase tracking-wider transition-all",
-                        customBudget.trim() ? "bg-secondary text-white" : "bg-white/[0.06] text-white/20 cursor-not-allowed",
-                      )}
-                    >
-                      Next
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => { setShowCustomBudget(false); setCustomBudget(""); }}
-                      className="shrink-0 rounded-2xl border border-white/15 px-4 text-white/30 transition-colors hover:text-white/60"
-                    >
-                      <X size={14} strokeWidth={2} />
-                    </button>
-                  </div>
-                ) : (
-                  <button
-                    type="button"
-                    onClick={() => setShowCustomBudget(true)}
-                    className="w-full rounded-2xl border border-dashed border-white/15 bg-transparent px-6 py-4 text-left text-base font-medium text-white/30 transition-all duration-200 hover:border-white/30 hover:text-white/55"
-                  >
-                    <span className="flex items-center gap-2">
-                      <Plus size={14} strokeWidth={2.5} />
-                      Enter a custom amount
-                    </span>
-                  </button>
-                )}
-              </div>
-            )}
-
           </div>
         </div>
 
       ) : (
-        /* ── Steps 7–9: Fixed top-anchored layout ── */
+        /* ── Steps 6–9: Fixed top-anchored layout ── */
         <div className="flex flex-1 flex-col overflow-y-auto px-8 pb-16 pt-12 sm:px-12 lg:px-20 lg:pt-16">
 
           {/* Fixed nav row — always at the same position */}
@@ -632,10 +555,10 @@ export function PricingForm() {
 
           <div className="w-full max-w-3xl">
 
-            {/* ── Step 7: Services — pills ── */}
-            {step === 7 && (
+            {/* ── Step 6: Services — pills ── */}
+            {step === 6 && (
               <div className="animate-in">
-                <StepLabel n={7} />
+                <StepLabel n={6} />
                 <Question>Which services do you need?</Question>
                 <p className="mb-8 text-sm font-light text-white/40">
                   We pre-selected the most relevant ones. Add or remove as needed.
@@ -731,7 +654,7 @@ export function PricingForm() {
                 <button
                   type="button"
                   disabled={data.services.length === 0}
-                  onClick={() => advance(8)}
+                  onClick={() => advance(7)}
                   className={cn(
                     "mt-10 px-12 py-4 text-sm font-semibold uppercase tracking-widest transition-all duration-200",
                     data.services.length > 0
@@ -744,10 +667,10 @@ export function PricingForm() {
               </div>
             )}
 
-            {/* ── Step 8: Location ── */}
-            {step === 8 && (
+            {/* ── Step 7: Location ── */}
+            {step === 7 && (
               <div className="animate-in">
-                <StepLabel n={8} />
+                <StepLabel n={7} />
                 <Question>Where is the project located?</Question>
                 <p className="mb-8 text-sm font-light text-white/40">
                   Location affects permit requirements and project complexity.
@@ -781,7 +704,7 @@ export function PricingForm() {
                 <button
                   type="button"
                   disabled={data.city.trim().length < 2 || data.state.trim().length < 2}
-                  onClick={() => advance(9)}
+                  onClick={() => advance(8)}
                   className={cn(
                     "mt-10 px-12 py-4 text-sm font-semibold uppercase tracking-widest transition-all duration-200",
                     data.city.trim().length >= 2 && data.state.trim().length >= 2
@@ -791,6 +714,94 @@ export function PricingForm() {
                 >
                   Continue
                 </button>
+              </div>
+            )}
+
+            {/* ── Step 8: Budget ── */}
+            {step === 8 && (
+              <div className="animate-in">
+                <StepLabel n={8} />
+                <Question>What is your project budget?</Question>
+                <p className="mb-8 text-sm font-light text-white/40">
+                  This helps us recommend the most cost-effective package for your project.
+                </p>
+                <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-5">
+                  {BUDGET_OPTIONS.map((label) => (
+                    <button
+                      key={label}
+                      type="button"
+                      onClick={() => selectSingle("budget", label)}
+                      className={cn(
+                        "group relative rounded-2xl border px-4 py-5 text-center transition-all duration-200",
+                        "focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary",
+                        data.budget === label
+                          ? "border-secondary bg-secondary/10 text-secondary"
+                          : "border-white/15 bg-white/[0.04] text-white hover:border-white/25 hover:bg-white/[0.08]",
+                      )}
+                    >
+                      <span className="block text-sm font-semibold">{label}</span>
+                    </button>
+                  ))}
+                </div>
+
+                {/* Custom budget input */}
+                <div className="mt-3">
+                  {showCustomBudget ? (
+                    <div className="flex gap-2">
+                      <div className="relative flex-1">
+                        <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-sm font-medium text-white/40">$</span>
+                        <input
+                          ref={customBudgetRef}
+                          type="text"
+                          value={customBudget}
+                          onChange={(e) => setCustomBudget(e.target.value.replace(/[^0-9,]/g, ""))}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter" && customBudget.trim()) {
+                              setData((p) => ({ ...p, budget: `$${customBudget.trim()}` }));
+                              setTimeout(() => advance(9, { budget: `$${customBudget.trim()}` }), 180);
+                            }
+                            if (e.key === "Escape") { setShowCustomBudget(false); setCustomBudget(""); }
+                          }}
+                          placeholder="Enter your budget"
+                          className="w-full rounded-2xl border border-secondary/50 bg-white/[0.08] py-3.5 pl-8 pr-4 text-sm font-light text-white placeholder:text-white/35 focus:border-secondary focus:outline-none transition-all"
+                        />
+                      </div>
+                      <button
+                        type="button"
+                        disabled={!customBudget.trim()}
+                        onClick={() => {
+                          if (!customBudget.trim()) return;
+                          setData((p) => ({ ...p, budget: `$${customBudget.trim()}` }));
+                          setTimeout(() => advance(9, { budget: `$${customBudget.trim()}` }), 180);
+                        }}
+                        className={cn(
+                          "shrink-0 rounded-2xl px-6 py-3.5 text-sm font-semibold uppercase tracking-wider transition-all",
+                          customBudget.trim() ? "bg-secondary text-white" : "bg-white/[0.06] text-white/20 cursor-not-allowed",
+                        )}
+                      >
+                        Next
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => { setShowCustomBudget(false); setCustomBudget(""); }}
+                        className="shrink-0 rounded-2xl border border-white/15 px-4 text-white/30 transition-colors hover:text-white/60"
+                      >
+                        <X size={14} strokeWidth={2} />
+                      </button>
+                    </div>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => setShowCustomBudget(true)}
+                      className="w-full rounded-2xl border border-dashed border-white/15 bg-transparent px-6 py-4 text-left text-sm font-medium text-white/30 transition-all duration-200 hover:border-white/30 hover:text-white/55"
+                    >
+                      <span className="flex items-center gap-2">
+                        <Plus size={14} strokeWidth={2.5} />
+                        Enter a custom amount
+                      </span>
+                    </button>
+                  )}
+                </div>
               </div>
             )}
 

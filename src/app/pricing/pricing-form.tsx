@@ -506,7 +506,7 @@ export function PricingForm() {
             {/* ── Step 3 ── */}
             {step === 3 && (
               <div className="animate-in flex flex-col gap-3">
-                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="grid gap-3 sm:grid-cols-2">
                   {STAGE_OPTIONS.map((label) => (
                     <SelectCard key={label} label={label}
                       icon={CARD_ICONS[label]}
@@ -544,7 +544,7 @@ export function PricingForm() {
             {/* ── Step 5 ── */}
             {step === 5 && (
               <div className="animate-in flex flex-col gap-3">
-                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="grid gap-3 sm:grid-cols-2">
                   {TIMELINE_OPTIONS.map((label) => (
                     <SelectCard key={label} label={label}
                       icon={CARD_ICONS[label]}
@@ -1063,7 +1063,7 @@ function SelectCard({
       {/* Icon — large, centered */}
       <div className={cn(
         "transition-colors duration-200",
-        selected ? "text-secondary/70" : "text-white/20 group-hover:text-white/35",
+        selected ? "text-white/50" : "text-white/20 group-hover:text-white/35",
       )}>
         {Icon ? <Icon size={40} strokeWidth={1.25} /> : <div className="h-10 w-10" />}
       </div>

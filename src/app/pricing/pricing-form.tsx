@@ -269,6 +269,31 @@ const SERVICE_BASE_COSTS: Record<string, number> = {
   "Redline to CAD Conversion":           800,
 };
 
+// Project size multiplier
+const SIZE_MULT: Record<string, number> = {
+  "Under 500 sq ft":      0.70,
+  "500 to 1,500 sq ft":   1.00,
+  "1,500 to 3,000 sq ft": 1.30,
+  "3,000 sq ft or more":  1.70,
+  "Not sure yet":         1.00,
+};
+
+// Project stage multiplier (how much work is already done)
+const STAGE_MULT: Record<string, number> = {
+  "Just an idea, no drawings yet":            1.30,
+  "Have sketches or rough concepts":          1.10,
+  "Have existing drawings":                   0.85,
+  "Ready to submit, need a permit package":   0.70,
+};
+
+// Timeline urgency surcharge
+const TIMELINE_MULT: Record<string, number> = {
+  "Urgent, within 2 weeks":    1.25,
+  "Soon, 1 to 2 months":       1.05,
+  "Planning ahead, 3+ months": 1.00,
+  "Not sure yet":              1.00,
+};
+
 // State cost multiplier relative to national average
 const STATE_COST_MULT: Record<string, number> = {
   "california": 1.40, "ca": 1.40,
@@ -305,15 +330,29 @@ const CITY_COST_BUMP: Record<string, number> = {
   "honolulu":      0.20,
 };
 
-function computeEstimate(services: string[], city: string, state: string): number {
+function computeEstimate(
+  services:     string[],
+  city:         string,
+  state:        string,
+  projectSize:  string,
+  projectStage: string,
+  timeline:     string,
+): number {
   if (!services.length) return 0;
   const base = services.reduce((sum, s) => sum + (SERVICE_BASE_COSTS[s] ?? 1000), 0);
-  const stateKey = Object.keys(STATE_COST_MULT).find((k) =>
-    state.toLowerCase().includes(k));
+
+  // Location
+  const stateKey  = Object.keys(STATE_COST_MULT).find((k) => state.toLowerCase().includes(k));
   const stateMult = stateKey ? STATE_COST_MULT[stateKey] : 1.0;
   const cityLower = city.toLowerCase();
   const cityBump  = Object.entries(CITY_COST_BUMP).find(([k]) => cityLower.includes(k))?.[1] ?? 0;
-  return Math.round(base * (stateMult + cityBump));
+
+  // Complexity
+  const sizeMult     = SIZE_MULT[projectSize]   ?? 1.0;
+  const stageMult    = STAGE_MULT[projectStage] ?? 1.0;
+  const timelineMult = TIMELINE_MULT[timeline]  ?? 1.0;
+
+  return Math.round(base * (stateMult + cityBump) * sizeMult * stageMult * timelineMult);
 }
 
 function niceRound(n: number): number {
@@ -979,7 +1018,7 @@ export function PricingForm() {
 
             {/* ── Step 8: Budget ── */}
             {step === 8 && (() => {
-              const estimate  = computeEstimate(data.services, data.city, data.state);
+              const estimate  = computeEstimate(data.services, data.city, data.state, data.projectSize, data.projectStage, data.timeline);
               const budgetOpts = smartBudgetOptions(estimate);
               const hasEstimate = estimate > 0;
               return (
@@ -989,16 +1028,21 @@ export function PricingForm() {
 
                 {/* Smart estimate hint */}
                 {hasEstimate ? (
-                  <div className="mb-8 flex flex-wrap items-center gap-3">
-                    <p className="text-sm font-light text-white/40">
-                      Based on your selections
-                      {data.city ? ` in ${data.city}${data.state ? `, ${data.state}` : ""}` : ""}:
+                  <div className="mb-8 space-y-2">
+                    <div className="flex flex-wrap items-center gap-3">
+                      <span className="inline-flex items-center gap-1.5 rounded-full border border-secondary/30 bg-secondary/10 px-3 py-1 text-xs font-semibold text-secondary">
+                        <span className="h-1.5 w-1.5 rounded-full bg-secondary" />
+                        Estimated {fmtBudget(niceRound(estimate * 0.85))} to {fmtBudget(niceRound(estimate * 1.2))}
+                      </span>
+                    </div>
+                    <p className="text-xs font-light text-white/30">
+                      Based on {data.services.length} service{data.services.length !== 1 ? "s" : ""}
+                      {data.projectSize && data.projectSize !== "Not sure yet" ? `, ${data.projectSize}` : ""}
+                      {data.projectStage ? ` (${data.projectStage.toLowerCase()})` : ""}
+                      {data.timeline && data.timeline !== "Not sure yet" ? `, ${data.timeline.toLowerCase()}` : ""}
+                      {data.city ? ` in ${data.city}${data.state ? `, ${data.state}` : ""}` : ""}.
+                      Select the range that fits your budget.
                     </p>
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-secondary/30 bg-secondary/10 px-3 py-1 text-xs font-semibold text-secondary">
-                      <span className="h-1.5 w-1.5 rounded-full bg-secondary" />
-                      Estimated {fmtBudget(niceRound(estimate * 0.85))} to {fmtBudget(niceRound(estimate * 1.2))}
-                    </span>
-                    <p className="text-xs text-white/25">Select the range that fits your budget.</p>
                   </div>
                 ) : (
                   <p className="mb-8 text-sm font-light text-white/40">

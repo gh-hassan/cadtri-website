@@ -1025,99 +1025,70 @@ export function PricingForm() {
             )}
 
             {/* ── Step 8: Budget ── */}
-            {step === 8 && (() => {
-              const estimate   = computeEstimate(data.services, data.city, data.state, data.projectSize, data.projectStage, data.timeline);
-              const budgetOpts = smartBudgetOptions(estimate);
-              return (
+            {step === 8 && (
               <div className="animate-in">
                 <StepLabel n={8} />
                 <Question>What is your project budget?</Question>
-
-                {/* Smart estimate hint */}
-                <p className="mb-8 text-sm font-light text-white/40">
-                  This helps us tailor the most cost-effective package for your project.
+                <p className="mb-10 text-sm font-light text-white/40">
+                  No commitment. This just helps us tailor the right package for you.
                 </p>
 
-                <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-4">
-                  {budgetOpts.map(({ label }) => (
-                    <button
-                      key={label}
-                      type="button"
-                      onClick={() => selectSingle("budget", label)}
+                <div className="flex max-w-sm flex-col gap-4">
+                  <div className="relative">
+                    <span className="pointer-events-none absolute left-5 top-1/2 -translate-y-1/2 text-lg font-light text-white/40">
+                      $
+                    </span>
+                    <input
+                      type="text"
+                      autoFocus
+                      value={data.budget.replace(/^\$/, "")}
+                      onChange={(e) => {
+                        const val = e.target.value.replace(/[^0-9,]/g, "");
+                        setData((p) => ({ ...p, budget: val ? `$${val}` : "" }));
+                      }}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" && data.budget.trim()) {
+                          advance(9);
+                        }
+                      }}
+                      placeholder="e.g. 8,500"
                       className={cn(
-                        "rounded-2xl border px-4 py-5 text-center transition-all duration-200",
-                        "focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary",
-                        data.budget === label
-                          ? "border-secondary bg-secondary/10 text-secondary"
-                          : "border-white/15 bg-white/[0.04] text-white hover:border-white/25 hover:bg-white/[0.08]",
+                        inputClass,
+                        "rounded-2xl border-white/20 bg-white/[0.06] py-5 pl-10 pr-5 text-xl font-light",
+                        "focus:border-secondary focus:bg-white/[0.1]",
+                      )}
+                    />
+                  </div>
+
+                  <p className="text-xs font-light text-white/25">
+                    Type any number. Press Enter or click Continue when done.
+                  </p>
+
+                  <div className="flex items-center gap-4">
+                    <button
+                      type="button"
+                      disabled={!data.budget.trim()}
+                      onClick={() => advance(9)}
+                      className={cn(
+                        "px-10 py-3.5 text-sm font-semibold uppercase tracking-widest transition-all duration-200",
+                        data.budget.trim()
+                          ? "bg-secondary text-white hover:bg-secondary/90"
+                          : "bg-white/[0.06] text-white/20 cursor-not-allowed",
                       )}
                     >
-                      <span className="block text-sm font-semibold">{label}</span>
+                      Continue
                     </button>
-                  ))}
-                </div>
-
-                {/* Custom budget input */}
-                <div className="mt-3">
-                  {showCustomBudget ? (
-                    <div className="flex gap-2">
-                      <div className="relative flex-1">
-                        <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-sm font-medium text-white/40">$</span>
-                        <input
-                          ref={customBudgetRef}
-                          type="text"
-                          value={customBudget}
-                          onChange={(e) => setCustomBudget(e.target.value.replace(/[^0-9,]/g, ""))}
-                          onKeyDown={(e) => {
-                            if (e.key === "Enter" && customBudget.trim()) {
-                              setData((p) => ({ ...p, budget: `$${customBudget.trim()}` }));
-                              setTimeout(() => advance(9, { budget: `$${customBudget.trim()}` }), 180);
-                            }
-                            if (e.key === "Escape") { setShowCustomBudget(false); setCustomBudget(""); }
-                          }}
-                          placeholder="Enter your budget"
-                          className="w-full rounded-2xl border border-secondary/50 bg-white/[0.08] py-3.5 pl-8 pr-4 text-sm font-light text-white placeholder:text-white/35 focus:border-secondary focus:outline-none transition-all"
-                        />
-                      </div>
-                      <button
-                        type="button"
-                        disabled={!customBudget.trim()}
-                        onClick={() => {
-                          if (!customBudget.trim()) return;
-                          setData((p) => ({ ...p, budget: `$${customBudget.trim()}` }));
-                          setTimeout(() => advance(9, { budget: `$${customBudget.trim()}` }), 180);
-                        }}
-                        className={cn(
-                          "shrink-0 rounded-2xl px-6 py-3.5 text-sm font-semibold uppercase tracking-wider transition-all",
-                          customBudget.trim() ? "bg-secondary text-white" : "bg-white/[0.06] text-white/20 cursor-not-allowed",
-                        )}
-                      >
-                        Next
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => { setShowCustomBudget(false); setCustomBudget(""); }}
-                        className="shrink-0 rounded-2xl border border-white/15 px-4 text-white/30 transition-colors hover:text-white/60"
-                      >
-                        <X size={14} strokeWidth={2} />
-                      </button>
-                    </div>
-                  ) : (
                     <button
                       type="button"
-                      onClick={() => setShowCustomBudget(true)}
-                      className="w-full rounded-2xl border border-dashed border-white/15 bg-transparent px-6 py-4 text-left text-sm font-medium text-white/30 transition-all duration-200 hover:border-white/30 hover:text-white/55"
+                      onClick={() => advance(9, { budget: "Prefer not to say" })}
+                      className="text-xs font-light text-white/25 underline underline-offset-4 transition-colors hover:text-white/50"
                     >
-                      <span className="flex items-center gap-2">
-                        <Plus size={14} strokeWidth={2.5} />
-                        Enter a custom amount
-                      </span>
+                      Skip this question
                     </button>
-                  )}
+                  </div>
                 </div>
               </div>
-              );
-            })()}
+            )}
 
             {/* ── Step 9: Contact + file upload ── */}
             {step === 9 && (

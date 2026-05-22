@@ -368,23 +368,31 @@ function fmtBudget(n: number): string {
 }
 
 function smartBudgetOptions(estimate: number): { label: string; value: number; recommended: boolean }[] {
+  const defaults = [2000, 5000, 8000, 10000, 15000, 20000, 30000, 50000, 100000];
+
+  let opts: { label: string; value: number; recommended: boolean }[];
+
   if (estimate <= 0) {
-    // No services selected — fall back to defaults
-    return [2000, 5000, 8000, 10000, 15000, 20000, 30000, 50000, 100000].map((v) => ({
-      label: fmtBudget(v), value: v, recommended: false,
-    }));
+    opts = defaults.map((v) => ({ label: fmtBudget(v), value: v, recommended: false }));
+  } else {
+    const multipliers = [0.4, 0.6, 0.8, 1.0, 1.25, 1.6, 2.2];
+    const seen = new Set<number>();
+    opts = [];
+    for (const m of multipliers) {
+      const v = niceRound(estimate * m);
+      if (v < 500 || seen.has(v)) continue;
+      seen.add(v);
+      opts.push({ label: fmtBudget(v), value: v, recommended: false });
+    }
+    opts.sort((a, b) => a.value - b.value);
   }
-  // Build 7 options: spread below and above the estimate
-  const multipliers = [0.4, 0.6, 0.8, 1.0, 1.25, 1.6, 2.2];
-  const seen = new Set<number>();
-  const opts: { label: string; value: number; recommended: boolean }[] = [];
-  for (const m of multipliers) {
-    const v = niceRound(estimate * m);
-    if (v < 500 || seen.has(v)) continue;
-    seen.add(v);
-    opts.push({ label: fmtBudget(v), value: v, recommended: m >= 0.9 && m <= 1.1 });
-  }
-  return opts.sort((a, b) => a.value - b.value);
+
+  // Always prepend a "Less than $X" escape option using the lowest number
+  const lowest = opts[0]?.value ?? defaults[0];
+  return [
+    { label: `Less than ${fmtBudget(lowest)}`, value: 0, recommended: false },
+    ...opts,
+  ];
 }
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────

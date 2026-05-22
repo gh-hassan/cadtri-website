@@ -267,6 +267,7 @@ export function PricingForm() {
     budget:       "",
     city:         "",
     state:        "",
+    county:       "",
     services:     [],
     name:         "",
     email:        "",
@@ -753,7 +754,7 @@ export function PricingForm() {
                     </span>
                   )}
                 </div>
-                <div className="grid gap-5 sm:grid-cols-[1fr_200px]">
+                <div className="grid gap-5 sm:grid-cols-3">
                   <div className="flex flex-col gap-2">
                     <label className="text-xs font-semibold uppercase tracking-widest text-white/55">
                       City <span className="text-secondary">*</span>
@@ -766,6 +767,19 @@ export function PricingForm() {
                         setData((p) => ({ ...p, city: e.target.value }));
                       }}
                       placeholder={locationLoading ? "Detecting..." : "e.g. Miami"}
+                      className={inputClass}
+                    />
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <label className="text-xs font-semibold uppercase tracking-widest text-white/55">
+                      County{" "}
+                      <span className="text-white/30 font-light normal-case tracking-normal">optional</span>
+                    </label>
+                    <input
+                      type="text"
+                      value={data.county}
+                      onChange={(e) => setData((p) => ({ ...p, county: e.target.value }))}
+                      placeholder="e.g. Miami-Dade"
                       className={inputClass}
                     />
                   </div>

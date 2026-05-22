@@ -13,6 +13,7 @@ export interface PricingFormData {
   budget:       string;
   city:         string;
   state:        string;
+  county:       string;
   services:     string[];
   name:         string;
   email:        string;
@@ -101,7 +102,7 @@ export async function submitPricingForm(formData: FormData): Promise<PricingForm
               ${row("Project Size",     escapeHtml(data.projectSize))}
               ${row("Timeline",         escapeHtml(data.timeline))}
               ${row("Budget Range",     escapeHtml(data.budget))}
-              ${row("Location",         escapeHtml(`${data.city}, ${data.state}`))}
+              ${row("Location",         escapeHtml([data.city, data.county, data.state].filter(Boolean).join(", ")))}
               ${row("Services Needed",  escapeHtml(data.services.join(", ") || "Not specified"))}
               ${row("Additional Notes", data.notes ? escapeHtml(data.notes) : "")}
               ${attachments.length > 0 ? row("Attachment", `${attachments[0].filename} (see attached)`) : ""}

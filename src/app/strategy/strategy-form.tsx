@@ -8,6 +8,7 @@ import {
   Zap, Clock, MapPin, Lightbulb, Layers,
   HardHat, AlertCircle,
   CheckSquare, Target, Briefcase,
+  PenTool, FileText, FileCheck, Users,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -62,13 +63,46 @@ const BIGGEST_QUESTIONS = [
   { label: "All of the above",                   icon: Target },
 ];
 
-// Placeholder constants for project path (Task 3 will populate these)
-const PROJECT_TYPES: { label: string; icon: LucideIcon }[] = [];
-const CURRENT_STAGES: { label: string; sub: string; icon: LucideIcon }[] = [];
-const MAIN_CHALLENGES: { label: string; icon: LucideIcon }[] = [];
-const NEEDS_MOST: { label: string; icon: LucideIcon }[] = [];
+const PROJECT_TYPES: { label: string; icon: LucideIcon }[] = [
+  { label: "ADU",                       icon: Warehouse },
+  { label: "Home Addition",             icon: Home },
+  { label: "Garage Conversion",         icon: LayoutDashboard },
+  { label: "New Construction",          icon: Building2 },
+  { label: "Interior Remodel",          icon: Layers },
+  { label: "Tenant Improvement",        icon: Briefcase },
+  { label: "Multi-Family Development",  icon: Building },
+];
 
-// These will be populated in Task 3 (project path implementation)
+const CURRENT_STAGES: { label: string; sub: string; icon: LucideIcon }[] = [
+  { label: "Just starting out",                      sub: "No drawings, no team yet",              icon: Lightbulb },
+  { label: "Designer working on drawings",           sub: "Design phase in progress",              icon: PenTool },
+  { label: "Drawings done, about to submit",         sub: "Ready to go to the city",               icon: FileText },
+  { label: "Permits submitted, in plan check",       sub: "Waiting on city review",                icon: Clock },
+  { label: "Received plan check corrections",        sub: "City sent back comments",               icon: AlertCircle },
+  { label: "Permits approved, finding contractor",   sub: "Ready to break ground",                 icon: CheckSquare },
+  { label: "Under construction",                     sub: "Build is active",                       icon: HardHat },
+  { label: "Construction stalled",                   sub: "Project hit a wall",                    icon: AlertCircle },
+];
+
+const MAIN_CHALLENGES: { label: string; icon: LucideIcon }[] = [
+  { label: "Don't know where to start",          icon: HelpCircle },
+  { label: "Stuck in plan check corrections",    icon: AlertCircle },
+  { label: "Can't find a reliable contractor",   icon: HardHat },
+  { label: "Over budget",                        icon: DollarSign },
+  { label: "Behind schedule",                    icon: Clock },
+  { label: "Design is not finalized",            icon: PenTool },
+  { label: "Unclear on city requirements",       icon: FileCheck },
+  { label: "Team not communicating well",        icon: Users },
+];
+
+const NEEDS_MOST: { label: string; icon: LucideIcon }[] = [
+  { label: "A step-by-step execution roadmap",  icon: Target },
+  { label: "How to speed the project up",       icon: Zap },
+  { label: "How to cut costs",                  icon: DollarSign },
+  { label: "How to handle plan check",          icon: FileCheck },
+  { label: "How to manage my contractor",       icon: HardHat },
+  { label: "All of the above",                  icon: Layers },
+];
 
 // ─── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -211,19 +245,234 @@ export function StrategyForm() {
     );
   }
 
-  // ── Project path placeholder ────────────────────────────────────────────────
+  // ═══════════════════════════════════════════════════════
+  // ONGOING PROJECT PATH
+  // ═══════════════════════════════════════════════════════
   if (data.path === "project") {
+    const isProjectWide = step >= 4;
+
+    const PROJECT_STEP_META: Record<number, { q: string; desc: string }> = {
+      1: { q: "What type of project?",       desc: "Project type and location shape the entire permit process and execution timeline." },
+      2: { q: "Where are you right now?",    desc: "Your current stage determines what comes next and where the biggest leverage points are." },
+      3: { q: "What do you have in place?",  desc: "Knowing what exists helps us identify gaps and the fastest path forward." },
+    };
+    const projMeta = PROJECT_STEP_META[step];
+
     return (
       <div className="flex flex-1 flex-col">
         <div className="h-[3px] w-full bg-white/[0.08]">
-          <div
-            className="h-full bg-secondary transition-all duration-500 ease-out"
-            style={{ width: `${progress}%` }}
-          />
+          <div className="h-full bg-secondary transition-all duration-500 ease-out" style={{ width: `${progress}%` }} />
         </div>
-        <div className="flex flex-1 items-center justify-center text-sm text-white/30">
-          Project path — coming soon
-        </div>
+
+        {!isProjectWide ? (
+          <div className="flex flex-1 flex-col lg:flex-row lg:items-stretch">
+            {/* Left panel */}
+            <div className="relative flex flex-col border-b border-white/[0.06] px-8 pb-10 pt-12 lg:w-[38%] lg:border-b-0 lg:border-r lg:px-14 lg:pb-20 lg:pt-16">
+              <div>
+                <p className="mb-5 text-[11px] font-medium uppercase tracking-widest text-secondary">Step {step} of {TOTAL_STEPS}</p>
+                <h2 className="font-bold text-white" style={{ fontSize: "clamp(1.75rem, 2.8vw, 2.75rem)", letterSpacing: "-0.03em", lineHeight: 1.06 }}>
+                  {projMeta?.q}
+                </h2>
+                <p className="mt-5 text-sm font-light leading-relaxed text-white/40">{projMeta?.desc}</p>
+              </div>
+              <button type="button" onClick={goBack}
+                className="mt-10 flex items-center gap-2 text-xs font-medium uppercase tracking-widest text-white/30 transition-colors hover:text-white/70 lg:absolute lg:bottom-14 lg:left-14 lg:mt-0">
+                <ArrowLeft size={12} strokeWidth={2} />Back
+              </button>
+            </div>
+
+            {/* Right panel */}
+            <div className="flex flex-1 flex-col overflow-y-auto px-8 pb-10 pt-12 lg:px-14 lg:pb-20 lg:pt-16">
+
+              {/* Step 1: Project type + location */}
+              {step === 1 && (
+                <div className="animate-in flex flex-col gap-8">
+                  <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                    {PROJECT_TYPES.map(({ label, icon }) => (
+                      <SelectCard key={label} label={label} icon={icon}
+                        selected={data.projectType === label}
+                        onClick={() => set("projectType", label)} />
+                    ))}
+                  </div>
+                  <div className="grid gap-4 sm:grid-cols-2 max-w-lg">
+                    <div className="flex flex-col gap-2">
+                      <label className="text-xs font-semibold uppercase tracking-widest text-white/55">City <span className="text-secondary">*</span></label>
+                      <input type="text"
+                        value={data.projectLocation.split(",")[0]?.trim() ?? ""}
+                        onChange={e => {
+                          const state = data.projectLocation.split(",")[1]?.trim() ?? "";
+                          set("projectLocation", e.target.value + (state ? `, ${state}` : ""));
+                        }}
+                        placeholder="e.g. San Diego" className={inputClass} />
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <label className="text-xs font-semibold uppercase tracking-widest text-white/55">State <span className="text-secondary">*</span></label>
+                      <input type="text"
+                        value={data.projectLocation.split(",")[1]?.trim() ?? ""}
+                        onChange={e => {
+                          const city = data.projectLocation.split(",")[0]?.trim() ?? "";
+                          set("projectLocation", city + (e.target.value ? `, ${e.target.value}` : ""));
+                        }}
+                        placeholder="e.g. California" className={inputClass} />
+                    </div>
+                  </div>
+                  <button type="button"
+                    disabled={!data.projectType || data.projectLocation.replace(/,/g, "").trim().length < 4}
+                    onClick={() => setStep(2)}
+                    className={cn("px-12 py-4 text-sm font-semibold uppercase tracking-widest transition-all max-w-xs",
+                      data.projectType && data.projectLocation.replace(/,/g, "").trim().length >= 4
+                        ? "bg-secondary text-white hover:bg-secondary/90"
+                        : "bg-white/[0.06] text-white/20 cursor-not-allowed")}>
+                    Continue
+                  </button>
+                </div>
+              )}
+
+              {/* Step 2: Current stage */}
+              {step === 2 && (
+                <div className="animate-in flex flex-col gap-3">
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    {CURRENT_STAGES.map(({ label, sub, icon }) => (
+                      <SelectCard key={label} label={label} sub={sub} icon={icon}
+                        selected={data.currentStage === label}
+                        onClick={() => { setTimeout(() => { setData(d => ({ ...d, currentStage: label })); setStep(3); }, 180); }} />
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Step 3: What they have */}
+              {step === 3 && (
+                <div className="animate-in flex flex-col gap-6 max-w-lg">
+                  <p className="text-sm font-light text-white/40">Check everything that applies to your project right now.</p>
+                  {[
+                    { key: "hasDrawings"   as const, label: "Architectural drawings",        yes: "Complete", no: "Not yet" },
+                    { key: "hasArchitect"  as const, label: "Architect or designer hired",   yes: "Yes",      no: "No" },
+                    { key: "hasContractor" as const, label: "General contractor selected",   yes: "Yes",      no: "No" },
+                    { key: "hasPermits"    as const, label: "Permits submitted or approved", yes: "Yes",      no: "No" },
+                  ].map(({ key, label, yes, no }) => (
+                    <div key={key} className="flex items-center justify-between border-b border-white/[0.06] pb-4">
+                      <p className="text-sm font-medium text-white/70">{label}</p>
+                      <div className="flex gap-2">
+                        {[yes, no].map(opt => (
+                          <button key={opt} type="button" onClick={() => set(key, opt)}
+                            className={cn("px-4 py-2 text-xs font-semibold uppercase tracking-wider transition-all",
+                              data[key] === opt
+                                ? "bg-secondary text-white"
+                                : "border border-white/15 text-white/40 hover:border-white/30 hover:text-white/70")}>
+                            {opt}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                  <button type="button" onClick={() => setStep(4)}
+                    className="mt-4 px-12 py-4 text-sm font-semibold uppercase tracking-widest bg-secondary text-white hover:bg-secondary/90 transition-all max-w-xs">
+                    Continue
+                  </button>
+                </div>
+              )}
+
+            </div>
+          </div>
+        ) : (
+          /* Wide layout — steps 4–7 */
+          <div className="flex flex-1 flex-col overflow-y-auto px-8 pb-16 pt-12 sm:px-12 lg:px-20 lg:pt-16">
+            <div className="mb-10 flex items-center justify-between">
+              <button type="button" onClick={goBack}
+                className="flex items-center gap-2 text-xs font-medium uppercase tracking-widest text-white/30 transition-colors hover:text-white/70">
+                <ArrowLeft size={12} strokeWidth={2} />Back
+              </button>
+              <span className="text-[11px] tabular-nums tracking-widest text-white/25">{step} / {TOTAL_STEPS}</span>
+            </div>
+            <div className="w-full max-w-3xl">
+
+              {/* Step 4: Main challenge */}
+              {step === 4 && (
+                <div className="animate-in">
+                  <StepLabel n={4} />
+                  <Question>What is the main challenge right now?</Question>
+                  <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 mb-8">
+                    {MAIN_CHALLENGES.map(({ label, icon }) => (
+                      <SelectCard key={label} label={label} icon={icon}
+                        selected={data.mainChallenge === label}
+                        onClick={() => set("mainChallenge", label)} />
+                    ))}
+                  </div>
+                  <button type="button" disabled={!data.mainChallenge} onClick={() => setStep(5)}
+                    className={cn("px-12 py-4 text-sm font-semibold uppercase tracking-widest transition-all",
+                      data.mainChallenge ? "bg-secondary text-white hover:bg-secondary/90" : "bg-white/[0.06] text-white/20 cursor-not-allowed")}>
+                    Continue
+                  </button>
+                </div>
+              )}
+
+              {/* Step 5: Timeline */}
+              {step === 5 && (
+                <div className="animate-in">
+                  <StepLabel n={5} />
+                  <Question>What is your target completion date?</Question>
+                  <p className="mb-8 text-sm font-light text-white/40">Approximate is fine. Tell us below if there is a hard deadline.</p>
+                  <div className="flex flex-col gap-5 max-w-sm">
+                    <div className="flex flex-col gap-2">
+                      <label className="text-xs font-semibold uppercase tracking-widest text-white/55">Target completion</label>
+                      <input type="text" value={data.targetDate} onChange={e => set("targetDate", e.target.value)}
+                        placeholder="e.g. End of 2026, or March 2027" className={inputClass} />
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <label className="text-xs font-semibold uppercase tracking-widest text-white/55">
+                        Hard deadline? <span className="text-white/30 font-light normal-case tracking-normal">optional</span>
+                      </label>
+                      <input type="text" value={data.hardDeadline} onChange={e => set("hardDeadline", e.target.value)}
+                        placeholder="e.g. Lease expires June 2026, escrow close" className={inputClass} />
+                    </div>
+                  </div>
+                  <button type="button" disabled={!data.targetDate.trim()} onClick={() => setStep(6)}
+                    className={cn("mt-8 px-12 py-4 text-sm font-semibold uppercase tracking-widest transition-all",
+                      data.targetDate.trim() ? "bg-secondary text-white hover:bg-secondary/90" : "bg-white/[0.06] text-white/20 cursor-not-allowed")}>
+                    Continue
+                  </button>
+                </div>
+              )}
+
+              {/* Step 6: What they need most */}
+              {step === 6 && (
+                <div className="animate-in">
+                  <StepLabel n={6} />
+                  <Question>What do you need most from this strategy?</Question>
+                  <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 mb-8">
+                    {NEEDS_MOST.map(({ label, icon }) => (
+                      <SelectCard key={label} label={label} icon={icon}
+                        selected={data.needsMost === label}
+                        onClick={() => set("needsMost", label)} />
+                    ))}
+                  </div>
+                  <button type="button" disabled={!data.needsMost} onClick={() => setStep(7)}
+                    className={cn("px-12 py-4 text-sm font-semibold uppercase tracking-widest transition-all",
+                      data.needsMost ? "bg-secondary text-white hover:bg-secondary/90" : "bg-white/[0.06] text-white/20 cursor-not-allowed")}>
+                    Continue
+                  </button>
+                </div>
+              )}
+
+              {/* Step 7: Contact */}
+              {step === 7 && (
+                <div className="animate-in">
+                  <StepLabel n={7} label="Last step" />
+                  <Question>Where should we send your strategy?</Question>
+                  <p className="mb-8 text-sm font-light text-white/40">
+                    We will review your project details and send a tailored strategy within two business days.
+                  </p>
+                  <ContactFields data={data} set={set} submitError={submitError}
+                    setSubmitError={setSubmitError} submitting={submitting}
+                    file={file} setFile={setFile} fileRef={fileRef} onSubmit={handleSubmit}
+                    submitLabel="Get My Free Strategy" />
+                </div>
+              )}
+
+            </div>
+          </div>
+        )}
       </div>
     );
   }

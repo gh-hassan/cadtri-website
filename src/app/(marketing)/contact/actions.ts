@@ -20,31 +20,12 @@ const PROJECT_TYPES: Record<string, string> = {
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-async function verifyTurnstile(token: string): Promise<boolean> {
-  const secret = process.env.TURNSTILE_SECRET_KEY;
-  if (!secret) {
-    console.error("[contact] TURNSTILE_SECRET_KEY is not set");
-    return false;
-  }
-  try {
-    const res = await fetch(
-      "https://challenges.cloudflare.com/turnstile/v0/siteverify",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ secret, response: token }),
-        cache: "no-store",
-      },
-    );
-    const data = (await res.json()) as { success: boolean; "error-codes"?: string[] };
-    if (!data.success) {
-      console.error("[contact] Turnstile failed:", data["error-codes"]);
-    }
-    return data.success === true;
-  } catch (err) {
-    console.error("[contact] Turnstile fetch error:", err);
-    return false;
-  }
+function verifyMathChallenge(formData: FormData): boolean {
+  const a      = parseInt((formData.get("challenge_a")      as string | null) ?? "", 10);
+  const b      = parseInt((formData.get("challenge_b")      as string | null) ?? "", 10);
+  const answer = parseInt((formData.get("challenge_answer") as string | null) ?? "", 10);
+  if (isNaN(a) || isNaN(b) || isNaN(answer)) return false;
+  return answer === a + b;
 }
 
 export async function submitContactForm(
@@ -63,8 +44,6 @@ export async function submitContactForm(
   const company = ((formData.get("company") as string | null) ?? "").trim();
   const projectType = (formData.get("projectType") as string | null) ?? "";
   const scope = ((formData.get("scope") as string | null) ?? "").trim();
-  const turnstileToken =
-    (formData.get("cf-turnstile-response") as string | null) ?? "";
 
   // Validate required fields
   if (name.length < 2) {
@@ -87,18 +66,11 @@ export async function submitContactForm(
     };
   }
 
-  // Verify Turnstile CAPTCHA
-  if (!turnstileToken) {
+  // Verify math challenge
+  if (!verifyMathChallenge(formData)) {
     return {
       status: "error",
-      message: "Please complete the verification check.",
-    };
-  }
-  const captchaOk = await verifyTurnstile(turnstileToken);
-  if (!captchaOk) {
-    return {
-      status: "error",
-      message: "Verification failed. Please refresh and try again.",
+      message: "Incorrect answer to the verification question. Please try again.",
     };
   }
 

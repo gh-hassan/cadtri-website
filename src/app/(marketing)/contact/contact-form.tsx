@@ -1,8 +1,7 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { useFormStatus } from "react-dom";
-import { Turnstile } from "@marsidev/react-turnstile";
 import { CheckCircle, ChevronDown } from "lucide-react";
 import { submitContactForm, type ContactFormState } from "./actions";
 import { Button } from "@/components/shared/button";
@@ -13,7 +12,6 @@ const inputClass =
   "w-full border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted/50 transition-colors duration-150 focus:border-secondary focus:outline-none";
 
 // ─── Submit button ─────────────────────────────────────────────────────────────
-// Separate component so useFormStatus has access to the parent form context
 
 function SubmitButton() {
   const { pending } = useFormStatus();
@@ -67,6 +65,13 @@ function FormField({
 export function ContactForm() {
   const [state, formAction] = useActionState(submitContactForm, initialState);
 
+  // Generate a simple math challenge once on mount
+  const [challenge] = useState(() => {
+    const a = Math.floor(Math.random() * 9) + 1;
+    const b = Math.floor(Math.random() * 9) + 1;
+    return { a, b };
+  });
+
   // Success state
   if (state.status === "success") {
     return (
@@ -118,6 +123,10 @@ export function ContactForm() {
         className="absolute left-[-9999px] h-0 w-0 overflow-hidden opacity-0"
         autoComplete="off"
       />
+
+      {/* Hidden challenge values sent to server for verification */}
+      <input type="hidden" name="challenge_a" value={challenge.a} />
+      <input type="hidden" name="challenge_b" value={challenge.b} />
 
       {/* Name + Email */}
       <div className="grid gap-6 sm:grid-cols-2">
@@ -198,11 +207,19 @@ export function ContactForm() {
         />
       </FormField>
 
-      {/* Cloudflare Turnstile — invisible for real users, challenge only if bot suspected */}
-      <Turnstile
-        siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
-        options={{ appearance: "interaction-only", theme: "light" }}
-      />
+      {/* Math challenge — lightweight bot filter */}
+      <FormField label={`Quick check: what is ${challenge.a} + ${challenge.b}?`} id="challenge_answer" required>
+        <input
+          type="number"
+          id="challenge_answer"
+          name="challenge_answer"
+          required
+          min={0}
+          max={20}
+          placeholder="Enter the answer"
+          className={`${inputClass} w-40`}
+        />
+      </FormField>
 
       {/* Error message */}
       {state.status === "error" && state.message && (

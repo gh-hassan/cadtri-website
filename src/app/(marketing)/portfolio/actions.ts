@@ -3,7 +3,7 @@
 import { Resend } from "resend";
 import { cookies } from "next/headers";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(process.env.RESEND_API_KEY?.trim());
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export type PortfolioActionState = {

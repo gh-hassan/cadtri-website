@@ -1,6 +1,6 @@
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY!);
+const resend = new Resend(process.env.RESEND_API_KEY?.trim());
 
 export async function sendMagicLinkEmail(to: string, magicLink: string) {
   await resend.emails.send({

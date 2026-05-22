@@ -3,7 +3,7 @@
 import { Resend } from "resend";
 import { company } from "@/content/company";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(process.env.RESEND_API_KEY?.trim());
 
 export type NewsletterState =
   | { status: "idle" }

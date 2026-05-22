@@ -3,7 +3,7 @@
 import { Resend } from "resend";
 import { db } from "@/app/portal/_lib/supabase";
 
-const resend = new Resend(process.env.RESEND_API_KEY!);
+const resend = new Resend(process.env.RESEND_API_KEY?.trim());
 
 type EventType = "project_created" | "status_changed" | "document_added" | "welcome";
 

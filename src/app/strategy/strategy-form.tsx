@@ -6,7 +6,7 @@ import {
   Home, Building2, Warehouse, LayoutDashboard, Building,
   TrendingUp, DollarSign, CalendarDays, HelpCircle,
   Zap, Clock, MapPin, Lightbulb, Layers,
-  FileText, FileCheck, HardHat, PenTool, AlertCircle,
+  HardHat, AlertCircle,
   CheckSquare, Target, Briefcase,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -44,7 +44,7 @@ const BUILDING_INTENTS = [
   { label: "Ground-Up New Construction",  sub: "Build from scratch on vacant lot",  icon: Building2 },
   { label: "Convert Existing Space",      sub: "Garage, basement, or attic",        icon: LayoutDashboard },
   { label: "Multi-Unit Development",      sub: "Duplex, triplex, or more",          icon: Building },
-  { label: "Not sure — need guidance",    sub: "Tell me what makes most sense",     icon: HelpCircle },
+  { label: "Not sure, need guidance",    sub: "Tell me what makes most sense",     icon: HelpCircle },
 ];
 
 const EXPERIENCE_LEVELS = [
@@ -102,7 +102,7 @@ export function StrategyForm() {
   const fileRef                       = useRef<HTMLInputElement>(null);
   const [data, setData]               = useState<StrategyFormData>(INITIAL_DATA);
 
-  const TOTAL_STEPS = data.path === "investment" ? 7 : 7;
+  const TOTAL_STEPS = 7;
   const progress = Math.round(((step - 1) / TOTAL_STEPS) * 100);
 
   const set = useCallback(<K extends keyof StrategyFormData>(key: K, val: StrategyFormData[K]) => {
@@ -191,7 +191,7 @@ export function StrategyForm() {
           What are you working on?
         </h2>
         <p className="mb-12 max-w-lg text-center text-sm font-light leading-relaxed text-white/40">
-          Tell us about your situation and we will send you a free tailored strategy — no commitment, no sales pitch.
+          Tell us about your situation and we will send you a free tailored strategy. No commitment, no sales pitch.
         </p>
         <div className="grid w-full max-w-2xl gap-5 sm:grid-cols-2">
           <PathCard
@@ -242,7 +242,7 @@ export function StrategyForm() {
     },
     3: {
       question: "What is your main goal?",
-      description: "Your investment objective shapes everything — what to build, how to finance it, and what the exit looks like.",
+      description: "Your investment objective shapes everything: what to build, how to finance it, and what the exit looks like.",
     },
     4: {
       question: "What is your investment horizon?",
@@ -561,6 +561,7 @@ export function StrategyForm() {
                     data={data}
                     set={set}
                     submitError={submitError}
+                    setSubmitError={setSubmitError}
                     submitting={submitting}
                     file={file}
                     setFile={setFile}
@@ -585,6 +586,7 @@ function ContactFields({
   data,
   set,
   submitError,
+  setSubmitError,
   submitting,
   file,
   setFile,
@@ -595,6 +597,7 @@ function ContactFields({
   data: StrategyFormData;
   set: <K extends keyof StrategyFormData>(key: K, val: StrategyFormData[K]) => void;
   submitError: string;
+  setSubmitError: (msg: string) => void;
   submitting: boolean;
   file: File | null;
   setFile: (f: File | null) => void;
@@ -703,9 +706,11 @@ function ContactFields({
           onChange={(e) => {
             const f = e.target.files?.[0] ?? null;
             if (f && f.size > 10 * 1024 * 1024) {
+              setSubmitError("File must be under 10 MB.");
               return;
             }
             setFile(f);
+            setSubmitError("");
           }}
         />
       </div>

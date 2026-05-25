@@ -128,7 +128,7 @@ export const servicesMegaMenu: readonly MegaMenuCategory[] = [
       { label: "Interior Remodel Packages",    href: "/services/interior-remodel-packages",    description: "Kitchen, bath, and whole-home remodels" },
       { label: "STR Conversion Permits",       href: "/services/short-term-rental-permits",    description: "Short-term rental compliance permits"  },
       { label: "Accessory Structure Permits",  href: "/services/accessory-structure-permits",  description: "Detached garages, studios, outbuildings" },
-      { label: "Title 24 Energy Compliance",   href: "/services/title-24-energy-compliance",   description: "California energy code documentation"  },
+      { label: "Title 24 Energy Compliance",   href: "/services/title-24-energy-compliance",   description: "Energy compliance documentation"  },
     ],
   },
   {

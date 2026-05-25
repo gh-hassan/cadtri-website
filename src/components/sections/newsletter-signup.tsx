@@ -27,7 +27,7 @@ export function NewsletterSignup() {
             </h2>
             <p className="mt-4 text-sm font-light leading-relaxed text-muted">
               Occasional emails on permitting trends, ADU regulations, and
-              practical guidance for California projects. No spam.
+              practical guidance for Florida, Texas, and North Carolina projects. No spam.
             </p>
           </div>
 

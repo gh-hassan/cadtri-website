@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#FAF3E1"/>
+  <rect width="1200" height="90" fill="#222222"/>
+  <text x="60" y="54" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="500" letter-spacing="3" fill="#FF6D1F">ENERGY COMPLIANCE</text>
+  <text x="60" y="76" font-family="system-ui,-apple-system,sans-serif" font-size="22" font-weight="700" letter-spacing="-0.5" fill="#FAF3E1">Energy Code Requirements by State — FL, TX &amp; NC</text>
+
+  <!-- 3-column state comparison -->
+  <!-- Florida column -->
+  <rect x="40" y="110" width="354" height="330" rx="2" fill="#F5E7C6" stroke="#E2D4B8" stroke-width="1"/>
+  <rect x="40" y="110" width="354" height="54" rx="2" fill="#FF6D1F"/>
+  <text x="217" y="134" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="600" letter-spacing="2" fill="#FAF3E1" text-anchor="middle">FLORIDA</text>
+  <text x="217" y="154" font-family="system-ui,-apple-system,sans-serif" font-size="14" font-weight="700" fill="#FAF3E1" text-anchor="middle">Florida Energy Code (FEC)</text>
+
+  <text x="60" y="192" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="600" fill="#222222">Code Basis</text>
+  <text x="60" y="212" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">IECC with Florida-specific amendments.</text>
+  <text x="60" y="230" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">Updated on a 3-year cycle by Florida</text>
+  <text x="60" y="248" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">Building Commission.</text>
+
+  <line x1="60" y1="265" x2="375" y2="265" stroke="#E2D4B8" stroke-width="1"/>
+
+  <text x="60" y="287" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="600" fill="#222222">When Required</text>
+  <text x="60" y="307" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">New construction, additions, alterations</text>
+  <text x="60" y="327" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">to conditioned space, HVAC replacements.</text>
+
+  <line x1="60" y1="344" x2="375" y2="344" stroke="#E2D4B8" stroke-width="1"/>
+
+  <text x="60" y="366" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="600" fill="#222222">South Florida Note</text>
+  <text x="60" y="386" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">Miami-Dade HVHZ adds wind-rated</text>
+  <text x="60" y="406" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">glazing requirements on top of FEC.</text>
+  <text x="60" y="427" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="500" fill="#FF6D1F">Not the same as Title 24 (California)</text>
+
+  <!-- Texas column -->
+  <rect x="423" y="110" width="354" height="330" rx="2" fill="#222222"/>
+  <rect x="423" y="110" width="354" height="54" rx="2" fill="#222222" stroke="#FF6D1F" stroke-width="2"/>
+  <text x="600" y="134" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="600" letter-spacing="2" fill="#FF6D1F" text-anchor="middle">TEXAS</text>
+  <text x="600" y="154" font-family="system-ui,-apple-system,sans-serif" font-size="14" font-weight="700" fill="#FAF3E1" text-anchor="middle">IECC (City Adopted)</text>
+
+  <text x="443" y="192" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="600" fill="#FAF3E1">Code Basis</text>
+  <text x="443" y="212" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#FAF3E1" opacity="0.8">No mandatory statewide energy code.</text>
+  <text x="443" y="230" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#FAF3E1" opacity="0.8">Cities that adopt IRC/IBC are required</text>
+  <text x="443" y="248" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#FAF3E1" opacity="0.8">to include energy code provisions.</text>
+
+  <line x1="443" y1="265" x2="757" y2="265" stroke="#FAF3E1" stroke-width="1" opacity="0.15"/>
+
+  <text x="443" y="287" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="600" fill="#FAF3E1">Austin &amp; Dallas</text>
+  <text x="443" y="307" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#FAF3E1" opacity="0.8">Both require energy compliance docs</text>
+  <text x="443" y="327" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#FAF3E1" opacity="0.8">for new construction. Houston and</text>
+  <text x="443" y="347" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#FAF3E1" opacity="0.8">San Antonio vary — confirm at intake.</text>
+
+  <line x1="443" y1="364" x2="757" y2="364" stroke="#FAF3E1" stroke-width="1" opacity="0.15"/>
+
+  <text x="443" y="386" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="600" fill="#FAF3E1">Rural Areas</text>
+  <text x="443" y="406" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#FAF3E1" opacity="0.8">Some Texas counties have no adopted</text>
+  <text x="443" y="426" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#FAF3E1" opacity="0.8">building code at all.</text>
+
+  <!-- North Carolina column -->
+  <rect x="806" y="110" width="354" height="330" rx="2" fill="#F5E7C6" stroke="#E2D4B8" stroke-width="1"/>
+  <rect x="806" y="110" width="354" height="54" rx="2" fill="#222222"/>
+  <text x="983" y="134" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="600" letter-spacing="2" fill="#FF6D1F" text-anchor="middle">NORTH CAROLINA</text>
+  <text x="983" y="154" font-family="system-ui,-apple-system,sans-serif" font-size="14" font-weight="700" fill="#FAF3E1" text-anchor="middle">NC Energy Conservation Code</text>
+
+  <text x="826" y="192" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="600" fill="#222222">Code Basis</text>
+  <text x="826" y="212" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">NC Energy Conservation Code based</text>
+  <text x="826" y="230" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">on IECC with NC-specific amendments.</text>
+  <text x="826" y="248" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">Statewide adoption — applies in all NC</text>
+  <text x="826" y="266" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">counties and municipalities.</text>
+
+  <line x1="826" y1="283" x2="1140" y2="283" stroke="#E2D4B8" stroke-width="1"/>
+
+  <text x="826" y="305" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="600" fill="#222222">When Required</text>
+  <text x="826" y="325" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">New construction and additions involving</text>
+  <text x="826" y="345" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">conditioned space. Required documentation</text>
+  <text x="826" y="365" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">submitted with permit application.</text>
+
+  <line x1="826" y1="382" x2="1140" y2="382" stroke="#E2D4B8" stroke-width="1"/>
+
+  <text x="826" y="404" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="600" fill="#222222">Charlotte &amp; Raleigh</text>
+  <text x="826" y="424" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">Full NC code with local amendments.</text>
+  <text x="826" y="444" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="500" fill="#FF6D1F">CADTRI verifies code version at intake</text>
+
+  <!-- Footer -->
+  <rect x="0" y="462" width="1200" height="168" fill="#F5E7C6"/>
+  <rect x="0" y="462" width="1200" height="2" fill="#E2D4B8"/>
+  <text x="60" y="512" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="300" fill="#7A6E5F">Title 24 is a California code. It does not apply to Florida, Texas, or North Carolina projects. Each state has its own energy compliance</text>
+  <text x="60" y="532" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="300" fill="#7A6E5F">documentation requirements — CADTRI researches the specific jurisdiction and code version before every permit set begins.</text>
+  <text x="60" y="600" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="500" letter-spacing="1.5" fill="#FF6D1F">CADTRI.COM</text>
+  <text x="1140" y="600" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="300" fill="#7A6E5F" text-anchor="end">cadtri.com/resources/title-24-energy-compliance-california</text>
+</svg>

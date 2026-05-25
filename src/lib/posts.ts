@@ -4,13 +4,20 @@ import matter from "gray-matter";
 
 const postsDir = path.join(process.cwd(), "src/content/posts");
 
+export interface FaqEntry {
+  q: string;
+  a: string;
+}
+
 export interface PostMeta {
   slug: string;
   title: string;
   description: string;
   date: string;
+  dateModified?: string;
   category: string;
   readingTime: string;
+  faq?: FaqEntry[];
 }
 
 export interface Post extends PostMeta {
@@ -33,8 +40,10 @@ export function getAllPosts(): PostMeta[] {
       title: (data.title as string) ?? "",
       description: (data.description as string) ?? "",
       date: (data.date as string) ?? "",
+      dateModified: (data.dateModified as string | undefined) ?? undefined,
       category: (data.category as string) ?? "",
       readingTime: (data.readingTime as string) ?? "",
+      faq: (data.faq as FaqEntry[] | undefined) ?? undefined,
     };
   });
 
@@ -55,8 +64,10 @@ export function getPostBySlug(slug: string): Post | undefined {
     title: (data.title as string) ?? "",
     description: (data.description as string) ?? "",
     date: (data.date as string) ?? "",
+    dateModified: (data.dateModified as string | undefined) ?? undefined,
     category: (data.category as string) ?? "",
     readingTime: (data.readingTime as string) ?? "",
+    faq: (data.faq as FaqEntry[] | undefined) ?? undefined,
     content,
   };
 }

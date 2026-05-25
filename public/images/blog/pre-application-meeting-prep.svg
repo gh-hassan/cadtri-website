@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#FAF3E1"/>
+  <rect width="1200" height="90" fill="#222222"/>
+  <text x="60" y="54" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="500" letter-spacing="3" fill="#FF6D1F">PRE-APPLICATION MEETING</text>
+  <text x="60" y="76" font-family="system-ui,-apple-system,sans-serif" font-size="22" font-weight="700" letter-spacing="-0.5" fill="#FAF3E1">What to Prepare Before Meeting the Building Department</text>
+
+  <!-- 3 phases -->
+  <!-- Phase 1: Before -->
+  <rect x="40" y="110" width="340" height="330" rx="2" fill="#F5E7C6" stroke="#E2D4B8" stroke-width="1"/>
+  <rect x="40" y="110" width="340" height="50" rx="2" fill="#222222"/>
+  <text x="210" y="131" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="600" letter-spacing="2.5" fill="#FF6D1F" text-anchor="middle">PHASE 01</text>
+  <text x="210" y="150" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="700" fill="#FAF3E1" text-anchor="middle">What to Prepare</text>
+
+  <text x="60" y="190" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="600" fill="#222222">Documentation Package</text>
+  <text x="60" y="213" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">✓  Preliminary site plan with dimensions</text>
+  <text x="60" y="233" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">✓  Schematic floor plans (not full permit set)</text>
+  <text x="60" y="253" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">✓  Project description — scope &amp; use type</text>
+  <text x="60" y="273" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">✓  Zoning research summary</text>
+  <text x="60" y="293" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">✓  APN / parcel number</text>
+
+  <line x1="60" y1="310" x2="360" y2="310" stroke="#E2D4B8" stroke-width="1"/>
+
+  <text x="60" y="330" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="600" fill="#222222">Question List</text>
+  <text x="60" y="353" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">Write specific questions in advance.</text>
+  <text x="60" y="373" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">General questions get general answers.</text>
+  <text x="60" y="393" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="500" fill="#FF6D1F">Specific questions get specific guidance.</text>
+
+  <!-- Arrow 1 -->
+  <text x="428" y="282" font-family="system-ui,-apple-system,sans-serif" font-size="28" fill="#E2D4B8" text-anchor="middle">→</text>
+
+  <!-- Phase 2: During -->
+  <rect x="430" y="110" width="340" height="330" rx="2" fill="#222222"/>
+  <rect x="430" y="110" width="340" height="50" rx="2" fill="#FF6D1F"/>
+  <text x="600" y="131" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="600" letter-spacing="2.5" fill="#FAF3E1" opacity="0.8" text-anchor="middle">PHASE 02</text>
+  <text x="600" y="150" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="700" fill="#FAF3E1" text-anchor="middle">During the Meeting</text>
+
+  <text x="450" y="190" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="600" fill="#FAF3E1">Get Answers On Record</text>
+  <text x="450" y="213" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#FAF3E1" opacity="0.8">→  Ask about adopted code version</text>
+  <text x="450" y="233" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#FAF3E1" opacity="0.8">→  Ask about submittal format (online/paper)</text>
+  <text x="450" y="253" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#FAF3E1" opacity="0.8">→  Confirm required sheet list</text>
+  <text x="450" y="273" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#FAF3E1" opacity="0.8">→  Ask about known red flags for your site</text>
+  <text x="450" y="293" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#FAF3E1" opacity="0.8">→  Confirm fee schedule &amp; timing</text>
+
+  <line x1="450" y1="310" x2="750" y2="310" stroke="#FAF3E1" stroke-width="1" opacity="0.15"/>
+
+  <text x="450" y="330" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="600" fill="#FAF3E1">Take Notes — Every Detail</text>
+  <text x="450" y="353" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#FAF3E1" opacity="0.8">Staff guidance is not binding unless</text>
+  <text x="450" y="373" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#FAF3E1" opacity="0.8">documented. Write everything down.</text>
+  <text x="450" y="393" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="500" fill="#FF6D1F">Get staff name + date in your notes</text>
+
+  <!-- Arrow 2 -->
+  <text x="818" y="282" font-family="system-ui,-apple-system,sans-serif" font-size="28" fill="#E2D4B8" text-anchor="middle">→</text>
+
+  <!-- Phase 3: After -->
+  <rect x="820" y="110" width="340" height="330" rx="2" fill="#F5E7C6" stroke="#E2D4B8" stroke-width="1"/>
+  <rect x="820" y="110" width="340" height="50" rx="2" fill="#222222"/>
+  <text x="990" y="131" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="600" letter-spacing="2.5" fill="#FF6D1F" text-anchor="middle">PHASE 03</text>
+  <text x="990" y="150" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="700" fill="#FAF3E1" text-anchor="middle">After the Meeting</text>
+
+  <text x="840" y="190" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="600" fill="#222222">Incorporate Guidance</text>
+  <text x="840" y="213" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">✓  Update design to reflect staff input</text>
+  <text x="840" y="233" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">✓  Confirm code version for permit set</text>
+  <text x="840" y="253" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">✓  Flag any issues raised during meeting</text>
+  <text x="840" y="273" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">✓  Order supplemental studies if required</text>
+
+  <line x1="840" y1="295" x2="1140" y2="295" stroke="#E2D4B8" stroke-width="1"/>
+
+  <text x="840" y="318" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="600" fill="#222222">Value Created</text>
+  <text x="840" y="341" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">One pre-application meeting can</text>
+  <text x="840" y="361" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">eliminate an entire correction cycle.</text>
+  <text x="840" y="390" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="500" fill="#FF6D1F">Preparation is the only variable</text>
+  <text x="840" y="408" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="500" fill="#FF6D1F">you can control.</text>
+
+  <!-- Footer -->
+  <rect x="0" y="462" width="1200" height="168" fill="#F5E7C6"/>
+  <rect x="0" y="462" width="1200" height="2" fill="#E2D4B8"/>
+  <text x="60" y="512" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="300" fill="#7A6E5F">Pre-application meetings are available at most Florida, Texas, and North Carolina building departments and are typically free or low-cost.</text>
+  <text x="60" y="532" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="300" fill="#7A6E5F">CADTRI prepares complete pre-application packages — preliminary drawings, zoning analysis, and a structured question list — for every jurisdiction.</text>
+  <text x="60" y="600" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="500" letter-spacing="1.5" fill="#FF6D1F">CADTRI.COM</text>
+  <text x="1140" y="600" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="300" fill="#7A6E5F" text-anchor="end">cadtri.com/resources/pre-application-meeting-construction</text>
+</svg>

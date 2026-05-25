@@ -7,7 +7,7 @@ import { team } from "@/content/team";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "About CADTRI | Architectural Drafting & Permit Services",
+    absolute: "About CADTRI | Drafting & Permit Services",
   },
   description:
     "CADTRI is a professional architectural drafting and permit coordination company. We produce complete, permit-ready construction drawings for residential and commercial projects.",
@@ -102,7 +102,7 @@ export default function AboutPage() {
               maxWidth: "22ch",
             }}
           >
-            The most complete construction documentation and permit coordination support your project will see.
+            The most complete permit documentation your project will see.
           </h1>
           <p
             className="mt-8 font-light leading-relaxed text-white/55"

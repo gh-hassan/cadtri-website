@@ -38,7 +38,7 @@ import { InteriorLayout } from "@/components/service-layouts/interior-layout";
 import { SiteplanLayout } from "@/components/service-layouts/siteplan-layout";
 import { RecordLayout } from "@/components/service-layouts/record-layout";
 import { getServiceBySlug, getRelatedServices, services } from "@/content/services";
-import { ServiceJsonLd, BreadcrumbJsonLd } from "@/lib/json-ld";
+import { ServiceJsonLd, BreadcrumbJsonLd, FaqJsonLd, reactNodeToText } from "@/lib/json-ld";
 import { company } from "@/content/company";
 
 interface Props {
@@ -79,6 +79,14 @@ export default async function ServiceDetailPage({ params }: Props) {
         url={`${company.website}/services/${slug}`}
         category={service.category}
       />
+      {service.faqs && service.faqs.length > 0 && (
+        <FaqJsonLd
+          items={service.faqs.map((faq) => ({
+            question: faq.question,
+            answer: reactNodeToText(faq.answer),
+          }))}
+        />
+      )}
       <PageHeader
         eyebrow={service.category}
         heading={service.title}

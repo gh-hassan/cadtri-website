@@ -57,6 +57,14 @@ export function SiteFooter() {
 
           {/* CTA */}
           <div className="flex shrink-0 items-center gap-5">
+            {company.phone && (
+              <a
+                href={`tel:${company.phone.replace(/\D/g, "")}`}
+                className="hidden text-sm text-white/40 transition-colors duration-200 hover:text-white xl:block"
+              >
+                {company.phone}
+              </a>
+            )}
             {company.email && (
               <a
                 href={`mailto:${company.email}`}

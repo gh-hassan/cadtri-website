@@ -264,29 +264,26 @@ export function StrategyForm() {
           <div className="h-full bg-secondary transition-all duration-500 ease-out" style={{ width: `${progress}%` }} />
         </div>
 
-        {!isProjectWide ? (
-          <div className="flex flex-1 flex-col lg:flex-row lg:items-stretch">
-            {/* Left panel */}
-            <div className="relative flex flex-col border-b border-white/[0.06] px-8 pb-10 pt-12 lg:w-[38%] lg:border-b-0 lg:border-r lg:px-14 lg:pb-20 lg:pt-16">
-              <div>
-                <p className="mb-5 text-[11px] font-medium uppercase tracking-widest text-secondary">Step {step} of {TOTAL_STEPS}</p>
-                <h2 className="font-bold text-white" style={{ fontSize: "clamp(1.75rem, 2.8vw, 2.75rem)", letterSpacing: "-0.03em", lineHeight: 1.06 }}>
-                  {projMeta?.q}
-                </h2>
-                <p className="mt-5 text-sm font-light leading-relaxed text-white/40">{projMeta?.desc}</p>
-              </div>
-              <button type="button" onClick={goBack}
-                className="mt-10 flex items-center gap-2 text-xs font-medium uppercase tracking-widest text-white/30 transition-colors hover:text-white/70 lg:absolute lg:bottom-14 lg:left-14 lg:mt-0">
-                <ArrowLeft size={12} strokeWidth={2} />Back
-              </button>
-            </div>
+        {/* All steps: centered column */}
+        <div className="flex flex-1 flex-col overflow-y-auto px-8 pb-16 pt-12 sm:px-12 lg:px-20 lg:pt-16">
+          <div className="mb-10 flex items-center justify-between">
+            <button type="button" onClick={goBack}
+              className="flex items-center gap-2 text-xs font-medium uppercase tracking-widest text-white/30 transition-colors hover:text-white/70">
+              <ArrowLeft size={12} strokeWidth={2} />Back
+            </button>
+            <span className="text-[11px] tabular-nums tracking-widest text-white/25">{step} / {TOTAL_STEPS}</span>
+          </div>
 
-            {/* Right panel */}
-            <div className="flex flex-1 flex-col overflow-y-auto px-8 pb-10 pt-12 lg:px-14 lg:pb-20 lg:pt-16">
+          <div className="w-full max-w-3xl">
 
               {/* Step 1: Project type + location */}
               {step === 1 && (
                 <div className="animate-in flex flex-col gap-8">
+                  <div>
+                    <StepLabel n={1} />
+                    <Question>What type of project?</Question>
+                    <p className="-mt-6 mb-6 text-sm font-light text-white/40">Project type and location shape the entire permit process and execution timeline.</p>
+                  </div>
                   <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                     {PROJECT_TYPES.map(({ label, icon }) => (
                       <SelectCard key={label} label={label} icon={icon}
@@ -330,7 +327,12 @@ export function StrategyForm() {
 
               {/* Step 2: Current stage */}
               {step === 2 && (
-                <div className="animate-in flex flex-col gap-3">
+                <div className="animate-in flex flex-col gap-6">
+                  <div>
+                    <StepLabel n={2} />
+                    <Question>Where are you right now?</Question>
+                    <p className="-mt-6 mb-2 text-sm font-light text-white/40">Your current stage determines what comes next and where the biggest leverage points are.</p>
+                  </div>
                   <div className="grid gap-3 sm:grid-cols-2">
                     {CURRENT_STAGES.map(({ label, sub, icon }) => (
                       <SelectCard key={label} label={label} sub={sub} icon={icon}
@@ -343,8 +345,12 @@ export function StrategyForm() {
 
               {/* Step 3: What they have */}
               {step === 3 && (
-                <div className="animate-in flex flex-col gap-6 max-w-lg">
-                  <p className="text-sm font-light text-white/40">Check everything that applies to your project right now.</p>
+                <div className="animate-in flex flex-col gap-6">
+                  <div>
+                    <StepLabel n={3} />
+                    <Question>What do you have in place?</Question>
+                    <p className="-mt-6 mb-2 text-sm font-light text-white/40">Knowing what exists helps us identify gaps and the fastest path forward.</p>
+                  </div>
                   {[
                     { key: "hasDrawings"   as const, label: "Architectural drawings",        yes: "Complete", no: "Not yet" },
                     { key: "hasArchitect"  as const, label: "Architect or designer hired",   yes: "Yes",      no: "No" },
@@ -373,19 +379,6 @@ export function StrategyForm() {
                 </div>
               )}
 
-            </div>
-          </div>
-        ) : (
-          /* Wide layout — steps 4–7 */
-          <div className="flex flex-1 flex-col overflow-y-auto px-8 pb-16 pt-12 sm:px-12 lg:px-20 lg:pt-16">
-            <div className="mb-10 flex items-center justify-between">
-              <button type="button" onClick={goBack}
-                className="flex items-center gap-2 text-xs font-medium uppercase tracking-widest text-white/30 transition-colors hover:text-white/70">
-                <ArrowLeft size={12} strokeWidth={2} />Back
-              </button>
-              <span className="text-[11px] tabular-nums tracking-widest text-white/25">{step} / {TOTAL_STEPS}</span>
-            </div>
-            <div className="w-full max-w-3xl">
 
               {/* Step 4: Main challenge */}
               {step === 4 && (
@@ -470,36 +463,13 @@ export function StrategyForm() {
                 </div>
               )}
 
-            </div>
           </div>
-        )}
+        </div>
       </div>
     );
   }
 
   // ── Investment path ─────────────────────────────────────────────────────────
-  const isWide = step >= 5;
-
-  const STEP_META: Record<number, { question: string; description: string }> = {
-    1: {
-      question: "Where is the property?",
-      description: "Location determines zoning laws, ADU eligibility, permit timelines, and local market conditions.",
-    },
-    2: {
-      question: "What is on the property now?",
-      description: "The existing structure and lot size determine what can realistically be built and what approvals are needed.",
-    },
-    3: {
-      question: "What is your main goal?",
-      description: "Your investment objective shapes everything: what to build, how to finance it, and what the exit looks like.",
-    },
-    4: {
-      question: "What is your investment horizon?",
-      description: "Short-term and long-term strategies look very different. This helps us recommend the right development approach.",
-    },
-  };
-
-  const meta = STEP_META[step];
 
   return (
     <div className="flex flex-1 flex-col">
@@ -511,92 +481,83 @@ export function StrategyForm() {
         />
       </div>
 
-      {!isWide ? (
-        /* ── Steps 1–4: Two-column split on lg+ ── */
-        <div className="flex flex-1 flex-col lg:flex-row lg:items-stretch">
-          {/* Left panel */}
-          <div className="relative flex flex-col border-b border-white/[0.06] px-8 pb-10 pt-12 lg:w-[38%] lg:border-b-0 lg:border-r lg:px-14 lg:pb-20 lg:pt-16">
-            <div>
-              <p className="mb-5 text-[11px] font-medium uppercase tracking-widest text-secondary">
-                Step {step} of {TOTAL_STEPS}
+      {/* All steps: centered column */}
+      <div className="flex flex-1 flex-col overflow-y-auto px-8 pb-16 pt-12 sm:px-12 lg:px-20 lg:pt-16">
+        <div className="mb-10 flex items-center justify-between">
+          <button
+            type="button"
+            onClick={goBack}
+            className="flex items-center gap-2 text-xs font-medium uppercase tracking-widest text-white/30 transition-colors hover:text-white/70"
+          >
+            <ArrowLeft size={12} strokeWidth={2} />
+            Back
+          </button>
+          <span className="text-[11px] tabular-nums tracking-widest text-white/25">
+            {step} / {TOTAL_STEPS}
+          </span>
+        </div>
+
+        <div className="w-full max-w-3xl">
+
+          {/* ── Step 1: Location ── */}
+          {step === 1 && (
+            <div className="animate-in flex flex-col gap-6">
+              <StepLabel n={1} />
+              <Question>Where is the property?</Question>
+              <p className="-mt-6 mb-2 text-sm font-light text-white/40">
+                Location determines zoning laws, ADU eligibility, permit timelines, and local market conditions.
               </p>
-              <h2
-                className="font-bold text-white"
-                style={{ fontSize: "clamp(1.75rem, 2.8vw, 2.75rem)", letterSpacing: "-0.03em", lineHeight: 1.06 }}
-              >
-                {meta?.question}
-              </h2>
-              <p className="mt-5 text-sm font-light leading-relaxed text-white/40">
-                {meta?.description}
-              </p>
-            </div>
-            <button
-              type="button"
-              onClick={goBack}
-              className="mt-10 flex items-center gap-2 text-xs font-medium uppercase tracking-widest text-white/30 transition-colors hover:text-white/70 lg:absolute lg:bottom-14 lg:left-14 lg:mt-0"
-            >
-              <ArrowLeft size={12} strokeWidth={2} />
-              Back
-            </button>
-          </div>
-
-          {/* Right panel */}
-          <div className="flex flex-1 flex-col overflow-y-auto px-8 pb-10 pt-12 lg:px-14 lg:pb-20 lg:pt-16">
-
-            {/* ── Step 1: Location ── */}
-            {step === 1 && (
-              <div className="animate-in flex flex-col gap-6">
-                <div className="grid gap-5 sm:grid-cols-2">
-                  <div className="flex flex-col gap-2">
-                    <label className="text-xs font-semibold uppercase tracking-widest text-white/55">
-                      City <span className="text-secondary">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      value={data.city}
-                      onChange={(e) => set("city", e.target.value)}
-                      placeholder="e.g. Los Angeles"
-                      className={inputClass}
-                    />
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    <label className="text-xs font-semibold uppercase tracking-widest text-white/55">
-                      State <span className="text-secondary">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      value={data.state}
-                      onChange={(e) => set("state", e.target.value)}
-                      placeholder="e.g. California"
-                      className={inputClass}
-                    />
-                  </div>
-                </div>
-
-                {/* Already purchased toggle */}
+              <div className="grid gap-5 sm:grid-cols-2">
                 <div className="flex flex-col gap-2">
                   <label className="text-xs font-semibold uppercase tracking-widest text-white/55">
-                    Already purchased?{" "}
-                    <span className="text-white/30 font-light normal-case tracking-normal">optional</span>
+                    City <span className="text-secondary">*</span>
                   </label>
-                  <div className="flex gap-3">
-                    {["Already purchased", "Still evaluating"].map((opt) => (
-                      <button
-                        key={opt}
-                        type="button"
-                        onClick={() => set("alreadyPurchased", opt)}
-                        className={cn(
-                          "flex-1 border px-4 py-3 text-sm font-medium transition-all duration-200",
-                          data.alreadyPurchased === opt
-                            ? "border-secondary bg-secondary/10 text-secondary"
-                            : "border-white/15 bg-white/[0.04] text-white/50 hover:border-white/25 hover:text-white/80",
-                        )}
-                      >
-                        {opt}
-                      </button>
-                    ))}
-                  </div>
+                  <input
+                    type="text"
+                    value={data.city}
+                    onChange={(e) => set("city", e.target.value)}
+                    placeholder="e.g. Los Angeles"
+                    className={inputClass}
+                  />
                 </div>
+                <div className="flex flex-col gap-2">
+                  <label className="text-xs font-semibold uppercase tracking-widest text-white/55">
+                    State <span className="text-secondary">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={data.state}
+                    onChange={(e) => set("state", e.target.value)}
+                    placeholder="e.g. California"
+                    className={inputClass}
+                  />
+                </div>
+              </div>
+
+              {/* Already purchased toggle */}
+              <div className="flex flex-col gap-2">
+                <label className="text-xs font-semibold uppercase tracking-widest text-white/55">
+                  Already purchased?{" "}
+                  <span className="text-white/30 font-light normal-case tracking-normal">optional</span>
+                </label>
+                <div className="flex gap-3">
+                  {["Already purchased", "Still evaluating"].map((opt) => (
+                    <button
+                      key={opt}
+                      type="button"
+                      onClick={() => set("alreadyPurchased", opt)}
+                      className={cn(
+                        "flex-1 border px-4 py-3 text-sm font-medium transition-all duration-200",
+                        data.alreadyPurchased === opt
+                          ? "border-secondary bg-secondary/10 text-secondary"
+                          : "border-white/15 bg-white/[0.04] text-white/50 hover:border-white/25 hover:text-white/80",
+                      )}
+                    >
+                      {opt}
+                    </button>
+                  ))}
+                </div>
+              </div>
 
                 <button
                   type="button"
@@ -614,9 +575,15 @@ export function StrategyForm() {
               </div>
             )}
 
-            {/* ── Step 2: Property type ── */}
-            {step === 2 && (
-              <div className="animate-in grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {/* ── Step 2: Property type ── */}
+          {step === 2 && (
+            <div className="animate-in">
+              <StepLabel n={2} />
+              <Question>What is on the property now?</Question>
+              <p className="-mt-6 mb-8 text-sm font-light text-white/40">
+                The existing structure and lot size determine what can realistically be built and what approvals are needed.
+              </p>
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 {PROPERTY_TYPES.map(({ label, icon }) => (
                   <SelectCard
                     key={label}
@@ -627,11 +594,18 @@ export function StrategyForm() {
                   />
                 ))}
               </div>
-            )}
+            </div>
+          )}
 
-            {/* ── Step 3: Investment goal ── */}
-            {step === 3 && (
-              <div className="animate-in grid gap-3 sm:grid-cols-2">
+          {/* ── Step 3: Investment goal ── */}
+          {step === 3 && (
+            <div className="animate-in">
+              <StepLabel n={3} />
+              <Question>What is your main goal?</Question>
+              <p className="-mt-6 mb-8 text-sm font-light text-white/40">
+                Your investment objective shapes everything: what to build, how to finance it, and what the exit looks like.
+              </p>
+              <div className="grid gap-3 sm:grid-cols-2">
                 {INVESTMENT_GOALS.map(({ label, sub, icon }) => (
                   <SelectCard
                     key={label}
@@ -643,11 +617,18 @@ export function StrategyForm() {
                   />
                 ))}
               </div>
-            )}
+            </div>
+          )}
 
-            {/* ── Step 4: Investment horizon ── */}
-            {step === 4 && (
-              <div className="animate-in grid gap-3 sm:grid-cols-2">
+          {/* ── Step 4: Investment horizon ── */}
+          {step === 4 && (
+            <div className="animate-in">
+              <StepLabel n={4} />
+              <Question>What is your investment horizon?</Question>
+              <p className="-mt-6 mb-8 text-sm font-light text-white/40">
+                Short-term and long-term strategies look very different. This helps us recommend the right development approach.
+              </p>
+              <div className="grid gap-3 sm:grid-cols-2">
                 {INVESTMENT_HORIZONS.map(({ label, icon }) => (
                   <SelectCard
                     key={label}
@@ -658,33 +639,10 @@ export function StrategyForm() {
                   />
                 ))}
               </div>
-            )}
+            </div>
+          )}
 
-          </div>
-        </div>
-
-      ) : (
-        /* ── Steps 5–7: Wide centered layout ── */
-        <div className="flex flex-1 flex-col overflow-y-auto px-8 pb-16 pt-12 sm:px-12 lg:px-20 lg:pt-16">
-
-          {/* Fixed nav row */}
-          <div className="mb-10 flex items-center justify-between">
-            <button
-              type="button"
-              onClick={goBack}
-              className="flex items-center gap-2 text-xs font-medium uppercase tracking-widest text-white/30 transition-colors hover:text-white/70"
-            >
-              <ArrowLeft size={12} strokeWidth={2} />
-              Back
-            </button>
-            <span className="text-[11px] tabular-nums tracking-widest text-white/25">
-              {step} / {TOTAL_STEPS}
-            </span>
-          </div>
-
-          <div className="w-full max-w-3xl">
-
-            {/* ── Step 5: Building intent + budget ── */}
+          {/* ── Step 5: Building intent + budget ── */}
             {step === 5 && (
               <div className="animate-in">
                 <StepLabel n={5} />
@@ -822,9 +780,8 @@ export function StrategyForm() {
               </div>
             )}
 
-          </div>
         </div>
-      )}
+      </div>
     </div>
   );
 }

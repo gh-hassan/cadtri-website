@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#FAF3E1"/>
+
+  <!-- Header bar -->
+  <rect width="1200" height="90" fill="#222222"/>
+  <text x="60" y="54" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="500" letter-spacing="3" fill="#FF6D1F" text-anchor="start">PERMIT DOCUMENTATION</text>
+  <text x="60" y="76" font-family="system-ui,-apple-system,sans-serif" font-size="22" font-weight="700" letter-spacing="-0.5" fill="#FAF3E1">7 Components of a Complete Permit Set</text>
+
+  <!-- Grid of 7 components — 4 top row, 3 bottom -->
+  <!-- Card 1: Site Plan -->
+  <rect x="40" y="120" width="258" height="140" rx="2" fill="#F5E7C6" stroke="#E2D4B8" stroke-width="1"/>
+  <text x="58" y="150" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="600" letter-spacing="2.5" fill="#FF6D1F">01</text>
+  <text x="58" y="174" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="700" letter-spacing="-0.3" fill="#222222">Site Plan</text>
+  <text x="58" y="197" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">Property boundaries, setbacks,</text>
+  <text x="58" y="214" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">lot coverage &amp; zoning compliance</text>
+  <text x="58" y="245" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="500" fill="#FF6D1F">Required on every permit</text>
+
+  <!-- Card 2: Floor Plans -->
+  <rect x="318" y="120" width="258" height="140" rx="2" fill="#F5E7C6" stroke="#E2D4B8" stroke-width="1"/>
+  <text x="336" y="150" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="600" letter-spacing="2.5" fill="#FF6D1F">02</text>
+  <text x="336" y="174" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="700" letter-spacing="-0.3" fill="#222222">Floor Plans</text>
+  <text x="336" y="197" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">Room layouts, dimensions,</text>
+  <text x="336" y="214" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">doors, windows &amp; plumbing</text>
+  <text x="336" y="245" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="500" fill="#FF6D1F">Required on every permit</text>
+
+  <!-- Card 3: Elevations -->
+  <rect x="596" y="120" width="258" height="140" rx="2" fill="#F5E7C6" stroke="#E2D4B8" stroke-width="1"/>
+  <text x="614" y="150" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="600" letter-spacing="2.5" fill="#FF6D1F">03</text>
+  <text x="614" y="174" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="700" letter-spacing="-0.3" fill="#222222">Exterior Elevations</text>
+  <text x="614" y="197" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">All four building faces,</text>
+  <text x="614" y="214" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">materials &amp; finish schedules</text>
+  <text x="614" y="245" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="500" fill="#FF6D1F">Required on every permit</text>
+
+  <!-- Card 4: Sections -->
+  <rect x="874" y="120" width="286" height="140" rx="2" fill="#F5E7C6" stroke="#E2D4B8" stroke-width="1"/>
+  <text x="892" y="150" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="600" letter-spacing="2.5" fill="#FF6D1F">04</text>
+  <text x="892" y="174" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="700" letter-spacing="-0.3" fill="#222222">Building Sections</text>
+  <text x="892" y="197" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">Wall assemblies, ceiling heights,</text>
+  <text x="892" y="214" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">structural members &amp; insulation</text>
+  <text x="892" y="245" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="500" fill="#FF6D1F">Required on every permit</text>
+
+  <!-- Card 5: Details -->
+  <rect x="40" y="282" width="374" height="140" rx="2" fill="#222222"/>
+  <text x="58" y="312" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="600" letter-spacing="2.5" fill="#FF6D1F">05</text>
+  <text x="58" y="336" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="700" letter-spacing="-0.3" fill="#FAF3E1">Construction Details</text>
+  <text x="58" y="359" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#FAF3E1" opacity="0.7">Connection details, waterproofing, flashing,</text>
+  <text x="58" y="376" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#FAF3E1" opacity="0.7">egress windows, fire separation assemblies</text>
+  <text x="58" y="407" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="500" fill="#FF6D1F">Required on most permits</text>
+
+  <!-- Card 6: Structural -->
+  <rect x="434" y="282" width="374" height="140" rx="2" fill="#F5E7C6" stroke="#E2D4B8" stroke-width="1"/>
+  <text x="452" y="312" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="600" letter-spacing="2.5" fill="#FF6D1F">06</text>
+  <text x="452" y="336" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="700" letter-spacing="-0.3" fill="#222222">Structural Drawings</text>
+  <text x="452" y="359" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">Engineering calculations, beam &amp; footing</text>
+  <text x="452" y="376" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">schedules, lateral force analysis</text>
+  <text x="452" y="407" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="500" fill="#FF6D1F">Required for structural work</text>
+
+  <!-- Card 7: Energy -->
+  <rect x="828" y="282" width="332" height="140" rx="2" fill="#FF6D1F"/>
+  <text x="846" y="312" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="600" letter-spacing="2.5" fill="#FAF3E1" opacity="0.8">07</text>
+  <text x="846" y="336" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="700" letter-spacing="-0.3" fill="#FAF3E1">Energy Compliance</text>
+  <text x="846" y="359" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#FAF3E1" opacity="0.9">FL Energy Code / IECC / NC Energy</text>
+  <text x="846" y="376" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#FAF3E1" opacity="0.9">Conservation Code documentation</text>
+  <text x="846" y="407" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="600" fill="#FAF3E1">Required for conditioned space</text>
+
+  <!-- Footer -->
+  <rect x="0" y="460" width="1200" height="170" fill="#F5E7C6"/>
+  <rect x="0" y="460" width="1200" height="2" fill="#E2D4B8"/>
+  <text x="60" y="510" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="300" fill="#7A6E5F">A complete permit set coordinates all seven components so architectural, structural, and energy</text>
+  <text x="60" y="530" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="300" fill="#7A6E5F">documents align before submission. Missing or mismatched sheets are the primary cause of plan</text>
+  <text x="60" y="550" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="300" fill="#7A6E5F">check corrections in Florida, Texas, and North Carolina building departments.</text>
+  <text x="60" y="600" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="500" letter-spacing="1.5" fill="#FF6D1F">CADTRI.COM</text>
+  <text x="1140" y="600" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="300" fill="#7A6E5F" text-anchor="end">cadtri.com/resources/what-is-a-permit-set</text>
+</svg>

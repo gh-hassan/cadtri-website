@@ -105,7 +105,7 @@ export default function OgImage() {
             }}
           >
             Complete drawing packages and permit coordination for residential
-            and commercial projects across California and Texas.
+            and commercial projects across Florida, Texas, and North Carolina.
           </p>
         </div>
 

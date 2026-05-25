@@ -4,6 +4,7 @@ import { PageHeader } from "@/components/shared/page-header";
 import { Section } from "@/components/shared/section";
 import { CtaBand } from "@/components/shared/cta-band";
 import { services } from "@/content/services";
+import { BreadcrumbJsonLd } from "@/lib/json-ld";
 
 export const metadata: Metadata = {
   title: "Architectural Drafting & Permit Services",
@@ -14,6 +15,12 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   return (
     <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", href: "/" },
+          { name: "Services", href: "/services" },
+        ]}
+      />
       <PageHeader
         eyebrow="Services"
         heading="Every drawing and permit deliverable your project needs."

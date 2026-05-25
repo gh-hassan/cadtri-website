@@ -217,35 +217,45 @@ export async function submitStrategyForm(formData: FormData): Promise<StrategyFo
 
   try {
     const isInvestment = data.path === "investment";
-    const { data: sent, error } = await resend.emails.send({
-      from:    "CADTRI Strategy <no-reply@cadtri.com>",
-      to:      ["info@cadtri.com"],
-      replyTo: data.email,
-      subject: isInvestment
-        ? `Investment Strategy: ${data.propertyType} in ${data.city} / ${data.name}`
-        : `Project Strategy: ${data.projectType} / ${data.name}`,
-      html:    buildInternalHtml(data),
-      attachments: attachments.length > 0 ? attachments : undefined,
-    });
 
-    if (error) {
-      console.error("[strategy] Resend error:", JSON.stringify(error));
-      return { status: "error", message: "Could not send your request. Please email us directly at info@cadtri.com." };
-    }
-
-    console.log("[strategy] Email sent, id:", sent?.id);
-
-    // Confirmation to submitter (best-effort, never blocks success)
-    try {
-      await resend.emails.send({
+    // Run both sends in parallel — halves total execution time and avoids cold-start timeouts
+    const [internalResult, confirmResult] = await Promise.allSettled([
+      resend.emails.send({
+        from:    "CADTRI Strategy <no-reply@cadtri.com>",
+        to:      ["info@cadtri.com"],
+        replyTo: data.email,
+        subject: isInvestment
+          ? `Investment Strategy: ${data.propertyType} in ${data.city} / ${data.name}`
+          : `Project Strategy: ${data.projectType} / ${data.name}`,
+        html:    buildInternalHtml(data),
+        attachments: attachments.length > 0 ? attachments : undefined,
+      }),
+      resend.emails.send({
         from:    "CADTRI <no-reply@cadtri.com>",
         to:      [data.email],
         replyTo: "info@cadtri.com",
         subject: "Your strategy request is in | CADTRI",
         html:    buildConfirmationHtml(data),
-      });
-    } catch (confirmErr) {
-      console.error("[strategy] Confirmation email failed:", confirmErr instanceof Error ? confirmErr.message : String(confirmErr));
+      }),
+    ]);
+
+    // Internal email must succeed
+    if (internalResult.status === "rejected" || internalResult.value?.error) {
+      const msg = internalResult.status === "rejected"
+        ? String(internalResult.reason)
+        : JSON.stringify(internalResult.value.error);
+      console.error("[strategy] Internal email failed:", msg);
+      return { status: "error", message: "Could not send your request. Please email us directly at info@cadtri.com." };
+    }
+    console.log("[strategy] Internal email sent, id:", internalResult.value?.data?.id);
+
+    // Confirmation is best-effort — log but never block success
+    if (confirmResult.status === "rejected") {
+      console.error("[strategy] Confirmation email failed (non-fatal):", String(confirmResult.reason));
+    } else if (confirmResult.value?.error) {
+      console.error("[strategy] Confirmation email error (non-fatal):", JSON.stringify(confirmResult.value.error));
+    } else {
+      console.log("[strategy] Confirmation email sent, id:", confirmResult.value?.data?.id);
     }
 
     return { status: "success" };

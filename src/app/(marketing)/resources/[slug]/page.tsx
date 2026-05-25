@@ -6,7 +6,8 @@ import { Section } from "@/components/shared/section";
 import { CtaBand } from "@/components/shared/cta-band";
 import { mdxComponents } from "@/components/shared/mdx-components";
 import { getAllPosts, getPostBySlug, formatDate } from "@/lib/posts";
-import { BreadcrumbJsonLd } from "@/lib/json-ld";
+import { BreadcrumbJsonLd, ArticleJsonLd, FaqJsonLd } from "@/lib/json-ld";
+import { company } from "@/content/company";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -40,6 +41,19 @@ export default async function ResourceArticlePage({ params }: Props) {
           { name: post.title, href: `/resources/${slug}` },
         ]}
       />
+      <ArticleJsonLd
+        title={post.title}
+        description={post.description}
+        url={`${company.website}/resources/${slug}`}
+        datePublished={post.date}
+        dateModified={post.dateModified}
+        category={post.category}
+      />
+      {post.faq && post.faq.length > 0 && (
+        <FaqJsonLd
+          items={post.faq.map((entry) => ({ question: entry.q, answer: entry.a }))}
+        />
+      )}
 
       {/* Article header */}
       <div className="bg-primary px-6 pb-20 pt-16">

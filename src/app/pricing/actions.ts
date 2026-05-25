@@ -155,27 +155,20 @@ export async function submitPricingForm(formData: FormData): Promise<PricingForm
 
   try {
     console.log("[pricing] Sending to Resend for:", data.email);
-    const { data: sent, error } = await resend.emails.send({
-      from:        "CADTRI Pricing <no-reply@cadtri.com>",
-      to:          ["info@cadtri.com"],
-      replyTo:     data.email,
-      subject:     isFuture
-        ? `Planning Inquiry: ${data.projectType} / ${data.name}`
-        : `Pricing Request: ${data.projectType} / ${data.name}`,
-      html,
-      attachments: attachments.length > 0 ? attachments : undefined,
-    });
 
-    if (error) {
-      console.error("[pricing] Resend error:", JSON.stringify(error));
-      return { status: "error", message: "Could not send your request. Please email us directly at info@cadtri.com." };
-    }
-
-    console.log("[pricing] Email sent, id:", sent?.id);
-
-    // Confirmation receipt to the submitter (best-effort, never blocks success)
-    try {
-      await resend.emails.send({
+    // Run both sends in parallel — halves total execution time and avoids cold-start timeouts
+    const [internalResult, confirmResult] = await Promise.allSettled([
+      resend.emails.send({
+        from:        "CADTRI Pricing <no-reply@cadtri.com>",
+        to:          ["info@cadtri.com"],
+        replyTo:     data.email,
+        subject:     isFuture
+          ? `Planning Inquiry: ${data.projectType} / ${data.name}`
+          : `Pricing Request: ${data.projectType} / ${data.name}`,
+        html,
+        attachments: attachments.length > 0 ? attachments : undefined,
+      }),
+      resend.emails.send({
         from:    "CADTRI <no-reply@cadtri.com>",
         to:      [data.email],
         replyTo: "info@cadtri.com",
@@ -183,9 +176,26 @@ export async function submitPricingForm(formData: FormData): Promise<PricingForm
           ? "Your planning inquiry is in | CADTRI"
           : "Your pricing request is in | CADTRI",
         html: buildConfirmationHtml(data),
-      });
-    } catch (confirmErr) {
-      console.error("[pricing] Confirmation email failed (non-fatal):", confirmErr instanceof Error ? confirmErr.message : String(confirmErr));
+      }),
+    ]);
+
+    // Internal email must succeed
+    if (internalResult.status === "rejected" || internalResult.value?.error) {
+      const msg = internalResult.status === "rejected"
+        ? String(internalResult.reason)
+        : JSON.stringify(internalResult.value.error);
+      console.error("[pricing] Internal email failed:", msg);
+      return { status: "error", message: "Could not send your request. Please email us directly at info@cadtri.com." };
+    }
+    console.log("[pricing] Internal email sent, id:", internalResult.value?.data?.id);
+
+    // Confirmation is best-effort — log but never block success
+    if (confirmResult.status === "rejected") {
+      console.error("[pricing] Confirmation email failed (non-fatal):", String(confirmResult.reason));
+    } else if (confirmResult.value?.error) {
+      console.error("[pricing] Confirmation email error (non-fatal):", JSON.stringify(confirmResult.value.error));
+    } else {
+      console.log("[pricing] Confirmation email sent, id:", confirmResult.value?.data?.id);
     }
 
     return { status: "success" };

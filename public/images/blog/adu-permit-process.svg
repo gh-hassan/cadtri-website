@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#FAF3E1"/>
+
+  <!-- Header -->
+  <rect width="1200" height="90" fill="#222222"/>
+  <text x="60" y="54" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="500" letter-spacing="3" fill="#FF6D1F">ADU PERMITTING</text>
+  <text x="60" y="76" font-family="system-ui,-apple-system,sans-serif" font-size="22" font-weight="700" letter-spacing="-0.5" fill="#FAF3E1">ADU Permit Process — Florida, Texas &amp; North Carolina</text>
+
+  <!-- Step connector line -->
+  <line x1="100" y1="245" x2="1100" y2="245" stroke="#E2D4B8" stroke-width="2" stroke-dasharray="6,4"/>
+
+  <!-- Step 1 -->
+  <circle cx="100" cy="245" r="28" fill="#FF6D1F"/>
+  <text x="100" y="251" font-family="system-ui,-apple-system,sans-serif" font-size="18" font-weight="700" fill="#FAF3E1" text-anchor="middle">1</text>
+  <text x="100" y="295" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="700" fill="#222222" text-anchor="middle">Site</text>
+  <text x="100" y="311" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="700" fill="#222222" text-anchor="middle">Assessment</text>
+  <text x="100" y="338" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="300" fill="#7A6E5F" text-anchor="middle">Zoning, setbacks</text>
+  <text x="100" y="352" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="300" fill="#7A6E5F" text-anchor="middle">&amp; lot coverage</text>
+  <!-- Step 1 above line label -->
+  <text x="100" y="165" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="500" fill="#222222" text-anchor="middle">Weeks 1–2</text>
+  <rect x="60" y="105" width="80" height="110" rx="2" fill="#F5E7C6" stroke="#E2D4B8" stroke-width="1"/>
+  <text x="100" y="130" font-family="system-ui,-apple-system,sans-serif" font-size="10" font-weight="300" fill="#7A6E5F" text-anchor="middle">Confirm ADU</text>
+  <text x="100" y="145" font-family="system-ui,-apple-system,sans-serif" font-size="10" font-weight="300" fill="#7A6E5F" text-anchor="middle">eligibility under</text>
+  <text x="100" y="160" font-family="system-ui,-apple-system,sans-serif" font-size="10" font-weight="300" fill="#7A6E5F" text-anchor="middle">local ordinance</text>
+
+  <!-- Step 2 -->
+  <circle cx="300" cy="245" r="28" fill="#FF6D1F"/>
+  <text x="300" y="251" font-family="system-ui,-apple-system,sans-serif" font-size="18" font-weight="700" fill="#FAF3E1" text-anchor="middle">2</text>
+  <text x="300" y="295" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="700" fill="#222222" text-anchor="middle">Design &amp;</text>
+  <text x="300" y="311" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="700" fill="#222222" text-anchor="middle">Drawings</text>
+  <text x="300" y="338" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="300" fill="#7A6E5F" text-anchor="middle">Full permit set</text>
+  <text x="300" y="352" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="300" fill="#7A6E5F" text-anchor="middle">preparation</text>
+  <rect x="242" y="105" width="116" height="110" rx="2" fill="#F5E7C6" stroke="#E2D4B8" stroke-width="1"/>
+  <text x="300" y="130" font-family="system-ui,-apple-system,sans-serif" font-size="10" font-weight="300" fill="#7A6E5F" text-anchor="middle">Site plan, floor plans,</text>
+  <text x="300" y="145" font-family="system-ui,-apple-system,sans-serif" font-size="10" font-weight="300" fill="#7A6E5F" text-anchor="middle">elevations, sections,</text>
+  <text x="300" y="160" font-family="system-ui,-apple-system,sans-serif" font-size="10" font-weight="300" fill="#7A6E5F" text-anchor="middle">energy compliance</text>
+  <text x="300" y="175" font-family="system-ui,-apple-system,sans-serif" font-size="10" font-weight="500" fill="#FF6D1F" text-anchor="middle">CADTRI handles this</text>
+
+  <!-- Step 3 -->
+  <circle cx="500" cy="245" r="28" fill="#FF6D1F"/>
+  <text x="500" y="251" font-family="system-ui,-apple-system,sans-serif" font-size="18" font-weight="700" fill="#FAF3E1" text-anchor="middle">3</text>
+  <text x="500" y="295" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="700" fill="#222222" text-anchor="middle">Permit</text>
+  <text x="500" y="311" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="700" fill="#222222" text-anchor="middle">Submission</text>
+  <text x="500" y="338" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="300" fill="#7A6E5F" text-anchor="middle">Submit to building</text>
+  <text x="500" y="352" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="300" fill="#7A6E5F" text-anchor="middle">department</text>
+  <rect x="440" y="105" width="120" height="110" rx="2" fill="#F5E7C6" stroke="#E2D4B8" stroke-width="1"/>
+  <text x="500" y="130" font-family="system-ui,-apple-system,sans-serif" font-size="10" font-weight="300" fill="#7A6E5F" text-anchor="middle">Online portal or</text>
+  <text x="500" y="145" font-family="system-ui,-apple-system,sans-serif" font-size="10" font-weight="300" fill="#7A6E5F" text-anchor="middle">in-person counter.</text>
+  <text x="500" y="160" font-family="system-ui,-apple-system,sans-serif" font-size="10" font-weight="300" fill="#7A6E5F" text-anchor="middle">FL: 2–6 weeks</text>
+  <text x="500" y="175" font-family="system-ui,-apple-system,sans-serif" font-size="10" font-weight="300" fill="#7A6E5F" text-anchor="middle">TX/NC: 1–3 weeks</text>
+
+  <!-- Step 4 -->
+  <circle cx="700" cy="245" r="28" fill="#222222"/>
+  <text x="700" y="251" font-family="system-ui,-apple-system,sans-serif" font-size="18" font-weight="700" fill="#FAF3E1" text-anchor="middle">4</text>
+  <text x="700" y="295" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="700" fill="#222222" text-anchor="middle">Plan Check</text>
+  <text x="700" y="311" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="700" fill="#222222" text-anchor="middle">Review</text>
+  <text x="700" y="338" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="300" fill="#7A6E5F" text-anchor="middle">Building dept</text>
+  <text x="700" y="352" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="300" fill="#7A6E5F" text-anchor="middle">reviews drawings</text>
+  <rect x="638" y="105" width="124" height="110" rx="2" fill="#222222"/>
+  <text x="700" y="130" font-family="system-ui,-apple-system,sans-serif" font-size="10" font-weight="300" fill="#FAF3E1" opacity="0.8" text-anchor="middle">Corrections may be</text>
+  <text x="700" y="145" font-family="system-ui,-apple-system,sans-serif" font-size="10" font-weight="300" fill="#FAF3E1" opacity="0.8" text-anchor="middle">issued. CADTRI</text>
+  <text x="700" y="160" font-family="system-ui,-apple-system,sans-serif" font-size="10" font-weight="300" fill="#FAF3E1" opacity="0.8" text-anchor="middle">prepares full</text>
+  <text x="700" y="175" font-family="system-ui,-apple-system,sans-serif" font-size="10" font-weight="500" fill="#FF6D1F" text-anchor="middle">response packages</text>
+
+  <!-- Step 5 -->
+  <circle cx="900" cy="245" r="28" fill="#FF6D1F"/>
+  <text x="900" y="251" font-family="system-ui,-apple-system,sans-serif" font-size="18" font-weight="700" fill="#FAF3E1" text-anchor="middle">5</text>
+  <text x="900" y="295" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="700" fill="#222222" text-anchor="middle">Permit</text>
+  <text x="900" y="311" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="700" fill="#222222" text-anchor="middle">Issuance</text>
+  <text x="900" y="338" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="300" fill="#7A6E5F" text-anchor="middle">Approved drawings</text>
+  <text x="900" y="352" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="300" fill="#7A6E5F" text-anchor="middle">released for build</text>
+  <rect x="840" y="105" width="120" height="110" rx="2" fill="#F5E7C6" stroke="#E2D4B8" stroke-width="1"/>
+  <text x="900" y="130" font-family="system-ui,-apple-system,sans-serif" font-size="10" font-weight="300" fill="#7A6E5F" text-anchor="middle">Permit card posted</text>
+  <text x="900" y="145" font-family="system-ui,-apple-system,sans-serif" font-size="10" font-weight="300" fill="#7A6E5F" text-anchor="middle">on site. Inspections</text>
+  <text x="900" y="160" font-family="system-ui,-apple-system,sans-serif" font-size="10" font-weight="300" fill="#7A6E5F" text-anchor="middle">scheduled as</text>
+  <text x="900" y="175" font-family="system-ui,-apple-system,sans-serif" font-size="10" font-weight="300" fill="#7A6E5F" text-anchor="middle">construction begins</text>
+
+  <!-- Step 6 -->
+  <circle cx="1100" cy="245" r="28" fill="#FF6D1F"/>
+  <text x="1100" y="251" font-family="system-ui,-apple-system,sans-serif" font-size="18" font-weight="700" fill="#FAF3E1" text-anchor="middle">6</text>
+  <text x="1100" y="295" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="700" fill="#222222" text-anchor="middle">Final</text>
+  <text x="1100" y="311" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="700" fill="#222222" text-anchor="middle">Inspection</text>
+  <text x="1100" y="338" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="300" fill="#7A6E5F" text-anchor="middle">Certificate of</text>
+  <text x="1100" y="352" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="300" fill="#7A6E5F" text-anchor="middle">Occupancy issued</text>
+  <rect x="1038" y="105" width="124" height="110" rx="2" fill="#F5E7C6" stroke="#E2D4B8" stroke-width="1"/>
+  <text x="1100" y="130" font-family="system-ui,-apple-system,sans-serif" font-size="10" font-weight="300" fill="#7A6E5F" text-anchor="middle">Final inspection</text>
+  <text x="1100" y="145" font-family="system-ui,-apple-system,sans-serif" font-size="10" font-weight="300" fill="#7A6E5F" text-anchor="middle">by inspector.</text>
+  <text x="1100" y="160" font-family="system-ui,-apple-system,sans-serif" font-size="10" font-weight="300" fill="#7A6E5F" text-anchor="middle">ADU is legally</text>
+  <text x="1100" y="175" font-family="system-ui,-apple-system,sans-serif" font-size="10" font-weight="500" fill="#FF6D1F" text-anchor="middle">habitable space</text>
+
+  <!-- Footer -->
+  <rect x="0" y="460" width="1200" height="170" fill="#F5E7C6"/>
+  <rect x="0" y="460" width="1200" height="2" fill="#E2D4B8"/>
+  <text x="60" y="510" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="300" fill="#7A6E5F">ADU permit rules in Florida, Texas, and North Carolina are set by local jurisdiction — not state law. Timelines and submittal</text>
+  <text x="60" y="530" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="300" fill="#7A6E5F">requirements vary by county and city. Complete, coordinated drawings pass plan check faster in every jurisdiction.</text>
+  <text x="60" y="600" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="500" letter-spacing="1.5" fill="#FF6D1F">CADTRI.COM</text>
+  <text x="1140" y="600" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="300" fill="#7A6E5F" text-anchor="end">cadtri.com/resources/how-to-get-adu-permit-in-california</text>
+</svg>

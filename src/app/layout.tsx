@@ -3,7 +3,7 @@ import { Outfit, Unbounded } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { siteMetadata } from "@/lib/metadata";
-import { LocalBusinessJsonLd } from "@/lib/json-ld";
+import { LocalBusinessJsonLd, WebSiteJsonLd } from "@/lib/json-ld";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -74,6 +74,7 @@ export default function RootLayout({
         </Script>
 
         <LocalBusinessJsonLd />
+        <WebSiteJsonLd />
         {children}
       </body>
     </html>

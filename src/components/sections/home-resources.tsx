@@ -29,8 +29,8 @@ export function HomeResources() {
           <div className="flex items-end justify-between gap-6">
             <p className="font-light leading-relaxed text-muted">
               Practical guides on the permit process, documentation
-              requirements, and what to expect when working through California
-              and Texas jurisdictions.
+              requirements, and what to expect when working through Florida,
+              Texas, and North Carolina jurisdictions.
             </p>
             <Link
               href="/resources"

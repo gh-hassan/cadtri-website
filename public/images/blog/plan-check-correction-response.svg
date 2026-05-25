@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#FAF3E1"/>
+  <rect width="1200" height="90" fill="#222222"/>
+  <text x="60" y="54" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="500" letter-spacing="3" fill="#FF6D1F">PLAN CHECK</text>
+  <text x="60" y="76" font-family="system-ui,-apple-system,sans-serif" font-size="22" font-weight="700" letter-spacing="-0.5" fill="#FAF3E1">How to Respond to Plan Check Correction Letters</text>
+
+  <!-- 4 columns -->
+  <!-- Col 1: Receive -->
+  <rect x="40" y="115" width="258" height="320" rx="2" fill="#F5E7C6" stroke="#E2D4B8" stroke-width="1"/>
+  <rect x="40" y="115" width="258" height="6" rx="2" fill="#FF6D1F"/>
+  <text x="58" y="150" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="600" letter-spacing="2.5" fill="#FF6D1F">STEP 01</text>
+  <text x="58" y="175" font-family="system-ui,-apple-system,sans-serif" font-size="17" font-weight="700" letter-spacing="-0.3" fill="#222222">Receive &amp;</text>
+  <text x="58" y="196" font-family="system-ui,-apple-system,sans-serif" font-size="17" font-weight="700" letter-spacing="-0.3" fill="#222222">Categorize</text>
+  <line x1="58" y1="215" x2="278" y2="215" stroke="#E2D4B8" stroke-width="1"/>
+  <text x="58" y="238" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="600" fill="#222222">Review every comment</text>
+  <text x="58" y="260" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">Sort corrections into:</text>
+  <text x="58" y="285" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">• Drawing revisions needed</text>
+  <text x="58" y="305" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">• Calculations to update</text>
+  <text x="58" y="325" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">• Additional docs required</text>
+  <text x="58" y="345" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">• Clarification comments</text>
+  <text x="58" y="405" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="500" fill="#FF6D1F">Never skip a comment</text>
+
+  <!-- Arrow 1 -->
+  <text x="314" y="282" font-family="system-ui,-apple-system,sans-serif" font-size="24" fill="#E2D4B8" text-anchor="middle">→</text>
+
+  <!-- Col 2: Revise -->
+  <rect x="318" y="115" width="258" height="320" rx="2" fill="#F5E7C6" stroke="#E2D4B8" stroke-width="1"/>
+  <rect x="318" y="115" width="258" height="6" rx="2" fill="#FF6D1F"/>
+  <text x="336" y="150" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="600" letter-spacing="2.5" fill="#FF6D1F">STEP 02</text>
+  <text x="336" y="175" font-family="system-ui,-apple-system,sans-serif" font-size="17" font-weight="700" letter-spacing="-0.3" fill="#222222">Revise the</text>
+  <text x="336" y="196" font-family="system-ui,-apple-system,sans-serif" font-size="17" font-weight="700" letter-spacing="-0.3" fill="#222222">Drawings</text>
+  <line x1="336" y1="215" x2="556" y2="215" stroke="#E2D4B8" stroke-width="1"/>
+  <text x="336" y="238" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="600" fill="#222222">Mark every change clearly</text>
+  <text x="336" y="260" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">For each revised sheet:</text>
+  <text x="336" y="285" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">• Add revision clouds</text>
+  <text x="336" y="305" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">• Add delta (Δ) markers</text>
+  <text x="336" y="325" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">• Update revision date</text>
+  <text x="336" y="345" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#7A6E5F">• Update title block rev #</text>
+  <text x="336" y="405" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="500" fill="#FF6D1F">Reviewers scan for clouds</text>
+
+  <!-- Arrow 2 -->
+  <text x="592" y="282" font-family="system-ui,-apple-system,sans-serif" font-size="24" fill="#E2D4B8" text-anchor="middle">→</text>
+
+  <!-- Col 3: Response Letter -->
+  <rect x="596" y="115" width="258" height="320" rx="2" fill="#222222"/>
+  <rect x="596" y="115" width="258" height="6" rx="2" fill="#FF6D1F"/>
+  <text x="614" y="150" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="600" letter-spacing="2.5" fill="#FF6D1F">STEP 03</text>
+  <text x="614" y="175" font-family="system-ui,-apple-system,sans-serif" font-size="17" font-weight="700" letter-spacing="-0.3" fill="#FAF3E1">Write the</text>
+  <text x="614" y="196" font-family="system-ui,-apple-system,sans-serif" font-size="17" font-weight="700" letter-spacing="-0.3" fill="#FAF3E1">Response Letter</text>
+  <line x1="614" y1="215" x2="834" y2="215" stroke="#FAF3E1" stroke-width="1" opacity="0.2"/>
+  <text x="614" y="238" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="600" fill="#FAF3E1">Match the city's numbering</text>
+  <text x="614" y="260" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#FAF3E1" opacity="0.8">For each correction item:</text>
+  <text x="614" y="285" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#FAF3E1" opacity="0.8">• Restate the comment</text>
+  <text x="614" y="305" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#FAF3E1" opacity="0.8">• State action taken</text>
+  <text x="614" y="325" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#FAF3E1" opacity="0.8">• Reference sheet/detail #</text>
+  <text x="614" y="345" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#FAF3E1" opacity="0.8">• Attach updated calcs</text>
+  <text x="614" y="405" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="500" fill="#FF6D1F">Address every comment</text>
+
+  <!-- Arrow 3 -->
+  <text x="870" y="282" font-family="system-ui,-apple-system,sans-serif" font-size="24" fill="#E2D4B8" text-anchor="middle">→</text>
+
+  <!-- Col 4: Resubmit -->
+  <rect x="874" y="115" width="286" height="320" rx="2" fill="#FF6D1F"/>
+  <rect x="874" y="115" width="286" height="6" rx="2" fill="#222222"/>
+  <text x="892" y="150" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="600" letter-spacing="2.5" fill="#FAF3E1" opacity="0.8">STEP 04</text>
+  <text x="892" y="175" font-family="system-ui,-apple-system,sans-serif" font-size="17" font-weight="700" letter-spacing="-0.3" fill="#FAF3E1">Resubmit the</text>
+  <text x="892" y="196" font-family="system-ui,-apple-system,sans-serif" font-size="17" font-weight="700" letter-spacing="-0.3" fill="#FAF3E1">Full Package</text>
+  <line x1="892" y1="215" x2="1140" y2="215" stroke="#FAF3E1" stroke-width="1" opacity="0.3"/>
+  <text x="892" y="238" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="600" fill="#FAF3E1">One organized submission</text>
+  <text x="892" y="260" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#FAF3E1" opacity="0.9">Complete package includes:</text>
+  <text x="892" y="285" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#FAF3E1" opacity="0.9">• Full revised drawing set</text>
+  <text x="892" y="305" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#FAF3E1" opacity="0.9">• Response letter</text>
+  <text x="892" y="325" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#FAF3E1" opacity="0.9">• Updated calculations</text>
+  <text x="892" y="345" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="300" fill="#FAF3E1" opacity="0.9">• Updated energy reports</text>
+  <text x="892" y="405" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="700" fill="#FAF3E1">Clean package = faster re-review</text>
+
+  <!-- Footer -->
+  <rect x="0" y="460" width="1200" height="170" fill="#F5E7C6"/>
+  <rect x="0" y="460" width="1200" height="2" fill="#E2D4B8"/>
+  <text x="60" y="510" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="300" fill="#7A6E5F">Plan check corrections are normal in Florida, Texas, and North Carolina. A well-organized response package — revised drawings</text>
+  <text x="60" y="530" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="300" fill="#7A6E5F">with revision clouds and a numbered response letter — moves projects through re-review in a single cycle.</text>
+  <text x="60" y="600" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="500" letter-spacing="1.5" fill="#FF6D1F">CADTRI.COM</text>
+  <text x="1140" y="600" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="300" fill="#7A6E5F" text-anchor="end">cadtri.com/resources/how-to-respond-to-plan-check-corrections</text>
+</svg>

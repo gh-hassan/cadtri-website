@@ -1,4 +1,5 @@
 import type { MDXComponents } from "mdx/types";
+import Image from "next/image";
 import Link from "next/link";
 
 // Custom MDX components — styles prose content to match the CADTRI design system.
@@ -84,4 +85,25 @@ export const mdxComponents: MDXComponents = {
   },
 
   hr: () => <hr className="my-12 border-border" />,
+
+  img: ({ src, alt }) => {
+    if (!src) return null;
+    return (
+      <span className="my-10 block">
+        <Image
+          src={src}
+          alt={alt ?? ""}
+          width={1200}
+          height={630}
+          className="w-full border border-border"
+          unoptimized={src.endsWith(".svg")}
+        />
+        {alt && (
+          <span className="mt-2 block text-center text-[11px] font-light text-muted">
+            {alt}
+          </span>
+        )}
+      </span>
+    );
+  },
 };

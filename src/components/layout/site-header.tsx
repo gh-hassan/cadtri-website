@@ -160,7 +160,7 @@ export function SiteHeader() {
         <div className="relative mx-auto grid h-[72px] max-w-container grid-cols-[auto_1fr_auto] items-center px-6 lg:grid-cols-[1fr_auto_1fr]">
 
           {/* ── Col 1: Wordmark */}
-          <div style={sideStyle(0)}>
+          <div style={{ ...sideStyle(0), ...(showPill ? { width: "0px", minWidth: "0px", overflow: "hidden" } : {}) }}>
             <CadtriLogo variant="dark" className="shrink-0" />
           </div>
 
@@ -260,7 +260,7 @@ export function SiteHeader() {
             {/* Desktop CTAs — full set fades out in pill mode */}
             <div
               className="hidden items-center gap-5 lg:flex"
-              style={sideStyle(30)}
+              style={{ ...sideStyle(30), ...(showPill ? { width: "0px", minWidth: "0px", overflow: "hidden" } : {}) }}
             >
               <Link
                 href="/portal"

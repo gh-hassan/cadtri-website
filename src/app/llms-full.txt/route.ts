@@ -106,7 +106,7 @@ Phone: ${company.phone}
 Location: ${company.address.city}, ${company.address.state}, ${company.address.country}
 Tagline: ${company.tagline}
 
-CADTRI is a professional architectural drafting and permit coordination company. We produce permit-ready construction drawings for residential, commercial, hospitality, and mixed-use projects across California. Our 42 services cover every phase of the permit and documentation process, from initial feasibility and zoning research through permit-ready production, engineering coordination, and plan check correction response.
+CADTRI is a professional architectural drafting and permit coordination company. We produce permit-ready construction drawings for residential, commercial, hospitality, and mixed-use projects across Florida, Texas, and North Carolina. Our 42 services cover every phase of the permit and documentation process, from initial feasibility and zoning research through permit-ready production, engineering coordination, and plan check correction response.
 
 ---
 

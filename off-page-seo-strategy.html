@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CADTRI — 22-Day Off-Page SEO Strategy</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --primary: #222222;
+    --orange: #FF6D1F;
+    --cream: #FAF3E1;
+    --surface: #F5E7C6;
+    --muted: #7A6E5F;
+    --border: #E2D4B8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background: var(--cream);
+    color: var(--primary);
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  /* ── Cover page ── */
+  .cover {
+    background: var(--primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 72px 80px;
+    page-break-after: always;
+  }
+
+  .cover-top { }
+  .cover-logo {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: var(--orange);
+    text-transform: uppercase;
+    margin-bottom: 80px;
+  }
+  .cover h1 {
+    font-size: 52px;
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    max-width: 700px;
+    margin-bottom: 24px;
+  }
+  .cover-sub {
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(250,243,225,0.6);
+    max-width: 540px;
+    line-height: 1.7;
+  }
+  .cover-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 32px;
+  }
+  .cover-meta { font-size: 11px; font-weight: 300; color: rgba(250,243,225,0.4); }
+  .cover-market {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: var(--orange);
+    text-transform: uppercase;
+  }
+
+  /* ── Overview page ── */
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 64px 80px;
+    page-break-after: always;
+  }
+
+  .page-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: var(--orange);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .page h2 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.6px;
+    margin-bottom: 32px;
+    color: var(--primary);
+  }
+
+  .page p {
+    font-weight: 300;
+    color: var(--muted);
+    margin-bottom: 16px;
+    max-width: 680px;
+  }
+
+  /* ── Phase header ── */
+  .phase-header {
+    background: var(--primary);
+    padding: 28px 36px;
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .phase-number {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    color: var(--orange);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .phase-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--cream);
+    letter-spacing: -0.3px;
+  }
+  .phase-dates {
+    font-size: 11px;
+    font-weight: 300;
+    color: rgba(250,243,225,0.5);
+    margin-left: auto;
+    white-space: nowrap;
+  }
+
+  /* ── Day card ── */
+  .day-grid {
+    display: grid;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 48px;
+  }
+
+  .day-card {
+    background: var(--cream);
+    padding: 24px 28px;
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+
+  .day-card:nth-child(even) { background: var(--surface); }
+
+  .day-number {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--border);
+    letter-spacing: -0.5px;
+    line-height: 1;
+    padding-top: 3px;
+  }
+
+  .day-number.highlight { color: var(--orange); }
+
+  .day-content { }
+
+  .day-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 6px;
+    letter-spacing: -0.1px;
+  }
+
+  .day-focus {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 10px;
+  }
+
+  .day-tasks {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .day-tasks li {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--muted);
+    padding-left: 16px;
+    position: relative;
+  }
+
+  .day-tasks li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--border);
+    font-size: 10px;
+    top: 1px;
+  }
+
+  .day-note {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: var(--primary);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--orange);
+  }
+
+  /* ── Stat boxes ── */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin: 32px 0;
+  }
+  .stat-box {
+    background: var(--surface);
+    padding: 24px 28px;
+  }
+  .stat-box.dark { background: var(--primary); }
+  .stat-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--orange);
+    letter-spacing: -0.8px;
+    margin-bottom: 4px;
+  }
+  .stat-label {
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--muted);
+  }
+  .stat-box.dark .stat-label { color: rgba(250,243,225,0.5); }
+
+  /* ── Platform cards ── */
+  .platform-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin: 24px 0;
+  }
+  .platform-card {
+    background: var(--cream);
+    padding: 20px 24px;
+  }
+  .platform-name {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 6px;
+  }
+  .platform-action {
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--muted);
+  }
+  .platform-priority {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+  .p-critical { color: #cc3300; }
+  .p-high { color: var(--orange); }
+  .p-medium { color: var(--muted); }
+
+  /* ── KPI table ── */
+  .kpi-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+  }
+  .kpi-table th {
+    text-align: left;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--orange);
+    padding: 10px 16px;
+    background: var(--primary);
+  }
+  .kpi-table td {
+    padding: 12px 16px;
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+  }
+  .kpi-table tr:nth-child(even) td { background: var(--surface); }
+  .kpi-table td:first-child { font-weight: 600; color: var(--primary); }
+
+  /* ── Print ── */
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .cover { page-break-after: always; }
+    .page { page-break-after: always; }
+    .phase-header { page-break-after: avoid; }
+    .day-card { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════ COVER -->
+<div class="cover">
+  <div class="cover-top">
+    <div class="cover-logo">CADTRI</div>
+    <h1>22-Day Off-Page SEO Strategy</h1>
+    <p class="cover-sub">
+      A day-by-day execution plan for building local authority, citation consistency,
+      and brand presence across Florida, Texas, and North Carolina markets.
+    </p>
+  </div>
+  <div class="cover-bottom">
+    <div class="cover-meta">cadtri.com &nbsp;·&nbsp; info@cadtri.com &nbsp;·&nbsp; (941) 300-1033</div>
+    <div class="cover-market">Florida &nbsp;·&nbsp; Texas &nbsp;·&nbsp; North Carolina</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ OVERVIEW -->
+<div class="page">
+  <div class="page-label">Strategy Overview</div>
+  <h2>Why off-page matters now</h2>
+
+  <p>
+    The on-page foundation is in place — 42 service pages with structured data, 6 blog posts with
+    FAQ schema, a comprehensive knowledge base for AI crawlers, and clean technical SEO throughout.
+    What's missing is the off-page authority layer that tells Google, ChatGPT, and Perplexity that
+    CADTRI is a real, trusted business in specific markets.
+  </p>
+
+  <p>
+    This plan runs 22 days and covers four pillars: local presence (Google Business Profile + citations),
+    brand mentions (Reddit, LinkedIn, Quora), authority links (directories, partnerships), and content
+    amplification. Completing it puts CADTRI in a strong position to rank in the local pack for
+    permit-related searches in target cities.
+  </p>
+
+  <div class="stat-grid">
+    <div class="stat-box dark">
+      <div class="stat-value">3×</div>
+      <div class="stat-label">Brand mentions correlate stronger with AI visibility than backlinks<br><span style="font-size:10px;opacity:0.5">(Ahrefs, Dec 2025 — 75k brands)</span></div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-value">46.7%</div>
+      <div class="stat-label">Perplexity citations come from Reddit — the highest single source</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-value">527%</div>
+      <div class="stat-label">AI-referred traffic growth Jan–May 2025<br><span style="font-size:10px;opacity:0.7">(SparkToro)</span></div>
+    </div>
+  </div>
+
+  <p style="margin-top: 8px;"><strong style="color: var(--primary);">Target markets.</strong> Primary: Miami, Tampa, Orlando, Jacksonville (FL), Austin, Dallas, Houston (TX), Charlotte, Raleigh, Durham (NC). Secondary: Fort Lauderdale, San Antonio, Asheville.</p>
+
+  <p><strong style="color: var(--primary);">Target audience.</strong> General contractors, developers, architects, and property owners searching for permit set preparation, ADU permits, garage conversions, and plan check correction services.</p>
+
+  <div class="page-label" style="margin-top: 40px;">Four Phases</div>
+
+  <div class="platform-grid" style="margin-top: 12px;">
+    <div class="platform-card" style="background: var(--primary);">
+      <div class="platform-name" style="color: var(--orange);">Phase 1 — Days 1–5</div>
+      <div class="platform-action" style="color: rgba(250,243,225,0.7);">Google Business Profile setup and full optimization. This is the single highest-impact action available. A verified, optimized GBP puts CADTRI in the local pack for permit searches in target cities.</div>
+    </div>
+    <div class="platform-card">
+      <div class="platform-name">Phase 2 — Days 6–11</div>
+      <div class="platform-action">Citation building across 20+ directories. NAP consistency across Yelp, Houzz, Angi, BBB, BuildZoom, and industry-specific listings. Citations are a core local ranking signal.</div>
+    </div>
+    <div class="platform-card">
+      <div class="platform-name">Phase 3 — Days 12–17</div>
+      <div class="platform-action">Brand mention campaigns on Reddit, LinkedIn, and Quora. These platforms directly feed AI citation engines — ChatGPT, Perplexity, and Bing Copilot all pull from these sources.</div>
+    </div>
+    <div class="platform-card" style="background: var(--surface);">
+      <div class="platform-name">Phase 4 — Days 18–22</div>
+      <div class="platform-action">Authority links, review campaigns, and local partnerships. Guest post outreach, complementary business referrals, and press coverage in target-city business journals.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ PHASE 1 -->
+<div class="page" style="padding-top: 0;">
+  <div class="phase-header">
+    <div>
+      <div class="phase-number">Phase 01</div>
+      <div class="phase-title">Google Business Profile</div>
+    </div>
+    <div class="phase-dates">Days 1–5</div>
+  </div>
+
+  <div class="day-grid">
+    <div class="day-card">
+      <div class="day-number highlight">01</div>
+      <div class="day-content">
+        <div class="day-focus">GBP — Create &amp; Verify</div>
+        <div class="day-title">Create Google Business Profile and initiate verification</div>
+        <ul class="day-tasks">
+          <li>Go to business.google.com and create a new profile for CADTRI</li>
+          <li>Business category: "Architectural Designer" + add secondary "Permit Expediter"</li>
+          <li>Enter exact NAP: CADTRI Drafting &amp; Permit Services · 5900 Balcones Drive Ste 100, Austin TX 78731 · (941) 300-1033</li>
+          <li>Select "Service area business" and add all target cities: Miami, Fort Lauderdale, Tampa, Orlando, Jacksonville, Austin, Dallas, Houston, San Antonio, Charlotte, Raleigh, Durham, Asheville</li>
+          <li>Choose postcard verification (arrives in 5–7 days) — request it today</li>
+          <li>Add business hours: Monday–Friday 9am–6pm CT</li>
+        </ul>
+        <div class="day-note">Critical: Verification postcard must be requested today so it arrives during the strategy window.</div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-number highlight">02</div>
+      <div class="day-content">
+        <div class="day-focus">GBP — Description &amp; Services</div>
+        <div class="day-title">Write GBP description and add all 42 services</div>
+        <ul class="day-tasks">
+          <li>Write 750-character business description: lead with "Permit-ready architectural drawings for Florida, Texas, and North Carolina," include key services, mention remote delivery, and end with "info@cadtri.com"</li>
+          <li>Add services manually: Permit Set Preparation, ADU Permit Packages, Garage Conversion Permits, Plan Check Corrections Response, Home Addition Packages, Title 24 Energy Compliance, Tenant Improvement Packages — add price ranges where possible</li>
+          <li>Add service area cities one by one in the GBP service area settings</li>
+          <li>Upload 5 stock/branded photos: office exterior or logo, permit drawings example, team photo (use a professional headshot if available), project type examples</li>
+          <li>Set website link to cadtri.com</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-number highlight">03</div>
+      <div class="day-content">
+        <div class="day-focus">GBP — Q&amp;A &amp; Posts</div>
+        <div class="day-title">Seed Google Q&amp;A and write first GBP post</div>
+        <ul class="day-tasks">
+          <li>Add 5 Q&amp;A entries directly in GBP (you can post Q and answer it yourself): "Do you serve Florida?" / "Do you work remotely?" / "What's included in an ADU permit package?" / "How long does permit approval take?" / "What states do you cover?"</li>
+          <li>Write first GBP post (type: Update): "We prepare complete permit sets for Florida, Texas, and North Carolina projects — ADU packages, home additions, garage conversions, and commercial TI. All work delivered remotely. Contact info@cadtri.com to discuss your project."</li>
+          <li>Add an offer post: "Free scope consultation — tell us your project and we'll confirm what's needed for your jurisdiction." Link to cadtri.com/contact</li>
+          <li>Add opening date to GBP profile</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-number">04</div>
+      <div class="day-content">
+        <div class="day-focus">Bing Places + Apple Maps</div>
+        <div class="day-title">Replicate GBP on Bing Places and Apple Business Connect</div>
+        <ul class="day-tasks">
+          <li>Create Bing Places listing at bingplaces.com — use identical NAP to GBP</li>
+          <li>Create Apple Business Connect listing at register.apple.com/business — this populates Apple Maps (used by 1B+ iOS users)</li>
+          <li>Add identical description, service area, hours, website link, and phone</li>
+          <li>Upload same 5 photos as GBP</li>
+          <li>Submit IndexNow via cadtri.com/api/indexnow to push all pages to Bing immediately</li>
+        </ul>
+        <div class="day-note">Bing Copilot draws from Bing Places data — this directly feeds AI search visibility on Microsoft's platform.</div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-number">05</div>
+      <div class="day-content">
+        <div class="day-focus">GBP — Verify &amp; LinkedIn</div>
+        <div class="day-title">Enter GBP verification code + create LinkedIn Company Page</div>
+        <ul class="day-tasks">
+          <li>If postcard has arrived: enter verification code in GBP dashboard to complete verification</li>
+          <li>Create LinkedIn Company Page at linkedin.com/company/setup/new: name "CADTRI Drafting &amp; Permit Services," website cadtri.com, industry "Architecture &amp; Planning," size "1-10 employees"</li>
+          <li>Write LinkedIn tagline: "Permit-ready architectural drawings for FL, TX &amp; NC projects"</li>
+          <li>Write LinkedIn about section (2,000 chars): company story, services, geographic focus, contact info</li>
+          <li>Add the LinkedIn URL to company.ts social.linkedin field in the codebase — activates sameAs entity graph in schema</li>
+          <li>Post first LinkedIn article: "What goes inside a permit set? A guide for contractors and developers" — link to blog post</li>
+        </ul>
+        <div class="day-note">Adding LinkedIn URL to company.ts is a 2-minute code change that immediately strengthens schema entity recognition.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ PHASE 2 -->
+<div class="page" style="padding-top: 0;">
+  <div class="phase-header">
+    <div>
+      <div class="phase-number">Phase 02</div>
+      <div class="phase-title">Citation Building</div>
+    </div>
+    <div class="phase-dates">Days 6–11</div>
+  </div>
+
+  <div class="day-grid">
+    <div class="day-card">
+      <div class="day-number">06</div>
+      <div class="day-content">
+        <div class="day-focus">Tier 1 Directories</div>
+        <div class="day-title">Yelp, BBB, Houzz, Angi</div>
+        <ul class="day-tasks">
+          <li><strong>Yelp:</strong> biz.yelp.com → Add business, exact NAP, full description, 5 photos, categories: "Architects" and "Home Services / Contractors"</li>
+          <li><strong>BBB:</strong> bbb.org/get-accredited → Submit accreditation application (even unapproved listings appear in search)</li>
+          <li><strong>Houzz:</strong> houzz.com/pro → Create professional profile — Houzz has very high domain authority for home/construction searches</li>
+          <li><strong>Angi:</strong> pro.angi.com → Create professional listing under "Architects &amp; Engineers"</li>
+          <li>Use identical NAP across all four: CADTRI Drafting &amp; Permit Services · 5900 Balcones Drive Ste 100, Austin TX 78731 · (941) 300-1033</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-number">07</div>
+      <div class="day-content">
+        <div class="day-focus">Contractor Directories</div>
+        <div class="day-title">BuildZoom, HomeAdvisor, Porch, Thumbtack</div>
+        <ul class="day-tasks">
+          <li><strong>BuildZoom:</strong> buildzoom.com/contractor-login → Claim/create listing (high-traffic contractor research site)</li>
+          <li><strong>HomeAdvisor:</strong> pro.homeadvisor.com → Create profile under "Architects" category</li>
+          <li><strong>Porch:</strong> porch.com/pro → Add business — Porch aggregates data to Lowe's and other home improvement sites</li>
+          <li><strong>Thumbtack:</strong> thumbtack.com/pro → Create profile — useful for inbound project leads in FL/TX/NC markets</li>
+          <li>On each: write unique 200-word descriptions (do not copy/paste identically — small variations prevent duplicate content flags)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-number">08</div>
+      <div class="day-content">
+        <div class="day-focus">Industry Directories</div>
+        <div class="day-title">AIA, NAHB, local Home Builder Associations</div>
+        <ul class="day-tasks">
+          <li><strong>AIA Directory:</strong> aia.org → Submit firm listing — AIA links are high-authority for architecture searches</li>
+          <li><strong>NAHB:</strong> nahb.org → Associate member listing under "Design Services"</li>
+          <li><strong>Texas Association of Builders:</strong> texasbuilders.com → List as associate member</li>
+          <li><strong>Florida HBA:</strong> floridahba.com → Associate member listing</li>
+          <li><strong>Home Builders Association of Charlotte:</strong> hbacharlotte.com → Associate member</li>
+          <li>Chamber of Commerce: Austin Chamber (austinchamber.com) → Add business to member directory</li>
+        </ul>
+        <div class="day-note">Industry association directories carry strong topical authority for permit and construction queries.</div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-number">09</div>
+      <div class="day-content">
+        <div class="day-focus">Local Business Directories</div>
+        <div class="day-title">Facebook Business, Foursquare, Nextdoor, Yellow Pages</div>
+        <ul class="day-tasks">
+          <li><strong>Facebook Business Page:</strong> business.facebook.com → Create page: Business type "Local Business or Place," category "Architect"</li>
+          <li>Write Facebook about section, add hours, phone, website. Post welcome message with link to cadtri.com/services</li>
+          <li><strong>Foursquare:</strong> business.foursquare.com → Add listing (Foursquare data syndicates to 150+ apps)</li>
+          <li><strong>Yellow Pages:</strong> yp.com → Add listing under "Architects"</li>
+          <li><strong>Nextdoor:</strong> business.nextdoor.com → Business page — useful for neighborhood-level contractor visibility in FL/TX/NC suburbs</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-number">10</div>
+      <div class="day-content">
+        <div class="day-focus">State-Specific Directories</div>
+        <div class="day-title">Florida, Texas, and North Carolina local directories</div>
+        <ul class="day-tasks">
+          <li><strong>Florida:</strong> floridatrendsbusiness.com, sunbiz.org (FL Division of Corporations — verify listing appears correctly)</li>
+          <li><strong>Texas:</strong> texasbusiness.directory, Austin Business Journal company listings, Austin Startup/Business directory at austinchamber.com</li>
+          <li><strong>North Carolina:</strong> nccommerce.com business directory, Charlotte Regional Business Alliance directory</li>
+          <li>List on Alignable (alignable.com) — local business network used heavily by contractors and tradespeople</li>
+          <li>Submit to Manta (manta.com) — high domain authority local business directory</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-number">11</div>
+      <div class="day-content">
+        <div class="day-focus">NAP Audit</div>
+        <div class="day-title">Verify NAP consistency across all created listings</div>
+        <ul class="day-tasks">
+          <li>Search Google for "CADTRI Drafting" and "CADTRI Austin" — check every listing that appears for NAP accuracy</li>
+          <li>Run a free Moz Local or BrightLocal audit to catch any inconsistencies automatically</li>
+          <li>Correct any listing where name, address, or phone differs from canonical: CADTRI Drafting &amp; Permit Services · 5900 Balcones Drive Ste 100, Austin TX 78731 · (941) 300-1033</li>
+          <li>Document all directory logins/passwords in a secure spreadsheet for ongoing management</li>
+          <li>Add Instagram business profile: @cadtri — link to cadtri.com, write bio with key services and location</li>
+        </ul>
+        <div class="day-note">NAP inconsistency is a top local ranking factor suppressant. Every mismatch hurts. Fix them all today.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ PHASE 3 -->
+<div class="page" style="padding-top: 0;">
+  <div class="phase-header">
+    <div>
+      <div class="phase-number">Phase 03</div>
+      <div class="phase-title">Brand Mentions &amp; Community</div>
+    </div>
+    <div class="phase-dates">Days 12–17</div>
+  </div>
+
+  <div class="day-grid">
+    <div class="day-card">
+      <div class="day-number highlight">12</div>
+      <div class="day-content">
+        <div class="day-focus">Reddit — Setup &amp; First Posts</div>
+        <div class="day-title">Reddit account setup and first helpful answers</div>
+        <ul class="day-tasks">
+          <li>Create a Reddit account with a neutral name (not "CADTRI_official" — use a person name or descriptive handle like "PermitDrafterATX")</li>
+          <li>Spend the first session only reading and up-voting in target subreddits to build karma before posting: r/homeimprovement, r/DIY, r/FirstTimeHomeBuyer, r/Austin, r/realestateinvesting</li>
+          <li>Post first answer in r/homeimprovement: Search for questions about permits, ADUs, plan check — answer thoroughly without promoting CADTRI. Build credibility first.</li>
+          <li>Post in r/DIY answering "do I need a permit for [X]" questions — provide accurate, jurisdiction-specific information for FL, TX, or NC</li>
+          <li>Goal today: 2 high-quality helpful comments. Do NOT mention CADTRI yet.</li>
+        </ul>
+        <div class="day-note">Reddit's AI citation rate (46.7% for Perplexity) makes this the highest-ROI brand mention channel. Authenticity is mandatory — promotional posts get removed instantly.</div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-number highlight">13</div>
+      <div class="day-content">
+        <div class="day-focus">Reddit — City Subreddits</div>
+        <div class="day-title">Answer permit questions in Florida, Texas, and North Carolina city subreddits</div>
+        <ul class="day-tasks">
+          <li><strong>r/Austin:</strong> Search "permit" "ADU" "garage conversion" — answer open questions with detailed, useful information</li>
+          <li><strong>r/Charlotte:</strong> Same search — Charlotte has high ADU interest due to housing shortage</li>
+          <li><strong>r/Miami:</strong> Answer questions about Florida Building Code, hurricane windows, permits</li>
+          <li><strong>r/Dallas and r/houston:</strong> Answer permit and home improvement questions</li>
+          <li><strong>r/triangle (Raleigh/Durham/Chapel Hill):</strong> NC-specific permit questions</li>
+          <li>After 5+ helpful comments across subreddits, you can add "I work in permit documentation in [city]" at the end of relevant answers — still no direct promotion</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-number highlight">14</div>
+      <div class="day-content">
+        <div class="day-focus">Reddit — Original Post</div>
+        <div class="day-title">Post an original helpful thread in r/homeimprovement</div>
+        <ul class="day-tasks">
+          <li>Write a 400-600 word Reddit post titled: "Everything contractors and homeowners get wrong about permit sets (and why it causes delays)" — factual, educational, no promotion</li>
+          <li>Include specific FL/TX/NC examples — this targets your actual markets</li>
+          <li>You can include: "Source: I work in architectural drafting for permit projects" and link to cadtri.com in your Reddit bio (not in the post itself)</li>
+          <li>Write a second post in r/realestateinvesting: "ADU permit timelines in Florida vs Texas vs North Carolina — what to expect in 2026"</li>
+          <li>These posts become citable content for Perplexity and ChatGPT when they answer ADU permit queries</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-number">15</div>
+      <div class="day-content">
+        <div class="day-focus">Quora</div>
+        <div class="day-title">Answer 8 permit-related questions on Quora</div>
+        <ul class="day-tasks">
+          <li>Create a Quora profile with full credentials: "Architectural drafting and permit documentation, CADTRI — serving FL, TX, NC"</li>
+          <li>Search for and answer these question types: "How do I get a permit for an ADU?" / "What is a permit set?" / "How long does plan check take in [city]?" / "What is Title 24 energy compliance?" / "Do I need an architect for a permit?"</li>
+          <li>Write 200–350 word answers — comprehensive, specific, include state-relevant information</li>
+          <li>At end of each answer: "I cover this in more detail at [cadtri.com/resources/relevant-post]"</li>
+          <li>Goal: 8 high-quality Quora answers today</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-number">16</div>
+      <div class="day-content">
+        <div class="day-focus">LinkedIn Content</div>
+        <div class="day-title">Post 3 LinkedIn articles and start building connections</div>
+        <ul class="day-tasks">
+          <li><strong>Post 1:</strong> Share the ADU permit process blog post with a short intro written for LinkedIn audience (contractors, developers)</li>
+          <li><strong>Post 2:</strong> Write an original LinkedIn post: "5 things that cause plan check corrections — and how to avoid them in Florida" with bullet points and link to cadtri.com/resources/how-to-respond-to-plan-check-corrections</li>
+          <li><strong>Post 3:</strong> Share garage conversion permit requirements infographic from the blog post</li>
+          <li>Connect with 20 target professionals: general contractors in Austin, Charlotte, Miami — search LinkedIn by title and city</li>
+          <li>Follow and engage with local construction associations' pages in FL, TX, NC</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-number">17</div>
+      <div class="day-content">
+        <div class="day-focus">Review Campaign</div>
+        <div class="day-title">Request Google reviews from past clients</div>
+        <ul class="day-tasks">
+          <li>Generate GBP short review link from Google Business dashboard (Share &gt; Copy link)</li>
+          <li>Email every past client personally: "We'd appreciate a Google review if you found our work helpful — it takes about a minute." Include direct GBP review link.</li>
+          <li>Follow up by text/phone with clients you have a strong relationship with</li>
+          <li>Goal: 5 reviews minimum before day 22. Each review is a ranking signal and a trust signal for new visitors.</li>
+          <li>Respond to every review (positive and negative) from the GBP dashboard — Google factors response rate into rankings</li>
+        </ul>
+        <div class="day-note">A verified GBP with 5+ reviews will outrank an unverified competitor with 50 reviews in most local queries. Volume matters less than recency and response rate at this stage.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ PHASE 4 -->
+<div class="page" style="padding-top: 0;">
+  <div class="phase-header">
+    <div>
+      <div class="phase-number">Phase 04</div>
+      <div class="phase-title">Authority Links &amp; Partnerships</div>
+    </div>
+    <div class="phase-dates">Days 18–22</div>
+  </div>
+
+  <div class="day-grid">
+    <div class="day-card">
+      <div class="day-number">18</div>
+      <div class="day-content">
+        <div class="day-focus">Guest Post Outreach</div>
+        <div class="day-title">Identify and pitch 10 contractor/real estate blogs for guest posts</div>
+        <ul class="day-tasks">
+          <li>Search Google for: "contractor blog write for us" + Florida/Texas/North Carolina, "home improvement blog guest post," "real estate investing blog contribute"</li>
+          <li>Target sites that cover: home renovation, real estate investing, ADUs, construction project management</li>
+          <li>Pitch topics for each: "How to Read a Permit Set" / "ADU Permit Timeline by State" / "What Plan Check Corrections Mean and How to Respond"</li>
+          <li>Write a 3-paragraph pitch email: who you are, proposed topic (with 2 options), and why their readers would find it useful</li>
+          <li>Send to 10 sites today — track in a spreadsheet with follow-up dates</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-number">19</div>
+      <div class="day-content">
+        <div class="day-focus">Partner Outreach</div>
+        <div class="day-title">Reach out to structural engineers, real estate agents, and GCs for referral partnerships</div>
+        <ul class="day-tasks">
+          <li>Identify 10 structural engineering firms in Austin, Miami, Charlotte — find contact via their website</li>
+          <li>Email pitch: "We prepare permit-ready architectural drawings for residential and commercial projects. Many of our clients also need structural engineering — would you be open to a mutual referral arrangement?"</li>
+          <li>Identify 5 active real estate investor groups in target cities (BiggerPockets local forums, Facebook groups) and introduce CADTRI as a permit documentation resource</li>
+          <li>Reach out to 5 local GCs in target cities — offer to be their go-to drafting partner for permit sets</li>
+          <li>Ask each willing partner to add a link to cadtri.com on their "resources" or "partners" page</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-number">20</div>
+      <div class="day-content">
+        <div class="day-focus">Press &amp; Local Media</div>
+        <div class="day-title">Submit press releases to Austin, Charlotte, and Miami business journals</div>
+        <ul class="day-tasks">
+          <li>Write a 400-word press release: "CADTRI Expands Permit Documentation Services Across Florida, Texas, and North Carolina" — emphasize remote delivery, 42-service catalog, and city-specific expertise</li>
+          <li>Submit to Austin Business Journal (bizjournals.com/austin) — use their press release submission form</li>
+          <li>Submit to Charlotte Business Journal and South Florida Business Journal</li>
+          <li>Submit to PRWeb (prweb.com) — paid distribution service that syndicates to Google News and hundreds of news sites (each generates a backlink)</li>
+          <li>Submit to EIN Presswire (free tier) for additional syndication</li>
+        </ul>
+        <div class="day-note">A single PRWeb submission typically generates 50–200 citation backlinks from news syndication sites. Not high-authority links, but strong citation volume.</div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-number">21</div>
+      <div class="day-content">
+        <div class="day-focus">YouTube Channel</div>
+        <div class="day-title">Create YouTube channel and plan first 3 videos</div>
+        <ul class="day-tasks">
+          <li>Create YouTube channel: "CADTRI Drafting &amp; Permit Services" — link to cadtri.com in description and banner</li>
+          <li>Write scripts for first 3 videos (record when ready): (1) "What Is a Permit Set? — Everything Contractors Need to Know" (2) "How to Get an ADU Permit in Florida" (3) "How to Respond to Plan Check Corrections"</li>
+          <li>Even an unrecorded channel with a professional banner, description, and playlist structure creates a YouTube entity that strengthens brand recognition in AI systems</li>
+          <li>Add the YouTube channel URL to company.ts social.youtube (add the field) — adds it to the sameAs entity graph in schema</li>
+          <li>Upload placeholder "Coming soon" video with keyword-rich title and description to establish channel presence</li>
+        </ul>
+        <div class="day-note">YouTube mentions have the highest correlation (0.737) with AI citation visibility of any platform studied. Even a modest presence matters.</div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-number">22</div>
+      <div class="day-content">
+        <div class="day-focus">Audit &amp; Momentum Plan</div>
+        <div class="day-title">Audit everything created and set up ongoing rhythm</div>
+        <ul class="day-tasks">
+          <li>Verify GBP is fully verified and showing in Google Maps for at least one target city search (e.g., "permit set Austin TX")</li>
+          <li>Count total directory listings created — target: 20+ live listings</li>
+          <li>Count Google reviews received — target: 5+</li>
+          <li>Count Reddit comments/posts — target: 10+ helpful contributions</li>
+          <li>Set up Google Alerts for "CADTRI," "ADU permit Florida," "permit set Texas," "garage conversion permit Charlotte" to monitor brand mentions</li>
+          <li>Schedule recurring weekly tasks: 1 GBP post, 2 Reddit answers, 1 LinkedIn post, 1 review request outreach</li>
+        </ul>
+        <div class="day-note">Off-page SEO compounds over time. The 22-day sprint builds the foundation — the weekly rhythm is what converts it into lasting rankings.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ KPIs -->
+<div class="page">
+  <div class="page-label">Measurement</div>
+  <h2>KPIs to track at Day 22</h2>
+
+  <p>Track these in a simple spreadsheet. The goal is directional progress — not perfection on day one.</p>
+
+  <table class="kpi-table">
+    <thead>
+      <tr>
+        <th>Metric</th>
+        <th>Target at Day 22</th>
+        <th>Where to Check</th>
+        <th>Weight</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>GBP verified &amp; live</td>
+        <td>Yes — showing in Maps for ≥1 target city search</td>
+        <td>Google Maps search / GBP dashboard</td>
+        <td>Critical</td>
+      </tr>
+      <tr>
+        <td>Google reviews</td>
+        <td>5+ reviews, all responded to</td>
+        <td>GBP dashboard</td>
+        <td>High</td>
+      </tr>
+      <tr>
+        <td>Directory listings</td>
+        <td>20+ live listings with consistent NAP</td>
+        <td>Moz Local / BrightLocal free audit</td>
+        <td>High</td>
+      </tr>
+      <tr>
+        <td>LinkedIn followers</td>
+        <td>50+ followers, 3+ posts published</td>
+        <td>LinkedIn Company Page analytics</td>
+        <td>Medium</td>
+      </tr>
+      <tr>
+        <td>Reddit contributions</td>
+        <td>10+ helpful comments/posts, positive karma</td>
+        <td>Reddit profile</td>
+        <td>Medium</td>
+      </tr>
+      <tr>
+        <td>Quora answers</td>
+        <td>8+ answers published, ≥1 upvote each</td>
+        <td>Quora profile</td>
+        <td>Medium</td>
+      </tr>
+      <tr>
+        <td>Guest post pitches sent</td>
+        <td>10 pitched, ≥2 responses</td>
+        <td>Outreach spreadsheet</td>
+        <td>Medium</td>
+      </tr>
+      <tr>
+        <td>Press releases submitted</td>
+        <td>1 distributed (PRWeb or similar)</td>
+        <td>PRWeb distribution report</td>
+        <td>Low-Medium</td>
+      </tr>
+      <tr>
+        <td>YouTube channel live</td>
+        <td>Channel created, description and first video published</td>
+        <td>YouTube Studio</td>
+        <td>Medium</td>
+      </tr>
+      <tr>
+        <td>Organic impressions (GSC)</td>
+        <td>+20% vs. pre-sprint baseline</td>
+        <td>Google Search Console</td>
+        <td>Lagging — check at Day 45</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="page-label" style="margin-top: 40px;">Ongoing Weekly Rhythm (After Day 22)</div>
+
+  <div class="platform-grid" style="margin-top: 16px;">
+    <div class="platform-card">
+      <div class="platform-name">Every Monday</div>
+      <div class="platform-action">Post one GBP update (project type, tip, or offer). GBP posts expire after 7 days — weekly posts keep the profile active and signal recency to Google.</div>
+    </div>
+    <div class="platform-card">
+      <div class="platform-name">Every Tuesday</div>
+      <div class="platform-action">2–3 Reddit answers in target subreddits. After 4 weeks of genuine contribution, you can mention CADTRI.com in your Reddit bio and occasional relevant answers.</div>
+    </div>
+    <div class="platform-card">
+      <div class="platform-name">Every Wednesday</div>
+      <div class="platform-action">One LinkedIn post — alternating between sharing blog posts, writing original tips, and sharing project insights. Tag contractors, developers, and architects where relevant.</div>
+    </div>
+    <div class="platform-card" style="background: var(--surface);">
+      <div class="platform-name">Every Friday</div>
+      <div class="platform-action">Send 2–3 review request emails to recent clients. Follow up with guest post pitches from the Day 18 outreach. Check GBP insights for search terms and impression trends.</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

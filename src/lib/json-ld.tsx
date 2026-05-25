@@ -42,6 +42,7 @@ export function LocalBusinessJsonLd() {
     ...(company.founded ? { foundingDate: company.founded } : {}),
     ...(sameAs.length > 0 ? { sameAs } : {}),
     areaServed: [
+      { "@type": "Country", name: "United States" },
       { "@type": "City", name: "Miami",           containedInPlace: { "@type": "State", name: "Florida" } },
       { "@type": "City", name: "Fort Lauderdale", containedInPlace: { "@type": "State", name: "Florida" } },
       { "@type": "City", name: "Tampa",           containedInPlace: { "@type": "State", name: "Florida" } },
@@ -243,7 +244,7 @@ export function AboutPageJsonLd() {
     "@type": "AboutPage",
     url: `${company.website}/about`,
     name: "About CADTRI",
-    description: "CADTRI is a professional architectural drafting and permit coordination company serving Florida, Texas, and North Carolina.",
+    description: "CADTRI is a professional architectural drafting and permit coordination company serving residential and commercial clients nationwide across 40+ states.",
     isPartOf: { "@id": SITE_ID },
     about: { "@id": ORG_ID },
   };
@@ -264,7 +265,7 @@ export function ContactPageJsonLd() {
     "@type": "ContactPage",
     url: `${company.website}/contact`,
     name: "Contact CADTRI",
-    description: "Submit a project inquiry to CADTRI for architectural drafting and permit services in Florida, Texas, and North Carolina.",
+    description: "Submit a project inquiry to CADTRI for architectural drafting and permit services nationwide.",
     isPartOf: { "@id": SITE_ID },
   };
 

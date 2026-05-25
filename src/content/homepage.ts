@@ -4,7 +4,7 @@
 // ─── Hero ─────────────────────────────────────────────────────────────────────
 
 export const heroContent = {
-  eyebrow: "Architectural Drafting & Permit Support — Florida | Texas | North Carolina",
+  eyebrow: "Architectural Drafting & Permit Support — Nationwide",
   heading: ["Professional CAD Drafting Services.", "Permits That Move."],
   description:
     "Stop worrying about rejected permits. CADTRI delivers complete, permit-ready architectural drawings and CAD solutions built to your jurisdiction's standards and approved the first time.",

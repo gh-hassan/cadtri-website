@@ -12,7 +12,7 @@ export function GET() {
 
 > ${company.description}
 
-CADTRI is a professional architectural drafting and permit coordination company serving contractors, developers, architects, and property owners across Florida, Texas, and North Carolina. We produce complete, permit-ready construction documents across 42 specialized services covering residential, commercial, hospitality, and mixed-use project types.
+CADTRI is a professional architectural drafting and permit coordination company serving contractors, developers, architects, and property owners nationwide across 40+ states. Primary markets include Florida, Texas, and North Carolina. We produce complete, permit-ready construction documents across 42 specialized services covering residential, commercial, hospitality, and mixed-use project types. All work is performed remotely — permit-ready drawings delivered digitally to any US jurisdiction.
 
 - Website: ${base}
 - Contact: ${base}/contact

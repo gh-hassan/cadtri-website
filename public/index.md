@@ -2,12 +2,12 @@
 
 **Website:** https://www.cadtri.com
 **Email:** info@cadtri.com
-**Service Model:** Remote — permit-ready drawings delivered digitally to clients in Florida, Texas, and North Carolina
+**Service Model:** Remote — permit-ready drawings delivered digitally to clients nationwide (40+ states)
 **Headquarters:** Austin, TX
 
 CADTRI is a professional architectural drafting and permit coordination company that produces permit-ready construction drawings for residential and commercial projects. The company serves property owners, general contractors, architects, developers, and investors who need complete, accurate permit sets that clear building department review with minimal corrections.
 
-CADTRI operates remotely and serves clients across Florida, Texas, and North Carolina — three of the fastest-growing construction markets in the United States. All drawings are delivered digitally. Clients submit project information online, and CADTRI researches the applicable jurisdiction, prepares coordinated permit drawings, and delivers a complete submission package.
+CADTRI operates remotely and serves clients nationwide across 40+ states. Primary markets include Florida, Texas, and North Carolina — three of the fastest-growing construction markets in the United States. All drawings are delivered digitally. Clients submit project information online, and CADTRI researches the applicable jurisdiction, prepares coordinated permit drawings, and delivers a complete submission package.
 
 ---
 

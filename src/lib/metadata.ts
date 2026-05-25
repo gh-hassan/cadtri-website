@@ -7,7 +7,7 @@ import { company } from "@/content/company";
 export const siteMetadata: Metadata = {
   metadataBase: new URL(company.website),
   title: {
-    default: "Architectural Drafting & Permit Services — FL, TX, NC | CADTRI",
+    default: "Architectural Drafting & Permit Services — Nationwide | CADTRI",
     template: `%s | ${company.name}`,
   },
   description: company.description,

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     absolute: "CADTRI | Architectural Drafting & Permit Services",
   },
   description:
-    "Permit-ready architectural drawings for Florida, Texas, and North Carolina residential & commercial projects. Expert drafting and permit coordination that clears plan check.",
+    "Permit-ready architectural drawings for residential and commercial projects nationwide. Expert drafting and permit coordination serving 40+ states — clears plan check on the first submission.",
 };
 
 export default function HomePage() {

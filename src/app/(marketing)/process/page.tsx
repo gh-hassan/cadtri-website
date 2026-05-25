@@ -158,7 +158,7 @@ export default function ProcessPage() {
     <>
       <HowToJsonLd
         name="How to Get a Permit-Ready Drawing Set"
-        description="CADTRI's four-step permit drafting process for residential and commercial projects in Florida, Texas, and North Carolina."
+        description="CADTRI's four-step permit drafting process for residential and commercial projects nationwide."
         steps={steps.map((step) => ({
           name: step.title,
           text: typeof step.description === "string" ? step.description : step.outcome,

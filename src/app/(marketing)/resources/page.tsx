@@ -9,7 +9,7 @@ import { BreadcrumbJsonLd } from "@/lib/json-ld";
 export const metadata: Metadata = {
   title: "Permit & Drafting Resource Guides",
   description:
-    "Free guides on ADU permits, plan check corrections, pre-application meetings, and what goes inside a permit set — covering Florida, Texas, and North Carolina jurisdictions.",
+    "Free guides on ADU permits, plan check corrections, pre-application meetings, and what goes inside a permit set — covering permit jurisdictions nationwide.",
 };
 
 export default function ResourcesPage() {
@@ -28,7 +28,7 @@ export default function ResourcesPage() {
       <PageHeader
         eyebrow="Resources"
         heading="Permit and documentation guides."
-        description="Practical reference material on the Florida, Texas, and North Carolina permit process, documentation requirements, and what to expect at every stage of a construction project."
+        description="Practical reference material on the permit process, documentation requirements, and what to expect at every stage of a construction project — applicable to jurisdictions nationwide."
       />
 
       <Section variant="default">

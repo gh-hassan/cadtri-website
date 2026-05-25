@@ -4,7 +4,8 @@ import { PageHeader } from "@/components/shared/page-header";
 import { Section } from "@/components/shared/section";
 import { CtaBand } from "@/components/shared/cta-band";
 import { services } from "@/content/services";
-import { BreadcrumbJsonLd } from "@/lib/json-ld";
+import { company } from "@/content/company";
+import { BreadcrumbJsonLd, ServiceListJsonLd } from "@/lib/json-ld";
 
 export const metadata: Metadata = {
   title: "Architectural Drafting & Permit Services",
@@ -20,6 +21,13 @@ export default function ServicesPage() {
           { name: "Home", href: "/" },
           { name: "Services", href: "/services" },
         ]}
+      />
+      <ServiceListJsonLd
+        items={services.map((s, i) => ({
+          position: i + 1,
+          name: s.title,
+          url: `${company.website}/services/${s.slug}`,
+        }))}
       />
       <PageHeader
         eyebrow="Services"

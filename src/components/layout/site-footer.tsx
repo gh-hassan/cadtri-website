@@ -60,7 +60,7 @@ export function SiteFooter() {
             {company.phone && (
               <a
                 href={`tel:${company.phone.replace(/\D/g, "")}`}
-                className="hidden text-sm text-white/40 transition-colors duration-200 hover:text-white xl:block"
+                className="text-sm text-white/40 transition-colors duration-200 hover:text-white"
               >
                 {company.phone}
               </a>
@@ -68,12 +68,12 @@ export function SiteFooter() {
             {company.email && (
               <a
                 href={`mailto:${company.email}`}
-                className="hidden text-sm text-white/40 transition-colors duration-200 hover:text-white xl:block"
+                className="hidden text-sm text-white/40 transition-colors duration-200 hover:text-white sm:block"
               >
                 {company.email}
               </a>
             )}
-            <div className="hidden h-4 w-px bg-white/15 xl:block" aria-hidden />
+            <div className="h-4 w-px bg-white/15" aria-hidden />
             <Button href="/contact" variant="secondary" size="sm">
               Request Proposal
             </Button>

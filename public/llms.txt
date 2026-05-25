@@ -1,3 +1,7 @@
+# robots: allow
+# license: RSL-1.0
+# contact: info@cadtri.com
+
 # CADTRI Drafting & Permit Services
 
 > Permit-ready architectural drawings for Florida, Texas, and North Carolina

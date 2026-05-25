@@ -48,6 +48,7 @@ export default async function ResourceArticlePage({ params }: Props) {
         datePublished={post.date}
         dateModified={post.dateModified}
         category={post.category}
+        image={post.image}
       />
       {post.faq && post.faq.length > 0 && (
         <FaqJsonLd

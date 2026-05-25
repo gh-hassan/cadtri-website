@@ -17,6 +17,7 @@ export interface PostMeta {
   dateModified?: string;
   category: string;
   readingTime: string;
+  image?: string;
   faq?: FaqEntry[];
 }
 
@@ -43,6 +44,7 @@ export function getAllPosts(): PostMeta[] {
       dateModified: (data.dateModified as string | undefined) ?? undefined,
       category: (data.category as string) ?? "",
       readingTime: (data.readingTime as string) ?? "",
+      image: (data.image as string | undefined) ?? undefined,
       faq: (data.faq as FaqEntry[] | undefined) ?? undefined,
     };
   });
@@ -67,6 +69,7 @@ export function getPostBySlug(slug: string): Post | undefined {
     dateModified: (data.dateModified as string | undefined) ?? undefined,
     category: (data.category as string) ?? "",
     readingTime: (data.readingTime as string) ?? "",
+    image: (data.image as string | undefined) ?? undefined,
     faq: (data.faq as FaqEntry[] | undefined) ?? undefined,
     content,
   };

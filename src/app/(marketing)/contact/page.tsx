@@ -3,6 +3,7 @@ import { PageHeader } from "@/components/shared/page-header";
 import { Section } from "@/components/shared/section";
 import { ContactForm } from "./contact-form";
 import { company } from "@/content/company";
+import { ContactPageJsonLd } from "@/lib/json-ld";
 
 export const metadata: Metadata = {
   title: "Request a Proposal",
@@ -24,6 +25,7 @@ const inquiryItems = [
 export default function ContactPage() {
   return (
     <>
+      <ContactPageJsonLd />
       <PageHeader
         eyebrow="Get in Touch"
         heading="Start a project with CADTRI."
@@ -102,9 +104,11 @@ export default function ContactPage() {
                 <p className="mb-1 text-[11px] font-medium uppercase tracking-widest text-secondary">
                   Location
                 </p>
-                <p className="text-sm font-light text-foreground">
-                  {company.address.city}, {company.address.state}
-                </p>
+                <address className="not-italic text-sm font-light text-foreground leading-relaxed">
+                  {company.address.street && <span className="block">{company.address.street}</span>}
+                  <span>{company.address.city}, {company.address.state}</span>
+                  {company.address.zip && <span> {company.address.zip}</span>}
+                </address>
               </div>
 
             </div>

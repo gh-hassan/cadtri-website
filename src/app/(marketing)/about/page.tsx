@@ -4,6 +4,7 @@ import { Section } from "@/components/shared/section";
 import { CtaBand } from "@/components/shared/cta-band";
 import { Button } from "@/components/shared/button";
 import { team } from "@/content/team";
+import { AboutPageJsonLd } from "@/lib/json-ld";
 
 export const metadata: Metadata = {
   title: {
@@ -87,6 +88,7 @@ const clientTypes = [
 export default function AboutPage() {
   return (
     <>
+      <AboutPageJsonLd />
       {/* ── Hero ─────────────────────────────────────────────────────────────── */}
       <section className="bg-primary pb-32 pt-20 sm:pb-40 sm:pt-28">
         <div className="container mx-auto max-w-container px-6">

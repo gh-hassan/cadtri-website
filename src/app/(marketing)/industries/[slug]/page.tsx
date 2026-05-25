@@ -8,6 +8,7 @@ import { Button } from "@/components/shared/button";
 import { getIndustryBySlug, industries } from "@/content/industries";
 import { getServiceBySlug } from "@/content/services";
 import { ServiceJsonLd, BreadcrumbJsonLd } from "@/lib/json-ld";
+import { company } from "@/content/company";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -48,7 +49,7 @@ export default async function IndustryPage({ params }: Props) {
       <ServiceJsonLd
         title={`${industry.title} Architectural Documentation`}
         description={industry.metaDescription}
-        url={`/industries/${industry.slug}`}
+        url={`${company.website}/industries/${industry.slug}`}
         category={industry.title}
       />
 

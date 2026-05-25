@@ -4,6 +4,7 @@ import Link from "next/link";
 import { PageHeader } from "@/components/shared/page-header";
 import { Section } from "@/components/shared/section";
 import { CtaBand } from "@/components/shared/cta-band";
+import { HowToJsonLd } from "@/lib/json-ld";
 
 export const metadata: Metadata = {
   title: {
@@ -155,6 +156,14 @@ const prepItems: { number: string; label: string; detail: ReactNode }[] = [
 export default function ProcessPage() {
   return (
     <>
+      <HowToJsonLd
+        name="How to Get a Permit-Ready Drawing Set"
+        description="CADTRI's four-step permit drafting process for residential and commercial projects in Florida, Texas, and North Carolina."
+        steps={steps.map((step) => ({
+          name: step.title,
+          text: typeof step.description === "string" ? step.description : step.outcome,
+        }))}
+      />
       <PageHeader
         eyebrow="Process"
         heading="How every project moves from scope to permit."

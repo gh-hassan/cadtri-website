@@ -8,7 +8,7 @@ export const company = {
   description:
     "Permit-ready architectural drawings for residential and commercial projects nationwide. Expert drafting and permit coordination serving 40+ states, with primary markets in Florida, Texas, and North Carolina.",
   email: "info@cadtri.com",
-  phone: "(941) 300-1033",
+  phone: "(737) 237-2736",
   website: "https://www.cadtri.com",
   address: {
     street: "5900 Balcones Drive Ste 100",

@@ -26,7 +26,7 @@ const capabilities = [
   {
     title: "ADU and Accessory Structure Packages",
     description:
-      "Turnkey ADU permit packages for detached units, garage conversions, junior ADUs, and accessory structures. Floor plans, elevations, site plans, setback compliance, and Title 24 energy compliance coordination as a complete package.",
+      "Turnkey ADU permit packages for detached units, garage conversions, junior ADUs, and accessory structures. Floor plans, elevations, site plans, setback compliance, and energy code compliance coordination (Title 24 in California, IECC elsewhere) as a complete package.",
   },
   {
     title: "Home Addition and Remodel Packages",
@@ -36,7 +36,7 @@ const capabilities = [
   {
     title: "City Comments Response",
     description:
-      "When a building department issues plan check corrections, we respond. We review the correction letter, revise affected sheets, prepare a written response document, and resubmit on your behalf. Most correction cycles are closed within two to five business days.",
+      "When a building department issues plan check corrections, we respond. We review the correction letter, revise affected sheets, and prepare a complete written response document and revised drawing set ready for resubmittal. Most correction cycles are closed within two to five business days.",
   },
   {
     title: "Structural Coordination",
@@ -54,9 +54,9 @@ const capabilities = [
       "Revit-based modeling and coordination for projects requiring clash detection, 3D documentation, or owner-specified BIM deliverables. Architectural, structural, and MEP systems modeled and coordinated in a single federated model.",
   },
   {
-    title: "Title 24 Energy Compliance",
+    title: "Energy Code Compliance",
     description:
-      "California Title 24 energy compliance calculations and documentation prepared and incorporated into the permit set. CADTRI coordinates directly with compliance specialists to ensure accurate performance path or prescriptive compliance documentation.",
+      "Energy compliance calculations and documentation prepared and incorporated into the permit set. California projects use Title 24; all other states use IECC. CADTRI coordinates directly with compliance specialists to ensure accurate performance path or prescriptive compliance documentation.",
   },
   {
     title: "As-Built Documentation",
@@ -129,13 +129,18 @@ const clientTypes = [
     description:
       "We navigate the permit process on your behalf. We explain requirements clearly, prepare complete documentation, and manage the city review cycle from submission through approval.",
   },
+  {
+    title: "Permit Expediting Firms",
+    description:
+      "We serve as the drawing production arm for expediting firms, handling correction drawings, revised sets, and resubmittal packages while you manage city relationships and submission logistics. Built for exactly this division of labor.",
+  },
 ] as const;
 
 const caseStudies = [
   {
     label: "ADU Permit, Austin TX",
     heading: "600 SF detached ADU permitted in 45 days.",
-    body: "A residential property owner in Austin needed a detached ADU permitted before listing the property for sale. CADTRI prepared the full permit package including site plan, floor plans, elevations, foundation plan, and Title 24 compliance documentation. The set was submitted to the City of Austin Development Services Department and approved without corrections on the first review cycle.",
+    body: "A residential property owner in Austin needed a detached ADU permitted before listing the property for sale. CADTRI prepared the full permit package including site plan, floor plans, elevations, foundation plan, and IECC energy compliance documentation. The set was submitted to the City of Austin Development Services Department and approved without corrections on the first review cycle.",
   },
   {
     label: "Garage Conversion, Tampa FL",
@@ -280,7 +285,7 @@ export default function CapabilityStatementPage() {
               className="font-bold text-foreground"
               style={{ fontSize: "clamp(1.75rem, 3vw, 2.5rem)", letterSpacing: "-0.03em", lineHeight: 1.1 }}
             >
-              16 services. One point of contact.
+              16 core capabilities. One point of contact.
             </h2>
           </div>
           <p className="font-light leading-relaxed text-muted lg:self-end">

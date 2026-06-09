@@ -173,7 +173,7 @@ export function SiteplanLayout({ service }: Props) {
         {/* Dark header strip */}
         <div className="-mx-6 bg-primary px-6 py-14">
           <div className="container mx-auto max-w-container">
-            <h1
+            <h2
               className="font-extrabold text-primary-foreground"
               style={{
                 fontSize: "clamp(1.75rem, 5vw, 3.5rem)",
@@ -182,7 +182,7 @@ export function SiteplanLayout({ service }: Props) {
               }}
             >
               The site plan that clears first review.
-            </h1>
+            </h2>
             <p className="mt-4 max-w-2xl text-base font-light text-white/60 leading-relaxed">
               {service.tagline}
             </p>

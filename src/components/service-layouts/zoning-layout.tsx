@@ -98,7 +98,7 @@ export function ZoningLayout({ service }: Props) {
               <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
                 Strategy
               </p>
-              <h1
+              <h2
                 className="font-extrabold text-foreground"
                 style={{
                   fontSize: "clamp(1.75rem, 4.5vw, 3rem)",
@@ -107,7 +107,7 @@ export function ZoningLayout({ service }: Props) {
                 }}
               >
                 {service.title}
-              </h1>
+              </h2>
               <p
                 className="mt-6 font-light leading-relaxed text-muted"
                 style={{ fontSize: "clamp(1rem, 1.8vw, 1.2rem)", lineHeight: 1.75 }}

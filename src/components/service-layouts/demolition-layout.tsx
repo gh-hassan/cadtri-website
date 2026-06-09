@@ -31,7 +31,7 @@ export function DemolitionLayout({ service }: Props) {
               <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
               Drawings
             </p>
-            <h1
+            <h2
               className="font-extrabold text-primary-foreground"
               style={{
                 fontSize: "clamp(2.5rem, 5vw, 4rem)",
@@ -40,7 +40,7 @@ export function DemolitionLayout({ service }: Props) {
               }}
             >
               The permit that clears the site.
-            </h1>
+            </h2>
             <p
               className="mt-5 max-w-2xl font-light text-white/70"
               style={{ fontSize: "clamp(1rem, 2vw, 1.2rem)", lineHeight: 1.7 }}

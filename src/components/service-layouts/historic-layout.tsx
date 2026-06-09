@@ -47,12 +47,12 @@ export function HistoricLayout({ service }: { service: ServiceType }) {
             Certificate of Appropriateness
           </p>
 
-          <h1
+          <h2
             className="mb-8 text-4xl font-bold text-foreground sm:text-5xl"
             style={{ letterSpacing: "-0.025em" }}
           >
             {service.title}
-          </h1>
+          </h2>
 
           {/* Overview — generous editorial body text */}
           <p className="mb-12 text-xl font-light leading-relaxed text-muted">

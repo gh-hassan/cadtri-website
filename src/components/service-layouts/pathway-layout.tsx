@@ -138,7 +138,7 @@ export function PathwayLayout({ service }: Props) {
         {/* Dark header strip */}
         <div className="-mx-6 bg-primary px-6 py-14">
           <div className="container mx-auto max-w-container">
-            <h1
+            <h2
               className="font-extrabold text-primary-foreground"
               style={{
                 fontSize: "clamp(1.5rem, 3.5vw, 2.5rem)",
@@ -147,7 +147,7 @@ export function PathwayLayout({ service }: Props) {
               }}
             >
               One document. Every permit decision mapped.
-            </h1>
+            </h2>
             <p className="mt-4 max-w-2xl text-sm font-light leading-relaxed text-white/60">
               {service.overview}
             </p>

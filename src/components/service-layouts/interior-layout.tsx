@@ -106,7 +106,7 @@ export function InteriorLayout({ service }: Props) {
               <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
               Drawings
             </p>
-            <h1
+            <h2
               className="font-extrabold text-foreground"
               style={{
                 fontSize: "clamp(2rem, 5vw, 3.5rem)",
@@ -117,7 +117,7 @@ export function InteriorLayout({ service }: Props) {
               {service.title === "Interior Detail Package"
                 ? "Interior drawings built for permit approval."
                 : service.title}
-            </h1>
+            </h2>
             <p
               className="mt-6 font-light leading-relaxed text-muted"
               style={{ fontSize: "clamp(1rem, 1.5vw, 1.125rem)" }}

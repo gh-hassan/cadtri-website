@@ -33,7 +33,7 @@ export function RedlineLayout({ service }: Props) {
               <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
               Drawings
             </p>
-            <h1
+            <h2
               className="font-extrabold text-foreground"
               style={{
                 fontSize: "clamp(2.25rem, 5vw, 3.75rem)",
@@ -42,7 +42,7 @@ export function RedlineLayout({ service }: Props) {
               }}
             >
               From red ink to permit-ready in days.
-            </h1>
+            </h2>
             <p
               className="mt-6 font-light text-muted"
               style={{ fontSize: "clamp(1rem, 2vw, 1.125rem)", lineHeight: 1.8 }}

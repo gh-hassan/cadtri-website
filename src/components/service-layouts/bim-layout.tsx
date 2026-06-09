@@ -86,12 +86,12 @@ export function BimLayout({ service }: { service: ServiceType }) {
             <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
               BIM Coordination
             </p>
-            <h1
+            <h2
               className="mb-6 font-bold text-3xl text-foreground sm:text-4xl"
               style={{ letterSpacing: "-0.025em" }}
             >
               {service.title}
-            </h1>
+            </h2>
             <p className="font-light leading-relaxed text-foreground sm:text-lg">
               {service.overview}
             </p>

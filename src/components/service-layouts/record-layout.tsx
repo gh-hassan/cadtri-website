@@ -132,7 +132,7 @@ export function RecordLayout({ service }: Props) {
             <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
             Drawings
           </p>
-          <h1
+          <h2
             className="font-extrabold text-foreground"
             style={{
               fontSize: "clamp(2rem, 5vw, 4rem)",
@@ -141,7 +141,7 @@ export function RecordLayout({ service }: Props) {
             }}
           >
             The approved drawings need to match what was built.
-          </h1>
+          </h2>
           <p
             className="mt-6 max-w-2xl font-light leading-relaxed text-muted"
             style={{ fontSize: "clamp(1rem, 1.5vw, 1.2rem)" }}

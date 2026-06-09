@@ -108,7 +108,7 @@ export const industries: readonly Industry[] = [
       "accessory-structure-permits",
     ],
     metaDescription:
-      "Permit-ready residential drafting services including home additions, ADU permit packages, garage conversions, and complete construction drawings across California.",
+      "Permit-ready residential drafting services including home additions, ADU permit packages, garage conversions, and complete construction drawings. CADTRI serves residential projects nationwide across 40+ states.",
   },
   {
     slug: "commercial",
@@ -204,7 +204,7 @@ export const industries: readonly Industry[] = [
       "pre-application-meeting-prep",
     ],
     metaDescription:
-      "Commercial architectural drafting and permit coordination — tenant improvements, new construction, BIM coordination, and permit-ready construction documents across California.",
+      "Commercial architectural drafting and permit coordination — tenant improvements, new construction, BIM coordination, and permit-ready construction documents. CADTRI serves commercial projects nationwide across 40+ states.",
   },
   {
     slug: "hospitality",

@@ -8,9 +8,9 @@ import { industries } from "@/content/industries";
 import { BreadcrumbJsonLd } from "@/lib/json-ld";
 
 export const metadata: Metadata = {
-  title: "Industries We Serve",
+  title: { absolute: "Industries We Serve | CADTRI Drafting & Permit Services" },
   description:
-    "CADTRI provides permit-ready architectural drafting for residential, commercial, hospitality, and mixed-use projects. Professional documentation across California.",
+    "CADTRI provides permit-ready architectural drafting for residential, commercial, hospitality, and mixed-use projects nationwide. Professional documentation across 40+ states.",
 };
 
 export default function IndustriesPage() {

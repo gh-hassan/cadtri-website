@@ -8,10 +8,10 @@ import { HowToJsonLd } from "@/lib/json-ld";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Our Process | CADTRI Architectural Drafting",
+    absolute: "Our Process | CADTRI Drafting & Permit Services",
   },
   description:
-    "CADTRI's four-step permit drafting process: scope review, jurisdiction research, production, and submission support — designed to clear plan check on the first cycle.",
+    "How CADTRI works: jurisdiction research before drafting begins, coordinated permit-ready drawing sets, and full support through plan check corrections. Designed to clear the first submission on every project.",
 };
 
 // ─── Page data ────────────────────────────────────────────────────────────────

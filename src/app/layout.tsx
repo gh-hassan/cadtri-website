@@ -73,6 +73,21 @@ export default function RootLayout({
           `}
         </Script>
 
+        {/* Crisp live chat */}
+        <Script id="crisp-init" strategy="lazyOnload">
+          {`
+            window.$crisp=[];
+            window.CRISP_WEBSITE_ID="30a662dd-09fd-4d81-9cff-dd627cbd2dde";
+            (function(){
+              var d=document;
+              var s=d.createElement("script");
+              s.src="https://client.crisp.chat/l.js";
+              s.async=1;
+              d.getElementsByTagName("head")[0].appendChild(s);
+            })();
+          `}
+        </Script>
+
         <LocalBusinessJsonLd />
         <WebSiteJsonLd />
         {children}

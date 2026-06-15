@@ -37,7 +37,7 @@ import { SignageLayout } from "@/components/service-layouts/signage-layout";
 import { InteriorLayout } from "@/components/service-layouts/interior-layout";
 import { SiteplanLayout } from "@/components/service-layouts/siteplan-layout";
 import { RecordLayout } from "@/components/service-layouts/record-layout";
-import { getServiceBySlug, getRelatedServices, services } from "@/content/services";
+import { getServiceBySlug, getRelatedServices, getServiceMetaDescription, services } from "@/content/services";
 import { ServiceJsonLd, BreadcrumbJsonLd, FaqJsonLd, reactNodeToText } from "@/lib/json-ld";
 import { company } from "@/content/company";
 
@@ -55,7 +55,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!service) return { title: "Service Not Found" };
   return {
     title: { absolute: `${service.title} | CADTRI Drafting & Permit Services` },
-    description: `${service.tagline} CADTRI delivers permit-ready ${service.title.toLowerCase()} for residential and commercial projects nationwide.`,
+    description: getServiceMetaDescription(service),
   };
 }
 

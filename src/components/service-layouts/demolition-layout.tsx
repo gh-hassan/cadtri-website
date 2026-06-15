@@ -28,7 +28,6 @@ export function DemolitionLayout({ service }: Props) {
         <div className="-mx-6 bg-primary px-6 py-16">
           <div className="container mx-auto max-w-container">
             <p className="mb-5 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-              <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
               Drawings
             </p>
             <h2
@@ -188,7 +187,6 @@ export function DemolitionLayout({ service }: Props) {
         <div className="grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-              <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
               Permit Requirements
             </p>
             <h2
@@ -217,7 +215,6 @@ export function DemolitionLayout({ service }: Props) {
           {/* Left: editorial text */}
           <div>
             <p className="mb-6 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-              <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
               Why a Demo Permit Isn&apos;t Optional
             </p>
             <p
@@ -252,7 +249,6 @@ export function DemolitionLayout({ service }: Props) {
       <Section variant="surface" className="border-t border-border">
         <div className="mb-12 border-b border-border pb-12">
           <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-            <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
             What&apos;s Included
           </p>
           <h2
@@ -294,7 +290,6 @@ export function DemolitionLayout({ service }: Props) {
       <Section variant="default" className="border-t border-border">
         <div className="mb-12 border-b border-border pb-12">
           <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-            <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
             Built for These Teams
           </p>
           <h2

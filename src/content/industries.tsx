@@ -108,7 +108,7 @@ export const industries: readonly Industry[] = [
       "accessory-structure-permits",
     ],
     metaDescription:
-      "Permit-ready residential drafting services including home additions, ADU permit packages, garage conversions, and complete construction drawings. CADTRI serves residential projects nationwide across 40+ states.",
+      "Permit-ready residential drafting for home additions, ADUs, garage conversions, and complete construction drawing sets, prepared for projects nationwide.",
   },
   {
     slug: "commercial",
@@ -204,7 +204,7 @@ export const industries: readonly Industry[] = [
       "pre-application-meeting-prep",
     ],
     metaDescription:
-      "Commercial architectural drafting and permit coordination — tenant improvements, new construction, BIM coordination, and permit-ready construction documents. CADTRI serves commercial projects nationwide across 40+ states.",
+      "Commercial architectural drafting and permit coordination for tenant improvements, new construction, and permit-ready construction documents nationwide.",
   },
   {
     slug: "hospitality",
@@ -282,7 +282,7 @@ export const industries: readonly Industry[] = [
       "renderings-visualization",
     ],
     metaDescription:
-      "Architectural drafting for hotels, restaurants, and resorts — health department coordination, occupancy and life safety documentation, and permit-ready construction drawings.",
+      "Architectural drafting for hotels, restaurants, and resorts: health department coordination, life safety documentation, and permit-ready drawings.",
   },
   {
     slug: "mixed-use",
@@ -372,7 +372,7 @@ export const industries: readonly Industry[] = [
       "city-comments-response",
     ],
     metaDescription:
-      "Mixed-use architectural drafting including occupancy separation, multi-phase permitting, entitlement support, and BIM coordination for integrated residential and commercial developments.",
+      "Mixed-use architectural drafting: occupancy separation, multi-phase permitting, entitlement support, and BIM coordination for integrated developments.",
   },
 ];
 

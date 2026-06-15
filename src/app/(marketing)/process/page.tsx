@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     absolute: "Our Process | CADTRI Drafting & Permit Services",
   },
   description:
-    "How CADTRI works: jurisdiction research before drafting begins, coordinated permit-ready drawing sets, and full support through plan check corrections. Designed to clear the first submission on every project.",
+    "How CADTRI works: jurisdiction research before drafting, coordinated permit-ready drawing sets, and full support through plan check corrections.",
 };
 
 // ─── Page data ────────────────────────────────────────────────────────────────

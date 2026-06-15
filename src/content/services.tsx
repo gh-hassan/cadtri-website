@@ -1947,3 +1947,59 @@ export function getRelatedServices(service: Service): Service[] {
     .map((slug) => getServiceBySlug(slug))
     .filter((s): s is Service => s !== undefined);
 }
+
+// ─── SEO meta descriptions ──────────────────────────────────────────────────────
+// Unique, concise (~105–155 char) descriptions per service. Keep under ~158 chars so
+// search engines do not truncate. Do NOT regenerate from taglines: taglines run long
+// and read like headlines, which produces over-length, duplicative meta descriptions.
+
+const serviceMetaDescriptions: Record<string, string> = {
+  "architectural-drafting": "Permit-ready architectural drafting for residential and commercial projects: floor plans, elevations, sections, and complete construction document sets.",
+  "permit-set-preparation": "Complete permit set preparation built around each building department's submission checklist, code requirements, and plan check triggers.",
+  "city-comments-response": "Plan check correction response: we address city comments, revise the drawings, and prepare a complete resubmission package for the building department.",
+  "structural-coordination": "Architectural and structural drawings coordinated into one clean, permit-ready package, with conflicts resolved before submission.",
+  "code-compliance-review": "Independent pre-submission code and zoning review to catch compliance issues before plan check, with redlined corrections and a summary report.",
+  "renderings-visualization": "3D architectural renderings and visualization for permitting, presentations, approvals, and project marketing.",
+  "as-built-documentation": "Accurate as-built and existing conditions drawings for renovation, permitting, and real estate projects, measured and drafted to scale.",
+  "solar-ev-permit-packages": "Permit-ready solar and EV permit packages for photovoltaic systems, battery storage, and EV charging installations.",
+  "adu-permit-packages": "Complete ADU permit packages for accessory dwelling units, garage conversions, and residential expansions, drafted for first-submission approval.",
+  "entitlement-support": "Entitlement support for variances, conditional use permits, and zoning approvals, with documentation prepared for planning department review.",
+  "pre-application-meeting-prep": "Project documentation and permit strategy that make pre-application meetings with planning departments and building officials productive.",
+  "mep-coordination": "Mechanical, electrical, and plumbing coordination for complete, conflict-free, permit-ready construction documents.",
+  "tenant-improvement-packages": "Complete permit documentation for commercial tenant improvements and interior build-outs, drafted for plan check approval.",
+  "digital-walkthroughs": "Interactive 3D architectural walkthroughs for approvals, client presentations, and pre-construction sales.",
+  "3d-staging": "Photorealistic 3D staging for vacant spaces, new construction, and remodels to support real estate marketing and visualization.",
+  "project-strategy": "A structured advisory engagement that takes your project from concept to a fully defined, actionable construction roadmap.",
+  "feasibility-study": "A structured construction feasibility study that answers one question before major costs begin: can this project realistically be built?",
+  "home-addition-packages": "Complete home addition permit packages for room additions, second-story expansions, and other residential construction projects.",
+  "garage-conversion-packages": "Garage conversion permit packages for turning attached or detached garages into habitable rooms, ADUs, or accessory living spaces.",
+  "construction-administration": "Construction administration support for RFIs, submittals, field sketches, and permit-ready plan revisions through the construction phase.",
+  "contractor-bid-package": "A complete, bid-ready drawing and specification package that reduces scope gaps and confusion in contractor pricing.",
+  "pool-spa-permits": "Permit-ready documentation for residential and commercial pools, spas, and water features, drafted to local building department standards.",
+  "interior-remodel-packages": "Permit-ready interior remodel packages for kitchen remodels, bathroom renovations, and full residential interior remodeling projects.",
+  "short-term-rental-permits": "Permit-ready documentation and compliance support for short-term rental, Airbnb, and vacation rental conversion approvals.",
+  "accessory-structure-permits": "Permit packages for detached garages, workshops, sheds, studios, and other residential accessory structures.",
+  "title-24-energy-compliance": "California Title 24 energy compliance documentation for residential and commercial building permit submissions.",
+  "historic-district-submissions": "Documentation for historic preservation review boards, certificate of appropriateness applications, and historic district permit submissions.",
+  "bim-coordination": "Building Information Modeling coordination for commercial, institutional, and multi-trade construction projects.",
+  "zoning-code-research": "Know exactly what your parcel allows before drafting begins, with a clear zoning and code research report for your property.",
+  "permit-pathway-analysis": "Every permit, agency, and timeline your project needs, documented before it moves into active design or permit submission.",
+  "pre-purchase-assessment": "Know what a property can realistically support before you commit to buying it, with a pre-purchase feasibility assessment.",
+  "scope-definition": "A clear project brief before design starts, aligning consultants, permitting, timelines, and construction expectations from day one.",
+  "design-options-study": "Explore multiple layout directions and compare tradeoffs to make informed design decisions before production drawings begin.",
+  "compliance-gap-analysis": "Identify hidden code issues, permit risks, and non-conforming conditions before they delay approvals or trigger costly redesign.",
+  "deferred-submittal-packages": "Deferred submittal packages for specialty systems approved after the main permit issues, produced for building department review.",
+  "fire-life-safety-drawings": "Egress plans, fire-rated assembly documentation, and life safety layouts built to IBC Chapter 10 and California Title 19 standards.",
+  "signage-permit-drawings": "Permit drawings for every sign type, prepared to get your sign permit issued and your fabricator moving.",
+  "interior-detail-package": "Interior detail drawings built for permit approval: millwork, finishes, partitions, and construction details.",
+  "site-plan-package": "Permit-ready site plan drawings prepared to meet local building department and planning review requirements.",
+  "record-drawing-updates": "As-built record drawing updates that close the gap between the approved set and what was actually built.",
+  "demolition-permit-drawings": "Permit-ready demolition drawings prepared to meet local building department requirements before demolition work begins.",
+  "redline-to-cad": "Field markups, contractor notes, and hand sketches converted into clean, accurate CAD drawings without slowing the project down.",
+};
+
+// Returns a search-optimized meta description for a service, falling back to a
+// trimmed tagline if no explicit override exists.
+export function getServiceMetaDescription(service: Service): string {
+  return serviceMetaDescriptions[service.slug] ?? service.tagline;
+}

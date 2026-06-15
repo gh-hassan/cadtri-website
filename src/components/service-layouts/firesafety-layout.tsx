@@ -31,10 +31,9 @@ export function FireSafetyLayout({ service }: Props) {
           {/* Left: headline + overview + CTAs */}
           <div>
             <p className="mb-5 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-              <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
               Drawings
             </p>
-            <h1
+            <h2
               className="mb-6 font-extrabold text-foreground"
               style={{
                 fontSize: "clamp(2rem, 5vw, 3.5rem)",
@@ -43,7 +42,7 @@ export function FireSafetyLayout({ service }: Props) {
               }}
             >
               Occupancy depends on getting this right.
-            </h1>
+            </h2>
             <p className="mb-8 font-light leading-relaxed text-muted" style={{ fontSize: "clamp(1rem, 1.8vw, 1.15rem)" }}>
               {service.overview}
             </p>

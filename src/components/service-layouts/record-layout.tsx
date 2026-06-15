@@ -129,7 +129,6 @@ export function RecordLayout({ service }: Props) {
       <Section variant="default">
         <div className="max-w-3xl">
           <p className="mb-5 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-            <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
             Drawings
           </p>
           <h2
@@ -182,7 +181,6 @@ export function RecordLayout({ service }: Props) {
       <Section variant="surface" className="border-t border-border">
         <div className="mb-12">
           <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-            <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
             The Problem We Solve
           </p>
           <h2
@@ -288,7 +286,6 @@ export function RecordLayout({ service }: Props) {
         <Section variant="default" className="border-t border-border">
           <div className="mb-10">
             <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-              <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
               How It Works
             </p>
             <h2
@@ -372,7 +369,6 @@ export function RecordLayout({ service }: Props) {
       <Section variant="default" className="border-t border-border">
         <div className="mb-10">
           <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-            <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
             Designed For
           </p>
           <h2

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     absolute: "CADTRI | Architectural Drafting & Permit Services",
   },
   description:
-    "Permit-ready architectural drawings and CAD drafting for residential and commercial projects nationwide. CADTRI delivers jurisdiction-researched permit sets, ADU packages, and plan check correction response across 40+ states. First-submission approval focus on every project.",
+    "Permit-ready architectural drafting and CAD drawings for residential and commercial projects nationwide. Permit sets, ADU packages, and plan check response.",
 };
 
 export default function HomePage() {

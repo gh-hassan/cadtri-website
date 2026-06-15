@@ -105,10 +105,9 @@ export function SignageLayout({ service }: Props) {
         <div className="-mx-6 bg-primary px-6 py-14">
           <div className="container mx-auto max-w-container">
             <p className="mb-5 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-              <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
               Drawings
             </p>
-            <h1
+            <h2
               className="max-w-2xl font-extrabold text-primary-foreground"
               style={{
                 fontSize: "clamp(1.85rem, 4.5vw, 3.25rem)",
@@ -117,7 +116,7 @@ export function SignageLayout({ service }: Props) {
               }}
             >
               The permit between you and the sign going up.
-            </h1>
+            </h2>
             <p className="mt-5 max-w-xl text-base font-light leading-relaxed text-white/60">
               {service.tagline}
             </p>
@@ -194,7 +193,6 @@ export function SignageLayout({ service }: Props) {
       <Section variant="default" className="border-t border-border">
         <div className="mb-10">
           <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-            <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
             Sign Types We Permit
           </p>
           <h2

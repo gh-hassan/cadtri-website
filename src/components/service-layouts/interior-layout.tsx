@@ -103,7 +103,6 @@ export function InteriorLayout({ service }: Props) {
           {/* Left: heading + overview + CTAs */}
           <div>
             <p className="mb-5 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-              <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
               Drawings
             </p>
             <h2
@@ -187,7 +186,6 @@ export function InteriorLayout({ service }: Props) {
       <Section variant="surface" className="border-t border-border">
         <div className="mb-12">
           <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-            <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
             Deliverables
           </p>
           <h2
@@ -251,7 +249,6 @@ export function InteriorLayout({ service }: Props) {
         {steps.length > 0 && (
           <div>
             <p className="mb-6 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-              <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
               How We Work
             </p>
             <div className="divide-y divide-border border-t border-border">
@@ -289,7 +286,6 @@ export function InteriorLayout({ service }: Props) {
       <Section variant="surface" className="border-t border-border">
         <div className="mb-12">
           <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-            <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
             Designed For
           </p>
           <h2

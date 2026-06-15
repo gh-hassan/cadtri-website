@@ -220,7 +220,6 @@ export function SiteplanLayout({ service }: Props) {
         <div className="grid gap-16 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="mb-5 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-              <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
               Overview
             </p>
             <h2
@@ -304,7 +303,6 @@ export function SiteplanLayout({ service }: Props) {
         <Section variant="surface" className="border-t border-border">
           <div className="mb-12">
             <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-              <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
               The Process
             </p>
             <h2
@@ -400,7 +398,6 @@ export function SiteplanLayout({ service }: Props) {
       <Section variant="surface" className="border-t border-border">
         <div className="mb-12">
           <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-            <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
             Designed For
           </p>
           <h2

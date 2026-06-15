@@ -116,7 +116,7 @@ export function ScopeLayout({ service }: Props) {
             <p className="mb-6 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
               Strategy
             </p>
-            <h1
+            <h2
               className="mb-6 font-extrabold text-foreground"
               style={{
                 fontSize: "clamp(2rem, 5vw, 3.5rem)",
@@ -125,7 +125,7 @@ export function ScopeLayout({ service }: Props) {
               }}
             >
               {service.title}
-            </h1>
+            </h2>
             <p
               className="mb-10 font-light leading-relaxed text-muted"
               style={{ fontSize: "clamp(1rem, 2vw, 1.2rem)", lineHeight: 1.75 }}

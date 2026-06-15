@@ -30,7 +30,6 @@ export function RedlineLayout({ service }: Props) {
           {/* Left: copy */}
           <div>
             <p className="mb-5 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-              <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
               Drawings
             </p>
             <h2
@@ -166,7 +165,6 @@ export function RedlineLayout({ service }: Props) {
         {/* Section header */}
         <div className="mb-10 border-b border-border pb-10">
           <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-            <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
             How It Works
           </p>
           <h2
@@ -222,7 +220,6 @@ export function RedlineLayout({ service }: Props) {
           {/* Left: whyItMatters */}
           <div>
             <p className="mb-6 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-              <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
               Why This Matters
             </p>
             <p
@@ -257,7 +254,6 @@ export function RedlineLayout({ service }: Props) {
       <Section variant="default" className="border-t border-border">
         <div className="mb-12 border-b border-border pb-12">
           <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-            <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
             Deliverables
           </p>
           <h2
@@ -292,7 +288,6 @@ export function RedlineLayout({ service }: Props) {
       <Section variant="surface" className="border-t border-border">
         <div className="mb-12 border-b border-border pb-12">
           <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-            <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
             Who This Is For
           </p>
           <h2

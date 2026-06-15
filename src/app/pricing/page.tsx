@@ -10,5 +10,10 @@ export const metadata: Metadata = {
 };
 
 export default function PricingPage() {
-  return <PricingForm />;
+  return (
+    <>
+      <h1 className="sr-only">Get a Pricing Estimate from CADTRI</h1>
+      <PricingForm />
+    </>
+  );
 }

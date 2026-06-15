@@ -58,10 +58,9 @@ export function TenantLayout({ service }: Props) {
         <div className="-mx-6 bg-primary px-6 py-16">
           <div className="container mx-auto max-w-container">
             <p className="mb-5 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-              <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
               Drawings
             </p>
-            <h1
+            <h2
               className="font-extrabold text-primary-foreground"
               style={{
                 fontSize: "clamp(2.25rem, 5vw, 3.75rem)",
@@ -70,7 +69,7 @@ export function TenantLayout({ service }: Props) {
               }}
             >
               Commercial TI drawings built for plan check.
-            </h1>
+            </h2>
             <p
               className="mt-5 max-w-2xl font-light text-white/60"
               style={{ fontSize: "clamp(1rem, 2vw, 1.15rem)", lineHeight: 1.7 }}
@@ -152,7 +151,6 @@ export function TenantLayout({ service }: Props) {
       <Section variant="default" className="border-t border-border">
         <div className="mb-10 border-b border-border pb-10">
           <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-            <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
             Occupancy Types
           </p>
           <h2
@@ -217,7 +215,6 @@ export function TenantLayout({ service }: Props) {
         <div className="grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-              <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
               Code Requirements
             </p>
             <h2
@@ -246,7 +243,6 @@ export function TenantLayout({ service }: Props) {
           {/* Left: whyItMatters */}
           <div>
             <p className="mb-6 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-              <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
               Why This Matters
             </p>
             <p
@@ -281,7 +277,6 @@ export function TenantLayout({ service }: Props) {
       <Section variant="default" className="border-t border-border">
         <div className="mb-12 border-b border-border pb-12">
           <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-            <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
             What&apos;s Included
           </p>
           <h2
@@ -323,7 +318,6 @@ export function TenantLayout({ service }: Props) {
       <Section variant="surface" className="border-t border-border">
         <div className="mb-12 border-b border-border pb-12">
           <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
-            <span className="inline-block h-px w-6 shrink-0 bg-secondary" aria-hidden />
             Designed For
           </p>
           <h2

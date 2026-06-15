@@ -10,7 +10,7 @@ import { BreadcrumbJsonLd, ServiceListJsonLd } from "@/lib/json-ld";
 export const metadata: Metadata = {
   title: "Architectural Drafting & Permit Services",
   description:
-    "42 specialized architectural drafting and permit services — ADU packages, permit set preparation, Title 24 compliance, structural coordination, tenant improvements, and more.",
+    "42 specialized architectural drafting and permit services: ADU packages, permit set preparation, Title 24 compliance, structural coordination, and more.",
 };
 
 export default function ServicesPage() {

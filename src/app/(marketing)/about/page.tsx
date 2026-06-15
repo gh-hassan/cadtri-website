@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     absolute: "About CADTRI | Architectural Drafting & Permit Services",
   },
   description:
-    "CADTRI is a professional architectural drafting and permit coordination firm serving 800+ clients across 40+ states. We produce permit-ready construction drawings for residential and commercial projects, with a first-submission approval focus on every engagement.",
+    "Architectural drafting and permit coordination for residential and commercial projects nationwide, with a first-submission approval focus on every package.",
 };
 
 // ─── Page data ────────────────────────────────────────────────────────────────

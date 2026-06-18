@@ -108,7 +108,7 @@ export const industries: readonly Industry[] = [
       "accessory-structure-permits",
     ],
     metaDescription:
-      "Permit-ready residential drafting for home additions, ADUs, garage conversions, and complete construction drawing sets, prepared for projects nationwide.",
+      "Professional residential drafting services with permit ready construction drawings home addition plans ADU packages and documentation.",
   },
   {
     slug: "commercial",

@@ -69,6 +69,7 @@ export const navLinks: readonly NavLink[] = [
   { label: "Process",    href: "/process"    },
   { label: "Resources",  href: "/resources"  },
   { label: "Portfolio",  href: "/portfolio"  },
+  { label: "Contact",    href: "/contact"    },
 ];
 
 // ─── Mega menu (desktop Services panel) ───────────────────────────────────────

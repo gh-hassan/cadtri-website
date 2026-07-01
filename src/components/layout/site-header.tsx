@@ -13,7 +13,7 @@ import { CadtriLogo } from "@/components/shared/logo";
 // ─── Constants ──────────────────────────────────────────────────────────────
 
 const HEADER_H    = 73;  // h-[72px] + 1px border-b
-const PILL_INSET  = "calc(50% - 420px)"; // 840px pill — fits nav + Request Proposal button
+const PILL_INSET  = "calc(50% - 460px)"; // 920px pill — fits nav + Request Proposal button
 
 // ─── Component ──────────────────────────────────────────────────────────────
 

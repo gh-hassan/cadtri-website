@@ -5,8 +5,8 @@ import { getAllPosts } from "@/lib/posts";
 
 const base = company.website;
 
-export function GET() {
-  const posts = getAllPosts();
+export async function GET() {
+  const posts = await getAllPosts();
 
   const content = `# ${company.name}
 

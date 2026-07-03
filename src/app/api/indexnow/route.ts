@@ -10,8 +10,8 @@ const BASE = company.website;
 // IndexNow supports: Bing, Yandex, DuckDuckGo, Seznam, Naver, Yep
 const INDEXNOW_ENDPOINT = "https://api.indexnow.org/indexnow";
 
-function getAllUrls(): string[] {
-  const posts = getAllPosts();
+async function getAllUrls(): Promise<string[]> {
+  const posts = await getAllPosts();
 
   const staticUrls = [
     BASE,
@@ -44,7 +44,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const urls = getAllUrls();
+  const urls = await getAllUrls();
 
   const body = {
     host: new URL(BASE).hostname,
@@ -80,6 +80,6 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const urls = getAllUrls();
+  const urls = await getAllUrls();
   return NextResponse.json({ urlCount: urls.length, urls });
 }

@@ -10,7 +10,7 @@ const base = company.website;
 const SITE_LAUNCH   = "2026-05-25";
 const SERVICES_DATE = "2026-05-25";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: base,                lastModified: SITE_LAUNCH },
     { url: `${base}/about`,     lastModified: SITE_LAUNCH },
@@ -27,7 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: SERVICES_DATE,
   }));
 
-  const posts = getAllPosts();
+  const posts = await getAllPosts();
   const postRoutes: MetadataRoute.Sitemap = posts.map((p) => ({
     url: `${base}/resources/${p.slug}`,
     lastModified: p.date,

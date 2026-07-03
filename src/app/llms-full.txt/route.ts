@@ -7,8 +7,8 @@ import path from "path";
 
 const base = company.website;
 
-export function GET() {
-  const posts = getAllPosts();
+export async function GET() {
+  const posts = await getAllPosts();
 
   // Build service sections with full overview text (plain string fields only)
   const serviceSections = services

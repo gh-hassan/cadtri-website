@@ -11,7 +11,8 @@ export const metadata: Metadata = {
     absolute: "About CADTRI | Architectural Drafting & Permit Services",
   },
   description:
-    "Architectural drafting and permit coordination for residential and commercial projects nationwide, with a first-submission approval focus on every package.",
+    "Learn about CADTRI a professional architectural drafting and permit coordination company specializing in permit ready construction drawings & drafting services.",
+  alternates: { canonical: "/about" },
 };
 
 // ─── Page data ────────────────────────────────────────────────────────────────

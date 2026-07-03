@@ -12,8 +12,8 @@ export const metadata: Metadata = {
     "Free guides on ADU permits, plan check corrections, pre-application meetings, and what goes inside a permit set — covering permit jurisdictions nationwide.",
 };
 
-export default function ResourcesPage() {
-  const posts = getAllPosts();
+export default async function ResourcesPage() {
+  const posts = await getAllPosts();
   const [featured, ...rest] = posts;
 
   return (

@@ -5,8 +5,8 @@ import { getAllPosts, formatDate } from "@/lib/posts";
  * Resources teaser section — shows the 3 most recent articles from /resources.
  * Rendered at build time (server component, no caching concerns).
  */
-export function HomeResources() {
-  const posts = getAllPosts().slice(0, 3);
+export async function HomeResources() {
+  const posts = (await getAllPosts()).slice(0, 3);
   if (posts.length === 0) return null;
 
   return (

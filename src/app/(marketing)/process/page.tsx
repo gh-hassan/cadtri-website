@@ -8,10 +8,11 @@ import { HowToJsonLd } from "@/lib/json-ld";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Our Process | CADTRI Drafting & Permit Services",
+    absolute: "Architectural Drafting Process | CADTRI",
   },
   description:
-    "How CADTRI works: jurisdiction research before drafting, coordinated permit-ready drawing sets, and full support through plan check corrections.",
+    "Explore CADTRI's architectural drafting process from planning and BIM coordination to permit ready construction documentation.",
+  alternates: { canonical: "/process" },
 };
 
 // ─── Page data ────────────────────────────────────────────────────────────────

@@ -23,8 +23,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const industry = getIndustryBySlug(slug);
   if (!industry) return { title: "Industry Not Found" };
   return {
-    title: `${industry.title} Architectural Drafting Services`,
+    title: { absolute: industry.metaTitle ?? `${industry.title} Architectural Drafting Services` },
     description: industry.metaDescription,
+    alternates: { canonical: `/industries/${slug}` },
   };
 }
 

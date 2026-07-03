@@ -18,6 +18,7 @@ export interface Industry {
   readonly challenges: readonly IndustryChallenge[];
   readonly whatWeDeliver: readonly string[];
   readonly featuredServiceSlugs: readonly string[];
+  readonly metaTitle?: string;
   readonly metaDescription: string;
 }
 
@@ -107,6 +108,7 @@ export const industries: readonly Industry[] = [
       "pool-spa-permits",
       "accessory-structure-permits",
     ],
+    metaTitle: "Residential Drafting Services | Permit Ready Plans",
     metaDescription:
       "Professional residential drafting services with permit ready construction drawings home addition plans ADU packages and documentation.",
   },
@@ -203,8 +205,9 @@ export const industries: readonly Industry[] = [
       "construction-administration",
       "pre-application-meeting-prep",
     ],
+    metaTitle: "Commercial Architectural Drafting & BIM Services",
     metaDescription:
-      "Commercial architectural drafting and permit coordination for tenant improvements, new construction, and permit-ready construction documents nationwide.",
+      "Professional commercial drafting services including architectural drawings, BIM coordination, and permit ready construction documentation.",
   },
   {
     slug: "hospitality",
@@ -281,8 +284,9 @@ export const industries: readonly Industry[] = [
       "construction-administration",
       "renderings-visualization",
     ],
+    metaTitle: "Hospitality Drafting Services | CADTRI",
     metaDescription:
-      "Architectural drafting for hotels, restaurants, and resorts: health department coordination, life safety documentation, and permit-ready drawings.",
+      "Professional hospitality drafting services including hotel, restaurant, and resort construction drawings, BIM coordination, and visualization.",
   },
   {
     slug: "mixed-use",
@@ -371,8 +375,9 @@ export const industries: readonly Industry[] = [
       "construction-administration",
       "city-comments-response",
     ],
+    metaTitle: "Mixed-Use Drafting Services | CADTRI",
     metaDescription:
-      "Mixed-use architectural drafting: occupancy separation, multi-phase permitting, entitlement support, and BIM coordination for integrated developments.",
+      "Professional mixed-use drafting services including BIM coordination, construction drawings, and permit ready documentation for integrated developments.",
   },
 ];
 

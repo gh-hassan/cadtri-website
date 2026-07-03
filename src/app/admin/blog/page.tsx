@@ -29,7 +29,7 @@ export default async function AdminBlogListPage() {
           <Link key={p.id} href={`/admin/blog/${p.id}`} className="flex items-center justify-between gap-4 bg-surface px-6 py-5 transition-colors hover:bg-border">
             <div>
               <p className="text-sm font-medium text-foreground">{p.title}</p>
-              <p className="mt-0.5 text-[11px] text-muted">/resources/{p.slug} · {p.category}</p>
+              <p className="mt-0.5 text-[11px] text-muted">/blog/{p.slug} · {p.category}</p>
             </div>
             <span className={`shrink-0 text-[10px] font-semibold uppercase tracking-wider ${p.status === "published" ? "text-green-700" : "text-muted"}`}>
               {p.status}

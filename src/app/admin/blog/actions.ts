@@ -64,7 +64,7 @@ export async function createBlogPost(formData: FormData) {
 
   if (error) return { error: error.message };
 
-  revalidatePath("/resources");
+  revalidatePath("/blog");
   redirect(`/admin/blog/${data.id}`);
 }
 
@@ -89,9 +89,9 @@ export async function updateBlogPost(id: string, formData: FormData) {
 
   if (error) return { error: error.message };
 
-  revalidatePath("/resources");
-  if (existing?.slug) revalidatePath(`/resources/${existing.slug}`);
-  if (input.slug !== existing?.slug) revalidatePath(`/resources/${input.slug}`);
+  revalidatePath("/blog");
+  if (existing?.slug) revalidatePath(`/blog/${existing.slug}`);
+  if (input.slug !== existing?.slug) revalidatePath(`/blog/${input.slug}`);
   redirect("/admin/blog");
 }
 
@@ -99,6 +99,6 @@ export async function deleteBlogPost(id: string) {
   await requireAdminSession();
   const { error } = await db.from("blog_posts").delete().eq("id", id);
   if (error) return { error: error.message };
-  revalidatePath("/resources");
+  revalidatePath("/blog");
   redirect("/admin/blog");
 }

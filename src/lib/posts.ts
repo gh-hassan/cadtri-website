@@ -102,37 +102,45 @@ async function getDbPosts(): Promise<PostMeta[]> {
   }
 }
 
+// ─── Resource guides (MDX files) ────────────────────────────────────────────
+// /resources and /resources/[slug] are backed by the MDX files only.
+
 export async function getAllPosts(): Promise<PostMeta[]> {
-  const [mdxPosts, dbPosts] = await Promise.all([
-    Promise.resolve(getMdxPosts()),
-    getDbPosts(),
-  ]);
-  return [...mdxPosts, ...dbPosts].sort(
+  return getMdxPosts().sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
   );
 }
 
 export async function getPostBySlug(slug: string): Promise<Post | undefined> {
   const filepath = path.join(postsDir, `${slug}.mdx`);
-  if (fs.existsSync(filepath)) {
-    const raw = fs.readFileSync(filepath, "utf8");
-    const { data, content } = matter(raw);
-    return {
-      slug,
-      title: (data.title as string) ?? "",
-      metaTitle: (data.metaTitle as string | undefined) ?? undefined,
-      description: (data.description as string) ?? "",
-      date: (data.date as string) ?? "",
-      dateModified: (data.dateModified as string | undefined) ?? undefined,
-      category: (data.category as string) ?? "",
-      readingTime: (data.readingTime as string) ?? "",
-      image: (data.image as string | undefined) ?? undefined,
-      faq: (data.faq as FaqEntry[] | undefined) ?? undefined,
-      source: "mdx",
-      content,
-    };
-  }
+  if (!fs.existsSync(filepath)) return undefined;
 
+  const raw = fs.readFileSync(filepath, "utf8");
+  const { data, content } = matter(raw);
+  return {
+    slug,
+    title: (data.title as string) ?? "",
+    metaTitle: (data.metaTitle as string | undefined) ?? undefined,
+    description: (data.description as string) ?? "",
+    date: (data.date as string) ?? "",
+    dateModified: (data.dateModified as string | undefined) ?? undefined,
+    category: (data.category as string) ?? "",
+    readingTime: (data.readingTime as string) ?? "",
+    image: (data.image as string | undefined) ?? undefined,
+    faq: (data.faq as FaqEntry[] | undefined) ?? undefined,
+    source: "mdx",
+    content,
+  };
+}
+
+// ─── Blog posts (database, published from the admin portal) ──────────────────
+// /blog and /blog/[slug] are backed by the blog_posts table only.
+
+export async function getBlogPosts(): Promise<PostMeta[]> {
+  return getDbPosts();
+}
+
+export async function getBlogPostBySlug(slug: string): Promise<Post | undefined> {
   if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) return undefined;
   try {
     const { data, error } = await db
@@ -155,7 +163,8 @@ export async function getPostBySlug(slug: string): Promise<Post | undefined> {
 }
 
 export function formatDate(dateStr: string): string {
-  const d = new Date(dateStr + "T00:00:00");
+  // MDX dates are date-only ("2026-03-10"); DB dates are full ISO timestamps.
+  const d = dateStr.includes("T") ? new Date(dateStr) : new Date(dateStr + "T00:00:00");
   return d.toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",

@@ -103,7 +103,7 @@ export function SeoPanel({
         <p className={labelCls}>Search Preview</p>
         <div className="border border-border bg-background p-4">
           <p className="text-[13px] text-[#1a0dab]" style={{ fontFamily: "arial, sans-serif" }}>
-            www.cadtri.com › resources › {slug || "your-post-slug"}
+            www.cadtri.com › blog › {slug || "your-post-slug"}
           </p>
           <p className="mt-0.5 truncate text-lg text-[#1a0dab]" style={{ fontFamily: "arial, sans-serif" }}>
             {metaTitle || "Your meta title will appear here"}

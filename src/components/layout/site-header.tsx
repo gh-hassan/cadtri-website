@@ -263,10 +263,10 @@ export function SiteHeader() {
               style={{ ...sideStyle(30), ...(showPill ? { width: "0px", minWidth: "0px", overflow: "hidden" } : {}) }}
             >
               <Link
-                href="/resources"
+                href="/blog"
                 className={cn(
                   "text-[11px] font-medium uppercase tracking-[0.12em] transition-colors duration-200",
-                  isActive({ href: "/resources" }) ? "text-white" : "text-white/50 hover:text-white",
+                  isActive({ href: "/blog" }) ? "text-white" : "text-white/50 hover:text-white",
                 )}
               >
                 Blog

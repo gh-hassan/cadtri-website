@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { company } from "@/content/company";
 import { services } from "@/content/services";
-import { getAllPosts } from "@/lib/posts";
+import { getAllPosts, getBlogPosts } from "@/lib/posts";
 
 const base = company.website;
 
@@ -17,6 +17,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/services`,  lastModified: SERVICES_DATE },
     { url: `${base}/process`,   lastModified: SITE_LAUNCH },
     { url: `${base}/resources`, lastModified: SITE_LAUNCH },
+    { url: `${base}/blog`,      lastModified: SITE_LAUNCH },
     { url: `${base}/pricing`,   lastModified: SITE_LAUNCH },
     { url: `${base}/strategy`,  lastModified: SITE_LAUNCH },
     { url: `${base}/contact`,   lastModified: SITE_LAUNCH },
@@ -33,5 +34,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: p.date,
   }));
 
-  return [...staticRoutes, ...serviceRoutes, ...postRoutes];
+  const blogPosts = await getBlogPosts();
+  const blogRoutes: MetadataRoute.Sitemap = blogPosts.map((p) => ({
+    url: `${base}/blog/${p.slug}`,
+    lastModified: p.date,
+  }));
+
+  return [...staticRoutes, ...serviceRoutes, ...postRoutes, ...blogRoutes];
 }

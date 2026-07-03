@@ -99,14 +99,7 @@ export default async function ResourceArticlePage({ params }: Props) {
 
           {/* Main content */}
           <article className="max-w-prose">
-            {post.contentHtml ? (
-              <div
-                className="prose-cadtri"
-                dangerouslySetInnerHTML={{ __html: post.contentHtml }}
-              />
-            ) : (
-              <MDXRemote source={post.content} components={mdxComponents} />
-            )}
+            <MDXRemote source={post.content} components={mdxComponents} />
           </article>
 
           {/* Sidebar */}

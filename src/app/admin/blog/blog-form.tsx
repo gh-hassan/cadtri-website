@@ -102,7 +102,7 @@ export function BlogForm({ initial }: { initial?: InitialPost }) {
           <div className="mb-5">
             <label htmlFor="slug" className={labelCls}>Slug</label>
             <div className="flex items-center gap-2">
-              <span className="text-[13px] text-muted">/resources/</span>
+              <span className="text-[13px] text-muted">/blog/</span>
               <input
                 id="slug"
                 value={slug}

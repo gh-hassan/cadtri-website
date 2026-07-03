@@ -13,23 +13,25 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
-export function generateStaticParams() {
-  return getAllPosts().map((p) => ({ slug: p.slug }));
+export async function generateStaticParams() {
+  const posts = await getAllPosts();
+  return posts.map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlug(slug);
   if (!post) return { title: "Article Not Found" };
   return {
-    title: post.title,
+    title: { absolute: post.metaTitle ?? post.title },
     description: post.description,
+    alternates: { canonical: `/resources/${slug}` },
   };
 }
 
 export default async function ResourceArticlePage({ params }: Props) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlug(slug);
   if (!post) notFound();
 
   return (
@@ -97,7 +99,14 @@ export default async function ResourceArticlePage({ params }: Props) {
 
           {/* Main content */}
           <article className="max-w-prose">
-            <MDXRemote source={post.content} components={mdxComponents} />
+            {post.contentHtml ? (
+              <div
+                className="prose-cadtri"
+                dangerouslySetInnerHTML={{ __html: post.contentHtml }}
+              />
+            ) : (
+              <MDXRemote source={post.content} components={mdxComponents} />
+            )}
           </article>
 
           {/* Sidebar */}

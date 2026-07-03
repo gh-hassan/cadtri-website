@@ -71,6 +71,9 @@ export interface Service {
   readonly audience: readonly ServiceAudience[];
   readonly whyItMatters: ReactNode;
   readonly relatedSlugs: readonly string[];
+  // SEO overrides
+  readonly metaTitle?: string;
+  readonly metaDescription?: string;
   // Layout-specific optional fields
   readonly steps?: readonly ServiceStep[];
   readonly processHighlights?: readonly { readonly label: string; readonly value: string }[];
@@ -86,8 +89,10 @@ export const services: readonly Service[] = [
 
   // ── 01. Architectural Drafting ───────────────────────────────────────────
   {
-    slug:     "architectural-drafting",
-    title:    "Architectural Drafting",
+    slug:            "architectural-drafting",
+    title:           "Architectural Drafting",
+    metaTitle:       "Architectural Drafting Services | CAD Drafting & Drawings",
+    metaDescription: "Our architectural CAD drafting services help contractors, architects, and developers produce accurate construction drawings and permit ready documentation.",
     category: "Drawings",
     layout:   "standard",
     tagline:  "Complete, permit-ready architectural drafting services for residential and commercial construction projects.",
@@ -114,8 +119,10 @@ export const services: readonly Service[] = [
 
   // ── 02. Permit Set Preparation ───────────────────────────────────────────
   {
-    slug:     "permit-set-preparation",
-    title:    "Permit Set Preparation",
+    slug:            "permit-set-preparation",
+    title:           "Permit Set Preparation",
+    metaTitle:       "Permit Set Preparation | Construction Drawings | CADTRI",
+    metaDescription: "Permit set preparation services for residential and commercial projects with permit ready construction drawings for faster approvals and fewer revisions.",
     category: "Permitting",
     layout:   "process",
     tagline:  "Permit Set Preparation Services Built Around Real Building Department Requirements",
@@ -152,8 +159,10 @@ export const services: readonly Service[] = [
 
   // ── 03. City Comments Response ───────────────────────────────────────────
   {
-    slug:     "city-comments-response",
-    title:    "City Comments Response",
+    slug:            "city-comments-response",
+    title:           "City Comments Response",
+    metaTitle:       "City Comments Response Services | Plan Check Corrections",
+    metaDescription: "Professional city comments response services for permit revisions plan check corrections drawing updates and faster permit resubmittals.",
     category: "Permitting",
     layout:   "process",
     tagline:  "Plan Check Corrections Addressed, Revised, and Resubmitted",
@@ -189,8 +198,10 @@ export const services: readonly Service[] = [
 
   // ── 04. Structural Coordination ──────────────────────────────────────────
   {
-    slug:     "structural-coordination",
-    title:    "Structural Coordination",
+    slug:            "structural-coordination",
+    title:           "Structural Coordination",
+    metaTitle:       "Structural Coordination | Permit Ready Plans | CADTRI",
+    metaDescription: "Professional structural coordination services for permit ready construction documents framing plans and integrated drawing coordination.",
     category: "Coordination",
     layout:   "technical",
     tagline:  "Architectural and structural drawings coordinated into one permit-ready package through professional structural coordination services.",
@@ -243,8 +254,10 @@ export const services: readonly Service[] = [
 
   // ── 06. Renderings and Visualization ────────────────────────────────────
   {
-    slug:         "renderings-visualization",
-    title:        "Renderings and Visualization",
+    slug:            "renderings-visualization",
+    title:           "Renderings and Visualization",
+    metaTitle:       "Architectural Rendering Services | 3D Visualization",
+    metaDescription: "Professional architectural rendering services with photorealistic 3D visualizations animations walkthroughs and interior exterior renderings at CADTRI.",
     category:     "Visualization",
     layout:       "visual",
     tagline:      "3D architectural visualization and rendering services for permitting, presentations, approvals, and project marketing.",
@@ -284,8 +297,10 @@ export const services: readonly Service[] = [
 
   // ── 07. As-Built Documentation ───────────────────────────────────────────
   {
-    slug:     "as-built-documentation",
-    title:    "As-Built Documentation",
+    slug:            "as-built-documentation",
+    title:           "As-Built Documentation",
+    metaTitle:       "As Built Documentation | CAD Drawings | CADTRI",
+    metaDescription: "Accurate as built documentation services for renovations and construction projects with field verified CAD drawings and existing condition plans.",
     category: "Documentation",
     layout:   "technical",
     tagline:  "Accurate existing conditions drawings for renovation, permitting, and real estate projects.",
@@ -313,8 +328,10 @@ export const services: readonly Service[] = [
 
   // ── 08. Solar + EV Permit Packages ───────────────────────────────────────
   {
-    slug:     "solar-ev-permit-packages",
-    title:    "Solar & EV Permit Packages",
+    slug:            "solar-ev-permit-packages",
+    title:           "Solar & EV Permit Packages",
+    metaTitle:       "Solar and EV Permit Packages | Electrical Drawings",
+    metaDescription: "Permit ready solar and EV permit packages with electrical drawings load calculations and NEC compliant documentation for faster approvals.",
     category: "Permitting",
     layout:   "package",
     tagline:  "Permit-ready solar EV permit packages for photovoltaic systems, battery storage, and EV charging installations.",
@@ -347,8 +364,10 @@ export const services: readonly Service[] = [
 
   // ── 09. ADU Permit Packages ───────────────────────────────────────────────
   {
-    slug:     "adu-permit-packages",
-    title:    "ADU Permit Packages",
+    slug:            "adu-permit-packages",
+    title:           "ADU Permit Packages",
+    metaTitle:       "ADU Permit Packages | Permit Ready ADU Drawing Services",
+    metaDescription: "Get permit ready ADU permit packages for garage conversions, detached ADUs, and residential projects. We create accurate drawings designed for faster approvals.",
     category: "Permitting",
     layout:   "package",
     tagline:  "Complete ADU permit packages for accessory dwelling units, garage conversions, and residential expansion projects.",
@@ -380,8 +399,10 @@ export const services: readonly Service[] = [
 
   // ── 10. Entitlement Support ───────────────────────────────────────────────
   {
-    slug:     "entitlement-support",
-    title:    "Entitlement Support",
+    slug:            "entitlement-support",
+    title:           "Entitlement Support",
+    metaTitle:       "Entitlement Support Services | Development & Zoning Approval",
+    metaDescription: "Professional entitlement support services for zoning approvals land use planning permit strategy and development coordination for faster approvals.",
     category: "Entitlement",
     layout:   "process",
     tagline:  "Variance applications, conditional use permits, zoning approvals, and development entitlement services for planning department review.",
@@ -418,8 +439,10 @@ export const services: readonly Service[] = [
 
   // ── 11. Pre-Application Meeting Prep ─────────────────────────────────────
   {
-    slug:     "pre-application-meeting-prep",
-    title:    "Pre-Application Meeting Prep",
+    slug:            "pre-application-meeting-prep",
+    title:           "Pre-Application Meeting Prep",
+    metaTitle:       "Pre Application Meeting Prep | Permit Strategy | CADTRI",
+    metaDescription: "Professional pre application meeting preparation services for zoning reviews permit strategy project coordination and faster development approvals.",
     category: "Permitting",
     layout:   "process",
     tagline:  "Organized project documentation and permit strategy support for productive pre-application meetings with planning departments and building officials.",
@@ -456,8 +479,10 @@ export const services: readonly Service[] = [
 
   // ── 12. MEP Coordination ──────────────────────────────────────────────────
   {
-    slug:     "mep-coordination",
-    title:    "MEP Coordination",
+    slug:            "mep-coordination",
+    title:           "MEP Coordination",
+    metaTitle:       "MEP Coordination Services | Construction Drawings",
+    metaDescription: "Professional MEP coordination services with coordinated HVAC electrical and plumbing drawings to reduce conflicts and streamline approvals.",
     category: "Coordination",
     layout:   "technical",
     tagline:  "Mechanical, electrical, and plumbing coordination services for complete permit-ready construction documents.",
@@ -484,8 +509,10 @@ export const services: readonly Service[] = [
 
   // ── 13. Tenant Improvement Packages ──────────────────────────────────────
   {
-    slug:     "tenant-improvement-packages",
-    title:    "Tenant Improvement Packages",
+    slug:            "tenant-improvement-packages",
+    title:           "Tenant Improvement Packages",
+    metaTitle:       "Tenant Improvement Packages | Commercial TI Services",
+    metaDescription: "Complete tenant improvement packages for office retail and commercial build outs with permit ready drawings planning and construction coordination.",
     category: "Permitting",
     layout:   "package",
     tagline:  "Complete permit documentation for commercial tenant improvements and interior build outs.",
@@ -518,8 +545,10 @@ export const services: readonly Service[] = [
 
   // ── 14. Digital Walkthroughs ──────────────────────────────────────────────
   {
-    slug:         "digital-walkthroughs",
-    title:        "Digital Walkthroughs",
+    slug:            "digital-walkthroughs",
+    title:           "Digital Walkthroughs",
+    metaTitle:       "Digital Walkthrough Services | 3D Architectural Animation",
+    metaDescription: "Professional digital walkthrough services with 3D architectural walkthroughs flythrough animations and immersive virtual tours for projects.",
     category:     "Visualization",
     layout:       "visual",
     tagline:      "Interactive 3D architectural walkthroughs for approvals, presentations, and pre-construction sales.",
@@ -560,8 +589,10 @@ export const services: readonly Service[] = [
 
   // ── 15. 3D Staging ────────────────────────────────────────────────────────
   {
-    slug:         "3d-staging",
-    title:        "3D Staging",
+    slug:            "3d-staging",
+    title:           "3D Staging",
+    metaTitle:       "3D Staging Services | Virtual Interior Rendering | CADTRI",
+    metaDescription: "Professional 3D staging services for real estate and interiors. Transform empty spaces into photorealistic furnished visuals that boost property sales.",
     category:     "Visualization",
     layout:       "visual",
     tagline:      "Photorealistic 3D staging services for vacant spaces, new construction, remodels, and real estate marketing visualization.",
@@ -601,8 +632,10 @@ export const services: readonly Service[] = [
 
   // ── 16. Project Strategy ────────────────────────────────────────────────────
   {
-    slug:     "project-strategy",
-    title:    "Project Strategy",
+    slug:            "project-strategy",
+    title:           "Project Strategy",
+    metaTitle:       "Construction Project Strategy Services for Faster Approvals",
+    metaDescription: "Need a clear construction plan? Our project strategy services help you reduce risks, avoid delays, and execute projects with confidence.",
     category: "Strategy",
     layout:   "strategy",
     tagline:  "A structured advisory engagement that takes your project from concept to a fully defined, actionable roadmap.",
@@ -680,8 +713,10 @@ export const services: readonly Service[] = [
 
   // ── 17. Feasibility Study ─────────────────────────────────────────────────
   {
-    slug:     "feasibility-study",
-    title:    "Feasibility Study",
+    slug:            "feasibility-study",
+    title:           "Feasibility Study",
+    metaTitle:       "Feasibility Study Services | Project Planning Experts",
+    metaDescription: "Professional feasibility study services for construction projects, zoning analysis, site evaluation, and permit planning to support informed decisions.",
     category: "Strategy",
     layout:   "feasibility",
     tagline:  "A structured construction feasibility study designed to answer one critical question before major costs begin: can this project realistically be built?",
@@ -727,8 +762,10 @@ export const services: readonly Service[] = [
 
   // ── 18. Home Addition Packages ────────────────────────────────────────────
   {
-    slug:     "home-addition-packages",
-    title:    "Home Addition Packages",
+    slug:            "home-addition-packages",
+    title:           "Home Addition Packages",
+    metaTitle:       "Home Addition Packages | Permit Ready Plans",
+    metaDescription: "Permit ready home addition packages for room additions second story expansions and remodeling projects with accurate drawings for faster approvals.",
     category: "Permitting",
     layout:   "addition",
     tagline:  "Complete home addition packages for room additions, second story expansions, and permit-ready residential construction projects.",
@@ -783,8 +820,10 @@ export const services: readonly Service[] = [
 
   // ── 19. Garage Conversion Packages ────────────────────────────────────────
   {
-    slug:     "garage-conversion-packages",
-    title:    "Garage Conversion Packages",
+    slug:            "garage-conversion-packages",
+    title:           "Garage Conversion Packages",
+    metaTitle:       "Garage Conversion Packages | Permit Ready Plans | CADTRI",
+    metaDescription: "Permit ready garage conversion packages for ADUs home offices and remodeling projects with accurate drawings for faster approvals.",
     category: "Permitting",
     layout:   "conversion",
     tagline:  "Complete garage conversion packages for turning attached or detached garages into habitable rooms, ADUs, or accessory living spaces.",
@@ -832,8 +871,10 @@ export const services: readonly Service[] = [
 
   // ── 20. Construction Administration Support ───────────────────────────────
   {
-    slug:     "construction-administration",
-    title:    "Construction Administration Support",
+    slug:            "construction-administration",
+    title:           "Construction Administration Support",
+    metaTitle:       "Construction Administration | Phase Support | CADTRI",
+    metaDescription: "Professional construction administration services including submittal reviews RFI management contractor coordination and phase support.",
     category: "Coordination",
     layout:   "admin",
     tagline:  "Ongoing construction administration services for RFIs, submittals, field sketches, and permit-ready plan revisions throughout the construction phase.",
@@ -879,8 +920,10 @@ export const services: readonly Service[] = [
 
   // ── 21. Contractor Bid Package ────────────────────────────────────────────
   {
-    slug:     "contractor-bid-package",
-    title:    "Contractor Bid Package",
+    slug:            "contractor-bid-package",
+    title:           "Contractor Bid Package",
+    metaTitle:       "Contractor Bid Packages | Construction Bid Documents",
+    metaDescription: "Complete contractor bid package services with bid ready drawings specifications and documentation for accurate construction pricing.",
     category: "Drawings",
     layout:   "bid",
     tagline:  "A complete, bid-ready drawing and specification package designed to remove confusion and reduce scope gaps in contractor pricing.",
@@ -934,8 +977,10 @@ export const services: readonly Service[] = [
 
   // ── 22. Pool and Spa Permits ──────────────────────────────────────────────
   {
-    slug:     "pool-spa-permits",
-    title:    "Pool and Spa Permit Packages",
+    slug:            "pool-spa-permits",
+    title:           "Pool and Spa Permit Packages",
+    metaTitle:       "Pool and Spa Permits | Permit Ready Drawings | CADTRI",
+    metaDescription: "Permit ready pool and spa permit packages with site plans equipment layouts safety barrier details and construction drawings.",
     category: "Permitting",
     layout:   "outdoor",
     tagline:  "Complete pool spa permits and permit-ready documentation for residential and commercial pools, spas, and water features.",
@@ -989,8 +1034,10 @@ export const services: readonly Service[] = [
 
   // ── 23. Interior Remodel Packages ─────────────────────────────────────────
   {
-    slug:     "interior-remodel-packages",
-    title:    "Interior Remodel Packages",
+    slug:            "interior-remodel-packages",
+    title:           "Interior Remodel Packages",
+    metaTitle:       "Interior Remodel Packages | Permit Ready Remodel Plans",
+    metaDescription: "Permit ready interior remodel packages for kitchens bathrooms and residential renovations with accurate construction drawings for faster permit approvals.",
     category: "Permitting",
     layout:   "remodel",
     tagline:  "Permit-ready interior remodel packages for kitchen remodels, bathroom renovations, and full residential interior remodeling projects.",
@@ -1044,8 +1091,10 @@ export const services: readonly Service[] = [
 
   // ── 24. Short-Term Rental Conversion Permits ──────────────────────────────
   {
-    slug:     "short-term-rental-permits",
-    title:    "Short-Term Rental Conversion Permits",
+    slug:            "short-term-rental-permits",
+    title:           "Short-Term Rental Conversion Permits",
+    metaTitle:       "Short Term Rental Permits | Airbnb & STR Permit Services",
+    metaDescription: "Permit ready short term rental permit packages for Airbnb and vacation rental properties with accurate drawings and compliance documentation.",
     category: "Permitting",
     layout:   "compliance",
     tagline:  "Permit-ready documentation and compliance support for short-term rental permits, Airbnb permit services, and vacation rental approvals.",
@@ -1099,8 +1148,10 @@ export const services: readonly Service[] = [
 
   // ── 25. Accessory Structure Permits ──────────────────────────────────────
   {
-    slug:     "accessory-structure-permits",
-    title:    "Accessory Structure Permits",
+    slug:            "accessory-structure-permits",
+    title:           "Accessory Structure Permits",
+    metaTitle:       "Accessory Structure Permits | Permit Plans",
+    metaDescription: "Permit-ready accessory structure packages for sheds, detached garages, pergolas, and ADUs with code-compliant drawings for faster approvals.",
     category: "Permitting",
     layout:   "accessory",
     tagline:  "Permit packages for detached garages, workshops, sheds, studios, and all residential accessory structures.",
@@ -1154,8 +1205,10 @@ export const services: readonly Service[] = [
 
   // ── 26. Title 24 / Energy Compliance ─────────────────────────────────────
   {
-    slug:     "title-24-energy-compliance",
-    title:    "Title 24 Energy Compliance",
+    slug:            "title-24-energy-compliance",
+    title:           "Title 24 Energy Compliance",
+    metaTitle:       "Title 24 Energy Compliance | Permit Reports",
+    metaDescription: "Professional Title 24 energy compliance documentation and reports for residential and commercial permit submissions in California.",
     category: "Permitting",
     layout:   "energy",
     tagline:  "California Title 24 energy compliance documentation for residential and commercial permit submissions.",
@@ -1199,8 +1252,10 @@ export const services: readonly Service[] = [
 
   // ── 28. Historic District Submissions ─────────────────────────────────────
   {
-    slug:     "historic-district-submissions",
-    title:    "Historic District Submissions",
+    slug:            "historic-district-submissions",
+    title:           "Historic District Submissions",
+    metaTitle:       "Historic District Submissions | Permit Services | CADTRI",
+    metaDescription: "Professional historic district submission services including preservation drawings permit coordination and approval support for faster reviews.",
     category: "Coordination",
     layout:   "historic",
     tagline:  "Documentation packages for historic preservation review boards, certificate of appropriateness applications, and historic district permit submissions.",
@@ -1244,8 +1299,10 @@ export const services: readonly Service[] = [
 
   // ── 29. BIM Coordination ─────────────────────────────────────────────────
   {
-    slug:     "bim-coordination",
-    title:    "BIM Coordination",
+    slug:            "bim-coordination",
+    title:           "BIM Coordination",
+    metaTitle:       "BIM Coordination Services | Clash Detection, 3D Coordination",
+    metaDescription: "Professional BIM coordination services with clash detection coordinated BIM models and construction coordination to reduce conflicts and improve execution.",
     category: "Coordination",
     layout:   "bim",
     tagline:  "Building Information Modeling coordination services for commercial, institutional, and multi-trade construction projects.",
@@ -1292,8 +1349,10 @@ export const services: readonly Service[] = [
 
   // ── 29. Zoning & Code Research Report ───────────────────────────────────────
   {
-    slug:     "zoning-code-research",
-    title:    "Zoning and Code Research Report",
+    slug:            "zoning-code-research",
+    title:           "Zoning and Code Research Report",
+    metaTitle:       "Zoning Code Research Services | Permit & Compliance",
+    metaDescription: "Professional zoning code research services for permit planning, land use analysis, zoning compliance, and development approval support.",
     category: "Strategy",
     layout:   "zoning",
     tagline:  "Know exactly what your parcel allows before a single drawing is produced.",
@@ -1340,8 +1399,10 @@ export const services: readonly Service[] = [
 
   // ── 30. Permit Pathway Analysis ──────────────────────────────────────────────
   {
-    slug:     "permit-pathway-analysis",
-    title:    "Permit Pathway Analysis",
+    slug:            "permit-pathway-analysis",
+    title:           "Permit Pathway Analysis",
+    metaTitle:       "Permit Pathway Analysis | Approval Strategy Services",
+    metaDescription: "Professional permit pathway analysis services to evaluate zoning compliance, reduce approval risks, and optimize construction permitting strategies.",
     category: "Strategy",
     layout:   "pathway",
     tagline:  "Every permit required. Every agency involved. Every timeline documented before the project moves into active design or permit submission.",
@@ -1386,8 +1447,10 @@ export const services: readonly Service[] = [
 
   // ── 31. Pre-Purchase Property Assessment ─────────────────────────────────────
   {
-    slug:     "pre-purchase-assessment",
-    title:    "Pre-Purchase Property Assessment",
+    slug:            "pre-purchase-assessment",
+    title:           "Pre-Purchase Property Assessment",
+    metaTitle:       "Pre Purchase Assessment | Property Due Diligence | CADTRI",
+    metaDescription: "Professional pre purchase assessment services evaluating property condition compliance and construction issues to reduce investment risk before buying.",
     category: "Strategy",
     layout:   "assessment",
     tagline:  "Know what a property can realistically support before you commit to buying it.",
@@ -1432,8 +1495,10 @@ export const services: readonly Service[] = [
 
   // ── 32. Scope Definition Package ─────────────────────────────────────────────
   {
-    slug:     "scope-definition",
-    title:    "Scope Definition Package",
+    slug:            "scope-definition",
+    title:           "Scope Definition Package",
+    metaTitle:       "Pre Purchase Assessment | Property Due Diligence | CADTRI",
+    metaDescription: "Professional pre purchase assessment services evaluating property condition compliance and construction issues to reduce investment risk before buying.",
     category: "Strategy",
     layout:   "scope",
     tagline:  "A clear project brief before design starts, built to align consultants, permitting requirements, timelines, and construction expectations from day one.",
@@ -1479,8 +1544,10 @@ export const services: readonly Service[] = [
 
   // ── 33. Design Options Study ──────────────────────────────────────────────────
   {
-    slug:     "design-options-study",
-    title:    "Design Options Study",
+    slug:            "design-options-study",
+    title:           "Design Options Study",
+    metaTitle:       "Design Options Study | Construction Analysis | CADTRI",
+    metaDescription: "Evaluate design alternatives with expert design options study services comparing layouts feasibility costs and project efficiency before construction.",
     category: "Strategy",
     layout:   "options",
     tagline:  "Explore multiple layout directions, compare tradeoffs, and make informed design decisions before production drawings begin.",
@@ -1525,8 +1592,10 @@ export const services: readonly Service[] = [
 
   // ── 34. Code Compliance Gap Analysis ─────────────────────────────────────────
   {
-    slug:     "compliance-gap-analysis",
-    title:    "Code Compliance Gap Analysis",
+    slug:            "compliance-gap-analysis",
+    title:           "Code Compliance Gap Analysis",
+    metaTitle:       "Compliance Gap Analysis | Construction Review | CADTRI",
+    metaDescription: "Identify compliance issues early with gap analysis services for contractors and developers to reduce risk and improve approval success.",
     category: "Strategy",
     layout:   "gap",
     tagline:  "Identify hidden code issues, permit risks, and non-conforming conditions before they delay approvals or trigger expensive redesign work.",
@@ -1573,8 +1642,10 @@ export const services: readonly Service[] = [
 
   // ── Deferred Submittal Packages ─────────────────────────────────────────
   {
-    slug:     "deferred-submittal-packages",
-    title:    "Deferred Submittal Packages",
+    slug:            "deferred-submittal-packages",
+    title:           "Deferred Submittal Packages",
+    metaTitle:       "Deferred Submittal Packages | Permit Documents",
+    metaDescription: "Professional deferred submittal packages for structural, MEP, and specialty systems requiring post-permit engineering review and approval.",
     category: "Drawings",
     layout:   "deferred",
     tagline:  "Specialty system approvals after the main permit issues. We produce the deferred submittal package for building department review.",
@@ -1619,8 +1690,10 @@ export const services: readonly Service[] = [
 
   // ── Fire and Life Safety Drawings ────────────────────────────────────────
   {
-    slug:     "fire-life-safety-drawings",
-    title:    "Fire and Life Safety Drawings",
+    slug:            "fire-life-safety-drawings",
+    title:           "Fire and Life Safety Drawings",
+    metaTitle:       "Fire & Life Safety Drawings | Permit Plans",
+    metaDescription: "Code-compliant fire and life safety drawings including egress plans, sprinkler layouts, and exit signage for permit submission and approvals.",
     category: "Drawings",
     layout:   "firesafety",
     tagline:  "Code-compliant egress plans, fire-rated assembly documentation, and life safety layouts built to IBC Chapter 10 and California Title 19 standards.",
@@ -1665,8 +1738,10 @@ export const services: readonly Service[] = [
 
   // ── Signage Permit Drawings ──────────────────────────────────────────────
   {
-    slug:     "signage-permit-drawings",
-    title:    "Signage Permit Drawings",
+    slug:            "signage-permit-drawings",
+    title:           "Signage Permit Drawings",
+    metaTitle:       "Signage Permit Drawings | Sign Permit Plans",
+    metaDescription: "Permit-ready signage drawings for commercial, retail, and exterior sign installations designed for faster city permit approvals.",
     category: "Drawings",
     layout:   "signage",
     tagline:  "Permit drawings for every sign type. The fabricator is ready. We produce the package that gets the permit issued.",
@@ -1711,8 +1786,10 @@ export const services: readonly Service[] = [
 
   // ── Interior Detail Package ───────────────────────────────────────────────
   {
-    slug:     "interior-detail-package",
-    title:    "Interior Detail Package",
+    slug:            "interior-detail-package",
+    title:           "Interior Detail Package",
+    metaTitle:       "Interior Detail Packages | CAD Drafting Services",
+    metaDescription: "Professional interior detail packages including ceiling plans millwork details elevations finish schedules and construction ready documentation.",
     category: "Drawings",
     layout:   "interior",
     tagline:  "Interior drawings built for permit approval.",
@@ -1757,8 +1834,10 @@ export const services: readonly Service[] = [
 
   // ── Site Plan Package ─────────────────────────────────────────────────────
   {
-    slug:     "site-plan-package",
-    title:    "Site Plan Package",
+    slug:            "site-plan-package",
+    title:           "Site Plan Package",
+    metaTitle:       "Site Plan Packages | Permit Ready Drawings | CADTRI",
+    metaDescription: "Permit ready site plan packages for residential and commercial projects with accurate site plans zoning layouts and permit documentation.",
     category: "Drawings",
     layout:   "siteplan",
     tagline:  "Permit-ready site plan drawings prepared to meet local building department and planning review requirements.",
@@ -1803,8 +1882,10 @@ export const services: readonly Service[] = [
 
   // ── Record Drawing Updates ────────────────────────────────────────────────
   {
-    slug:     "record-drawing-updates",
-    title:    "Record Drawing Updates",
+    slug:            "record-drawing-updates",
+    title:           "Record Drawing Updates",
+    metaTitle:       "Record Drawing Updates | As-Built Plans | CADTRI",
+    metaDescription: "Professional record drawing update services to revise existing construction documents with field changes for permit compliance and project records.",
     category: "Drawings",
     layout:   "record",
     tagline:  "As-built drawing updates that close the gap between the approved set and what was actually built.",
@@ -1849,8 +1930,10 @@ export const services: readonly Service[] = [
 
   // ── Demolition Permit Drawings ────────────────────────────────────────────
   {
-    slug:     "demolition-permit-drawings",
-    title:    "Demolition Permit Drawings",
+    slug:            "demolition-permit-drawings",
+    title:           "Demolition Permit Drawings",
+    metaTitle:       "Demolition Permit Drawings | Permit Ready Plans | CADTRI",
+    metaDescription: "Professional demolition permit drawings and documentation for residential and commercial projects designed for faster permit approvals.",
     category: "Drawings",
     layout:   "demolition",
     tagline:  "Permit-ready demolition permit drawings prepared to meet local building department requirements before demolition work begins.",
@@ -1889,8 +1972,10 @@ export const services: readonly Service[] = [
 
   // ── Redline to CAD Conversion ─────────────────────────────────────────────
   {
-    slug:     "redline-to-cad",
-    title:    "Redline to CAD Conversion",
+    slug:            "redline-to-cad",
+    title:           "Redline to CAD Conversion",
+    metaTitle:       "Redline to CAD Services | CAD Drawing Revisions",
+    metaDescription: "Convert redline markups into accurate CAD drawings with revision services permit updates and construction drawing corrections for faster approvals.",
     category: "Drawings",
     layout:   "redline",
     tagline:  "Field markups, contractor notes, and hand sketches turned into clean CAD drawings without slowing down the project.",

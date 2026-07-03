@@ -267,4 +267,59 @@
     text-align: center;
     color: var(--color-muted);
   }
+
+  /* Rich-text output from the blog admin editor — mirrors mdx-components.tsx */
+  .prose-cadtri h2 {
+    margin-top: 3.5rem;
+    margin-bottom: 1.25rem;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--color-foreground);
+    letter-spacing: -0.02em;
+  }
+  .prose-cadtri h2:first-child { margin-top: 0; }
+  .prose-cadtri h3 {
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    font-size: 1.125rem;
+    color: var(--color-foreground);
+    letter-spacing: -0.01em;
+  }
+  .prose-cadtri p {
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--color-muted);
+  }
+  .prose-cadtri ul, .prose-cadtri ol {
+    margin-bottom: 1.5rem;
+    padding-left: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .prose-cadtri li {
+    font-size: 0.9375rem;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--color-muted);
+  }
+  .prose-cadtri blockquote {
+    margin: 2rem 0;
+    border-left: 2px solid var(--color-secondary);
+    padding-left: 1.5rem;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--color-foreground);
+  }
+  .prose-cadtri strong { font-weight: 600; color: var(--color-foreground); }
+  .prose-cadtri a {
+    font-weight: 500;
+    color: var(--color-secondary);
+    text-underline-offset: 2px;
+    text-decoration: underline;
+  }
+  .prose-cadtri a:hover { color: var(--color-foreground); }
+  .prose-cadtri img { width: 100%; border: 1px solid var(--color-border); margin: 2.5rem 0; }
 }

@@ -54,8 +54,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const service = getServiceBySlug(slug);
   if (!service) return { title: "Service Not Found" };
   return {
-    title: { absolute: `${service.title} | CADTRI Drafting & Permit Services` },
-    description: getServiceMetaDescription(service),
+    title: { absolute: service.metaTitle ?? `${service.title} | CADTRI Drafting & Permit Services` },
+    description: service.metaDescription ?? getServiceMetaDescription(service),
+    alternates: { canonical: `/services/${slug}` },
   };
 }
 

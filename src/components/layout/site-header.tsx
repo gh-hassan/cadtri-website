@@ -157,7 +157,7 @@ export function SiteHeader() {
         />
 
         {/* Content layer — not clipped, dropdowns overflow freely */}
-        <div className="relative mx-auto grid h-[72px] max-w-container grid-cols-[auto_1fr_auto] items-center px-6 lg:grid-cols-[1fr_auto_1fr]">
+        <div className="relative mx-auto grid h-[72px] max-w-container grid-cols-[auto_1fr_auto] items-center gap-x-6 px-6 lg:grid-cols-[1fr_auto_1fr] lg:gap-x-10">
 
           {/* ── Col 1: Wordmark */}
           <div style={{ ...sideStyle(0), ...(showPill ? { width: "0px", minWidth: "0px", overflow: "hidden" } : {}) }}>
@@ -263,6 +263,15 @@ export function SiteHeader() {
               style={{ ...sideStyle(30), ...(showPill ? { width: "0px", minWidth: "0px", overflow: "hidden" } : {}) }}
             >
               <Link
+                href="/resources"
+                className={cn(
+                  "text-[11px] font-medium uppercase tracking-[0.12em] transition-colors duration-200",
+                  isActive({ href: "/resources" }) ? "text-white" : "text-white/50 hover:text-white",
+                )}
+              >
+                Blog
+              </Link>
+              <Link
                 href="/portal"
                 className={cn(
                   "text-[11px] font-medium uppercase tracking-[0.12em] transition-colors duration-200",
@@ -301,13 +310,15 @@ export function SiteHeader() {
       {openDropdown === "Services" && (
         <div
           ref={menuRef}
-          style={{ top: HEADER_H }}
+          style={{ top: HEADER_H, maxHeight: `calc(100vh - ${HEADER_H}px)` }}
           className="mega-panel-enter fixed inset-x-0 z-40 hidden border-b border-border bg-background lg:block"
           role="region"
           aria-label="Services mega menu"
         >
-          <div className="absolute inset-0 shadow-[0_16px_40px_-8px_rgb(34_34_34/0.12)]" aria-hidden />
+          {/* Shadow stays on the outer fixed container — never scrolls */}
+          <div className="pointer-events-none absolute inset-0 shadow-[0_16px_40px_-8px_rgb(34_34_34/0.12)]" aria-hidden />
 
+          <div className="overflow-y-auto" style={{ maxHeight: `calc(100vh - ${HEADER_H}px)` }}>
           <div className="relative mx-auto max-w-container px-6 pt-7 pb-0">
 
             {/* ── 5 category columns ───────────────────────────────────── */}
@@ -372,6 +383,7 @@ export function SiteHeader() {
                 <ArrowRight size={11} strokeWidth={2.5} aria-hidden />
               </Link>
             </div>
+          </div>
           </div>
         </div>
       )}

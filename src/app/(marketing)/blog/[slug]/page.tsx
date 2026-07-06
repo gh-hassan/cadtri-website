@@ -88,7 +88,8 @@ export default async function BlogPostPage({ params }: Props) {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={post.image}
-                alt={post.title}
+                alt={post.imageAlt || post.title}
+                title={post.imageTitle || undefined}
                 className="h-full w-full object-cover"
               />
             </div>

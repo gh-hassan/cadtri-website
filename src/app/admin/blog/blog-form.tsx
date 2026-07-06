@@ -16,6 +16,8 @@ interface InitialPost {
   category?: string;
   reading_time?: string;
   image?: string;
+  image_alt?: string;
+  image_title?: string;
   status?: "draft" | "published";
   meta_title?: string;
   meta_description?: string;
@@ -42,6 +44,8 @@ export function BlogForm({ initial }: { initial?: InitialPost }) {
   const [category, setCategory] = useState(initial?.category ?? CATEGORIES[0]);
   const [readingTime, setReadingTime] = useState(initial?.reading_time ?? "5 min read");
   const [image, setImage] = useState(initial?.image ?? "");
+  const [imageAlt, setImageAlt] = useState(initial?.image_alt ?? "");
+  const [imageTitle, setImageTitle] = useState(initial?.image_title ?? "");
   const [contentHtml, setContentHtml] = useState(initial?.content_html ?? "");
   const [metaTitle, setMetaTitle] = useState(initial?.meta_title ?? "");
   const [metaDescription, setMetaDescription] = useState(initial?.meta_description ?? "");
@@ -82,6 +86,8 @@ export function BlogForm({ initial }: { initial?: InitialPost }) {
     fd.set("category", category);
     fd.set("reading_time", readingTime);
     fd.set("image", image);
+    fd.set("image_alt", imageAlt);
+    fd.set("image_title", imageTitle);
     fd.set("meta_title", metaTitle);
     fd.set("meta_description", metaDescription);
     fd.set("focus_keyword", focusKeyword);
@@ -170,6 +176,19 @@ export function BlogForm({ initial }: { initial?: InitialPost }) {
 
             {/* Optional manual URL */}
             <input id="image" value={image} onChange={(e) => setImage(e.target.value)} className={`${inputCls} mt-3`} placeholder="…or paste an image URL" />
+
+            {/* Image SEO fields */}
+            <div className="mt-4 grid gap-4 sm:grid-cols-2">
+              <div>
+                <label htmlFor="image_alt" className={labelCls}>Image alt text</label>
+                <input id="image_alt" value={imageAlt} onChange={(e) => setImageAlt(e.target.value)} className={inputCls} placeholder="Describes the image for SEO & screen readers" />
+              </div>
+              <div>
+                <label htmlFor="image_title" className={labelCls}>Image title</label>
+                <input id="image_title" value={imageTitle} onChange={(e) => setImageTitle(e.target.value)} className={inputCls} placeholder="Tooltip shown on hover (optional)" />
+              </div>
+            </div>
+            <p className="mt-1.5 text-[11px] text-muted">Alt text is used for image SEO and accessibility. Falls back to the post title if left blank.</p>
           </div>
         </div>
 

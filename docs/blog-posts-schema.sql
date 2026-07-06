@@ -9,6 +9,8 @@ create table if not exists blog_posts (
   category          text not null default 'Permitting',
   reading_time      text not null default '5 min read',
   image             text,
+  image_alt         text,
+  image_title       text,
   status            text not null default 'draft' check (status in ('draft', 'published')),
   meta_title        text,
   meta_description  text,

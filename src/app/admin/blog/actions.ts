@@ -47,6 +47,8 @@ interface PostInput {
   category: string;
   reading_time: string;
   image: string | null;
+  image_alt: string | null;
+  image_title: string | null;
   meta_title: string | null;
   meta_description: string | null;
   focus_keyword: string | null;
@@ -63,6 +65,8 @@ function readInput(formData: FormData): PostInput {
     category: (formData.get("category") as string | null) ?? "Permitting",
     reading_time: (formData.get("reading_time") as string | null)?.trim() || "5 min read",
     image: (formData.get("image") as string | null)?.trim() || null,
+    image_alt: (formData.get("image_alt") as string | null)?.trim() || null,
+    image_title: (formData.get("image_title") as string | null)?.trim() || null,
     meta_title: (formData.get("meta_title") as string | null)?.trim() || null,
     meta_description: (formData.get("meta_description") as string | null)?.trim() || null,
     focus_keyword: (formData.get("focus_keyword") as string | null)?.trim() || null,

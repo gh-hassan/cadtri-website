@@ -20,6 +20,8 @@ export interface PostMeta {
   category: string;
   readingTime: string;
   image?: string;
+  imageAlt?: string;
+  imageTitle?: string;
   faq?: FaqEntry[];
   source?: "mdx" | "db";
 }
@@ -38,6 +40,8 @@ interface DbBlogPost {
   category: string;
   reading_time: string;
   image: string | null;
+  image_alt: string | null;
+  image_title: string | null;
   status: "draft" | "published";
   meta_title: string | null;
   meta_description: string | null;
@@ -56,6 +60,8 @@ function dbPostToPostMeta(p: DbBlogPost): PostMeta {
     category: p.category,
     readingTime: p.reading_time,
     image: p.image ?? undefined,
+    imageAlt: p.image_alt ?? undefined,
+    imageTitle: p.image_title ?? undefined,
     source: "db",
   };
 }

@@ -5,6 +5,30 @@ import { revalidatePath } from "next/cache";
 import { db } from "@/app/portal/_lib/supabase";
 import { requireAdminSession } from "../_lib/session";
 
+const IMAGE_BUCKET = "blog-images";
+
+// Uploads a featured image to public Supabase Storage and returns its URL.
+export async function uploadBlogImage(formData: FormData): Promise<{ url?: string; error?: string }> {
+  await requireAdminSession();
+
+  const file = formData.get("file") as File | null;
+  if (!file || file.size === 0) return { error: "No file selected." };
+  if (file.size > 5 * 1024 * 1024) return { error: "Image must be under 5 MB." };
+  if (!file.type.startsWith("image/")) return { error: "File must be an image." };
+
+  const ext = (file.name.split(".").pop() || "jpg").toLowerCase();
+  const path = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+  const arrayBuffer = await file.arrayBuffer();
+
+  const { error: uploadError } = await db.storage
+    .from(IMAGE_BUCKET)
+    .upload(path, arrayBuffer, { contentType: file.type, upsert: false });
+  if (uploadError) return { error: uploadError.message };
+
+  const { data } = db.storage.from(IMAGE_BUCKET).getPublicUrl(path);
+  return { url: data.publicUrl };
+}
+
 function slugify(input: string): string {
   return input
     .toLowerCase()

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import { PageHeader } from "@/components/shared/page-header";
 import { Section } from "@/components/shared/section";
 import { CtaBand } from "@/components/shared/cta-band";
@@ -53,12 +52,11 @@ export default async function BlogPage() {
               >
                 <div className="relative aspect-[16/10] overflow-hidden border border-border bg-surface">
                   {featured.image ? (
-                    <Image
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
                       src={featured.image}
                       alt={featured.title}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                      unoptimized={featured.image.endsWith(".svg")}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                     />
                   ) : (
                     <div className="flex h-full items-center justify-center">
@@ -105,12 +103,11 @@ export default async function BlogPage() {
                   >
                     <div className="relative aspect-[16/10] overflow-hidden bg-surface">
                       {post.image ? (
-                        <Image
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
                           src={post.image}
                           alt={post.title}
-                          fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                          unoptimized={post.image.endsWith(".svg")}
+                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                         />
                       ) : (
                         <div className="flex h-full items-center justify-center">

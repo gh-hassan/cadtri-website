@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
 import { Section } from "@/components/shared/section";
 import { CtaBand } from "@/components/shared/cta-band";
 import { getBlogPostBySlug, formatDate } from "@/lib/posts";
@@ -86,13 +85,11 @@ export default async function BlogPostPage({ params }: Props) {
         <div className="bg-primary px-6 pb-0">
           <div className="container mx-auto max-w-container">
             <div className="relative -mb-16 aspect-[16/8] w-full overflow-hidden border border-border bg-surface">
-              <Image
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
                 src={post.image}
                 alt={post.title}
-                fill
-                className="object-cover"
-                unoptimized={post.image.endsWith(".svg")}
-                priority
+                className="h-full w-full object-cover"
               />
             </div>
           </div>

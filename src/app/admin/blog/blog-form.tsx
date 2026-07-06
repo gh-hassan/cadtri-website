@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { RichTextEditor } from "@/components/shared/rich-text-editor";
 import { SeoPanel } from "@/components/shared/seo-panel";
-import { createBlogPost, updateBlogPost, deleteBlogPost } from "./actions";
+import { createBlogPost, updateBlogPost, deleteBlogPost, uploadBlogImage } from "./actions";
 
 const CATEGORIES = ["Permitting", "Residential", "Compliance", "Strategy", "Coordination"];
 
@@ -48,10 +48,25 @@ export function BlogForm({ initial }: { initial?: InitialPost }) {
   const [focusKeyword, setFocusKeyword] = useState(initial?.focus_keyword ?? "");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [uploading, setUploading] = useState(false);
 
   function handleTitleChange(v: string) {
     setTitle(v);
     if (!slugTouched) setSlug(slugify(v));
+  }
+
+  async function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploading(true);
+    setError("");
+    const fd = new FormData();
+    fd.set("file", file);
+    const result = await uploadBlogImage(fd);
+    if (result.error) setError(result.error);
+    else if (result.url) setImage(result.url);
+    setUploading(false);
+    e.target.value = "";
   }
 
   async function handleSubmit(status: "draft" | "published") {
@@ -132,8 +147,29 @@ export function BlogForm({ initial }: { initial?: InitialPost }) {
           </div>
 
           <div className="mt-5">
-            <label htmlFor="image" className={labelCls}>Featured image URL</label>
-            <input id="image" value={image} onChange={(e) => setImage(e.target.value)} className={inputCls} placeholder="https://…" />
+            <label className={labelCls}>Featured image</label>
+
+            {/* Preview */}
+            {image && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={image} alt="Featured preview" className="mb-3 aspect-[16/9] w-full border border-border object-cover" />
+            )}
+
+            <div className="flex flex-wrap items-center gap-3">
+              <label className={`inline-flex cursor-pointer items-center gap-2 border border-border bg-background px-4 py-2.5 text-xs font-semibold uppercase tracking-widest transition-colors hover:bg-border ${uploading ? "opacity-40" : "text-foreground"}`}>
+                {uploading ? "Uploading…" : image ? "Replace image" : "Upload image"}
+                <input type="file" accept="image/*" onChange={handleImageUpload} disabled={uploading} className="hidden" />
+              </label>
+              {image && (
+                <button type="button" onClick={() => setImage("")} className="text-[11px] font-medium uppercase tracking-widest text-red-500 hover:underline">
+                  Remove
+                </button>
+              )}
+            </div>
+            <p className="mt-2 text-[11px] text-muted">JPG, PNG, or WebP. Max 5 MB.</p>
+
+            {/* Optional manual URL */}
+            <input id="image" value={image} onChange={(e) => setImage(e.target.value)} className={`${inputCls} mt-3`} placeholder="…or paste an image URL" />
           </div>
         </div>
 

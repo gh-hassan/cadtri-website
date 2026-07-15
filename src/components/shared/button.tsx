@@ -11,30 +11,27 @@ const buttonVariants = cva(
     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
     "disabled:pointer-events-none disabled:opacity-40",
     "select-none whitespace-nowrap",
-    "btn-glass",
   ],
   {
     variants: {
       variant: {
         primary: [
-          "btn-glass-primary",
-          "text-primary-foreground",
+          "bg-primary text-primary-foreground",
+          "hover:bg-primary-hover",
           "focus-visible:ring-primary",
         ],
         secondary: [
-          "btn-glass-secondary",
-          "text-secondary-foreground",
+          "bg-secondary text-secondary-foreground",
+          "hover:bg-secondary-hover",
           "focus-visible:ring-secondary",
         ],
         outline: [
-          "btn-glass-outline",
-          "text-primary",
-          "hover:text-primary-foreground",
+          "border border-primary bg-transparent text-primary",
+          "hover:bg-primary hover:text-primary-foreground",
           "focus-visible:ring-primary",
         ],
         ghost: [
-          "btn-glass-ghost",
-          "text-muted",
+          "bg-transparent text-muted",
           "hover:text-foreground",
           "focus-visible:ring-muted",
         ],

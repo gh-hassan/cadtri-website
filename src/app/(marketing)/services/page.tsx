@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { PageHeader } from "@/components/shared/page-header";
 import { Section } from "@/components/shared/section";
@@ -7,11 +7,12 @@ import { services } from "@/content/services";
 import { company } from "@/content/company";
 import { BreadcrumbJsonLd, ServiceListJsonLd } from "@/lib/json-ld";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Architectural Drafting & Permit Services",
   description:
     "42 specialized architectural drafting and permit services: ADU packages, permit set preparation, Title 24 compliance, structural coordination, and more.",
-};
+  canonical: "/services",
+});
 
 export default function ServicesPage() {
   return (
@@ -88,12 +89,12 @@ export default function ServicesPage() {
                         {service.category}
                       </span>
 
-                      <h2
+                      <p
                         className="font-bold text-xl text-foreground transition-colors duration-200 group-hover:text-secondary sm:text-2xl"
                         style={{ letterSpacing: "-0.02em" }}
                       >
                         {service.title}
-                      </h2>
+                      </p>
 
                       <p className="mt-2 max-w-2xl text-sm font-light leading-relaxed text-muted">
                         {service.tagline}

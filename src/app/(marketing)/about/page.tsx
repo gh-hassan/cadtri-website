@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { Section } from "@/components/shared/section";
 import { CtaBand } from "@/components/shared/cta-band";
@@ -6,13 +6,12 @@ import { Button } from "@/components/shared/button";
 import { team } from "@/content/team";
 import { AboutPageJsonLd } from "@/lib/json-ld";
 
-export const metadata: Metadata = {
-  title: {
-    absolute: "About CADTRI | Architectural Drafting & Permit Services",
-  },
+export const metadata = buildMetadata({
+  title: { absolute: "About CADTRI | Architectural Drafting & Permit Services" },
   description:
     "Architectural drafting and permit coordination for residential and commercial projects nationwide, with a first-submission approval focus on every package.",
-};
+  canonical: "/about",
+});
 
 // ─── Page data ────────────────────────────────────────────────────────────────
 

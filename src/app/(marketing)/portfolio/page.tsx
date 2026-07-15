@@ -1,16 +1,16 @@
-import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/metadata";
 import { cookies } from "next/headers";
 import { PageHeader } from "@/components/shared/page-header";
 import { Section } from "@/components/shared/section";
 import { CtaBand } from "@/components/shared/cta-band";
 import { PortfolioGate } from "./portfolio-gate";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Project Portfolio",
   description:
     "A selection of CADTRI's residential, commercial, and mixed-use projects — ADU packages, home additions, tenant improvements, and permit-ready architectural drawings.",
   robots: { index: false },
-};
+});
 
 // ─── Access check ─────────────────────────────────────────────────────────────
 

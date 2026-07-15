@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { PageHeader } from "@/components/shared/page-header";
@@ -7,11 +7,12 @@ import { CtaBand } from "@/components/shared/cta-band";
 import { industries } from "@/content/industries";
 import { BreadcrumbJsonLd } from "@/lib/json-ld";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: { absolute: "Industries We Serve | CADTRI Drafting & Permit Services" },
   description:
     "CADTRI provides permit-ready architectural drafting for residential, commercial, hospitality, and mixed-use construction projects nationwide.",
-};
+  canonical: "/industries",
+});
 
 export default function IndustriesPage() {
   return (

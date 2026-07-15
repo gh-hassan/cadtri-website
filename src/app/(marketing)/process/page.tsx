@@ -1,18 +1,17 @@
-import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import { buildMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { PageHeader } from "@/components/shared/page-header";
 import { Section } from "@/components/shared/section";
 import { CtaBand } from "@/components/shared/cta-band";
-import { HowToJsonLd } from "@/lib/json-ld";
+import { HowToJsonLd, reactNodeToText } from "@/lib/json-ld";
 
-export const metadata: Metadata = {
-  title: {
-    absolute: "Our Process | CADTRI Drafting & Permit Services",
-  },
+export const metadata = buildMetadata({
+  title: { absolute: "Our Process | CADTRI Drafting & Permit Services" },
   description:
     "How CADTRI works: jurisdiction research before drafting, coordinated permit-ready drawing sets, and full support through plan check corrections.",
-};
+  canonical: "/process",
+});
 
 // ─── Page data ────────────────────────────────────────────────────────────────
 
@@ -161,7 +160,7 @@ export default function ProcessPage() {
         description="CADTRI's four-step permit drafting process for residential and commercial projects nationwide."
         steps={steps.map((step) => ({
           name: step.title,
-          text: typeof step.description === "string" ? step.description : step.outcome,
+          text: reactNodeToText(step.description) || step.outcome,
         }))}
       />
       <PageHeader

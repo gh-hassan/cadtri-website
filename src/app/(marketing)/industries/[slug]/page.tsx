@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/metadata";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { PageHeader } from "@/components/shared/page-header";
@@ -22,10 +23,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const industry = getIndustryBySlug(slug);
   if (!industry) return { title: "Industry Not Found" };
-  return {
+  return buildMetadata({
     title: `${industry.title} Architectural Drafting Services`,
     description: industry.metaDescription,
-  };
+    canonical: `/industries/${slug}`,
+  });
 }
 
 export default async function IndustryPage({ params }: Props) {

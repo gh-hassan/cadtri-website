@@ -1,15 +1,16 @@
-import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/metadata";
 import { PageHeader } from "@/components/shared/page-header";
 import { Section } from "@/components/shared/section";
 import { ContactForm } from "./contact-form";
 import { company } from "@/content/company";
 import { ContactPageJsonLd } from "@/lib/json-ld";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Request a Proposal",
   description:
     "Submit your project details to CADTRI. We review every inquiry and respond with a clear scope of work, timeline, and fee estimate within one business day.",
-};
+  canonical: "/contact",
+});
 
 // ─── What to include — for the left column ───────────────────────────────────
 

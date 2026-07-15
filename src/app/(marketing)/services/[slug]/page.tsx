@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/metadata";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { PageHeader } from "@/components/shared/page-header";
@@ -53,10 +54,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const service = getServiceBySlug(slug);
   if (!service) return { title: "Service Not Found" };
-  return {
+  return buildMetadata({
     title: { absolute: `${service.title} | CADTRI Drafting & Permit Services` },
     description: getServiceMetaDescription(service),
-  };
+    canonical: `/services/${slug}`,
+  });
 }
 
 export default async function ServiceDetailPage({ params }: Props) {
@@ -75,7 +77,7 @@ export default async function ServiceDetailPage({ params }: Props) {
       />
       <ServiceJsonLd
         title={service.title}
-        description={service.tagline}
+        description={getServiceMetaDescription(service)}
         url={`${company.website}/services/${slug}`}
         category={service.category}
       />

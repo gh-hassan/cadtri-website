@@ -92,7 +92,7 @@ export const mdxComponents: MDXComponents = {
       <span className="my-10 block">
         <Image
           src={src}
-          alt={alt ?? ""}
+          alt={alt ?? "Image"}
           width={1200}
           height={630}
           className="w-full border border-border"

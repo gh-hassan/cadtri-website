@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/metadata";
 import { company } from "@/content/company";
 import { closingCta } from "@/content/homepage";
 import { HomeHero } from "@/components/sections/home-hero";
@@ -11,13 +11,12 @@ import { HomeTestimonials } from "@/components/sections/home-testimonials";
 import { HomeResources } from "@/components/sections/home-resources";
 import { CtaBand } from "@/components/shared/cta-band";
 
-export const metadata: Metadata = {
-  title: {
-    absolute: "CADTRI | Architectural Drafting & Permit Services",
-  },
+export const metadata = buildMetadata({
+  title: { absolute: "CADTRI | Architectural Drafting & Permit Services" },
   description:
     "Permit-ready architectural drafting and CAD drawings for residential and commercial projects nationwide. Permit sets, ADU packages, and plan check response.",
-};
+  canonical: "/",
+});
 
 export default function HomePage() {
   return (

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/metadata";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
@@ -21,10 +22,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = getPostBySlug(slug);
   if (!post) return { title: "Article Not Found" };
-  return {
+  return buildMetadata({
     title: post.title,
     description: post.description,
-  };
+    canonical: `/resources/${slug}`,
+  });
 }
 
 export default async function ResourceArticlePage({ params }: Props) {

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { PageHeader } from "@/components/shared/page-header";
 import { Section } from "@/components/shared/section";
@@ -6,11 +6,12 @@ import { CtaBand } from "@/components/shared/cta-band";
 import { getAllPosts, formatDate } from "@/lib/posts";
 import { BreadcrumbJsonLd } from "@/lib/json-ld";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Permit & Drafting Resource Guides",
   description:
     "Free guides on ADU permits, plan check corrections, pre-application meetings, and what goes inside a permit set — covering permit jurisdictions nationwide.",
-};
+  canonical: "/resources",
+});
 
 export default function ResourcesPage() {
   const posts = getAllPosts();

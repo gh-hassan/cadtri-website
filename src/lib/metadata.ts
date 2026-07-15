@@ -8,7 +8,7 @@ export const siteMetadata: Metadata = {
   metadataBase: new URL(company.website),
   title: {
     default: "Architectural Drafting & Permit Services — Nationwide | CADTRI",
-    template: `%s | ${company.name}`,
+    template: `%s | CADTRI – Permit & Drafting Services`,
   },
   description: company.description,
   openGraph: {

@@ -13,7 +13,7 @@ export function LocalBusinessJsonLd() {
 
   const schema = {
     "@context": "https://schema.org",
-    "@type": ["ProfessionalService", "HomeAndConstructionBusiness"],
+    "@type": ["Organization", "LocalBusiness", "ProfessionalService", "HomeAndConstructionBusiness"],
     "@id": ORG_ID,
     name: company.legalName,
     alternateName: company.name,

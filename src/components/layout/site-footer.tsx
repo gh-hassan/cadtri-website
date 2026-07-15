@@ -75,7 +75,7 @@ export function SiteFooter() {
               </a>
             )}
             <div className="h-4 w-px bg-white/15" aria-hidden />
-            <Button href="/contact" variant="secondary" size="sm">
+            <Button href="/contact" variant="secondary" size="sm" className="btn-chrome-pill">
               Request Proposal
             </Button>
           </div>

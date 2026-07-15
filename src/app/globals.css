@@ -244,6 +244,61 @@
 .btn-glass-ghost::after { display: none; }
 .btn-glass-ghost:hover { transform: translateY(-1px); }
 
+/* ─── Nav link glass pill — header & footer nav items ───────────────────────
+   Subtle frosted glass pill that appears on hover/active on nav links.
+   Keeps the text readable while adding the liquid glass feel.
+─────────────────────────────────────────────────────────────────────────────── */
+
+.nav-glass-pill {
+  position: relative;
+  border-radius: 9999px;
+  padding: 0.35rem 0.85rem;
+  transition: color 200ms ease, background 200ms ease, box-shadow 200ms ease;
+}
+
+.nav-glass-pill::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  opacity: 0;
+  background: linear-gradient(
+    170deg,
+    rgba(255,255,255,0.18) 0%,
+    rgba(255,255,255,0.04) 100%
+  );
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.14),
+    inset 0 1px 0 rgba(255,255,255,0.28),
+    inset 0 -1px 0 rgba(0,0,0,0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: opacity 200ms ease;
+  z-index: 0;
+}
+
+.nav-glass-pill:hover::before,
+.nav-glass-pill.active::before {
+  opacity: 1;
+}
+
+.nav-glass-pill > * { position: relative; z-index: 1; }
+.nav-glass-pill span { position: relative; z-index: 1; }
+
+/* Footer variant — slightly warmer tint on the dark charcoal bg */
+.nav-glass-pill-footer::before {
+  background: linear-gradient(
+    170deg,
+    rgba(255,255,255,0.14) 0%,
+    rgba(255,255,255,0.03) 100%
+  );
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.10),
+    inset 0 1px 0 rgba(255,255,255,0.22),
+    inset 0 -1px 0 rgba(0,0,0,0.12);
+}
+
 /* ─── Chrome pill button — header & footer CTA ───────────────────────────────
    Pill-shaped glass button with a metallic chrome border ring, matching the
    iOS 26 liquid glass reference: fully rounded, semi-transparent dark fill,

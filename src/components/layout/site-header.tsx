@@ -176,9 +176,9 @@ export function SiteHeader() {
                   href={link.href}
                   onClick={link.children ? (e) => toggleDropdown(link.label, e) : undefined}
                   className={cn(
-                    "flex items-center gap-1 text-[11px] font-medium uppercase tracking-[0.12em]",
+                    "nav-glass-pill flex items-center gap-1 text-[11px] font-medium uppercase tracking-[0.12em]",
                     "transition-colors duration-200",
-                    isActive(link) ? "text-white" : "text-white/50 hover:text-white",
+                    isActive(link) ? "text-white active" : "text-white/50 hover:text-white",
                   )}
                   aria-haspopup={link.children ? "true" : undefined}
                   aria-expanded={link.children ? openDropdown === link.label : undefined}

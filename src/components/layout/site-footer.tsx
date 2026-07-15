@@ -42,12 +42,12 @@ export function SiteFooter() {
 
           {/* Nav links */}
           <nav aria-label="Footer navigation">
-            <ul role="list" className="flex flex-wrap items-center gap-x-8 gap-y-3">
+            <ul role="list" className="flex flex-nowrap items-center gap-x-6 gap-y-3">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-[11px] font-medium uppercase tracking-[0.12em] text-white/50 transition-colors duration-200 hover:text-white"
+                    className="text-[10px] font-medium uppercase tracking-[0.10em] text-white/50 transition-colors duration-200 hover:text-white"
                   >
                     {link.label}
                   </Link>

@@ -247,7 +247,7 @@ export function SiteHeader() {
             >
               <div className="flex items-center gap-3 pl-3">
                 <div className="h-4 w-px shrink-0 bg-white/20" aria-hidden />
-                <Button href="/contact" variant="secondary" size="sm" className="shrink-0 btn-chrome-pill">
+                <Button href="/contact" variant="secondary" size="sm" className="shrink-0 rounded-full">
                   Request Proposal
                 </Button>
               </div>
@@ -272,7 +272,7 @@ export function SiteHeader() {
                 Portal
               </Link>
               <div className="h-4 w-px bg-white/20" aria-hidden />
-              <Button href="/contact" variant="secondary" size="sm" className="btn-chrome-pill">
+              <Button href="/contact" variant="secondary" size="sm">
                 Request Proposal
               </Button>
             </div>

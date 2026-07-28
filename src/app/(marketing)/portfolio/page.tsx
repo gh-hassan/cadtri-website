@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   description:
     "A selection of CADTRI's residential, commercial, and mixed-use projects — ADU packages, home additions, tenant improvements, and permit-ready architectural drawings.",
   robots: { index: false },
+  alternates: { canonical: "/portfolio" },
 };
 
 // ─── Access check ─────────────────────────────────────────────────────────────

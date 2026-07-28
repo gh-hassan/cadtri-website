@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   description:
     "CADTRI project process from intake to permit issuance. Eight stages, one point of contact, and a first-pass approval focus on every project.",
   robots: { index: false },
+  alternates: { canonical: "/process-overview" },
 };
 
 // ─── Data ─────────────────────────────────────────────────────────────────────

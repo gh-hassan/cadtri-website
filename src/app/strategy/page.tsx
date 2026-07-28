@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Get Your Free Project Strategy",
   description:
     "Tell us about your property or project and receive a free, tailored project strategy from CADTRI, whether evaluating an investment or planning a build.",
+  alternates: { canonical: "/strategy" },
 };
 
 export default function StrategyPage() {

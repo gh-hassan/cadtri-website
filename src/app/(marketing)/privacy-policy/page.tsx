@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Privacy Policy",
   description: `Privacy policy for ${company.legalName}. How we collect, use, and protect information submitted through our website.`,
   robots: { index: false },
+  alternates: { canonical: "/privacy-policy" },
 };
 
 // NOTE: This privacy policy is a placeholder for launch purposes.

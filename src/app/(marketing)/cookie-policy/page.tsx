@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Cookie Policy",
   description: `Cookie policy for ${company.legalName}. How we use cookies and similar technologies on our website.`,
   robots: { index: false },
+  alternates: { canonical: "/cookie-policy" },
 };
 
 export default function CookiePolicyPage() {

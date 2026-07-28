@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Get a Pricing Estimate",
   description:
     "Answer a few quick questions about your project and receive a tailored pricing estimate from CADTRI within one business day.",
+  alternates: { canonical: "/pricing" },
 };
 
 export default function PricingPage() {

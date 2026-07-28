@@ -163,7 +163,67 @@ function StandardLayout({ service }: { service: NonNullable<ReturnType<typeof ge
             </div>
           </div>
         </div>
+
+        {/* Process highlights — stat strip */}
+        {service.processHighlights && service.processHighlights.length > 0 && (
+          <div className="mt-14 grid gap-px border-x border-b border-t border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+            {service.processHighlights.map((h) => (
+              <div key={h.label} className="bg-surface px-7 py-6">
+                <p className="mb-2 text-[10px] font-medium uppercase tracking-widest text-secondary">
+                  {h.label}
+                </p>
+                <p className="font-bold text-xl text-foreground" style={{ letterSpacing: "-0.02em" }}>
+                  {h.value}
+                </p>
+              </div>
+            ))}
+          </div>
+        )}
       </Section>
+
+      {/* How we draft it — numbered steps */}
+      {service.steps && service.steps.length > 0 && (
+        <Section variant="dark" className="border-t border-border">
+          <div className="mb-14 border-b border-white/10 pb-14">
+            <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
+              How It Works
+            </p>
+            <h2
+              className="font-bold text-3xl text-primary-foreground sm:text-4xl"
+              style={{ letterSpacing: "-0.025em" }}
+            >
+              The process, step by step.
+            </h2>
+          </div>
+
+          <ol role="list" className="flex flex-col gap-0">
+            {service.steps.map((step, i) => (
+              <li
+                key={step.title}
+                className="grid grid-cols-[3rem_1fr] gap-x-8 border-b border-white/10 py-10 first:border-t lg:grid-cols-[5rem_1fr] lg:gap-x-12"
+              >
+                <div className="pt-0.5">
+                  <span
+                    className="block font-bold tabular-nums text-secondary"
+                    style={{ fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.04em", lineHeight: 1 }}
+                    aria-hidden
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
+                <div className="flex flex-col gap-2">
+                  <h3 className="font-bold text-xl text-primary-foreground" style={{ letterSpacing: "-0.015em" }}>
+                    {step.title}
+                  </h3>
+                  <p className="font-light leading-relaxed text-white/60">
+                    {step.description}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </Section>
+      )}
 
       {/* What's included */}
       <Section variant="surface" className="border-t border-border">
@@ -192,6 +252,25 @@ function StandardLayout({ service }: { service: NonNullable<ReturnType<typeof ge
             </div>
           ))}
         </div>
+
+        {/* Output formats */}
+        {service.outputFormats && service.outputFormats.length > 0 && (
+          <div className="mt-12">
+            <p className="mb-5 text-[11px] font-medium uppercase tracking-widest text-foreground">
+              Delivered In
+            </p>
+            <ul role="list" className="flex flex-wrap gap-2">
+              {service.outputFormats.map((f) => (
+                <li
+                  key={f}
+                  className="border border-border bg-background px-4 py-2 text-[11px] font-medium uppercase tracking-wider text-muted"
+                >
+                  {f}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </Section>
 
       {/* Who it's for */}
@@ -228,9 +307,33 @@ function StandardLayout({ service }: { service: NonNullable<ReturnType<typeof ge
         </div>
       </Section>
 
+      {/* FAQ */}
+      {service.faqs && service.faqs.length > 0 && (
+        <Section variant="surface" className="border-t border-border">
+          <div className="mb-14 border-b border-border pb-14">
+            <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
+              Frequently Asked
+            </p>
+            <h2 className="font-bold text-3xl text-foreground sm:text-4xl" style={{ letterSpacing: "-0.025em" }}>
+              Common questions.
+            </h2>
+          </div>
+          <dl className="divide-y divide-border border-b border-border">
+            {service.faqs.map((faq) => (
+              <div key={faq.question} className="grid gap-x-10 gap-y-3 py-8 lg:grid-cols-[1fr_1.4fr]">
+                <dt className="font-bold text-foreground" style={{ letterSpacing: "-0.02em" }}>
+                  {faq.question}
+                </dt>
+                <dd className="text-sm font-light leading-relaxed text-muted">{faq.answer}</dd>
+              </div>
+            ))}
+          </dl>
+        </Section>
+      )}
+
       {/* Related services */}
       {related.length > 0 && (
-        <Section variant="surface" className="border-t border-border">
+        <Section variant="default" className="border-t border-border">
           <div className="mb-12 flex items-end justify-between gap-8">
             <div>
               <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">

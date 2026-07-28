@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   title: { absolute: "Industries We Serve | CADTRI Drafting & Permit Services" },
   description:
     "CADTRI provides permit-ready architectural drafting for residential, commercial, hospitality, and mixed-use construction projects nationwide.",
+  alternates: { canonical: "/industries" },
 };
 
 export default function IndustriesPage() {

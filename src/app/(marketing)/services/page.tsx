@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   title: "Architectural Drafting & Permit Services",
   description:
     "42 specialized architectural drafting and permit services: ADU packages, permit set preparation, Title 24 compliance, structural coordination, and more.",
+  alternates: { canonical: "/services" },
 };
 
 export default function ServicesPage() {

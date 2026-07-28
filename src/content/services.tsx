@@ -98,6 +98,19 @@ export const services: readonly Service[] = [
     tagline:  "Complete, permit-ready architectural drafting services for residential and commercial construction projects.",
     overview:
       "We provide architectural CAD drafting services designed for real-world permit approval. Every drawing package is built to the specific submission requirements of the applicable jurisdiction: all required plan sheets, code compliance notes, and coordinated documentation produced to clear plan check without unnecessary correction cycles. Whether the project is a single-family addition, a ground-up commercial building, or an ADU, the drawings are prepared to the standard the building department expects.",
+    processHighlights: [
+      { label: "Software",             value: "AutoCAD / Revit" },
+      { label: "File Formats",         value: "PDF, DWG, RVT" },
+      { label: "Typical Turnaround",   value: "7-10 Days" },
+      { label: "Revisions",            value: "Included" },
+    ],
+    steps: [
+      { title: "Site and Document Review",         description: "We review existing drawings, surveys, photos, or field measurements available for the project, along with any jurisdiction-specific submission requirements that affect sheet format and content." },
+      { title: "Base Drawing Production",           description: "Floor plans, elevations, sections, and the site plan are drafted in CAD to scale, with all dimensions, structural elements, and existing conditions established before code annotations are added." },
+      { title: "Code and Compliance Annotation",    description: <>Applicable code sections, zoning notes, <Link href="/services/title-24-energy-compliance" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">energy compliance</Link> references, and accessibility requirements are added directly to the drawings, coordinated with any required compliance forms.</> },
+      { title: "Internal Review and Delivery",      description: "Every sheet is checked for dimensional accuracy, cross-reference consistency, and completeness against the jurisdiction's submission checklist before the set is delivered in your required file formats." },
+    ],
+    outputFormats: ["PDF (Print-Ready)", "DWG (AutoCAD)", "RVT (Revit)", "IFC (BIM Exchange)"],
     includes: [
       { title: "Floor Plans",       description: "Dimensioned floor plans for all levels, including existing and proposed conditions where required by the jurisdiction." },
       { title: "Elevations",        description: "Exterior building elevations showing all facades, heights, finish materials, and opening locations." },
@@ -105,6 +118,8 @@ export const services: readonly Service[] = [
       { title: "Site Plan",         description: "Site layout showing setbacks, property lines, access, drainage, and utility connections." },
       { title: "Details and Notes", description: "Construction details, material callouts, applicable code sections, and jurisdictional compliance notes." },
       { title: "Title Sheet",       description: "Project identification, code summary, scope of work, applicable codes, and complete sheet index." },
+      { title: "Schedules and Legends", description: "Door, window, and finish schedules along with drawing legends and symbol keys referenced throughout the set." },
+      { title: "Digital File Delivery", description: "Print-ready PDF for submission plus native DWG or RVT files for your own records or for contractor use." },
     ],
     audience: [
       { title: "General Contractors",    description: "Need a complete permit set before pulling a building permit on a residential or commercial project." },
@@ -114,6 +129,15 @@ export const services: readonly Service[] = [
     ],
     whyItMatters:
       "One of the most common reasons projects get delayed during plan review is incomplete construction documentation. Missing sheets, uncoordinated details, or drawings that do not address jurisdiction-specific requirements send packages back for corrections that cost time and schedule. A professionally prepared architectural drawing set addresses the code requirements specific to the jurisdiction and gives plan checkers a set that is straightforward to approve from the first submission.",
+    faqs: [
+      { question: "What software do you use for architectural drafting?", answer: "We draft primarily in AutoCAD and Revit, and can work in the format your project or jurisdiction requires. Revit is used for projects that benefit from BIM coordination; AutoCAD covers straightforward 2D permit sets." },
+      { question: "What file formats do you deliver?", answer: "Print-ready PDF for submission, plus native DWG or RVT files if you need editable drawings for your own records or for a contractor's use." },
+      { question: "Is architectural drafting the same as hiring an architect?", answer: <>No. Architectural drafting produces the technical drawings a building department requires. It does not include the licensed design services, stamped structural engineering, or code interpretation that require a licensed architect or engineer. Many jurisdictions allow non-structural residential drawings to be prepared by a qualified drafting service; we confirm the requirement for your specific project during <Link href="/permitting" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">jurisdiction research</Link>.</> },
+      { question: "Can you draft from a sketch or from scratch?", answer: <>Yes. We work from hand sketches, existing drawings, field measurements, or a written scope description. For renovation and addition projects, we can also produce the <Link href="/services/as-built-documentation" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">as-built existing conditions drawings</Link> first if none exist.</> },
+      { question: "How many revision rounds are included?", answer: "Revisions during the initial drafting phase are included as part of the engagement. If a jurisdiction issues plan check corrections after submission, that is handled as a separate city comments response engagement." },
+      { question: "What scale and sheet size do you use?", answer: "Drawings are produced at the scale and sheet size the specific jurisdiction requires for the project type, typically 1/4\" or 1/8\" scale on 24x36 or 30x42 sheets for permit submission, confirmed during jurisdiction research." },
+      { question: "Do you provide structural engineering with architectural drafting?", answer: <>No, but we coordinate directly with your structural engineer of record to integrate their drawings into the architectural set. See <Link href="/services/structural-coordination" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">Structural Coordination</Link> for that service.</> },
+    ],
     relatedSlugs: ["permit-set-preparation", "structural-coordination", "code-compliance-review"],
   },
 

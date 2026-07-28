@@ -322,4 +322,43 @@
   }
   .prose-cadtri a:hover { color: var(--color-foreground); }
   .prose-cadtri img { width: 100%; border: 1px solid var(--color-border); margin: 2.5rem 0; }
+
+  /* Tables */
+  .prose-cadtri table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    font-size: 0.875rem;
+    -webkit-overflow-scrolling: touch;
+  }
+  .prose-cadtri thead {
+    background: var(--color-primary);
+  }
+  .prose-cadtri th {
+    padding: 0.625rem 0.875rem;
+    text-align: left;
+    color: var(--color-primary-foreground);
+    font-weight: 600;
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+    border-right: 1px solid rgba(255,255,255,0.08);
+  }
+  .prose-cadtri th:last-child { border-right: none; }
+  .prose-cadtri td {
+    padding: 0.625rem 0.875rem;
+    border-bottom: 1px solid var(--color-border);
+    border-right: 1px solid var(--color-border);
+    color: var(--color-muted);
+    font-weight: 300;
+    line-height: 1.55;
+    vertical-align: top;
+    min-width: 100px;
+  }
+  .prose-cadtri td:last-child { border-right: none; }
+  .prose-cadtri tbody tr:nth-child(even) td { background: var(--color-surface); }
+  .prose-cadtri tbody tr:last-child td { border-bottom: 1px solid var(--color-border); }
 }

@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   description:
     "CADTRI full capability statement. Architectural drafting, permit set preparation, and permit coordination for residential and commercial projects nationwide.",
   robots: { index: false },
+  alternates: { canonical: "/capability-statement" },
 };
 
 // ─── Data ─────────────────────────────────────────────────────────────────────

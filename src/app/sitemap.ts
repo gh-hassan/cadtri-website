@@ -7,15 +7,27 @@ const base = company.website;
 
 // Update these dates only when the corresponding content actually changes.
 // Using new Date() on every build trains Google to distrust the lastmod signal.
-const SITE_LAUNCH   = "2026-05-25";
-const SERVICES_DATE = "2026-05-25";
+const SITE_LAUNCH         = "2026-05-25";
+const SERVICES_DATE       = "2026-05-25";
+const PERMITTING_DATE     = "2026-07-27";
+const COORDINATION_DATE   = "2026-07-27";
+const PERMIT_DWGS_DATE    = "2026-07-27";
+const STRUCTURAL_DWG_DATE = "2026-07-27";
+const MEP_DWG_DATE        = "2026-07-27";
+const RENDERINGS_DATE     = "2026-07-27";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes: MetadataRoute.Sitemap = [
-    { url: base,                lastModified: SITE_LAUNCH },
-    { url: `${base}/about`,     lastModified: SITE_LAUNCH },
-    { url: `${base}/services`,  lastModified: SERVICES_DATE },
-    { url: `${base}/process`,   lastModified: SITE_LAUNCH },
+    { url: base,                            lastModified: SITE_LAUNCH },
+    { url: `${base}/about`,                 lastModified: SITE_LAUNCH },
+    { url: `${base}/services`,              lastModified: SERVICES_DATE },
+    { url: `${base}/permitting`,            lastModified: PERMITTING_DATE },
+    { url: `${base}/coordination`,          lastModified: COORDINATION_DATE },
+    { url: `${base}/permit-drawings`,       lastModified: PERMIT_DWGS_DATE },
+    { url: `${base}/structural-drafting`,   lastModified: STRUCTURAL_DWG_DATE },
+    { url: `${base}/mep-drafting`,          lastModified: MEP_DWG_DATE },
+    { url: `${base}/renderings-walkthroughs`, lastModified: RENDERINGS_DATE },
+    { url: `${base}/process`,               lastModified: SITE_LAUNCH },
     { url: `${base}/resources`, lastModified: SITE_LAUNCH },
     { url: `${base}/blog`,      lastModified: SITE_LAUNCH },
     { url: `${base}/pricing`,   lastModified: SITE_LAUNCH },

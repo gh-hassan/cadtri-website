@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Terms of Service",
   description: `Terms of service for ${company.legalName}. Terms governing the use of our website and professional drafting and permit services.`,
   robots: { index: false },
+  alternates: { canonical: "/terms" },
 };
 
 // NOTE: This terms of service is a placeholder for launch purposes.

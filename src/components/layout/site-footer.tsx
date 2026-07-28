@@ -6,12 +6,16 @@ import { CadtriLogo } from "@/components/shared/logo";
 // ─── Constants ──────────────────────────────────────────────────────────────
 
 const navLinks = [
-  { label: "About",     href: "/about"      },
-  { label: "Services",  href: "/services"   },
-  { label: "Process",   href: "/process"    },
-  { label: "Portfolio", href: "/portfolio"  },
-  { label: "Blog",      href: "/blog"       },
-  { label: "Contact",   href: "/contact"    },
+  { label: "About",               href: "/about"               },
+  { label: "Services",            href: "/services"            },
+  { label: "Permit Drawings",     href: "/permit-drawings"     },
+  { label: "Structural Drafting", href: "/structural-drafting" },
+  { label: "Permitting",          href: "/permitting"          },
+  { label: "Coordination",        href: "/coordination"        },
+  { label: "Process",             href: "/process"             },
+  { label: "Portfolio",           href: "/portfolio"           },
+  { label: "Blog",                href: "/blog"                },
+  { label: "Contact",             href: "/contact"             },
 ] as const;
 
 const legalLinks = [
@@ -42,7 +46,7 @@ export function SiteFooter() {
 
           {/* Nav links */}
           <nav aria-label="Footer navigation">
-            <ul role="list" className="flex flex-nowrap items-center gap-x-6 gap-y-3">
+            <ul role="list" className="flex flex-wrap items-center gap-x-5 gap-y-3">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <Link

@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "Permit & Drafting Resource Guides",
   description:
     "Free guides on ADU permits, plan check corrections, pre-application meetings, and what goes inside a permit set — covering permit jurisdictions nationwide.",
+  alternates: { canonical: "/resources" },
 };
 
 export default async function ResourcesPage() {

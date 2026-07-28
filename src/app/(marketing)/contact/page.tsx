@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Request a Proposal",
   description:
     "Submit your project details to CADTRI. We review every inquiry and respond with a clear scope of work, timeline, and fee estimate within one business day.",
+  alternates: { canonical: "/contact" },
 };
 
 // ─── What to include — for the left column ───────────────────────────────────

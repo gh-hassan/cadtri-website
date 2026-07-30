@@ -8,7 +8,6 @@ import { company } from "@/content/company";
 import {
   BreadcrumbJsonLd,
   ServiceJsonLd,
-  HowToJsonLd,
   FaqJsonLd,
 } from "@/lib/json-ld";
 
@@ -220,11 +219,6 @@ export default function RenderingsWalkthroughsPage() {
         description="Architectural renderings, 3D staging, and interactive video walkthroughs for residential and commercial projects, produced from the architectural drawings."
         url={`${company.website}/renderings-walkthroughs`}
         category="Visualization"
-      />
-      <HowToJsonLd
-        name="How Renderings and Video Walkthroughs Are Produced"
-        description="The five stages a project moves through from architectural drawings to finished renderings, staged imagery, or an interactive walkthrough."
-        steps={visualizationProcess.map((step) => ({ name: step.title, text: step.description }))}
       />
       <FaqJsonLd items={faqs.map((f) => ({ question: f.question, answer: f.answer }))} />
 

@@ -4,7 +4,7 @@ import { Section } from "@/components/shared/section";
 import { CtaBand } from "@/components/shared/cta-band";
 import { Button } from "@/components/shared/button";
 import { team } from "@/content/team";
-import { AboutPageJsonLd } from "@/lib/json-ld";
+import { AboutPageJsonLd, BreadcrumbJsonLd } from "@/lib/json-ld";
 
 export const metadata: Metadata = {
   title: {
@@ -90,6 +90,12 @@ export default function AboutPage() {
   return (
     <>
       <AboutPageJsonLd />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", href: "/" },
+          { name: "About", href: "/about" },
+        ]}
+      />
       {/* ── Hero ─────────────────────────────────────────────────────────────── */}
       <section className="bg-primary pb-32 pt-20 sm:pb-40 sm:pt-28">
         <div className="container mx-auto max-w-container px-6">

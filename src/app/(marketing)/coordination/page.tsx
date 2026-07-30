@@ -1,16 +1,78 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Layers, Boxes, MessageSquare } from "lucide-react";
 import { PageHeader } from "@/components/shared/page-header";
 import { Section } from "@/components/shared/section";
 import { CtaBand } from "@/components/shared/cta-band";
+import { TableOfContents } from "@/components/shared/table-of-contents";
+import { ComparisonTable } from "@/components/shared/comparison-table";
 import { getServiceBySlug } from "@/content/services";
 import { company } from "@/content/company";
 import {
   BreadcrumbJsonLd,
   ServiceJsonLd,
-  HowToJsonLd,
   FaqJsonLd,
 } from "@/lib/json-ld";
+
+const tocItems = [
+  { id: "overview",  label: "Overview" },
+  { id: "process",   label: "The Process" },
+  { id: "methods",   label: "Methods" },
+  { id: "services",  label: "Services" },
+  { id: "pitfalls",  label: "Common Pitfalls" },
+  { id: "by-type",   label: "By Project Type" },
+  { id: "glossary",  label: "Glossary" },
+  { id: "faq",       label: "FAQ" },
+];
+
+const coordinationMethods: { method: React.ReactNode; catches: string; projectSize: string; output: string }[] = [
+  {
+    method: <span className="flex items-center gap-2"><Layers size={16} strokeWidth={1.5} className="shrink-0 text-secondary" aria-hidden /> 2D Discipline Cross-Check</span>,
+    catches: "Dimensional and reference conflicts between architectural, structural, and MEP sheets.",
+    projectSize: "Most residential and small commercial projects",
+    output: "Annotated conflict log and updated coordinated sheets",
+  },
+  {
+    method: <span className="flex items-center gap-2"><Boxes size={16} strokeWidth={1.5} className="shrink-0 text-secondary" aria-hidden /> Federated BIM Clash Detection</span>,
+    catches: "Automated 3D spatial clashes across every trade modeled in the project.",
+    projectSize: "Multi-family, institutional, and complex commercial",
+    output: "Clash detection report and a resolved federated model",
+  },
+  {
+    method: <span className="flex items-center gap-2"><MessageSquare size={16} strokeWidth={1.5} className="shrink-0 text-secondary" aria-hidden /> Construction-Phase RFI Coordination</span>,
+    catches: "Field conditions and consultant revisions discovered after permit issuance.",
+    projectSize: "Any project once construction begins",
+    output: "RFI log tracked to resolution and as-built alignment",
+  },
+];
+
+const glossaryTerms: { term: string; definition: string; href?: string }[] = [
+  {
+    term: "Clash Detection",
+    definition: "The automated process of checking a federated 3D model for physical conflicts between disciplines before construction begins.",
+    href: "/blog/cad-vs-bim",
+  },
+  {
+    term: "Federated Model",
+    definition: "A combined 3D model built by merging each discipline's individual model into one shared reference used for coordination review.",
+  },
+  {
+    term: "RFI (Request for Information)",
+    definition: "A formal question submitted during construction when the drawings don't fully answer a field condition, tracked to a documented resolution.",
+  },
+  {
+    term: "Coordination Set",
+    definition: "The combined package of architectural, structural, and MEP sheets, updated to reflect confirmed cross-discipline references.",
+  },
+  {
+    term: "Discipline",
+    definition: "An individual area of design responsibility, architectural, structural, MEP, or civil, that must be checked against every other discipline on a project.",
+  },
+  {
+    term: "Sheet Reference",
+    definition: "A callout on one discipline's drawing pointing to a detail, section, or note on another discipline's sheet, a common failure point when versions fall out of sync.",
+  },
+];
 
 export const metadata: Metadata = {
   title: { absolute: "Coordination Services | Multi-Discipline Drawings | CADTRI" },
@@ -154,23 +216,43 @@ const faqs: { question: string; answer: string }[] = [
     answer:
       "We review both sets side by side, identify conflicts, and produce a combined, coordinated package. Existing drawings do not need to be redrawn from scratch to bring them into coordination.",
   },
+  {
+    question: "What's the actual difference between CAD coordination and BIM coordination?",
+    answer:
+      "CAD coordination compares 2D drawings from each discipline sheet by sheet. BIM coordination merges each discipline's 3D model into one federated model and runs automated clash detection across every trade at once, catching spatial conflicts a 2D review can miss.",
+  },
+  {
+    question: "Do you use 3D laser scanning to coordinate renovation and addition projects?",
+    answer:
+      "For projects with uncertain or undocumented existing conditions, scan-to-BIM captures the as-built structure accurately before new work is coordinated against it, reducing the risk of designing an addition against dimensions that turn out to be wrong.",
+  },
+  {
+    question: "How is a clash detection report delivered?",
+    answer:
+      "As an itemized list of identified conflicts, each tagged to the disciplines involved and its location in the model, alongside the resolved federated model once every item has been closed out with the responsible consultant.",
+  },
 ];
 
 const relatedReading: { title: string; description: string; href: string }[] = [
   {
-    title: "What Is a Permit Set? A Contractor's Guide",
-    description: "Why structural, MEP, and architectural sheets have to agree before submission.",
-    href: "/resources/what-is-a-permit-set",
+    title: "CAD vs BIM: What's the Difference?",
+    description: "The honest comparison of what each does, and when a project actually needs BIM coordination.",
+    href: "/blog/cad-vs-bim",
   },
   {
-    title: "What Is a Pre-Application Meeting in Construction?",
-    description: "Getting jurisdiction and consultant questions answered before design work begins.",
-    href: "/resources/pre-application-meeting-construction",
+    title: "What Is Scan-to-BIM?",
+    description: "How 3D laser scanning creates accurate models for coordinating additions and renovations.",
+    href: "/blog/what-is-scan-to-bim",
   },
   {
-    title: "How to Respond to Plan Check Corrections",
-    description: "Closing out multi-discipline correction comments in a single resubmittal.",
-    href: "/resources/how-to-respond-to-plan-check-corrections",
+    title: "2D Drafting vs 3D Modeling",
+    description: "When 2D coordination is enough, and when a project is worth modeling in 3D.",
+    href: "/blog/2d-vs-3d-drafting",
+  },
+  {
+    title: "Commercial vs. Residential Drawings",
+    description: "Why commercial projects carry a heavier coordination load than residential ones.",
+    href: "/blog/commercial-vs-residential-drawings",
   },
 ];
 
@@ -205,11 +287,6 @@ export default function CoordinationPage() {
         url={`${company.website}/coordination`}
         category="Coordination"
       />
-      <HowToJsonLd
-        name="How Multi-Discipline Drawing Coordination Works"
-        description="The five stages a project moves through to bring architectural, structural, MEP, and consultant drawings into one coordinated set."
-        steps={coordinationProcess.map((step) => ({ name: step.title, text: step.description }))}
-      />
       <FaqJsonLd items={faqs.map((f) => ({ question: f.question, answer: f.answer }))} />
 
       <PageHeader
@@ -218,8 +295,10 @@ export default function CoordinationPage() {
         description="Architectural, structural, MEP, and consultant drawings rarely start in agreement. CADTRI reviews every discipline against the others, resolves conflicts directly with the responsible engineer, and delivers one coordinated package instead of a stack of documents that disagree."
       />
 
+      <TableOfContents items={tocItems} />
+
       {/* ── What coordination services cover ─────────────────────────────────── */}
-      <Section variant="default">
+      <Section variant="default" id="overview">
         <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
@@ -266,7 +345,7 @@ export default function CoordinationPage() {
       </Section>
 
       {/* ── How coordination works ───────────────────────────────────────────── */}
-      <Section variant="surface" className="border-t border-border">
+      <Section variant="surface" className="border-t border-border" id="process">
         <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
@@ -315,8 +394,56 @@ export default function CoordinationPage() {
         </ul>
       </Section>
 
+      {/* ── Coordination methods compared ────────────────────────────────────── */}
+      <Section variant="default" className="border-t border-border" id="methods">
+        <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
+          <div>
+            <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
+              Methods Compared
+            </p>
+            <h2
+              className="font-bold text-foreground"
+              style={{
+                fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
+                letterSpacing: "-0.03em",
+                lineHeight: 1.1,
+              }}
+            >
+              Three coordination methods, one goal.
+            </h2>
+          </div>
+          <div className="flex items-end">
+            <p className="font-light leading-relaxed text-muted">
+              Not every project needs a federated BIM model, and every project needs
+              coordination to continue once construction starts. Here's what each
+              method actually catches.
+            </p>
+          </div>
+        </div>
+
+        <ComparisonTable
+          caption="Coordination Methods"
+          columns={["Method", "What It Catches", "Typical Project Size", "Output"]}
+          rows={coordinationMethods.map((m) => [m.method, m.catches, m.projectSize, m.output])}
+          highlightRow={1}
+        />
+
+        <p className="mt-6 text-sm font-light leading-relaxed text-muted">
+          Most residential and small commercial projects only need a 2D cross-check.
+          Read more on{" "}
+          <Link href="/blog/cad-vs-bim" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">
+            CAD versus BIM coordination
+          </Link>{" "}
+          and when{" "}
+          <Link href="/blog/2d-vs-3d-drafting" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">
+            3D modeling is worth the added cost
+          </Link>
+          .
+        </p>
+      </Section>
+
       {/* ── Coordination services directory ──────────────────────────────────── */}
-      <Section variant="default" className="border-t border-border">
+      <Section variant="surface" className="border-t border-border" id="services">
         <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
@@ -347,7 +474,7 @@ export default function CoordinationPage() {
               <li key={service.slug}>
                 <Link
                   href={`/services/${service.slug}`}
-                  className="group block transition-colors duration-200 hover:bg-surface"
+                  className="group block transition-colors duration-200 hover:bg-background"
                 >
                   <article className="grid grid-cols-[2.5rem_1fr] items-start gap-x-6 px-7 py-8 lg:grid-cols-[2.5rem_1fr_9rem] lg:items-center lg:gap-x-8 lg:px-9">
                     <span className="pt-0.5 text-[11px] font-medium tabular-nums text-secondary lg:pt-0" aria-hidden>
@@ -381,7 +508,7 @@ export default function CoordinationPage() {
       </Section>
 
       {/* ── Where coordination breaks down ───────────────────────────────────── */}
-      <Section variant="dark" className="border-t border-border">
+      <Section variant="dark" className="border-t border-border" id="pitfalls">
         <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
@@ -429,7 +556,7 @@ export default function CoordinationPage() {
       </Section>
 
       {/* ── Where coordination matters most ──────────────────────────────────── */}
-      <Section variant="surface" className="border-t border-border">
+      <Section variant="surface" className="border-t border-border" id="by-type">
         <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
@@ -474,8 +601,56 @@ export default function CoordinationPage() {
         </div>
       </Section>
 
+      {/* ── Glossary ──────────────────────────────────────────────────────────── */}
+      <Section variant="default" className="border-t border-border" id="glossary">
+        <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
+          <div>
+            <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
+              Glossary
+            </p>
+            <h2
+              className="font-bold text-foreground"
+              style={{
+                fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
+                letterSpacing: "-0.03em",
+                lineHeight: 1.1,
+              }}
+            >
+              Coordination terms, defined.
+            </h2>
+          </div>
+          <div className="flex items-end">
+            <p className="font-light leading-relaxed text-muted">
+              The vocabulary consultants and BIM managers use without explaining it.
+              Six terms worth knowing before your first coordination meeting.
+            </p>
+          </div>
+        </div>
+
+        <dl className="grid gap-px border-x border-b border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+          {glossaryTerms.map((item) => (
+            <div key={item.term} className="flex flex-col gap-3 bg-surface px-7 py-7">
+              <dt className="font-bold text-foreground" style={{ letterSpacing: "-0.02em" }}>
+                {item.term}
+              </dt>
+              <dd className="flex-1 text-sm font-light leading-relaxed text-muted">
+                {item.definition}
+              </dd>
+              {item.href && (
+                <Link
+                  href={item.href}
+                  className="inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-widest text-secondary hover:text-primary transition-colors duration-150"
+                >
+                  Read More <span aria-hidden>→</span>
+                </Link>
+              )}
+            </div>
+          ))}
+        </dl>
+      </Section>
+
       {/* ── FAQ ───────────────────────────────────────────────────────────────── */}
-      <Section variant="default" className="border-t border-border">
+      <Section variant="surface" className="border-t border-border" id="faq">
         <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
@@ -507,7 +682,7 @@ export default function CoordinationPage() {
       </Section>
 
       {/* ── Related reading ──────────────────────────────────────────────────── */}
-      <Section variant="surface" className="border-t border-border">
+      <Section variant="default" className="border-t border-border" id="resources">
         <div className="mb-14">
           <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
             From the Blog
@@ -524,12 +699,12 @@ export default function CoordinationPage() {
           </h2>
         </div>
 
-        <div className="grid gap-px border-x border-b border-border bg-border sm:grid-cols-3">
+        <div className="grid gap-px border-x border-b border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
           {relatedReading.map((post) => (
             <Link
               key={post.href}
               href={post.href}
-              className="group flex flex-col gap-3 bg-background px-8 py-8 transition-colors duration-200 hover:bg-surface"
+              className="group flex flex-col gap-3 bg-surface px-8 py-8 transition-colors duration-200 hover:bg-background"
             >
               <h3
                 className="font-bold text-foreground transition-colors duration-200 group-hover:text-secondary"

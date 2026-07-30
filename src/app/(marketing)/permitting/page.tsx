@@ -1,16 +1,89 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { MapPin, Clock, Zap, Gavel, DoorOpen } from "lucide-react";
 import { PageHeader } from "@/components/shared/page-header";
 import { Section } from "@/components/shared/section";
 import { CtaBand } from "@/components/shared/cta-band";
+import { TableOfContents } from "@/components/shared/table-of-contents";
+import { ComparisonTable } from "@/components/shared/comparison-table";
 import { services } from "@/content/services";
 import { company } from "@/content/company";
 import {
   BreadcrumbJsonLd,
   ServiceJsonLd,
-  HowToJsonLd,
   FaqJsonLd,
 } from "@/lib/json-ld";
+
+const tocItems = [
+  { id: "overview",      label: "Overview" },
+  { id: "process",       label: "The Process" },
+  { id: "review-tracks", label: "Review Tracks" },
+  { id: "services",      label: "Services" },
+  { id: "pitfalls",      label: "Rejection Reasons" },
+  { id: "by-state",      label: "By State" },
+  { id: "glossary",      label: "Glossary" },
+  { id: "faq",           label: "FAQ" },
+];
+
+const reviewTracks: { track: React.ReactNode; timeline: string; cost: string; bestFor: string }[] = [
+  {
+    track: <span className="flex items-center gap-2"><DoorOpen size={16} strokeWidth={1.5} className="shrink-0 text-secondary" aria-hidden /> Over-the-Counter</span>,
+    timeline: "Same day to about 1 week",
+    cost: "No added fee",
+    bestFor: "Simple, clearly code-compliant residential scope with no zoning ambiguity.",
+  },
+  {
+    track: <span className="flex items-center gap-2"><Clock size={16} strokeWidth={1.5} className="shrink-0 text-secondary" aria-hidden /> Standard Plan Check</span>,
+    timeline: "2 to 4 weeks, often stretching to 4 to 8",
+    cost: "Included in the standard permit fee",
+    bestFor: "Most residential and small commercial projects with no discretionary component.",
+  },
+  {
+    track: <span className="flex items-center gap-2"><Zap size={16} strokeWidth={1.5} className="shrink-0 text-secondary" aria-hidden /> Express / Expedited Plan Check</span>,
+    timeline: "A few days to about 2 weeks",
+    cost: "$200 to $1,000 added fee, where the jurisdiction offers it",
+    bestFor: "Time-sensitive projects where a faster paid review track exists.",
+  },
+  {
+    track: <span className="flex items-center gap-2"><Gavel size={16} strokeWidth={1.5} className="shrink-0 text-secondary" aria-hidden /> Discretionary Review</span>,
+    timeline: "Several weeks to multiple months",
+    cost: "Application and public hearing fees",
+    bestFor: "Projects requiring a variance, conditional use permit, or design review board approval.",
+  },
+];
+
+const glossaryTerms: { term: string; definition: string; href?: string }[] = [
+  {
+    term: "Permit Set",
+    definition: "The complete package of drawings and supporting documentation submitted to a building department for review.",
+    href: "/blog/what-is-a-permit-set",
+  },
+  {
+    term: "Plan Check",
+    definition: "The formal review a building department performs to verify a submission against applicable building, zoning, energy, and life safety codes.",
+    href: "/blog/how-plan-check-works",
+  },
+  {
+    term: "Zoning Clearance",
+    definition: "Confirmation that a proposed use is allowed on the property, checked separately from the building permit review itself.",
+    href: "/blog/what-is-a-zoning-clearance",
+  },
+  {
+    term: "Ministerial vs. Discretionary Review",
+    definition: "Ministerial approval is automatic once code compliance is verified. Discretionary review adds planning judgment and, often, a public hearing.",
+    href: "/blog/ministerial-vs-discretionary-review",
+  },
+  {
+    term: "Correction Notice",
+    definition: "The plan checker's itemized list of what must be resolved before approval, typically using specific language like \"provide,\" \"clarify,\" or \"revise.\"",
+    href: "/blog/provide-clarify-revise-correction-language",
+  },
+  {
+    term: "Permit-Ready",
+    definition: "A drawing set complete enough to submit for review. Not a regulated term, and not a guarantee of approval on any specific timeline.",
+    href: "/blog/what-permit-ready-means",
+  },
+];
 
 export const metadata: Metadata = {
   title: { absolute: "Permitting Services | Permit-Ready Drawings | CADTRI" },
@@ -154,28 +227,58 @@ const faqs: { question: string; answer: string }[] = [
     answer:
       "Yes. CADTRI supports permitting projects across more than 40 states, with concentrated experience in Florida, Texas, and North Carolina. Every project starts with jurisdiction-specific research regardless of location.",
   },
+  {
+    question: "How much do permit drawings cost?",
+    answer:
+      "Most residential permit drawings cost between $500 and $8,000, though the range is wide and depends heavily on project type, jurisdiction, and scope. A quote is only meaningful once we know the specific project.",
+  },
+  {
+    question: "Why does plan check take so long?",
+    answer:
+      "Standard plan check typically runs two to four weeks but regularly stretches to four to eight or longer. This is usually a function of department staffing and seasonal submission volume, not a sign of a problem with the application.",
+  },
+  {
+    question: "What's the difference between a permit set, construction documents, and a bid set?",
+    answer:
+      "For most residential projects, the terms are used interchangeably. On larger commercial work, a bid set is issued to contractors for pricing before construction documents are finalized, and the permit set may be a subset of the full construction documents.",
+  },
+  {
+    question: "Do coastal or hurricane-prone projects cost more to permit?",
+    answer:
+      "Yes, in wind-load jurisdictions. In Florida, hurricane wind-load requirements typically add 20 to 50 percent to permit drawing costs due to the additional structural detailing and impact-resistance documentation required.",
+  },
 ];
 
 const relatedReading: { title: string; description: string; href: string }[] = [
   {
-    title: "What Is a Permit Set? A Contractor's Guide",
-    description: "The components of a complete permit drawing package, explained.",
-    href: "/resources/what-is-a-permit-set",
+    title: "Why Plan Check Takes Long",
+    description: "The real reasons behind a four-to-eight-week review, and when a delay is actually a red flag.",
+    href: "/blog/why-plan-check-takes-long",
   },
   {
-    title: "How to Respond to Plan Check Corrections",
-    description: "Organizing a resubmittal so the reviewer can close it in one pass.",
-    href: "/resources/how-to-respond-to-plan-check-corrections",
+    title: "Express vs Counter Plan Check: Which One Do You Need?",
+    description: "The honest comparison between a paid expedited review and free informal pre-screening.",
+    href: "/blog/express-vs-counter-plan-check",
   },
   {
-    title: "What Is a Pre-Application Meeting in Construction?",
-    description: "What happens before a formal permit application goes in.",
-    href: "/resources/pre-application-meeting-construction",
+    title: "Ministerial vs Discretionary Review",
+    description: "How automatic approval differs from a review that adds planning judgment and hearings.",
+    href: "/blog/ministerial-vs-discretionary-review",
   },
   {
-    title: "ADU Permit in California: Timeline and Requirements",
-    description: "A worked example of a full residential permitting timeline.",
-    href: "/resources/how-to-get-adu-permit-in-california",
+    title: "How to Mark Up Resubmittals",
+    description: "Revision clouds, consistent numbering, and a response letter, the professional standard.",
+    href: "/blog/how-to-mark-up-resubmittals",
+  },
+  {
+    title: "7 Reasons Building Permits Get Rejected",
+    description: "The recurring correction triggers, and how to avoid them before you submit.",
+    href: "/blog/why-building-permits-rejected",
+  },
+  {
+    title: "How Long Does It Take to Get a Building Permit?",
+    description: "Timelines broken down by state and project type, from ADUs to commercial buildouts.",
+    href: "/blog/how-long-does-it-take-to-get-a-building-permit-timelines-by-state-and-project-type",
   },
 ];
 
@@ -198,11 +301,6 @@ export default function PermittingPage() {
         url={`${company.website}/permitting`}
         category="Permitting"
       />
-      <HowToJsonLd
-        name="How the Building Permit Process Works"
-        description="The five stages a construction project moves through to get a building permit issued, from jurisdiction research to inspection."
-        steps={permitProcess.map((step) => ({ name: step.title, text: step.description }))}
-      />
       <FaqJsonLd items={faqs.map((f) => ({ question: f.question, answer: f.answer }))} />
 
       <PageHeader
@@ -211,8 +309,10 @@ export default function PermittingPage() {
         description="Every jurisdiction reviews construction differently. CADTRI researches the specific requirements of your building department, then prepares permit-ready drawings and documentation built to that standard, not a generic template."
       />
 
+      <TableOfContents items={tocItems} />
+
       {/* ── What permitting services cover ───────────────────────────────────── */}
-      <Section variant="default">
+      <Section variant="default" id="overview">
         <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
@@ -259,7 +359,7 @@ export default function PermittingPage() {
       </Section>
 
       {/* ── The building permit process ──────────────────────────────────────── */}
-      <Section variant="surface" className="border-t border-border">
+      <Section variant="surface" className="border-t border-border" id="process">
         <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
@@ -307,8 +407,56 @@ export default function PermittingPage() {
         </ul>
       </Section>
 
+      {/* ── Permit review tracks compared ────────────────────────────────────── */}
+      <Section variant="default" className="border-t border-border" id="review-tracks">
+        <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
+          <div>
+            <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
+              Review Tracks Compared
+            </p>
+            <h2
+              className="font-bold text-foreground"
+              style={{
+                fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
+                letterSpacing: "-0.03em",
+                lineHeight: 1.1,
+              }}
+            >
+              Not every permit moves through the same line.
+            </h2>
+          </div>
+          <div className="flex items-end">
+            <p className="font-light leading-relaxed text-muted">
+              Most jurisdictions offer more than one path to an issued permit. Knowing
+              which track applies, and which ones are available as options, changes
+              what a realistic timeline actually looks like.
+            </p>
+          </div>
+        </div>
+
+        <ComparisonTable
+          caption="Building Permit Review Tracks"
+          columns={["Review Track", "Typical Timeline", "Typical Cost", "Best For"]}
+          rows={reviewTracks.map((t) => [t.track, t.timeline, t.cost, t.bestFor])}
+          highlightRow={1}
+        />
+
+        <p className="mt-6 text-sm font-light leading-relaxed text-muted">
+          Standard plan check is the default track in most jurisdictions and where most
+          projects land. Read more on{" "}
+          <Link href="/blog/express-vs-counter-plan-check" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">
+            express versus counter plan check
+          </Link>{" "}
+          and{" "}
+          <Link href="/blog/ministerial-vs-discretionary-review" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">
+            ministerial versus discretionary review
+          </Link>
+          .
+        </p>
+      </Section>
+
       {/* ── Permitting services directory ────────────────────────────────────── */}
-      <Section variant="default" className="border-t border-border">
+      <Section variant="surface" className="border-t border-border" id="services">
         <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
@@ -339,7 +487,7 @@ export default function PermittingPage() {
               <li key={service.slug}>
                 <Link
                   href={`/services/${service.slug}`}
-                  className="group block transition-colors duration-200 hover:bg-surface"
+                  className="group block bg-background transition-colors duration-200 hover:bg-surface"
                 >
                   <article className="grid grid-cols-[2.5rem_1fr] items-start gap-x-6 px-7 py-8 lg:grid-cols-[2.5rem_1fr_9rem] lg:items-center lg:gap-x-8 lg:px-9">
                     <span className="pt-0.5 text-[11px] font-medium tabular-nums text-secondary lg:pt-0" aria-hidden>
@@ -373,7 +521,7 @@ export default function PermittingPage() {
       </Section>
 
       {/* ── Why permits get rejected ─────────────────────────────────────────── */}
-      <Section variant="dark" className="border-t border-border">
+      <Section variant="dark" className="border-t border-border" id="pitfalls">
         <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
@@ -421,7 +569,7 @@ export default function PermittingPage() {
       </Section>
 
       {/* ── Permitting by state ──────────────────────────────────────────────── */}
-      <Section variant="surface" className="border-t border-border">
+      <Section variant="surface" className="border-t border-border" id="by-state">
         <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
@@ -450,7 +598,8 @@ export default function PermittingPage() {
         <div className="grid gap-px border-x border-b border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
           {stateNotes.map((note) => (
             <div key={note.title} className="flex flex-col gap-4 bg-background px-8 py-9">
-              <h3 className="font-bold text-foreground" style={{ letterSpacing: "-0.02em" }}>
+              <h3 className="flex items-center gap-2 font-bold text-foreground" style={{ letterSpacing: "-0.02em" }}>
+                <MapPin size={16} strokeWidth={1.5} className="shrink-0 text-secondary" aria-hidden />
                 {note.title}
               </h3>
               <p className="flex-1 text-sm font-light leading-relaxed text-muted">
@@ -467,8 +616,57 @@ export default function PermittingPage() {
         </div>
       </Section>
 
+      {/* ── Glossary ──────────────────────────────────────────────────────────── */}
+      <Section variant="default" className="border-t border-border" id="glossary">
+        <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
+          <div>
+            <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
+              Glossary
+            </p>
+            <h2
+              className="font-bold text-foreground"
+              style={{
+                fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
+                letterSpacing: "-0.03em",
+                lineHeight: 1.1,
+              }}
+            >
+              Permitting terms, defined.
+            </h2>
+          </div>
+          <div className="flex items-end">
+            <p className="font-light leading-relaxed text-muted">
+              The vocabulary a plan checker, a permit technician, or a correction
+              notice uses without explaining it. Six terms worth knowing before
+              your project reaches review.
+            </p>
+          </div>
+        </div>
+
+        <dl className="grid gap-px border-x border-b border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+          {glossaryTerms.map((item) => (
+            <div key={item.term} className="flex flex-col gap-3 bg-surface px-7 py-7">
+              <dt className="font-bold text-foreground" style={{ letterSpacing: "-0.02em" }}>
+                {item.term}
+              </dt>
+              <dd className="flex-1 text-sm font-light leading-relaxed text-muted">
+                {item.definition}
+              </dd>
+              {item.href && (
+                <Link
+                  href={item.href}
+                  className="inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-widest text-secondary hover:text-primary transition-colors duration-150"
+                >
+                  Read More <span aria-hidden>→</span>
+                </Link>
+              )}
+            </div>
+          ))}
+        </dl>
+      </Section>
+
       {/* ── FAQ ───────────────────────────────────────────────────────────────── */}
-      <Section variant="default" className="border-t border-border">
+      <Section variant="surface" className="border-t border-border" id="faq">
         <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
@@ -500,7 +698,7 @@ export default function PermittingPage() {
       </Section>
 
       {/* ── Related reading ──────────────────────────────────────────────────── */}
-      <Section variant="surface" className="border-t border-border">
+      <Section variant="default" className="border-t border-border" id="resources">
         <div className="mb-14">
           <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
             From the Blog
@@ -517,12 +715,12 @@ export default function PermittingPage() {
           </h2>
         </div>
 
-        <div className="grid gap-px border-x border-b border-border bg-border sm:grid-cols-2">
+        <div className="grid gap-px border-x border-b border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
           {relatedReading.map((post) => (
             <Link
               key={post.href}
               href={post.href}
-              className="group flex flex-col gap-3 bg-background px-8 py-8 transition-colors duration-200 hover:bg-surface"
+              className="group flex flex-col gap-3 bg-surface px-8 py-8 transition-colors duration-200 hover:bg-background"
             >
               <h3
                 className="font-bold text-foreground transition-colors duration-200 group-hover:text-secondary"

@@ -1,16 +1,80 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Layers, Grid3x3, Link2, ArrowLeftRight, ClipboardList, GitMerge, Wind, Activity, CheckCircle2 } from "lucide-react";
 import { PageHeader } from "@/components/shared/page-header";
 import { Section } from "@/components/shared/section";
 import { CtaBand } from "@/components/shared/cta-band";
+import { TableOfContents } from "@/components/shared/table-of-contents";
+import { ComparisonTable } from "@/components/shared/comparison-table";
 import { getServiceBySlug } from "@/content/services";
 import { company } from "@/content/company";
 import {
   BreadcrumbJsonLd,
   ServiceJsonLd,
-  HowToJsonLd,
   FaqJsonLd,
 } from "@/lib/json-ld";
+
+const tocItems = [
+  { id: "overview",  label: "What's Included" },
+  { id: "process",   label: "The Process" },
+  { id: "regional",  label: "Regional Factors" },
+  { id: "building-type", label: "Residential vs. Commercial" },
+  { id: "services",  label: "Services" },
+  { id: "pitfalls",  label: "Common Pitfalls" },
+  { id: "glossary",  label: "Glossary" },
+  { id: "faq",       label: "FAQ" },
+];
+
+const scopeIcons = [Layers, Grid3x3, Link2, ArrowLeftRight, ClipboardList, GitMerge];
+
+const regionalFactors: { hazard: React.ReactNode; addsToSet: string; costImpact: string; example: string }[] = [
+  {
+    hazard: <span className="flex items-center gap-2"><Wind size={16} strokeWidth={1.5} className="shrink-0 text-secondary" aria-hidden /> Hurricane / High-Velocity Wind Zones</span>,
+    addsToSet: "Wind-load calculations, impact-resistant detailing, and uplift connection callouts.",
+    costImpact: "Adds roughly 20 to 50 percent to drawing cost",
+    example: "Florida coastal counties",
+  },
+  {
+    hazard: <span className="flex items-center gap-2"><Activity size={16} strokeWidth={1.5} className="shrink-0 text-secondary" aria-hidden /> High Seismic Design Categories</span>,
+    addsToSet: "Additional lateral system detailing, shear wall schedules, and moment frame connections.",
+    costImpact: "Varies by seismic design category",
+    example: "California and other high-seismic regions",
+  },
+  {
+    hazard: <span className="flex items-center gap-2"><CheckCircle2 size={16} strokeWidth={1.5} className="shrink-0 text-secondary" aria-hidden /> Standard / Baseline Regions</span>,
+    addsToSet: "Baseline structural code minimums and standard connection details.",
+    costImpact: "Included in base structural drafting scope",
+    example: "Most inland U.S. jurisdictions",
+  },
+];
+
+const glossaryTerms: { term: string; definition: string; href?: string }[] = [
+  {
+    term: "Load Path",
+    definition: "The continuous structural route that transfers a building's weight and lateral forces down through framing, walls, and foundation to the ground.",
+  },
+  {
+    term: "Shear Wall",
+    definition: "A wall panel engineered to resist lateral forces from wind or seismic loads, documented on the lateral system drawings.",
+  },
+  {
+    term: "Hold-Down",
+    definition: "A metal connector anchoring framing to the foundation or a lower floor, resisting uplift and lateral forces at a shear wall.",
+  },
+  {
+    term: "Moment Frame",
+    definition: "A rigid steel or concrete frame connection used to resist lateral loads without shear walls, common on commercial structures.",
+  },
+  {
+    term: "Wind-Load Design",
+    definition: "Structural detailing sized to resist wind pressures and uplift, required in hurricane and high-velocity wind zones.",
+    href: "/blog/hurricane-wind-load-drawings-florida",
+  },
+  {
+    term: "Engineer of Record",
+    definition: "The licensed structural engineer who directs the design and stamps the final structural drawing set submitted for permit.",
+  },
+];
 
 export const metadata: Metadata = {
   title: { absolute: "Structural Drafting | Framing & Foundation Plans | CADTRI" },
@@ -178,18 +242,38 @@ const faqs: { question: string; answer: string }[] = [
     answer:
       "We draft in AutoCAD and Revit and deliver print-ready PDF along with native DWG or RVT files, matching the format your engineer or the building department requires.",
   },
+  {
+    question: "Do coastal or hurricane-zone projects need extra structural documentation?",
+    answer:
+      "Yes. In Florida's high-velocity hurricane zones, wind-load calculations and impact-resistant detailing typically add 20 to 50 percent to structural drawing cost, driven by the additional connection details and uplift documentation the engineer's design requires.",
+  },
+  {
+    question: "Does a commercial structural set require more than a residential one?",
+    answer:
+      "Generally yes. Commercial and multi-story structures carry more extensive lateral system documentation, larger foundation and connection schedules, and tighter coordination with MEP routing than most residential projects require.",
+  },
+  {
+    question: "What is a code analysis sheet, and does it apply to structural drawings?",
+    answer:
+      "A code analysis sheet documents how a project meets applicable building and zoning code. Structural sheets reference it for design loads, code edition, and material specifications, keeping the structural notes consistent with the rest of the permit set.",
+  },
 ];
 
 const relatedReading: { title: string; description: string; href: string }[] = [
   {
-    title: "What Is a Permit Set? A Contractor's Guide",
-    description: "Where structural drawings fit inside a complete permit package.",
-    href: "/resources/what-is-a-permit-set",
+    title: "Hurricane Wind-Load Drawings in Florida",
+    description: "What wind-load drawings show, which projects need them, and what they cost by wind zone.",
+    href: "/blog/hurricane-wind-load-drawings-florida",
   },
   {
-    title: "How to Respond to Plan Check Corrections",
-    description: "Closing out structural correction comments in a single resubmittal.",
-    href: "/resources/how-to-respond-to-plan-check-corrections",
+    title: "Commercial vs. Residential Drawings",
+    description: "Why commercial structures carry a heavier structural documentation load.",
+    href: "/blog/commercial-vs-residential-drawings",
+  },
+  {
+    title: "What Is a Code Analysis Sheet?",
+    description: "An annotated example of the sheet that ties structural notes to code compliance.",
+    href: "/blog/what-is-a-code-analysis-sheet",
   },
 ];
 
@@ -223,11 +307,6 @@ export default function StructuralDraftingPage() {
         url={`${company.website}/structural-drafting`}
         category="Drawings"
       />
-      <HowToJsonLd
-        name="How Structural Drafting Works"
-        description="The five stages a structural drawing set moves through, from the engineer's calculations to a permit-ready, stamped structural package."
-        steps={draftingProcess.map((step) => ({ name: step.title, text: step.description }))}
-      />
       <FaqJsonLd items={faqs.map((f) => ({ question: f.question, answer: f.answer }))} />
 
       <PageHeader
@@ -236,8 +315,10 @@ export default function StructuralDraftingPage() {
         description="We draft foundation plans, framing plans, connection details, and structural schedules from your engineer's calculations, redlines, or sketches. We are a drafting company, not a licensed structural engineering firm: your engineer of record designs and stamps the work, we produce the CAD drawings."
       />
 
+      <TableOfContents items={tocItems} />
+
       {/* ── What structural drafting covers ──────────────────────────────────── */}
-      <Section variant="default">
+      <Section variant="default" id="overview">
         <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
@@ -264,19 +345,23 @@ export default function StructuralDraftingPage() {
         </div>
 
         <div className="grid gap-px border-x border-b border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
-          {drawingScope.map((item) => (
-            <div key={item.title} className="bg-surface px-8 py-8">
-              <p className="mb-3 font-bold text-foreground" style={{ letterSpacing: "-0.02em" }}>
-                {item.title}
-              </p>
-              <p className="text-sm font-light leading-relaxed text-muted">{item.description}</p>
-            </div>
-          ))}
+          {drawingScope.map((item, i) => {
+            const Icon = scopeIcons[i];
+            return (
+              <div key={item.title} className="bg-surface px-8 py-8">
+                <Icon size={20} strokeWidth={1.5} className="mb-4 text-secondary" aria-hidden />
+                <p className="mb-3 font-bold text-foreground" style={{ letterSpacing: "-0.02em" }}>
+                  {item.title}
+                </p>
+                <p className="text-sm font-light leading-relaxed text-muted">{item.description}</p>
+              </div>
+            );
+          })}
         </div>
       </Section>
 
       {/* ── How structural drafting works ────────────────────────────────────── */}
-      <Section variant="dark" className="border-t border-border">
+      <Section variant="dark" className="border-t border-border" id="process">
         <div className="mb-14 border-b border-white/10 pb-14 grid items-end gap-8 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
@@ -329,8 +414,51 @@ export default function StructuralDraftingPage() {
         </ol>
       </Section>
 
+      {/* ── Regional structural factors ──────────────────────────────────────── */}
+      <Section variant="default" className="border-t border-border" id="regional">
+        <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
+          <div>
+            <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
+              Regional Factors
+            </p>
+            <h2
+              className="font-bold text-foreground"
+              style={{
+                fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
+                letterSpacing: "-0.03em",
+                lineHeight: 1.1,
+              }}
+            >
+              Where you're building changes what gets drafted.
+            </h2>
+          </div>
+          <div className="flex items-end">
+            <p className="font-light leading-relaxed text-muted">
+              The same framing plan looks different in a hurricane zone than it does
+              inland. Regional hazard requirements are set by your engineer's design,
+              but they change the scope, and the cost, of the drawing set.
+            </p>
+          </div>
+        </div>
+
+        <ComparisonTable
+          caption="Regional Structural Considerations"
+          columns={["Hazard Type", "What It Adds to the Set", "Typical Cost Impact", "Example"]}
+          rows={regionalFactors.map((r) => [r.hazard, r.addsToSet, r.costImpact, r.example])}
+          highlightRow={0}
+        />
+
+        <p className="mt-6 text-sm font-light leading-relaxed text-muted">
+          Read more on{" "}
+          <Link href="/blog/hurricane-wind-load-drawings-florida" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">
+            hurricane wind-load drawings in Florida
+          </Link>
+          .
+        </p>
+      </Section>
+
       {/* ── Residential vs commercial ────────────────────────────────────────── */}
-      <Section variant="surface" className="border-t border-border">
+      <Section variant="surface" className="border-t border-border" id="building-type">
         <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
@@ -376,7 +504,7 @@ export default function StructuralDraftingPage() {
       </Section>
 
       {/* ── Structural drafting services directory ───────────────────────────── */}
-      <Section variant="default" className="border-t border-border">
+      <Section variant="default" className="border-t border-border" id="services">
         <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
@@ -442,7 +570,7 @@ export default function StructuralDraftingPage() {
       </Section>
 
       {/* ── Common drafting pitfalls ─────────────────────────────────────────── */}
-      <Section variant="dark" className="border-t border-border">
+      <Section variant="dark" className="border-t border-border" id="pitfalls">
         <div className="mb-14 grid items-end gap-8 border-b border-white/10 pb-14 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
@@ -488,8 +616,56 @@ export default function StructuralDraftingPage() {
         </div>
       </Section>
 
+      {/* ── Glossary ──────────────────────────────────────────────────────────── */}
+      <Section variant="default" className="border-t border-border" id="glossary">
+        <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
+          <div>
+            <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
+              Glossary
+            </p>
+            <h2
+              className="font-bold text-foreground"
+              style={{
+                fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
+                letterSpacing: "-0.03em",
+                lineHeight: 1.1,
+              }}
+            >
+              Structural terms, defined.
+            </h2>
+          </div>
+          <div className="flex items-end">
+            <p className="font-light leading-relaxed text-muted">
+              The vocabulary that shows up on a structural calculation package or a
+              framing plan without explanation. Six terms worth knowing.
+            </p>
+          </div>
+        </div>
+
+        <dl className="grid gap-px border-x border-b border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+          {glossaryTerms.map((item) => (
+            <div key={item.term} className="flex flex-col gap-3 bg-surface px-7 py-7">
+              <dt className="font-bold text-foreground" style={{ letterSpacing: "-0.02em" }}>
+                {item.term}
+              </dt>
+              <dd className="flex-1 text-sm font-light leading-relaxed text-muted">
+                {item.definition}
+              </dd>
+              {item.href && (
+                <Link
+                  href={item.href}
+                  className="inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-widest text-secondary hover:text-primary transition-colors duration-150"
+                >
+                  Read More <span aria-hidden>→</span>
+                </Link>
+              )}
+            </div>
+          ))}
+        </dl>
+      </Section>
+
       {/* ── FAQ ───────────────────────────────────────────────────────────────── */}
-      <Section variant="surface" className="border-t border-border">
+      <Section variant="surface" className="border-t border-border" id="faq">
         <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
@@ -521,7 +697,7 @@ export default function StructuralDraftingPage() {
       </Section>
 
       {/* ── Related reading ──────────────────────────────────────────────────── */}
-      <Section variant="default" className="border-t border-border">
+      <Section variant="default" className="border-t border-border" id="resources">
         <div className="mb-14">
           <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
             From the Blog
@@ -538,7 +714,7 @@ export default function StructuralDraftingPage() {
           </h2>
         </div>
 
-        <div className="grid gap-px border-x border-b border-border bg-border sm:grid-cols-2">
+        <div className="grid gap-px border-x border-b border-border bg-border sm:grid-cols-3">
           {relatedReading.map((post) => (
             <Link
               key={post.href}

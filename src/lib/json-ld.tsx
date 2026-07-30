@@ -13,7 +13,7 @@ export function LocalBusinessJsonLd() {
 
   const schema = {
     "@context": "https://schema.org",
-    "@type": ["Organization", "LocalBusiness", "ProfessionalService", "HomeAndConstructionBusiness"],
+    "@type": ["Organization", "LocalBusiness", "ProfessionalService"],
     "@id": ORG_ID,
     name: company.legalName,
     alternateName: company.name,
@@ -118,10 +118,59 @@ export function ServiceJsonLd({ title, description, url, category }: ServiceJson
     ...(category ? { serviceType: category } : {}),
     provider: { "@id": ORG_ID },
     areaServed: [
+      { "@type": "Country", name: "United States" },
       { "@type": "State", name: "Florida" },
       { "@type": "State", name: "Texas" },
       { "@type": "State", name: "North Carolina" },
     ],
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
+// ─── PricingPage schema ───────────────────────────────────────────────────────
+// "Starting at" figures below match the base costs used by the /pricing
+// estimator tool (pricing-form.tsx SERVICE_BASE_COSTS) — kept in sync manually
+// since one is a client bundle and the other is a server-rendered schema block.
+
+const PRICING_OFFERS = [
+  { name: "Permit Set Preparation",       minPrice: 2000 },
+  { name: "Architectural Drafting",       minPrice: 2500 },
+  { name: "ADU Permit Packages",          minPrice: 4000 },
+  { name: "Home Addition Packages",       minPrice: 3500 },
+  { name: "Structural Coordination",      minPrice: 1500 },
+  { name: "City Comments Response",       minPrice: 800 },
+] as const;
+
+export function PricingPageJsonLd() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "CADTRI Pricing Estimate",
+    description:
+      "Interactive pricing estimate tool for architectural drafting and permit services, with starting prices by service type.",
+    url: `${company.website}/pricing`,
+    provider: { "@id": ORG_ID },
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Architectural Drafting and Permit Services Pricing",
+      itemListElement: PRICING_OFFERS.map((offer) => ({
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: offer.name },
+        priceSpecification: {
+          "@type": "UnitPriceSpecification",
+          price: offer.minPrice,
+          priceCurrency: "USD",
+          minPrice: offer.minPrice,
+          description: "Starting price — final quote depends on project scope, size, and jurisdiction.",
+        },
+      })),
+    },
   };
 
   return (
@@ -174,9 +223,24 @@ interface ArticleJsonLdProps {
   dateModified?: string;
   category: string;
   image?: string;
+  authorName?: string;
+  authorTitle?: string;
 }
 
-export function ArticleJsonLd({ title, description, url, datePublished, dateModified, category, image }: ArticleJsonLdProps) {
+const DEFAULT_AUTHOR_NAME = "Shahzaib Nadeem";
+const DEFAULT_AUTHOR_TITLE = "Content Writer at CADTRI";
+
+export function ArticleJsonLd({
+  title,
+  description,
+  url,
+  datePublished,
+  dateModified,
+  category,
+  image,
+  authorName = DEFAULT_AUTHOR_NAME,
+  authorTitle = DEFAULT_AUTHOR_TITLE,
+}: ArticleJsonLdProps) {
   const schema = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -189,7 +253,12 @@ export function ArticleJsonLd({ title, description, url, datePublished, dateModi
     ...(image ? { image: { "@type": "ImageObject", url: image } } : {}),
     publisher: { "@id": ORG_ID },
     isPartOf: { "@id": SITE_ID },
-    author: { "@id": ORG_ID },
+    author: {
+      "@type": "Person",
+      name: authorName,
+      jobTitle: authorTitle,
+      worksFor: { "@id": ORG_ID },
+    },
   };
 
   return (

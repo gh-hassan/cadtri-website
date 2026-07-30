@@ -1,16 +1,86 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Fan, Zap, Droplet, Flame, ClipboardList, GitMerge } from "lucide-react";
 import { PageHeader } from "@/components/shared/page-header";
 import { Section } from "@/components/shared/section";
 import { CtaBand } from "@/components/shared/cta-band";
+import { TableOfContents } from "@/components/shared/table-of-contents";
+import { ComparisonTable } from "@/components/shared/comparison-table";
 import { getServiceBySlug } from "@/content/services";
 import { company } from "@/content/company";
 import {
   BreadcrumbJsonLd,
   ServiceJsonLd,
-  HowToJsonLd,
   FaqJsonLd,
 } from "@/lib/json-ld";
+
+const tocItems = [
+  { id: "overview",  label: "What's Included" },
+  { id: "process",   label: "The Process" },
+  { id: "utilities", label: "Utility Connections" },
+  { id: "building-type", label: "Residential vs. Commercial" },
+  { id: "services",  label: "Services" },
+  { id: "pitfalls",  label: "Common Pitfalls" },
+  { id: "glossary",  label: "Glossary" },
+  { id: "faq",       label: "FAQ" },
+];
+
+const scopeIcons = [Fan, Zap, Droplet, Flame, ClipboardList, GitMerge];
+
+const utilityConnections: { utility: string; shared: string; separate: string; costNote: string }[] = [
+  {
+    utility: "Water",
+    shared: "Shared meter off the existing service",
+    separate: "New dedicated meter and service line",
+    costNote: "Varies by jurisdiction and distance to the main",
+  },
+  {
+    utility: "Sewer",
+    shared: "Shared lateral tie-in",
+    separate: "New dedicated lateral connection",
+    costNote: "Often driven by distance to the municipal main",
+  },
+  {
+    utility: "Electric",
+    shared: "Shared panel with a new subpanel",
+    separate: "New dedicated meter and service",
+    costNote: "Typically the largest share of utility cost",
+  },
+  {
+    utility: "Gas",
+    shared: "Shared line with a new branch",
+    separate: "New dedicated gas meter",
+    costNote: "Required when appliance load exceeds existing capacity",
+  },
+];
+
+const glossaryTerms: { term: string; definition: string; href?: string }[] = [
+  {
+    term: "One-Line Diagram",
+    definition: "A simplified electrical diagram showing the power distribution path from service to panels, used as the starting point for electrical drafting.",
+  },
+  {
+    term: "Riser Diagram",
+    definition: "A schematic showing how plumbing, fire sprinkler, or electrical systems run vertically through a multi-story or multi-unit building.",
+  },
+  {
+    term: "Panel Schedule",
+    definition: "A table listing every circuit on an electrical panel, its breaker size, load, and description, required for plan check verification.",
+  },
+  {
+    term: "DWV (Drain-Waste-Vent)",
+    definition: "The plumbing piping system that carries waste and wastewater to the sewer or septic system while venting sewer gases safely outside.",
+  },
+  {
+    term: "Fixture Unit",
+    definition: "A standardized value assigned to each plumbing fixture, used to size waste and water lines to the correct capacity.",
+  },
+  {
+    term: "Title 24",
+    definition: "California's energy code, which sets efficiency requirements for HVAC, insulation, and lighting that must be documented on the MEP set.",
+    href: "/blog/title-24-energy-code-for-adus-californias-energy-compliance-requirements",
+  },
+];
 
 export const metadata: Metadata = {
   title: { absolute: "MEP Drafting | HVAC, Electrical & Plumbing Plans | CADTRI" },
@@ -178,18 +248,43 @@ const faqs: { question: string; answer: string }[] = [
     answer:
       "We draft in AutoCAD and Revit and deliver print-ready PDF along with native DWG or RVT files, matching the format your engineer or the building department requires.",
   },
+  {
+    question: "How much do utility connections typically cost for an ADU or addition?",
+    answer:
+      "Total water, sewer, electric, and gas connection costs typically range from $9,000 to $27,000, depending heavily on whether the project can share existing service or needs new dedicated connections, and the distance to the utility mains.",
+  },
+  {
+    question: "Does Title 24 energy compliance affect MEP drafting?",
+    answer:
+      "Yes, in California. Title 24 sets efficiency requirements for HVAC equipment, insulation, and lighting that have to be documented alongside the MEP plans, and mismatches between the energy compliance forms and the mechanical plans are a common correction trigger.",
+  },
+  {
+    question: "How does fire sprinkler documentation relate to the life safety plan?",
+    answer:
+      "Sprinkler head layout on the MEP set is coordinated against the egress and life safety plan so exit paths, occupant load, and sprinkler coverage all agree, since a plan checker reviews both together for occupancies that require it.",
+  },
 ];
 
 const relatedReading: { title: string; description: string; href: string }[] = [
   {
-    title: "What Is a Permit Set? A Contractor's Guide",
-    description: "Where MEP drawings fit inside a complete permit package.",
-    href: "/resources/what-is-a-permit-set",
+    title: "ADU Utility Connections, Water, Sewer, Electric, and Gas",
+    description: "Shared versus separate connections, and typical costs of $9K to $27K.",
+    href: "/blog/adu-utility-connections-water-sewer-electric-and-gas",
   },
   {
-    title: "How to Respond to Plan Check Corrections",
-    description: "Closing out MEP-related correction comments in a single resubmittal.",
-    href: "/resources/how-to-respond-to-plan-check-corrections",
+    title: "Title 24 Energy Code for ADUs",
+    description: "California's energy compliance requirements for HVAC, insulation, and windows.",
+    href: "/blog/title-24-energy-code-for-adus-californias-energy-compliance-requirements",
+  },
+  {
+    title: "Egress & Life-Safety Plans",
+    description: "What they show, and why sprinkler and exit documentation is reviewed together.",
+    href: "/blog/egress-and-life-safety-plans",
+  },
+  {
+    title: "Commercial vs. Residential Drawings",
+    description: "Why commercial MEP scope runs heavier than most residential projects.",
+    href: "/blog/commercial-vs-residential-drawings",
   },
 ];
 
@@ -223,11 +318,6 @@ export default function MepDraftingPage() {
         url={`${company.website}/mep-drafting`}
         category="Drawings"
       />
-      <HowToJsonLd
-        name="How MEP Drafting Works"
-        description="The five stages an MEP drawing set moves through, from the engineer's design to a permit-ready, stamped mechanical, electrical, and plumbing package."
-        steps={draftingProcess.map((step) => ({ name: step.title, text: step.description }))}
-      />
       <FaqJsonLd items={faqs.map((f) => ({ question: f.question, answer: f.answer }))} />
 
       <PageHeader
@@ -236,8 +326,10 @@ export default function MepDraftingPage() {
         description="We draft HVAC, electrical, and plumbing plans, equipment schedules, and riser diagrams from your engineer's calculations, one-line diagrams, or redlines. We are a drafting company, not a licensed MEP engineering firm: your engineer or engineers of record design and stamp the work, we produce the CAD drawings."
       />
 
+      <TableOfContents items={tocItems} />
+
       {/* ── What MEP drafting covers ─────────────────────────────────────────── */}
-      <Section variant="default">
+      <Section variant="default" id="overview">
         <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
@@ -265,19 +357,23 @@ export default function MepDraftingPage() {
         </div>
 
         <div className="grid gap-px border-x border-b border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
-          {drawingScope.map((item) => (
-            <div key={item.title} className="bg-surface px-8 py-8">
-              <p className="mb-3 font-bold text-foreground" style={{ letterSpacing: "-0.02em" }}>
-                {item.title}
-              </p>
-              <p className="text-sm font-light leading-relaxed text-muted">{item.description}</p>
-            </div>
-          ))}
+          {drawingScope.map((item, i) => {
+            const Icon = scopeIcons[i];
+            return (
+              <div key={item.title} className="bg-surface px-8 py-8">
+                <Icon size={20} strokeWidth={1.5} className="mb-4 text-secondary" aria-hidden />
+                <p className="mb-3 font-bold text-foreground" style={{ letterSpacing: "-0.02em" }}>
+                  {item.title}
+                </p>
+                <p className="text-sm font-light leading-relaxed text-muted">{item.description}</p>
+              </div>
+            );
+          })}
         </div>
       </Section>
 
       {/* ── How MEP drafting works ───────────────────────────────────────────── */}
-      <Section variant="dark" className="border-t border-border">
+      <Section variant="dark" className="border-t border-border" id="process">
         <div className="mb-14 border-b border-white/10 pb-14 grid items-end gap-8 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
@@ -330,8 +426,51 @@ export default function MepDraftingPage() {
         </ol>
       </Section>
 
+      {/* ── Utility connections ──────────────────────────────────────────────── */}
+      <Section variant="default" className="border-t border-border" id="utilities">
+        <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
+          <div>
+            <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
+              Utility Connections
+            </p>
+            <h2
+              className="font-bold text-foreground"
+              style={{
+                fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
+                letterSpacing: "-0.03em",
+                lineHeight: 1.1,
+              }}
+            >
+              Shared service or a new dedicated connection.
+            </h2>
+          </div>
+          <div className="flex items-end">
+            <p className="font-light leading-relaxed text-muted">
+              ADUs and additions almost always face this decision for every utility.
+              Sharing existing service is cheaper up front; a dedicated connection
+              adds cost but simplifies metering and future capacity.
+            </p>
+          </div>
+        </div>
+
+        <ComparisonTable
+          caption="Utility Connection Options"
+          columns={["Utility", "Shared Option", "Dedicated Option", "Cost Driver"]}
+          rows={utilityConnections.map((u) => [u.utility, u.shared, u.separate, u.costNote])}
+        />
+
+        <p className="mt-6 text-sm font-light leading-relaxed text-muted">
+          Total utility connection costs typically range from $9,000 to $27,000. Read
+          more on{" "}
+          <Link href="/blog/adu-utility-connections-water-sewer-electric-and-gas" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">
+            ADU utility connections
+          </Link>
+          .
+        </p>
+      </Section>
+
       {/* ── Residential vs commercial ────────────────────────────────────────── */}
-      <Section variant="surface" className="border-t border-border">
+      <Section variant="surface" className="border-t border-border" id="building-type">
         <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
@@ -377,7 +516,7 @@ export default function MepDraftingPage() {
       </Section>
 
       {/* ── MEP drafting services directory ──────────────────────────────────── */}
-      <Section variant="default" className="border-t border-border">
+      <Section variant="default" className="border-t border-border" id="services">
         <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
@@ -443,7 +582,7 @@ export default function MepDraftingPage() {
       </Section>
 
       {/* ── Common drafting pitfalls ─────────────────────────────────────────── */}
-      <Section variant="dark" className="border-t border-border">
+      <Section variant="dark" className="border-t border-border" id="pitfalls">
         <div className="mb-14 grid items-end gap-8 border-b border-white/10 pb-14 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
@@ -489,8 +628,56 @@ export default function MepDraftingPage() {
         </div>
       </Section>
 
+      {/* ── Glossary ──────────────────────────────────────────────────────────── */}
+      <Section variant="default" className="border-t border-border" id="glossary">
+        <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
+          <div>
+            <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
+              Glossary
+            </p>
+            <h2
+              className="font-bold text-foreground"
+              style={{
+                fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
+                letterSpacing: "-0.03em",
+                lineHeight: 1.1,
+              }}
+            >
+              MEP terms, defined.
+            </h2>
+          </div>
+          <div className="flex items-end">
+            <p className="font-light leading-relaxed text-muted">
+              The vocabulary on a mechanical, electrical, or plumbing set that
+              rarely gets explained. Six terms worth knowing.
+            </p>
+          </div>
+        </div>
+
+        <dl className="grid gap-px border-x border-b border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+          {glossaryTerms.map((item) => (
+            <div key={item.term} className="flex flex-col gap-3 bg-surface px-7 py-7">
+              <dt className="font-bold text-foreground" style={{ letterSpacing: "-0.02em" }}>
+                {item.term}
+              </dt>
+              <dd className="flex-1 text-sm font-light leading-relaxed text-muted">
+                {item.definition}
+              </dd>
+              {item.href && (
+                <Link
+                  href={item.href}
+                  className="inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-widest text-secondary hover:text-primary transition-colors duration-150"
+                >
+                  Read More <span aria-hidden>→</span>
+                </Link>
+              )}
+            </div>
+          ))}
+        </dl>
+      </Section>
+
       {/* ── FAQ ───────────────────────────────────────────────────────────────── */}
-      <Section variant="surface" className="border-t border-border">
+      <Section variant="surface" className="border-t border-border" id="faq">
         <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
@@ -522,7 +709,7 @@ export default function MepDraftingPage() {
       </Section>
 
       {/* ── Related reading ──────────────────────────────────────────────────── */}
-      <Section variant="default" className="border-t border-border">
+      <Section variant="default" className="border-t border-border" id="resources">
         <div className="mb-14">
           <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
             From the Blog
@@ -539,7 +726,7 @@ export default function MepDraftingPage() {
           </h2>
         </div>
 
-        <div className="grid gap-px border-x border-b border-border bg-border sm:grid-cols-2">
+        <div className="grid gap-px border-x border-b border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
           {relatedReading.map((post) => (
             <Link
               key={post.href}

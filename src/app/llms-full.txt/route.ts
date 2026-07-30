@@ -1,14 +1,26 @@
 import { company } from "@/content/company";
 import { services } from "@/content/services";
 import { industries } from "@/content/industries";
-import { getAllPosts } from "@/lib/posts";
+import { getAllPosts, getBlogPosts, getBlogPostBySlug } from "@/lib/posts";
 import fs from "fs";
 import path from "path";
 
 const base = company.website;
 
+function stripHtml(html: string): string {
+  return html
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 export async function GET() {
   const posts = await getAllPosts();
+  const blogPosts = await getBlogPosts();
 
   // Build service sections with full overview text (plain string fields only)
   const serviceSections = services
@@ -86,6 +98,23 @@ ${rawContent}`;
     })
     .join("\n\n---\n\n");
 
+  // Build blog sections — fetch each post's full HTML content and strip tags
+  const blogSections = (
+    await Promise.all(
+      blogPosts.map(async (p) => {
+        const full = await getBlogPostBySlug(p.slug);
+        const plainText = full?.contentHtml ? stripHtml(full.contentHtml) : p.description;
+        return `### ${p.title}
+
+URL: ${base}/blog/${p.slug}
+Category: ${p.category}
+Description: ${p.description}
+
+${plainText}`;
+      }),
+    )
+  ).join("\n\n---\n\n");
+
   const content = `# ${company.name} — Full Content Index
 
 > ${company.description}
@@ -125,6 +154,12 @@ ${industrySections}
 ## Resources
 
 ${resourceSections}
+
+---
+
+## Blog
+
+${blogSections}
 
 ---
 

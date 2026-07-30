@@ -1,12 +1,13 @@
 import { company } from "@/content/company";
 import { services } from "@/content/services";
 import { industries } from "@/content/industries";
-import { getAllPosts } from "@/lib/posts";
+import { getAllPosts, getBlogPosts } from "@/lib/posts";
 
 const base = company.website;
 
 export async function GET() {
   const posts = await getAllPosts();
+  const blogPosts = await getBlogPosts();
 
   const content = `# ${company.name}
 
@@ -31,6 +32,10 @@ ${industries.map((i) => `- [${i.title}](${base}/industries/${i.slug}): ${i.metaD
 ## Resources
 
 ${posts.map((p) => `- [${p.title}](${base}/resources/${p.slug}): ${p.description}`).join("\n")}
+
+## Blog
+
+${blogPosts.map((p) => `- [${p.title}](${base}/blog/${p.slug}): ${p.description}`).join("\n")}
 
 ## Get a Pricing Estimate
 

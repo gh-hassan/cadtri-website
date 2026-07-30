@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { MapPin, LayoutGrid, Building2, Layers3, ListChecks, ShieldCheck } from "lucide-react";
 import { PageHeader } from "@/components/shared/page-header";
 import { Section } from "@/components/shared/section";
 import { CtaBand } from "@/components/shared/cta-band";
+import { TableOfContents } from "@/components/shared/table-of-contents";
+import { ComparisonTable } from "@/components/shared/comparison-table";
 import { getServiceBySlug } from "@/content/services";
 import { company } from "@/content/company";
 import {
@@ -10,6 +13,79 @@ import {
   ServiceJsonLd,
   FaqJsonLd,
 } from "@/lib/json-ld";
+
+const tocItems = [
+  { id: "overview",   label: "What's Included" },
+  { id: "by-type",    label: "By Project Type" },
+  { id: "requirements", label: "Requirements Matrix" },
+  { id: "building-type", label: "Residential vs. Commercial" },
+  { id: "services",  label: "Services" },
+  { id: "pitfalls",  label: "Common Pitfalls" },
+  { id: "glossary",  label: "Glossary" },
+  { id: "faq",       label: "FAQ" },
+];
+
+const setIcons = [MapPin, LayoutGrid, Building2, Layers3, ListChecks, ShieldCheck];
+
+const requirementsMatrix: { type: string; existingConditions: string; structural: string; timeline: string }[] = [
+  {
+    type: "New Construction",
+    existingConditions: "Not required — blank site",
+    structural: "Required for the full structural design",
+    timeline: "Longest: full design plus full plan check",
+  },
+  {
+    type: "Additions",
+    existingConditions: "Required, to tie new work to existing",
+    structural: "Required if any load-bearing element is affected",
+    timeline: "Moderate: existing conditions plus addition design",
+  },
+  {
+    type: "Remodels",
+    existingConditions: "Required only for the areas being altered",
+    structural: "Only if load-bearing elements change",
+    timeline: "Fastest of the four, when non-structural",
+  },
+  {
+    type: "After-the-Fact Permits",
+    existingConditions: "Always required — as-built baseline",
+    structural: "Required if unpermitted work affected structure",
+    timeline: "Longest: as-built documentation plus compliance review",
+  },
+];
+
+const glossaryTerms: { term: string; definition: string; href?: string }[] = [
+  {
+    term: "Site Plan",
+    definition: "The sheet showing property lines, setbacks, and existing and proposed structures. Often the sheet that decides whether a project can be permitted at all.",
+    href: "/blog/what-is-a-site-plan",
+  },
+  {
+    term: "Floor Plan",
+    definition: "A scaled top-down view of a building level showing walls, rooms, dimensions, and door and window locations.",
+    href: "/blog/floor-plan-site-plan-elevation-section",
+  },
+  {
+    term: "Elevation",
+    definition: "A straight-on view of a building face showing height, materials, and window and door placement as seen from outside.",
+    href: "/blog/floor-plan-site-plan-elevation-section",
+  },
+  {
+    term: "Section",
+    definition: "A vertical cut through the building showing how floors, walls, and roof assemblies stack and connect.",
+    href: "/blog/floor-plan-site-plan-elevation-section",
+  },
+  {
+    term: "Title Block",
+    definition: "The sheet border identifying the project, scale, date, and revision history. Missing or inconsistent title blocks are a common source of delay.",
+    href: "/blog/what-is-a-title-block",
+  },
+  {
+    term: "Code Analysis Sheet",
+    definition: "The sheet documenting how the project meets applicable building and zoning code, referenced throughout the set.",
+    href: "/blog/what-is-a-code-analysis-sheet",
+  },
+];
 
 export const metadata: Metadata = {
   title: { absolute: "Permit Drawings | Residential & Commercial Drafting | CADTRI" },
@@ -171,23 +247,58 @@ const faqs: { question: string; answer: string }[] = [
     answer:
       "Detailed enough for the plan checker to verify code compliance and for a contractor to build from without guessing. That generally means complete dimensions, clearly distinguished existing and proposed work, cross-referenced details, and schedules that match what's shown on the plans.",
   },
+  {
+    question: "How much do permit drawings cost?",
+    answer:
+      "Most residential permit drawings cost between $500 and $8,000, with the final number driven by project type, jurisdiction, and how much existing-conditions documentation is required. Commercial and tenant improvement drawings typically run higher due to added code compliance scope.",
+  },
+  {
+    question: "What's actually different between commercial and residential drawings?",
+    answer:
+      "Commercial drawings carry occupancy classification, accessibility, and fire and life safety requirements that most residential projects never trigger, along with MEP coordination that's typically more involved. A residential-focused drafter taking on a commercial tenant improvement is a common source of correction comments.",
+  },
+  {
+    question: "Do I need ADA compliance drawings for a commercial project?",
+    answer:
+      "In most cases, yes, if the space is open to the public or employs people outside the owner's household. ADA and accessibility documentation is typically required as part of the commercial drawing set, not an optional add-on.",
+  },
+  {
+    question: "What drawings do I need for something as simple as a bathroom remodel?",
+    answer:
+      "It depends on scope and jurisdiction, but a non-structural bathroom remodel typically needs, at minimum, an existing and proposed floor plan and any plumbing or electrical changes noted. Moving walls or fixtures that affect structure or egress adds requirements from there.",
+  },
 ];
 
 const relatedReading: { title: string; description: string; href: string }[] = [
   {
-    title: "What Is a Permit Set? A Contractor's Guide",
-    description: "The components of a complete permit drawing package, explained.",
-    href: "/resources/what-is-a-permit-set",
+    title: "What Drawings Do You Need for a Building Permit?",
+    description: "A complete sheet-by-sheet checklist, from a bathroom remodel to a new custom home.",
+    href: "/blog/what-drawings-do-you-need-for-building-permit",
   },
   {
-    title: "Garage Conversion ADU in California: Permits and Cost",
-    description: "A worked example of drawing an addition against an existing structure.",
-    href: "/resources/garage-conversion-adu-california",
+    title: "How to Read a Permit Drawing Set",
+    description: "A step-by-step checklist for reviewing your set for completeness and coordination.",
+    href: "/blog/how-to-read-a-permit-drawing-set",
   },
   {
-    title: "ADU Permit in California: Timeline and Requirements",
-    description: "How a new residential structure moves from drawings to approval.",
-    href: "/resources/how-to-get-adu-permit-in-california",
+    title: "Commercial vs. Residential Drawings",
+    description: "The code, ADA, egress, and cost differences every owner should know before they start.",
+    href: "/blog/commercial-vs-residential-drawings",
+  },
+  {
+    title: "ADA Compliance Drawings",
+    description: "What's required, common mistakes, and how to get it right from the first submittal.",
+    href: "/blog/ada-compliance-drawings-guide",
+  },
+  {
+    title: "How Much Do Permit Drawings Cost?",
+    description: "A transparent 2026 breakdown by project type and what drives the price up.",
+    href: "/blog/how-much-do-permit-drawings-cost-a-2026-breakdown-by-project-type",
+  },
+  {
+    title: "What Is a Code Analysis Sheet?",
+    description: "An annotated example of the sheet that documents code compliance for the plan checker.",
+    href: "/blog/what-is-a-code-analysis-sheet",
   },
 ];
 
@@ -233,8 +344,10 @@ export default function PermitDrawingsPage() {
         description="From a ground-up commercial building to a single-room addition to legalizing work that was never permitted, every project needs a drawing set built to what the building department actually requires. CADTRI produces permit-ready drawings for residential and commercial projects at every stage."
       />
 
+      <TableOfContents items={tocItems} />
+
       {/* ── What's in a permit drawing set ───────────────────────────────────── */}
-      <Section variant="default">
+      <Section variant="default" id="overview">
         <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
@@ -262,19 +375,23 @@ export default function PermitDrawingsPage() {
         </div>
 
         <div className="grid gap-px border-x border-b border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
-          {drawingSetContents.map((item) => (
-            <div key={item.title} className="bg-surface px-8 py-8">
-              <p className="mb-3 font-bold text-foreground" style={{ letterSpacing: "-0.02em" }}>
-                {item.title}
-              </p>
-              <p className="text-sm font-light leading-relaxed text-muted">{item.description}</p>
-            </div>
-          ))}
+          {drawingSetContents.map((item, i) => {
+            const Icon = setIcons[i];
+            return (
+              <div key={item.title} className="bg-surface px-8 py-8">
+                <Icon size={20} strokeWidth={1.5} className="mb-4 text-secondary" aria-hidden />
+                <p className="mb-3 font-bold text-foreground" style={{ letterSpacing: "-0.02em" }}>
+                  {item.title}
+                </p>
+                <p className="text-sm font-light leading-relaxed text-muted">{item.description}</p>
+              </div>
+            );
+          })}
         </div>
       </Section>
 
       {/* ── Permit drawings by project type ──────────────────────────────────── */}
-      <Section variant="surface" className="border-t border-border">
+      <Section variant="surface" className="border-t border-border" id="by-type">
         <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
@@ -322,8 +439,42 @@ export default function PermitDrawingsPage() {
         </ul>
       </Section>
 
+      {/* ── Requirements matrix ──────────────────────────────────────────────── */}
+      <Section variant="default" className="border-t border-border" id="requirements">
+        <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
+          <div>
+            <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
+              Requirements Matrix
+            </p>
+            <h2
+              className="font-bold text-foreground"
+              style={{
+                fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
+                letterSpacing: "-0.03em",
+                lineHeight: 1.1,
+              }}
+            >
+              What each project type actually requires.
+            </h2>
+          </div>
+          <div className="flex items-end">
+            <p className="font-light leading-relaxed text-muted">
+              The four project types side by side: whether existing conditions
+              documentation is required, whether structural engineering is triggered,
+              and what that means for the timeline.
+            </p>
+          </div>
+        </div>
+
+        <ComparisonTable
+          caption="Permit Drawing Requirements by Project Type"
+          columns={["Project Type", "Existing Conditions", "Structural Engineering", "Timeline Impact"]}
+          rows={requirementsMatrix.map((r) => [r.type, r.existingConditions, r.structural, r.timeline])}
+        />
+      </Section>
+
       {/* ── Residential vs commercial ────────────────────────────────────────── */}
-      <Section variant="default" className="border-t border-border">
+      <Section variant="surface" className="border-t border-border" id="building-type">
         <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
@@ -350,7 +501,7 @@ export default function PermitDrawingsPage() {
 
         <div className="grid gap-px border-x border-b border-border bg-border sm:grid-cols-2">
           {buildingTypes.map((type) => (
-            <div key={type.title} className="flex flex-col gap-4 bg-surface px-8 py-9">
+            <div key={type.title} className="flex flex-col gap-4 bg-background px-8 py-9">
               <h3 className="font-bold text-foreground" style={{ letterSpacing: "-0.02em" }}>
                 {type.title}
               </h3>
@@ -369,7 +520,7 @@ export default function PermitDrawingsPage() {
       </Section>
 
       {/* ── Permit drawing services directory ────────────────────────────────── */}
-      <Section variant="surface" className="border-t border-border">
+      <Section variant="default" className="border-t border-border" id="services">
         <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
@@ -401,7 +552,7 @@ export default function PermitDrawingsPage() {
               <li key={service.slug}>
                 <Link
                   href={`/services/${service.slug}`}
-                  className="group block transition-colors duration-200 hover:bg-background"
+                  className="group block transition-colors duration-200 hover:bg-surface"
                 >
                   <article className="grid grid-cols-[2.5rem_1fr] items-start gap-x-6 px-7 py-8 lg:grid-cols-[2.5rem_1fr_9rem] lg:items-center lg:gap-x-8 lg:px-9">
                     <span className="pt-0.5 text-[11px] font-medium tabular-nums text-secondary lg:pt-0" aria-hidden>
@@ -435,7 +586,7 @@ export default function PermitDrawingsPage() {
       </Section>
 
       {/* ── Common drawing deficiencies ──────────────────────────────────────── */}
-      <Section variant="dark" className="border-t border-border">
+      <Section variant="dark" className="border-t border-border" id="pitfalls">
         <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
@@ -481,8 +632,56 @@ export default function PermitDrawingsPage() {
         </div>
       </Section>
 
+      {/* ── Glossary ──────────────────────────────────────────────────────────── */}
+      <Section variant="default" className="border-t border-border" id="glossary">
+        <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
+          <div>
+            <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
+              Glossary
+            </p>
+            <h2
+              className="font-bold text-foreground"
+              style={{
+                fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
+                letterSpacing: "-0.03em",
+                lineHeight: 1.1,
+              }}
+            >
+              Drawing sheet terms, defined.
+            </h2>
+          </div>
+          <div className="flex items-end">
+            <p className="font-light leading-relaxed text-muted">
+              The names of the sheets that make up a permit set, and what each one
+              is actually for.
+            </p>
+          </div>
+        </div>
+
+        <dl className="grid gap-px border-x border-b border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+          {glossaryTerms.map((item) => (
+            <div key={item.term} className="flex flex-col gap-3 bg-surface px-7 py-7">
+              <dt className="font-bold text-foreground" style={{ letterSpacing: "-0.02em" }}>
+                {item.term}
+              </dt>
+              <dd className="flex-1 text-sm font-light leading-relaxed text-muted">
+                {item.definition}
+              </dd>
+              {item.href && (
+                <Link
+                  href={item.href}
+                  className="inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-widest text-secondary hover:text-primary transition-colors duration-150"
+                >
+                  Read More <span aria-hidden>→</span>
+                </Link>
+              )}
+            </div>
+          ))}
+        </dl>
+      </Section>
+
       {/* ── FAQ ───────────────────────────────────────────────────────────────── */}
-      <Section variant="default" className="border-t border-border">
+      <Section variant="surface" className="border-t border-border" id="faq">
         <div className="mb-14 grid items-end gap-8 border-b border-border pb-14 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
@@ -514,7 +713,7 @@ export default function PermitDrawingsPage() {
       </Section>
 
       {/* ── Related reading ──────────────────────────────────────────────────── */}
-      <Section variant="surface" className="border-t border-border">
+      <Section variant="default" className="border-t border-border" id="resources">
         <div className="mb-14">
           <p className="mb-4 text-[11px] font-medium uppercase tracking-widest text-secondary">
             From the Blog
@@ -531,12 +730,12 @@ export default function PermitDrawingsPage() {
           </h2>
         </div>
 
-        <div className="grid gap-px border-x border-b border-border bg-border sm:grid-cols-3">
+        <div className="grid gap-px border-x border-b border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
           {relatedReading.map((post) => (
             <Link
               key={post.href}
               href={post.href}
-              className="group flex flex-col gap-3 bg-background px-8 py-8 transition-colors duration-200 hover:bg-surface"
+              className="group flex flex-col gap-3 bg-surface px-8 py-8 transition-colors duration-200 hover:bg-background"
             >
               <h3
                 className="font-bold text-foreground transition-colors duration-200 group-hover:text-secondary"

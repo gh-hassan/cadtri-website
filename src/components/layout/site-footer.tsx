@@ -42,6 +42,11 @@ export function SiteFooter() {
             <p className="mt-2 text-[10px] font-semibold uppercase tracking-widest text-secondary">
               {company.tagline}
             </p>
+            <address className="mt-2 text-[10px] font-medium not-italic uppercase tracking-widest text-white/40">
+              {company.address.street && `${company.address.street}, `}
+              {company.address.city}, {company.address.state}
+              {company.address.zip && ` ${company.address.zip}`}
+            </address>
           </div>
 
           {/* Nav links */}

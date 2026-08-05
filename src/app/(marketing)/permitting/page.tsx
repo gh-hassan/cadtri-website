@@ -56,7 +56,7 @@ const glossaryTerms: { term: string; definition: string; href?: string }[] = [
   {
     term: "Permit Set",
     definition: "The complete package of drawings and supporting documentation submitted to a building department for review.",
-    href: "/blog/what-is-a-permit-set",
+    href: "/resources/what-is-a-permit-set",
   },
   {
     term: "Plan Check",

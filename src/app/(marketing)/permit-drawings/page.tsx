@@ -293,7 +293,7 @@ const relatedReading: { title: string; description: string; href: string }[] = [
   {
     title: "How Much Do Permit Drawings Cost?",
     description: "A transparent 2026 breakdown by project type and what drives the price up.",
-    href: "/blog/how-much-do-permit-drawings-cost-a-2026-breakdown-by-project-type",
+    href: "/blog/permit-drawings-cost-2026",
   },
   {
     title: "What Is a Code Analysis Sheet?",

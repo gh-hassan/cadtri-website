@@ -49,6 +49,21 @@ const nextConfig: NextConfig = {
 
   async redirects() {
     return [
+      // ── Apex domain → www (SEO canonicalization, Aug 2026) ─────────────────
+      // cadtri.com served identical content to www.cadtri.com with no host
+      // redirect, so Google indexed/crawled both hosts as separate duplicate
+      // URLs despite the correct <link rel="canonical"> pointing to www.
+      // GSC flagged this as "Crawled – not indexed" and "Duplicate without
+      // user-selected canonical" for /services/pre-purchase-assessment and
+      // /services/digital-walkthroughs. This 301 collapses every apex
+      // request onto the canonical www host in a single hop.
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "cadtri.com" }],
+        destination: "https://www.cadtri.com/:path*",
+        permanent: true,
+      },
+
       // ── /book removed — redirect to /contact ─────────────────────────────
       {
         source: "/book",

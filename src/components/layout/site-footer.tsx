@@ -6,16 +6,12 @@ import { CadtriLogo } from "@/components/shared/logo";
 // ─── Constants ──────────────────────────────────────────────────────────────
 
 const navLinks = [
-  { label: "About",               href: "/about"               },
-  { label: "Services",            href: "/services"            },
-  { label: "Permit Drawings",     href: "/permit-drawings"     },
-  { label: "Structural Drafting", href: "/structural-drafting" },
-  { label: "Permitting",          href: "/permitting"          },
-  { label: "Coordination",        href: "/coordination"        },
-  { label: "Process",             href: "/process"             },
-  { label: "Portfolio",           href: "/portfolio"           },
-  { label: "Blog",                href: "/blog"                },
-  { label: "Contact",             href: "/contact"             },
+  { label: "About",      href: "/about"      },
+  { label: "Services",   href: "/services"   },
+  { label: "Process",    href: "/process"    },
+  { label: "Portfolio",  href: "/portfolio"  },
+  { label: "Blog",       href: "/blog"       },
+  { label: "Contact",    href: "/contact"    },
 ] as const;
 
 const legalLinks = [

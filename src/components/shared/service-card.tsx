@@ -25,37 +25,42 @@ export function ServiceCard({
   const cardBody = (
     <div
       className={cn(
-        "group flex flex-col gap-7 bg-background p-8",
+        "group relative flex flex-col gap-7 bg-background p-8 rounded-sm",
         "border border-border",
-        "transition-colors duration-base",
-        href && "cursor-pointer hover:border-border-strong",
+        "transition-all duration-300",
+        href && "cursor-pointer hover:shadow-lg hover:border-secondary/30 hover:-translate-y-1",
         className,
       )}
     >
-      {/* Icon — lifts on hover */}
+      {/* Hover gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-secondary/0 via-secondary/0 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-sm pointer-events-none" />
+
+      {/* Icon — lifts and brightens on hover */}
       {Icon && (
-        <Icon
-          size={22}
-          strokeWidth={1.5}
-          className="text-secondary transition-transform duration-200 group-hover:-translate-y-0.5"
-          aria-hidden
-        />
+        <div className="relative z-10">
+          <Icon
+            size={28}
+            strokeWidth={1.2}
+            className="text-secondary transition-all duration-300 group-hover:-translate-y-1 group-hover:scale-110"
+            aria-hidden
+          />
+        </div>
       )}
 
       {/* Text */}
-      <div className="flex flex-col gap-3">
-        <h3 className="font-sans text-sm font-medium uppercase tracking-wider text-foreground">
+      <div className="flex flex-col gap-3 relative z-10">
+        <h3 className="font-sans text-sm font-bold uppercase tracking-wider text-foreground transition-colors duration-300 group-hover:text-secondary">
           {title}
         </h3>
-        <p className="font-sans text-sm leading-relaxed text-muted">
+        <p className="font-sans text-sm leading-relaxed text-muted transition-colors duration-300 group-hover:text-foreground">
           {description}
         </p>
       </div>
 
       {/* Learn more — only when card is a link */}
       {href && (
-        <p className="font-sans mt-auto flex items-center gap-2 text-[11px] font-medium uppercase tracking-widest text-secondary transition-[gap] duration-base group-hover:gap-3">
-          Learn more <span aria-hidden>→</span>
+        <p className="font-sans mt-auto flex items-center gap-2 text-[11px] font-medium uppercase tracking-widest text-secondary transition-all duration-300 group-hover:gap-3 relative z-10">
+          Learn more <span className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden>→</span>
         </p>
       )}
     </div>

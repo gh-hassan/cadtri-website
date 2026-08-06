@@ -16,6 +16,7 @@ const PERMIT_DWGS_DATE    = "2026-07-27";
 const STRUCTURAL_DWG_DATE = "2026-07-27";
 const MEP_DWG_DATE        = "2026-07-27";
 const RENDERINGS_DATE     = "2026-07-27";
+const LOCATIONS_DATE      = "2026-07-30";
 
 // Derives lastModified from the file's actual last commit date instead of a
 // hand-maintained constant, so pages backed by content files that change
@@ -57,6 +58,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/structural-drafting`,   lastModified: STRUCTURAL_DWG_DATE },
     { url: `${base}/mep-drafting`,          lastModified: MEP_DWG_DATE },
     { url: `${base}/renderings-walkthroughs`, lastModified: RENDERINGS_DATE },
+    { url: `${base}/locations/tampa-fl`,    lastModified: LOCATIONS_DATE },
+    { url: `${base}/locations/miami-fl`,    lastModified: LOCATIONS_DATE },
+    { url: `${base}/locations/austin-tx`,   lastModified: LOCATIONS_DATE },
+    { url: `${base}/locations/houston-tx`,  lastModified: LOCATIONS_DATE },
     { url: `${base}/process`,               lastModified: SITE_LAUNCH },
     { url: `${base}/resources`, lastModified: SITE_LAUNCH },
     { url: `${base}/blog`,      lastModified: SITE_LAUNCH },

@@ -77,7 +77,7 @@ export default async function BlogPostPage({ params }: Props) {
             <span className="text-white/20" aria-hidden>·</span>
             <span className="text-[11px] font-light text-white/40">{post.readingTime}</span>
             <span className="text-white/20" aria-hidden>·</span>
-            <span className="text-[11px] font-light text-white/40">By Shahzaib Nadeem, Content Writer at CADTRI</span>
+            <span className="text-[11px] font-light text-white/40">By Shahzaib Nadeem, Experienced Content Writer at CADTRI</span>
           </div>
         </div>
       </div>

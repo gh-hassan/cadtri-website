@@ -106,9 +106,11 @@ interface ServiceJsonLdProps {
   description: string;
   url: string;
   category?: string;
+  /** Overrides the default nationwide/FL/TX/NC areaServed — use on location-specific pages. */
+  areaServed?: { "@type": string; name: string; containedInPlace?: { "@type": string; name: string } }[];
 }
 
-export function ServiceJsonLd({ title, description, url, category }: ServiceJsonLdProps) {
+export function ServiceJsonLd({ title, description, url, category, areaServed }: ServiceJsonLdProps) {
   const schema = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -117,7 +119,7 @@ export function ServiceJsonLd({ title, description, url, category }: ServiceJson
     url,
     ...(category ? { serviceType: category } : {}),
     provider: { "@id": ORG_ID },
-    areaServed: [
+    areaServed: areaServed ?? [
       { "@type": "Country", name: "United States" },
       { "@type": "State", name: "Florida" },
       { "@type": "State", name: "Texas" },
@@ -228,7 +230,7 @@ interface ArticleJsonLdProps {
 }
 
 const DEFAULT_AUTHOR_NAME = "Shahzaib Nadeem";
-const DEFAULT_AUTHOR_TITLE = "Content Writer at CADTRI";
+const DEFAULT_AUTHOR_TITLE = "Experienced Content Writer at CADTRI";
 
 export function ArticleJsonLd({
   title,

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Section } from "@/components/shared/section";
 import { CtaBand } from "@/components/shared/cta-band";
 import { Button } from "@/components/shared/button";
-import { getRelatedServices, getServiceBySlug } from "@/content/services";
+import { getRelatedServices, getServiceBySlug, getServiceHref } from "@/content/services";
 
 type ServiceType = NonNullable<ReturnType<typeof getServiceBySlug>>;
 
@@ -359,7 +359,7 @@ export function HistoricLayout({ service }: { service: ServiceType }) {
             {related.map((rel) => (
               <Link
                 key={rel.slug}
-                href={`/services/${rel.slug}`}
+                href={getServiceHref(rel.slug)}
                 className="group flex items-start justify-between gap-8 px-8 py-7 transition-colors hover:bg-surface"
               >
                 <div>

@@ -71,6 +71,18 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
 
+      // ── Architectural Drafting service page → keyword-in-slug URL ────────
+      // SEO roadmap Phase 0 (Aug 2026): competitors ranking for "architectural
+      // drafting services" all use a URL pattern with the exact keyword in the
+      // slug. Moved the service page from /services/architectural-drafting to
+      // /architectural-drafting-services; this 301 preserves link equity and
+      // keeps the old URL resolving instead of 404ing.
+      {
+        source: "/services/architectural-drafting",
+        destination: "/architectural-drafting-services",
+        permanent: true,
+      },
+
       // ── Old resource article URLs → new SEO-optimised slugs ───────────────
       // These were renamed in May 2026. 301s preserve any existing link equity
       // and prevent Google from indexing the old URLs as 404s.

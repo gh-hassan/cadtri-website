@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { execSync } from "child_process";
 import { company } from "@/content/company";
-import { services } from "@/content/services";
+import { services, getServiceHref } from "@/content/services";
 import { industries } from "@/content/industries";
 import { getAllPosts, getBlogPosts } from "@/lib/posts";
 
@@ -71,7 +71,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ];
 
   const serviceRoutes: MetadataRoute.Sitemap = services.map((s) => ({
-    url: `${base}/services/${s.slug}`,
+    url: `${base}${getServiceHref(s.slug)}`,
     lastModified: SERVICES_DATE,
   }));
 

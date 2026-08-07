@@ -6,7 +6,7 @@ import { Section } from "@/components/shared/section";
 import { CtaBand } from "@/components/shared/cta-band";
 import { Button } from "@/components/shared/button";
 import { getIndustryBySlug, industries } from "@/content/industries";
-import { getServiceBySlug } from "@/content/services";
+import { getServiceBySlug, getServiceHref } from "@/content/services";
 import { ServiceJsonLd, BreadcrumbJsonLd } from "@/lib/json-ld";
 import { company } from "@/content/company";
 
@@ -172,7 +172,7 @@ export default async function IndustryPage({ params }: Props) {
             {featuredServices.map((service) => (
               <li key={service.slug}>
                 <Link
-                  href={`/services/${service.slug}`}
+                  href={getServiceHref(service.slug)}
                   className="group flex items-center gap-6 px-7 py-7 transition-colors duration-200 hover:bg-surface lg:px-9"
                 >
                   <span className="min-w-[5rem] text-[10px] font-medium uppercase tracking-widest text-muted">

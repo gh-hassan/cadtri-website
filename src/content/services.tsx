@@ -90,7 +90,7 @@ export const services: readonly Service[] = [
   // ── 01. Architectural Drafting ───────────────────────────────────────────
   {
     slug:            "architectural-drafting",
-    title:           "Architectural Drafting",
+    title:           "Architectural Drafting Services",
     metaTitle:       "Architectural Drafting Services | CAD Drafting & Drawings",
     metaDescription: "Our architectural CAD drafting services help contractors, architects, and developers produce accurate construction drawings and permit ready documentation.",
     category: "Drawings",
@@ -286,7 +286,7 @@ export const services: readonly Service[] = [
     layout:       "visual",
     tagline:      "3D architectural visualization and rendering services for permitting, presentations, approvals, and project marketing.",
     overview:
-      <>We provide architectural rendering services and 3D visualization support for projects that require clear visual communication beyond what construction drawings alone can convey. Renderings are produced directly from the permitted <Link href="/services/architectural-drafting" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">architectural drawings</Link>, ensuring the visual presentation and the technical permit set remain consistent. Whether the project requires a design review board submission, a client presentation, or pre-construction marketing imagery, every rendering is built to accurately represent what will be constructed.</>,
+      <>We provide architectural rendering services and 3D visualization support for projects that require clear visual communication beyond what construction drawings alone can convey. Renderings are produced directly from the permitted <Link href="/architectural-drafting-services" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">architectural drawings</Link>, ensuring the visual presentation and the technical permit set remain consistent. Whether the project requires a design review board submission, a client presentation, or pre-construction marketing imagery, every rendering is built to accurately represent what will be constructed.</>,
     useCases: [
       "Design review board submissions",
       "HOA approval packages",
@@ -511,7 +511,7 @@ export const services: readonly Service[] = [
     layout:   "technical",
     tagline:  "Mechanical, electrical, and plumbing coordination services for complete permit-ready construction documents.",
     overview:
-      <>On commercial, hospitality, and multi-family projects, mechanical, electrical, and plumbing systems must be fully coordinated with the <Link href="/services/architectural-drafting" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">architectural drawings</Link> before submission. Conflicts discovered during plan check or in the field are expensive to resolve and compound schedule delays. We review MEP drawings against architectural sheets, identify conflicts, and produce a fully coordinated combined package in direct communication with the responsible engineers.</>,
+      <>On commercial, hospitality, and multi-family projects, mechanical, electrical, and plumbing systems must be fully coordinated with the <Link href="/architectural-drafting-services" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">architectural drawings</Link> before submission. Conflicts discovered during plan check or in the field are expensive to resolve and compound schedule delays. We review MEP drawings against architectural sheets, identify conflicts, and produce a fully coordinated combined package in direct communication with the responsible engineers.</>,
     disciplines: ["HVAC and Mechanical", "Electrical Distribution", "Plumbing Systems", "Fire Sprinkler Coordination", "Life Safety Systems", "Ceiling and Structural Clearance"],
     includes: [
       { title: "Discipline-by-Discipline Review",         description: "Systematic review of each MEP discipline against the architectural set, identifying spatial conflicts, reference inconsistencies, and coordination gaps." },
@@ -577,7 +577,7 @@ export const services: readonly Service[] = [
     layout:       "visual",
     tagline:      "Interactive 3D architectural walkthroughs for approvals, presentations, and pre-construction sales.",
     overview:
-      <>Architectural digital walkthroughs give stakeholders the ability to move through a proposed building or interior space before construction begins. We produce navigable 3D walkthroughs from <Link href="/services/architectural-drafting" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">architectural drawings</Link>, giving clients, investors, review boards, and approval authorities a first-person understanding of the project from the inside. Walkthroughs are delivered as interactive web links or video tours accessible from any device without specialized software.</>,
+      <>Architectural digital walkthroughs give stakeholders the ability to move through a proposed building or interior space before construction begins. We produce navigable 3D walkthroughs from <Link href="/architectural-drafting-services" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">architectural drawings</Link>, giving clients, investors, review boards, and approval authorities a first-person understanding of the project from the inside. Walkthroughs are delivered as interactive web links or video tours accessible from any device without specialized software.</>,
     useCases: [
       "Investor and lender presentations",
       "Design review board submissions",
@@ -621,7 +621,7 @@ export const services: readonly Service[] = [
     layout:       "visual",
     tagline:      "Photorealistic 3D staging services for vacant spaces, new construction, remodels, and real estate marketing visualization.",
     overview:
-      <>Virtual 3D staging transforms empty rooms and unfinished interiors into fully furnished, photorealistic CGI environments. We produce staged visualizations from <Link href="/services/architectural-drafting" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">architectural drawings</Link> or site photographs, showing the property exactly as it would appear fully finished and furnished. Outputs are used for real estate listing photography, investor presentations, pre-construction marketing, and interior design concept approvals.</>,
+      <>Virtual 3D staging transforms empty rooms and unfinished interiors into fully furnished, photorealistic CGI environments. We produce staged visualizations from <Link href="/architectural-drafting-services" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">architectural drawings</Link> or site photographs, showing the property exactly as it would appear fully finished and furnished. Outputs are used for real estate listing photography, investor presentations, pre-construction marketing, and interior design concept approvals.</>,
     useCases: [
       "Real estate listing photography",
       "New construction pre-sales",
@@ -1294,7 +1294,7 @@ export const services: readonly Service[] = [
     steps: [
       { title: "Historic Resource Documentation", description: "We document the existing historic resource: architectural character, defining features, materials, period-significant elements, and any prior alterations. This existing conditions documentation is the foundation of the COA application." },
       { title: "Standards Compliance Analysis",   description: "The proposed scope is evaluated against the applicable Secretary of the Interior's Standards for Rehabilitation and the local historic district design guidelines. We identify any elements that require modification to comply and note any areas requiring clarification from the preservation board." },
-      { title: "Submission Package Preparation",  description: <>We produce the complete COA submission package: existing and <Link href="/services/architectural-drafting" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">proposed drawings</Link>, materials specifications, photo documentation, and the written compliance narrative demonstrating consistency with the preservation standards.</> },
+      { title: "Submission Package Preparation",  description: <>We produce the complete COA submission package: existing and <Link href="/architectural-drafting-services" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">proposed drawings</Link>, materials specifications, photo documentation, and the written compliance narrative demonstrating consistency with the preservation standards.</> },
       { title: "Board Response Support",          description: "If the preservation board issues comments or requests additional information, we prepare the response drawings and supplemental documentation required to address each item." },
     ],
     includes: [
@@ -2049,6 +2049,19 @@ export const services: readonly Service[] = [
 
 export function getServiceBySlug(slug: string): Service | undefined {
   return services.find((s) => s.slug === slug);
+}
+
+// Slugs whose canonical URL lives outside the standard /services/[slug]
+// pattern. "architectural-drafting" moved to /architectural-drafting-services
+// (SEO roadmap Phase 0, Aug 2026) to put the target keyword in the URL slug —
+// every internal link builder should resolve hrefs through this helper
+// instead of hand-building `/services/${slug}`.
+const SERVICE_URL_OVERRIDES: Record<string, string> = {
+  "architectural-drafting": "/architectural-drafting-services",
+};
+
+export function getServiceHref(slug: string): string {
+  return SERVICE_URL_OVERRIDES[slug] ?? `/services/${slug}`;
 }
 
 export function getRelatedServices(service: Service): Service[] {

@@ -9,6 +9,7 @@ import { Section } from "@/components/shared/section";
 import { ServiceCard } from "@/components/shared/service-card";
 import { Button } from "@/components/shared/button";
 import { servicesOverview } from "@/content/homepage";
+import { getServiceHref } from "@/content/services";
 
 const iconMap: Record<string, LucideIcon> = {
   PencilRuler,
@@ -69,7 +70,7 @@ export function HomeServices() {
             <ServiceCard
               title={service.title}
               description={service.description}
-              href={`/services/${service.slug}`}
+              href={getServiceHref(service.slug)}
               icon={iconMap[service.icon]}
               className="border-0 h-full"
             />

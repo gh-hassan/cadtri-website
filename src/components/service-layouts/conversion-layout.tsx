@@ -3,7 +3,7 @@ import { Section } from "@/components/shared/section";
 import { CtaBand } from "@/components/shared/cta-band";
 import { Button } from "@/components/shared/button";
 import type { Service } from "@/content/services";
-import { getRelatedServices } from "@/content/services";
+import { getRelatedServices, getServiceHref } from "@/content/services";
 
 interface Props {
   service: Service;
@@ -281,7 +281,7 @@ export function ConversionLayout({ service }: Props) {
             {related.map((rel) => (
               <Link
                 key={rel.slug}
-                href={`/services/${rel.slug}`}
+                href={getServiceHref(rel.slug)}
                 className="group cursor-pointer bg-background px-8 py-8 transition-colors hover:bg-surface"
               >
                 <p className="text-[11px] font-medium uppercase tracking-widest text-secondary">

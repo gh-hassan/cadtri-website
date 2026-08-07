@@ -3,7 +3,7 @@ import Link from "next/link";
 import { PageHeader } from "@/components/shared/page-header";
 import { Section } from "@/components/shared/section";
 import { CtaBand } from "@/components/shared/cta-band";
-import { services } from "@/content/services";
+import { services, getServiceHref } from "@/content/services";
 import { company } from "@/content/company";
 import { BreadcrumbJsonLd, ServiceListJsonLd } from "@/lib/json-ld";
 
@@ -27,7 +27,7 @@ export default function ServicesPage() {
         items={services.map((s, i) => ({
           position: i + 1,
           name: s.title,
-          url: `${company.website}/services/${s.slug}`,
+          url: `${company.website}${getServiceHref(s.slug)}`,
         }))}
       />
       <PageHeader
@@ -69,7 +69,7 @@ export default function ServicesPage() {
             {services.map((service, i) => (
               <li key={service.slug}>
                 <Link
-                  href={`/services/${service.slug}`}
+                  href={getServiceHref(service.slug)}
                   className="group block transition-colors duration-200 hover:bg-surface"
                 >
                   <article className="grid grid-cols-[2.5rem_1fr] items-start gap-x-6 px-7 py-9 lg:grid-cols-[2.5rem_1fr_11rem] lg:items-center lg:gap-x-8 lg:px-9">

@@ -136,7 +136,7 @@ export const industries: readonly Industry[] = [
         contractors, developers, and architects with coordinated commercial construction
         documentation, permit-ready commercial drawings, and commercial CAD drafting services
         designed to streamline the design-to-permit workflow. Our team manages{" "}
-        <Link href="/services/architectural-drafting" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">architectural</Link>
+        <Link href="/architectural-drafting-services" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">architectural</Link>
         ,{" "}
         <Link href="/services/structural-coordination" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">structural</Link>
         , MEP, and{" "}

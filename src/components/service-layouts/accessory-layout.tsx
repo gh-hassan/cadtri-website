@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Section } from "@/components/shared/section";
 import { CtaBand } from "@/components/shared/cta-band";
 import { Button } from "@/components/shared/button";
-import { getRelatedServices, getServiceBySlug } from "@/content/services";
+import { getRelatedServices, getServiceBySlug, getServiceHref } from "@/content/services";
 
 type ServiceType = NonNullable<ReturnType<typeof getServiceBySlug>>;
 
@@ -317,7 +317,7 @@ export function AccessoryLayout({ service }: { service: ServiceType }) {
                 {related.map((s) => (
                   <li key={s.slug}>
                     <Link
-                      href={`/services/${s.slug}`}
+                      href={getServiceHref(s.slug)}
                       className="group flex cursor-pointer items-center gap-5 px-6 py-6 transition-colors duration-200 hover:bg-background"
                     >
                       <div className="flex-1">

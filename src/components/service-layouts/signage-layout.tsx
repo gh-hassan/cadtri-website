@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/shared/button";
 import { Section } from "@/components/shared/section";
 import { CtaBand } from "@/components/shared/cta-band";
-import { getRelatedServices } from "@/content/services";
+import { getRelatedServices, getServiceHref } from "@/content/services";
 import type { Service } from "@/content/services";
 
 interface Props {
@@ -471,7 +471,7 @@ export function SignageLayout({ service }: Props) {
             {related.map((s) => (
               <li key={s.slug}>
                 <Link
-                  href={`/services/${s.slug}`}
+                  href={getServiceHref(s.slug)}
                   className="group flex cursor-pointer items-center gap-6 px-7 py-7 transition-colors duration-200 hover:bg-surface lg:px-9"
                 >
                   <span className="min-w-[5rem] text-[10px] font-medium uppercase tracking-widest text-muted">

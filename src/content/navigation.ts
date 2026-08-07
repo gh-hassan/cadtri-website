@@ -36,7 +36,7 @@ export const navLinks: readonly NavLink[] = [
       { label: "Design Options Study",       href: "/services/design-options-study"       },
       { label: "Code Compliance Gap Analysis", href: "/services/compliance-gap-analysis"  },
       // Drawings
-      { label: "Architectural Drafting",      href: "/services/architectural-drafting"      },
+      { label: "Architectural Drafting",      href: "/architectural-drafting-services"      },
       { label: "As-Built Documentation",      href: "/services/as-built-documentation"      },
       { label: "Contractor Bid Package",      href: "/services/contractor-bid-package"      },
       // Permitting
@@ -102,7 +102,7 @@ export const servicesMegaMenu: readonly MegaMenuCategory[] = [
   {
     heading: "Drawings",
     services: [
-      { label: "Architectural Drafting",     href: "/services/architectural-drafting",        description: "Complete permit drawing sets"            },
+      { label: "Architectural Drafting",     href: "/architectural-drafting-services",        description: "Complete permit drawing sets"            },
       { label: "As-Built Documentation",     href: "/services/as-built-documentation",        description: "Existing conditions on record"           },
       { label: "Contractor Bid Package",     href: "/services/contractor-bid-package",        description: "Bid-ready procurement documents"         },
       { label: "Demolition Permit Drawings", href: "/services/demolition-permit-drawings",    description: "Scope-specific demo permit sets"         },
@@ -161,7 +161,7 @@ export const footerColumns: readonly FooterColumn[] = [
     heading: "Services",
     links: [
       { label: "Project Strategy",           href: "/services/project-strategy"           },
-      { label: "Architectural Drafting",     href: "/services/architectural-drafting"     },
+      { label: "Architectural Drafting",     href: "/architectural-drafting-services"     },
       { label: "Permit Set Preparation",       href: "/services/permit-set-preparation"       },
       { label: "ADU Permit Packages",          href: "/services/adu-permit-packages"          },
       { label: "Solar & EV Permits",           href: "/services/solar-ev-permit-packages"     },

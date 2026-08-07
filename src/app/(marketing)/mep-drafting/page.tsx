@@ -6,7 +6,7 @@ import { Section } from "@/components/shared/section";
 import { CtaBand } from "@/components/shared/cta-band";
 import { TableOfContents } from "@/components/shared/table-of-contents";
 import { ComparisonTable } from "@/components/shared/comparison-table";
-import { getServiceBySlug } from "@/content/services";
+import { getServiceBySlug, getServiceHref } from "@/content/services";
 import { company } from "@/content/company";
 import {
   BreadcrumbJsonLd,
@@ -547,7 +547,7 @@ export default function MepDraftingPage() {
             {mepServices.map((service, i) => (
               <li key={service.slug}>
                 <Link
-                  href={`/services/${service.slug}`}
+                  href={getServiceHref(service.slug)}
                   className="group block transition-colors duration-200 hover:bg-surface"
                 >
                   <article className="grid grid-cols-[2.5rem_1fr] items-start gap-x-6 px-7 py-8 lg:grid-cols-[2.5rem_1fr_9rem] lg:items-center lg:gap-x-8 lg:px-9">

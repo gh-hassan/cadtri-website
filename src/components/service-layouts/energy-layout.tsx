@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Section } from "@/components/shared/section";
 import { CtaBand } from "@/components/shared/cta-band";
 import { Button } from "@/components/shared/button";
-import { getRelatedServices, getServiceBySlug } from "@/content/services";
+import { getRelatedServices, getServiceBySlug, getServiceHref } from "@/content/services";
 
 type ServiceType = NonNullable<ReturnType<typeof getServiceBySlug>>;
 
@@ -371,7 +371,7 @@ export function EnergyLayout({ service }: { service: ServiceType }) {
             {related.map((s) => (
               <li key={s.slug}>
                 <Link
-                  href={`/services/${s.slug}`}
+                  href={getServiceHref(s.slug)}
                   className="group flex items-center gap-6 px-7 py-7 transition-colors duration-200 hover:bg-surface lg:px-9"
                 >
                   <span className="min-w-[5rem] text-[10px] font-medium uppercase tracking-widest text-muted">

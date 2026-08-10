@@ -333,7 +333,7 @@ export default function PermittingPage() {
             <p className="font-light leading-relaxed text-muted">
               A permit application is only as strong as the research behind it. Permitting
               services cover the full path from raw project scope to an issued permit:
-              confirming what the building department actually requires, producing drawings
+              confirming what the building department actually requires, producing <Link href="/architectural-drafting-services" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">construction documentation</Link>
               and code compliance documentation to that standard, submitting the package,
               and responding to plan check comments until the permit is approved.
             </p>

@@ -251,7 +251,7 @@ export default function RenderingsWalkthroughsPage() {
               Different audiences need different formats. A review board wants a
               clear exterior rendering. An investor wants to walk through the space.
               A buyer wants to see it fully furnished. We produce all three from the
-              same source drawings.
+              same <Link href="/architectural-drafting-services" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">source drawings</Link>.
             </p>
           </div>
         </div>

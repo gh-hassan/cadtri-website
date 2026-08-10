@@ -56,6 +56,13 @@ export function StandardLayout({ service }: Props) {
             ))}
           </div>
         )}
+
+        {/* Pricing context */}
+        {service.pricingNote && (
+          <p className="mt-8 text-sm font-light leading-relaxed text-muted">
+            {service.pricingNote}
+          </p>
+        )}
       </Section>
 
       {/* How we draft it — numbered steps */}
@@ -149,6 +156,30 @@ export function StandardLayout({ service }: Props) {
           </div>
         )}
       </Section>
+
+      {/* Work samples — hidden until real project images are added */}
+      {service.portfolioSamples && service.portfolioSamples.length > 0 && (
+        <Section variant="default" className="border-t border-border">
+          <div className="mb-12">
+            <p className="mb-4 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-secondary">
+              Work Samples
+            </p>
+            <h2 className="font-bold text-3xl text-foreground sm:text-4xl" style={{ letterSpacing: "-0.025em" }}>
+              Drawings from real projects.
+            </h2>
+          </div>
+          <div className="grid gap-px border-x border-b border-t border-border bg-border sm:grid-cols-2">
+            {service.portfolioSamples.map((sample) => (
+              <figure key={sample.src} className="bg-surface">
+                <img src={sample.src} alt={sample.alt} className="w-full object-cover" loading="lazy" />
+                {sample.caption && (
+                  <figcaption className="px-6 py-4 text-sm font-light text-muted">{sample.caption}</figcaption>
+                )}
+              </figure>
+            ))}
+          </div>
+        </Section>
+      )}
 
       {/* Who it's for */}
       <Section variant="default" className="border-t border-border">

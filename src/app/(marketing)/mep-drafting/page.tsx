@@ -351,7 +351,7 @@ export default function MepDraftingPage() {
               A mechanical, electrical, or plumbing calculation package tells you
               what the design requires. MEP drafting turns that design into the
               coordinated drawing set a plan checker and a contractor can actually
-              build from.
+              build from, reviewed against the <Link href="/architectural-drafting-services" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">architectural drawings</Link> for the same project.
             </p>
           </div>
         </div>

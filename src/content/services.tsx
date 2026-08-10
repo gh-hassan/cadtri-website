@@ -25,6 +25,12 @@ export interface ServiceFaq {
   readonly answer: ReactNode;
 }
 
+export interface ServicePortfolioSample {
+  readonly src: string;
+  readonly alt: string;
+  readonly caption?: string;
+}
+
 export type ServiceLayout =
   | "standard"
   | "process"
@@ -81,6 +87,8 @@ export interface Service {
   readonly outputFormats?: readonly string[];
   readonly faqs?: readonly ServiceFaq[];
   readonly disciplines?: readonly string[];
+  readonly pricingNote?: ReactNode;
+  readonly portfolioSamples?: readonly ServicePortfolioSample[];
 }
 
 // ─── Service data ─────────────────────────────────────────────────────────────
@@ -97,12 +105,38 @@ export const services: readonly Service[] = [
     layout:   "standard",
     tagline:  "Complete, permit-ready architectural drafting services for residential and commercial construction projects.",
     overview:
-      "We provide architectural CAD drafting services designed for real-world permit approval. Every drawing package is built to the specific submission requirements of the applicable jurisdiction: all required plan sheets, code compliance notes, and coordinated documentation produced to clear plan check without unnecessary correction cycles. Whether the project is a single-family addition, a ground-up commercial building, or an ADU, the drawings are prepared to the standard the building department expects.",
+      <>
+        Architectural drafting is the production of scaled, dimensioned construction drawings, floor
+        plans, elevations, sections, site plans, and the supporting details and notes a building
+        department requires to issue a permit. It is distinct from architectural design: drafting takes
+        a defined scope, whether that is a sketch, an existing drawing set, or a written description, and
+        turns it into the technical drawing set a plan checker can review and a contractor can build from.
+        We provide architectural CAD drafting services designed for real-world permit approval. Every
+        drawing package is built to the specific submission requirements of the applicable jurisdiction:
+        all required plan sheets, code compliance notes, and coordinated documentation produced to clear
+        plan check without unnecessary correction cycles. Whether the project is a single-family addition,
+        a ground-up commercial building, or an ADU, the drawings are prepared to the standard the building
+        department expects.
+        <br /><br />
+        Before delivery, every set goes through an internal review against the jurisdiction&apos;s
+        submission checklist: dimensions are cross-checked between sheets, code references are verified
+        against the currently adopted edition, and file formats are confirmed against what the specific
+        building department accepts for upload or in-person submission. That review step is standard on
+        every engagement, not a paid add-on.
+      </>,
+    pricingNote:
+      <>
+        Architectural drafting cost starts around $2,500 for a standard permit-ready drawing package.
+        Final architectural drafting pricing depends on project size, how much design work already
+        exists, whether you are starting from a sketch or a full set of existing drawings, and the
+        jurisdiction, since local cost of living and code complexity both move the number. See the <Link href="/pricing" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">pricing estimator</Link> for a tailored number, or request a proposal for a firm quote.
+      </>,
     processHighlights: [
       { label: "Software",             value: "AutoCAD / Revit" },
       { label: "File Formats",         value: "PDF, DWG, RVT" },
       { label: "Typical Turnaround",   value: "7-10 Days" },
       { label: "Revisions",            value: "Included" },
+      { label: "States Served",        value: "40+" },
     ],
     steps: [
       { title: "Site and Document Review",         description: "We review existing drawings, surveys, photos, or field measurements available for the project, along with any jurisdiction-specific submission requirements that affect sheet format and content." },
@@ -128,15 +162,22 @@ export const services: readonly Service[] = [
       { title: "Real Estate Developers", description: "Building residential or commercial projects and need permit-ready documentation on a professional timeline." },
     ],
     whyItMatters:
-      "One of the most common reasons projects get delayed during plan review is incomplete construction documentation. Missing sheets, uncoordinated details, or drawings that do not address jurisdiction-specific requirements send packages back for corrections that cost time and schedule. A professionally prepared architectural drawing set addresses the code requirements specific to the jurisdiction and gives plan checkers a set that is straightforward to approve from the first submission.",
+      "One of the most common reasons projects get delayed during plan review is incomplete construction documentation. Missing sheets, uncoordinated details, or drawings that do not address jurisdiction-specific requirements send packages back for corrections that cost time and schedule. A single correction cycle on a residential permit commonly adds two to six weeks to a project timeline, depending on the jurisdiction's plan check queue, on top of the cost of producing the corrected sheets. A professionally prepared architectural drawing set addresses the code requirements specific to the jurisdiction and gives plan checkers a set that is straightforward to approve from the first submission, which is the single highest-leverage step in the entire permit process.",
     faqs: [
+      { question: "How much does architectural drafting cost?", answer: <>Architectural drafting cost typically starts around $2,500 for a standard permit-ready drawing package. The final price depends on project size, how much design work already exists, and the jurisdiction. Use the <Link href="/pricing" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">pricing estimator</Link> for a tailored figure.</> },
+      { question: "How long does architectural drafting take?", answer: "Typical turnaround is 7 to 10 business days for a standard permit-ready package, starting once the project scope and any existing drawings or field measurements are received. Larger or more complex projects, and rush timelines, are quoted individually." },
+      { question: "What is included in a permit set?", answer: <>A permit-ready set typically includes a title sheet, floor plans, elevations, building sections, a site plan, construction details and notes, and required schedules. See <Link href="/services/permit-set-preparation" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">Permit Set Preparation</Link> for how we assemble the complete jurisdiction-specific package.</> },
       { question: "What software do you use for architectural drafting?", answer: "We draft primarily in AutoCAD and Revit, and can work in the format your project or jurisdiction requires. Revit is used for projects that benefit from BIM coordination; AutoCAD covers straightforward 2D permit sets." },
       { question: "What file formats do you deliver?", answer: "Print-ready PDF for submission, plus native DWG or RVT files if you need editable drawings for your own records or for a contractor's use." },
-      { question: "Is architectural drafting the same as hiring an architect?", answer: <>No. Architectural drafting produces the technical drawings a building department requires. It does not include the licensed design services, stamped structural engineering, or code interpretation that require a licensed architect or engineer. Many jurisdictions allow non-structural residential drawings to be prepared by a qualified drafting service; we confirm the requirement for your specific project during <Link href="/permitting" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">jurisdiction research</Link>.</> },
-      { question: "Can you draft from a sketch or from scratch?", answer: <>Yes. We work from hand sketches, existing drawings, field measurements, or a written scope description. For renovation and addition projects, we can also produce the <Link href="/services/as-built-documentation" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">as-built existing conditions drawings</Link> first if none exist.</> },
+      { question: "Do I need a licensed architect, or can a drafter do it?", answer: <>It depends on the project. Architectural drafting produces the technical drawings a building department requires, but it does not include the licensed design services, stamped structural engineering, or code interpretation that require a licensed architect or engineer. Many jurisdictions allow non-structural residential drawings to be prepared by a qualified drafting service; we confirm the requirement for your specific project during <Link href="/permitting" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">jurisdiction research</Link>.</> },
+      { question: "What is the difference between drafting and design?", answer: "Design is the creative and technical process of developing a building's layout, form, and systems, typically the work of a licensed architect or designer. Drafting takes a defined scope, whether a sketch, an existing plan, or a written description, and produces the scaled, dimensioned construction drawings a building department and contractor need. Drafting does not include design decision-making." },
+      { question: "Can you draft from a sketch?", answer: <>Yes. We work from hand sketches, existing drawings, field measurements, or a written scope description. For renovation and addition projects, we can also produce the <Link href="/services/as-built-documentation" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">as-built existing conditions drawings</Link> first if none exist.</> },
+      { question: "Do you work in my state?", answer: "Yes. We serve clients in 40+ states, with primary markets in Florida, Texas, and North Carolina. Every drawing package is built around the specific requirements of the applicable local building department, regardless of location." },
       { question: "How many revision rounds are included?", answer: "Revisions during the initial drafting phase are included as part of the engagement. If a jurisdiction issues plan check corrections after submission, that is handled as a separate city comments response engagement." },
       { question: "What scale and sheet size do you use?", answer: "Drawings are produced at the scale and sheet size the specific jurisdiction requires for the project type, typically 1/4\" or 1/8\" scale on 24x36 or 30x42 sheets for permit submission, confirmed during jurisdiction research." },
       { question: "Do you provide structural engineering with architectural drafting?", answer: <>No, but we coordinate directly with your structural engineer of record to integrate their drawings into the architectural set. See <Link href="/services/structural-coordination" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">Structural Coordination</Link> for that service.</> },
+      { question: "Can I use this service if I already have a licensed architect?", answer: "Yes. Licensed architects and designers regularly use our architectural drafting services for production support, overflow capacity, or smaller permit-only scopes where a full design engagement is not required. The architect retains design authority and stamps the drawings where required; we produce the CAD drawings to their specifications." },
+      { question: "Do you handle commercial as well as residential architectural drafting?", answer: "Yes. We produce architectural drafting for both residential projects, additions, ADUs, garage conversions, remodels, and commercial work, including tenant improvements, ground-up commercial buildings, and mixed-use development, across the jurisdictions we serve." },
     ],
     relatedSlugs: ["permit-set-preparation", "structural-coordination", "code-compliance-review"],
   },

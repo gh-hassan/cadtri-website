@@ -140,7 +140,7 @@ export function ServiceJsonLd({ title, description, url, category, areaServed }:
 // estimator tool (pricing-form.tsx SERVICE_BASE_COSTS) — kept in sync manually
 // since one is a client bundle and the other is a server-rendered schema block.
 
-const PRICING_OFFERS = [
+export const PRICING_OFFERS = [
   { name: "Permit Set Preparation",       minPrice: 2000 },
   { name: "Architectural Drafting",       minPrice: 2500 },
   { name: "ADU Permit Packages",          minPrice: 4000 },

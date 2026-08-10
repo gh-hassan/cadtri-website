@@ -319,7 +319,8 @@ export default function CoordinationPage() {
             <p className="font-light leading-relaxed text-muted">
               Most permit-ready projects involve more than one design discipline: an
               architect, a structural engineer, and often an MEP consultant. Coordination
-              is the work of checking those drawings against each other, resolving what
+              is the work of checking those drawings against each other, starting with
+              the <Link href="/architectural-drafting-services" className="underline underline-offset-2 decoration-border hover:text-secondary hover:decoration-secondary transition-colors duration-150">architectural drafting services</Link> that establish the base set, resolving what
               does not agree, and producing a single package that reads as one document
               instead of several that were never compared.
             </p>
